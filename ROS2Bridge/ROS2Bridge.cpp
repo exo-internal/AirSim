@@ -3,6 +3,7 @@
 #include "stdafx.h"
 
 #include <chrono>
+#include <iostream>
 
 #include "opencv2/opencv.hpp"
 
@@ -39,15 +40,16 @@ public:
 		// Set the start time
 		startTime_ = high_resolution_clock::now();
 
+		// Create a ping from the bridge
+		helloTimer_ = this->create_wall_timer(1000ms, std::bind(&ROS2AirSim::hello_callback, this));
+		helloPublisher_ = this->create_publisher<std_msgs::msg::String>("exo/airsim/bridge/ping");
+
 		// Set up the AirSim API
 		client.confirmConnection();
 		client.enableApiControl(true);
 		client.armDisarm(true);
 
-		// Create ROS2 timers, publishers, and subscriptions
-		helloTimer_ = this->create_wall_timer(10000ms, std::bind(&ROS2AirSim::hello_callback, this));
-		helloPublisher_ = this->create_publisher<std_msgs::msg::String>("/airsim/hello");
-
+		// Create the state publishers
 		stateTimer_ = this->create_wall_timer(100ms, std::bind(&ROS2AirSim::state_callback, this));
 		pingPublisher_ = this->create_publisher<std_msgs::msg::Bool>("/exo/airsim/drone/ping");
 		accelPublisher_ = this->create_publisher<geometry_msgs::msg::Accel>("/exo/airsim/drone/accel");
@@ -55,9 +57,11 @@ public:
 		odomPublisher_ = this->create_publisher<nav_msgs::msg::Odometry>("/exo/airsim/drone/odometry");
 		imuPublisher_ = this->create_publisher<sensor_msgs::msg::Imu>("/exo/airsim/drone/imu");
 
-		cameraTimer_ = this->create_wall_timer(500ms, std::bind(&ROS2AirSim::camera_callback, this));
-		frontColorPublisher_ = this->create_publisher<sensor_msgs::msg::CompressedImage>("/exo/airsim/drone/camera/front/color");
-		frontDepthPublisher_ = this->create_publisher<sensor_msgs::msg::CompressedImage>("/exo/airsim/drone/camera/front/depth");
+		// Create the camera publishers
+		cameraTimer_ = this->create_wall_timer(50ms, std::bind(&ROS2AirSim::camera_callback, this));
+		frontColorPublisher_ = this->create_publisher<sensor_msgs::msg::CompressedImage>("/exo/airsim/drone/camera/front/color/image_raw/compressed");
+		frontRawDepthPublisher_ = this->create_publisher<sensor_msgs::msg::Image>("/exo/airsim/drone/camera/front/depth/image_raw");
+		frontDepthPublisher_ = this->create_publisher<sensor_msgs::msg::CompressedImage>("/exo/airsim/drone/camera/front/depth/image_raw/compressed");
 	}
 
 private:
@@ -66,8 +70,7 @@ private:
 	void hello_callback()
 	{
 		auto message = std_msgs::msg::String();
-		message.data = "Hello, world! " + std::to_string(helloCount_++);
-		RCLCPP_INFO(this->get_logger(), "Publishing '%s'", message.data.c_str());
+		message.data = "ping " + std::to_string(helloCount_++);
 		helloPublisher_->publish(message);
 	}
 
@@ -125,12 +128,14 @@ private:
 		imuMessage.orientation.w = state.getOrientation().w();
 		imuPublisher_->publish(imuMessage);
 
+		/*
 		RCLCPP_INFO(
 			this->get_logger(),
 			"#%s: Publishing state at time %s",
 			std::to_string(stateCount_++),
 			std::to_string(system_clock::to_time_t(system_clock::now()))
 		);
+		*/
 	}
 
 	void camera_callback()
@@ -144,64 +149,71 @@ private:
 
 		auto frontColorMessage = sensor_msgs::msg::CompressedImage();
 		frontColorMessage.header.frame_id = "front_color";
-		frontColorMessage.header.stamp.sec = system_clock::to_time_t(system_clock::now());
+		frontColorMessage.header.stamp.sec = (int32_t)system_clock::to_time_t(system_clock::now());
 		frontColorMessage.format = "png";
 		frontColorMessage.data = imageResponses[0].image_data_uint8;
 		frontColorPublisher_->publish(frontColorMessage);
 
+		// Publish the raw depth image as a CV_32FC1
+		/* DISABLED
+		auto frontRawDepthMessage = sensor_msgs::msg::Image();
+		frontRawDepthMessage.header.frame_id = "front_depth";
+		frontRawDepthMessage.header.stamp.sec = system_clock::to_time_t(system_clock::now());
+		frontRawDepthMessage.encoding = "CV_32FC1";
+		frontRawDepthMessage.height = imageResponses[1].height;
+		frontRawDepthMessage.width = imageResponses[1].width;
+		frontRawDepthMessage.is_bigendian = 0;
+		frontRawDepthMessage.step = imageResponses[1].width * 4;
+		std::vector<uchar> depthRawBytes(imageResponses[1].image_data_float.size() * sizeof(float));
+		std::memcpy(depthRawBytes.data(), imageResponses[1].image_data_float.data(), imageResponses[1].image_data_float.size());
+		frontRawDepthMessage.data = depthRawBytes;
+		frontRawDepthPublisher_->publish(frontRawDepthMessage);
+		*/
+
+		//cv::Mat depthFloatMat = cv::Mat(imageResponses[1].height, imageResponses[1].width, CV_32FC1);
+		//std::memcpy(depthFloatMat.data, imageResponses[1].image_data_float.data(), imageResponses[1].image_data_float.size());
+
 		auto frontDepthMessage = sensor_msgs::msg::CompressedImage();
 		frontDepthMessage.header.frame_id = "front_depth";
-		frontDepthMessage.header.stamp.sec = system_clock::to_time_t(system_clock::now());
+		frontDepthMessage.header.stamp.sec = (int32_t)system_clock::to_time_t(system_clock::now());
 		frontDepthMessage.format = "png";
 
-		int midpoint = (imageResponses[1].height * imageResponses[1].width) / 2 + (imageResponses[1].width / 2);
-
-		RCLCPP_INFO(this->get_logger(), "before mult: %s", std::to_string(imageResponses[1].image_data_float[midpoint]));
+		int height = imageResponses[1].height;
+		int width = imageResponses[1].width;
 		
-		// TODO: try making this a 2d vector by splitting the uint32 into four uint8s right here
+		// Convert float values to uint32_t and add to a vector
 		vector<uint32_t> uncompressedDepth(imageResponses[1].image_data_float.size());
 		for (int i = 0; i < imageResponses[1].image_data_float.size(); i++) {
 			uncompressedDepth[i] = static_cast<uint32_t>(imageResponses[1].image_data_float[i] * precision_coefficient_);
 		}
-		RCLCPP_INFO(this->get_logger(), "after mult: %s", std::to_string(uncompressedDepth[midpoint]));
 
-		uint8_t b = uncompressedDepth[midpoint] & 0xff;
-		uint8_t g = (uncompressedDepth[midpoint] >> 8) & 0xff;
-		uint8_t r = (uncompressedDepth[midpoint] >> 16) & 0xff;
-		uint8_t a = (uncompressedDepth[midpoint] >> 24) & 0xff;
-		uint32_t reconstruction = (((((((a) * 256) + r) * 256) + g) * 256) + b);
+		// Convert to an OpenCV mat
+		cv::Mat depthMat = cv::Mat(cv::Size(width, height), CV_8UC4, uncompressedDepth.data());
+		/*
+		RCLCPP_INFO(this->get_logger(), "creating mat: --");
+		RCLCPP_INFO(this->get_logger(), "-- width:  %s", std::to_string(depthMat.cols));
+		RCLCPP_INFO(this->get_logger(), "-- height: %s", std::to_string(depthMat.rows));
+		RCLCPP_INFO(this->get_logger(), "-- chan:   %s", std::to_string(depthMat.channels()));
+		RCLCPP_INFO(this->get_logger(), "-- depth:  %s", std::to_string(depthMat.depth()));
+		RCLCPP_INFO(this->get_logger(), "-- dims:   %s", std::to_string(depthMat.dims));
+		RCLCPP_INFO(this->get_logger(), "-- size:   %s", std::to_string(depthMat.cols * depthMat.rows * depthMat.channels()));
+		RCLCPP_INFO(this->get_logger(), "-- pixels: %s", std::to_string(depthMat.total())); 
+		RCLCPP_INFO(this->get_logger(), "-- step:   %s", std::to_string(depthMat.step));
+		RCLCPP_INFO(this->get_logger(), "-- type:   %s", std::to_string(depthMat.type()));
+		RCLCPP_INFO(this->get_logger(), "-- elm sz: %s", std::to_string(depthMat.elemSize()));
+		*/
 
-		RCLCPP_INFO(this->get_logger(), "after mult b1: %s", std::to_string(b));
-		RCLCPP_INFO(this->get_logger(), "after mult b2: %s", std::to_string(g));
-		RCLCPP_INFO(this->get_logger(), "after mult b3: %s", std::to_string(r));
-		RCLCPP_INFO(this->get_logger(), "after mult b4: %s", std::to_string(a));
-		RCLCPP_INFO(this->get_logger(), "after mult reconstructed: %s", std::to_string(reconstruction));
+		// Compress the image
+		vector<uchar> compressedDepth;
+		compressedDepth.resize(imageResponses[1].height * imageResponses[1].width * 4);
+		cv::imencode(".png", depthMat, compressedDepth);
+		compressedDepth.shrink_to_fit();
 
-		cv::Mat depthMat = cv::Mat(imageResponses[1].height, imageResponses[1].width, CV_8UC4, uncompressedDepth.data());
-
-		RCLCPP_INFO(this->get_logger(), "created mat: --");
-		RCLCPP_INFO(this->get_logger(), "-- cols: %s", std::to_string(depthMat.cols));
-		RCLCPP_INFO(this->get_logger(), "-- rows: %s", std::to_string(depthMat.rows));
-		RCLCPP_INFO(this->get_logger(), "-- dims: %s", std::to_string(depthMat.dims));
-		RCLCPP_INFO(this->get_logger(), "-- chan: %s", std::to_string(depthMat.channels()));
-		RCLCPP_INFO(this->get_logger(), "-- step: %s", std::to_string(depthMat.step));
-
-		b = depthMat.data[midpoint + 0];
-		g = depthMat.data[midpoint + 1];
-		r = depthMat.data[midpoint + 2];
-		a = depthMat.data[midpoint + 3];
-		reconstruction = (((((((a) * 256) + r) * 256) + g) * 256) + b);
-
-		RCLCPP_INFO(this->get_logger(), "after cv b1: %s", std::to_string(b));
-		RCLCPP_INFO(this->get_logger(), "after cv b2: %s", std::to_string(g));
-		RCLCPP_INFO(this->get_logger(), "after cv b3: %s", std::to_string(r));
-		RCLCPP_INFO(this->get_logger(), "after cv b4: %s", std::to_string(a));
-		RCLCPP_INFO(this->get_logger(), "after cv reconstructed: %s", std::to_string(reconstruction));
-
-		//cv2.imencode('.png', np.frombuffer((np.array(responses[1].image_data_float) * self.precision_coefficient).astype(np.uint32).tobytes(), dtype = np.uint8).reshape(responses[1].height, responses[1].width, 4))[1].tobytes()
-		
+		// Publish the image
+		frontDepthMessage.data = compressedDepth;
 		frontDepthPublisher_->publish(frontDepthMessage);
 
+		/*
 		RCLCPP_INFO(
 			this->get_logger(),
 			"#%s: Publishing %s images at time %s",
@@ -209,6 +221,7 @@ private:
 			std::to_string(imageResponses.size()),
 			std::to_string(system_clock::to_time_t(system_clock::now()))
 		);
+		*/
 	}
 
 	time_point<steady_clock> startTime_;
@@ -228,6 +241,7 @@ private:
 	size_t cameraCount_;
 	rclcpp::TimerBase::SharedPtr cameraTimer_;
 	rclcpp::Publisher<sensor_msgs::msg::CompressedImage>::SharedPtr frontColorPublisher_;
+	rclcpp::Publisher<sensor_msgs::msg::Image>::SharedPtr frontRawDepthPublisher_;
 	rclcpp::Publisher<sensor_msgs::msg::CompressedImage>::SharedPtr frontDepthPublisher_;
 
 	float precision_coefficient_ = 10000.0;
@@ -239,6 +253,6 @@ int main(int argc, char * argv[])
 	rclcpp::init(argc, argv);
 	rclcpp::spin(std::make_shared<ROS2AirSim>());
 	rclcpp::shutdown();
-
+	
 	return 0;
 }
