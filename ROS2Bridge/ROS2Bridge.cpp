@@ -39,7 +39,7 @@ public:
 	ROS2AirSim() : Node("AirSim"), helloCount_(0), stateCount_(0), cameraCount_(0)
 	{
 		// Set the start time
-		startTime_ = high_resolution_clock::now();
+		//startTime_ = high_resolution_clock::now();
 
 		// Create a ping from the bridge
 		helloTimer_ = this->create_wall_timer(1000ms, std::bind(&ROS2AirSim::hello_callback, this));
@@ -57,6 +57,8 @@ public:
 		fixPublisher_ = this->create_publisher<sensor_msgs::msg::NavSatFix>("/exo/airsim/drone/gps");
 		odomPublisher_ = this->create_publisher<nav_msgs::msg::Odometry>("/exo/airsim/drone/odometry");
 		imuPublisher_ = this->create_publisher<sensor_msgs::msg::Imu>("/exo/airsim/drone/imu");
+		landedPublisher_ = this->create_publisher<std_msgs::msg::Bool>("/exo/airsim/drone/landed");
+		collidedPublisher_ = this->create_publisher<std_msgs::msg::Bool>("/exo/airsim/drone/collided");
 
 		// Create the camera publishers
 		cameraTimer_ = this->create_wall_timer(60ms, std::bind(&ROS2AirSim::camera_callback, this));
@@ -78,7 +80,7 @@ private:
 
 	void state_callback()
 	{
-		time_point<steady_clock> tickStart = high_resolution_clock::now();
+		//time_point<steady_clock> tickStart = high_resolution_clock::now();
 
 		// Publish a ping from AirSim
 		auto pingMessage = std_msgs::msg::Bool();
@@ -132,9 +134,24 @@ private:
 		imuMessage.orientation.w = state.getOrientation().w();
 		imuPublisher_->publish(imuMessage);
 
-		duration<double> tickEnd = duration_cast<duration<double>>(high_resolution_clock::now() - tickStart);
+		auto landedMessage = std_msgs::msg::Bool();
+		if (state.landed_state == LandedState::Landed) {
+			landedMessage.data = true;
+		}
+		else {
+			landedMessage.data = false;
+		}
+		landedPublisher_->publish(landedMessage);
+
+		// Publish collision info
+		auto collision_info = client.simGetCollisionInfo();
+
+		auto collidedMessage = std_msgs::msg::Bool();
+		collidedMessage.data = collision_info.has_collided;
+		collidedPublisher_->publish(collidedMessage);
 
 		/*
+		duration<double> tickEnd = duration_cast<duration<double>>(high_resolution_clock::now() - tickStart);
 		RCLCPP_INFO(
 			this->get_logger(),
 			"#%s: Publishing state at time %s took %s",
@@ -216,9 +233,8 @@ private:
 		//t_end = duration_cast<duration<double>>(high_resolution_clock::now() - t_start);
 		//RCLCPP_INFO(this->get_logger(), "-- published depth image in %s seconds", std::to_string(t_end.count()));
 
-		//duration<double> tickEnd = duration_cast<duration<double>>(high_resolution_clock::now() - tickStart);
-
 		/*
+		duration<double> tickEnd = duration_cast<duration<double>>(high_resolution_clock::now() - tickStart);
 		RCLCPP_INFO(
 			this->get_logger(),
 			"#%s: Publishing %s images at time %s took %s",
@@ -230,8 +246,7 @@ private:
 		*/
 	}
 
-	time_point<steady_clock> startTime_;
-	double duration_;
+	//time_point<steady_clock> startTime_;
 
 	size_t helloCount_;
 	rclcpp::TimerBase::SharedPtr helloTimer_;
@@ -244,6 +259,8 @@ private:
 	rclcpp::Publisher<sensor_msgs::msg::NavSatFix>::SharedPtr fixPublisher_;
 	rclcpp::Publisher<nav_msgs::msg::Odometry>::SharedPtr odomPublisher_;
 	rclcpp::Publisher<sensor_msgs::msg::Imu>::SharedPtr imuPublisher_;
+	rclcpp::Publisher<std_msgs::msg::Bool>::SharedPtr landedPublisher_;
+	rclcpp::Publisher<std_msgs::msg::Bool>::SharedPtr collidedPublisher_;
 
 	size_t cameraCount_;
 	rclcpp::TimerBase::SharedPtr cameraTimer_;
