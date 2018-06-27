@@ -45,7 +45,7 @@ public:
 		//startTime_ = high_resolution_clock::now();
 
 		// Create a ping from the bridge
-		bridgeTimer_ = this->create_wall_timer(1000ms, std::bind(&ROS2AirSim::bridge_callback, this));
+		bridgeTimer_ = this->create_wall_timer(5000ms, std::bind(&ROS2AirSim::bridge_callback, this));
 		bridgePublisher_ = this->create_publisher<std_msgs::msg::String>("exo/airsim/bridge/ping");
 
 		// Set up the AirSim API
@@ -55,13 +55,13 @@ public:
 
 		// Create the state publishers
 		stateTimer_ = this->create_wall_timer(100ms, std::bind(&ROS2AirSim::state_callback, this));
-		pingPublisher_ = this->create_publisher<std_msgs::msg::Bool>("/exo/airsim/drone/ping");
-		accelPublisher_ = this->create_publisher<geometry_msgs::msg::Accel>("/exo/airsim/drone/accel");
-		fixPublisher_ = this->create_publisher<sensor_msgs::msg::NavSatFix>("/exo/airsim/drone/gps");
-		odomPublisher_ = this->create_publisher<nav_msgs::msg::Odometry>("/exo/airsim/drone/odometry");
-		imuPublisher_ = this->create_publisher<sensor_msgs::msg::Imu>("/exo/airsim/drone/imu");
-		landedPublisher_ = this->create_publisher<std_msgs::msg::Bool>("/exo/airsim/drone/landed");
-		collidedPublisher_ = this->create_publisher<std_msgs::msg::Bool>("/exo/airsim/drone/collided");
+		pingPublisher_ = this->create_publisher<std_msgs::msg::Bool>("/exo/airsim/drone/state/ping");
+		accelPublisher_ = this->create_publisher<geometry_msgs::msg::Accel>("/exo/airsim/drone/state/accel");
+		fixPublisher_ = this->create_publisher<sensor_msgs::msg::NavSatFix>("/exo/airsim/drone/state/gps");
+		odomPublisher_ = this->create_publisher<nav_msgs::msg::Odometry>("/exo/airsim/drone/state/odometry");
+		imuPublisher_ = this->create_publisher<sensor_msgs::msg::Imu>("/exo/airsim/drone/state/imu");
+		landedPublisher_ = this->create_publisher<std_msgs::msg::Bool>("/exo/airsim/drone/state/landed");
+		collidedPublisher_ = this->create_publisher<std_msgs::msg::Bool>("/exo/airsim/drone/state/collided");
 
 		// Create the camera publishers
 		cameraTimer_ = this->create_wall_timer(60ms, std::bind(&ROS2AirSim::camera_callback, this));
@@ -78,8 +78,8 @@ public:
 
 		// Create the control subscriptions
 		cmdVelSubscription_ = this->create_subscription<geometry_msgs::msg::Twist>("/exo/airsim/drone/controls/cmd_vel", std::bind(&ROS2AirSim::cmd_vel_callback, this, _1));
-		moveSubscription_ = this->create_subscription<geometry_msgs::msg::Vector3>("/exo/airsim/drone/controls/move", std::bind(&ROS2AirSim::move_callback, this, _1));
-		rotateSubscription_ = this->create_subscription<std_msgs::msg::Float32>("/exo/airsim/drone/controls/rotate", std::bind(&ROS2AirSim::rotate_callback, this, _1));
+		moveSubscription_ = this->create_subscription<geometry_msgs::msg::Twist>("/exo/airsim/drone/controls/move_by_velocity", std::bind(&ROS2AirSim::move_callback, this, _1));
+		rotateSubscription_ = this->create_subscription<std_msgs::msg::Float32>("/exo/airsim/drone/controls/rotate_by_velocity", std::bind(&ROS2AirSim::rotate_callback, this, _1));
 
 		// Create the simulator subscriptions
 		resetSubscription_ = this->create_subscription<std_msgs::msg::Bool>("/exo/airsim/drone/simulator/reset", std::bind(&ROS2AirSim::reset_callback, this, _1));
@@ -290,28 +290,28 @@ private:
 	// Actions
 	rclcpp::Subscription<std_msgs::msg::Bool>::SharedPtr takeoffSubscription_;
 	void takeoff_callback(const std_msgs::msg::Bool::SharedPtr msg) {
-		RCLCPP_INFO(this->get_logger(), "takeoff called");
+		//RCLCPP_INFO(this->get_logger(), "takeoff called");
 
 		client.takeoffAsync();
 	}
 
 	rclcpp::Subscription<std_msgs::msg::Bool>::SharedPtr landSubscription_;
 	void land_callback(const std_msgs::msg::Bool::SharedPtr msg) {
-		RCLCPP_INFO(this->get_logger(), "land called");
+		//RCLCPP_INFO(this->get_logger(), "land called");
 
 		client.landAsync();
 	}
 
 	rclcpp::Subscription<std_msgs::msg::Bool>::SharedPtr goHomeSubscription_;
 	void go_home_callback(const std_msgs::msg::Bool::SharedPtr msg) {
-		RCLCPP_INFO(this->get_logger(), "go home called");
+		//RCLCPP_INFO(this->get_logger(), "go home called");
 
 		client.goHomeAsync();
 	}
 
 	rclcpp::Subscription<std_msgs::msg::Bool>::SharedPtr hoverSubscription_;
 	void hover_callback(const std_msgs::msg::Bool::SharedPtr msg) {
-		RCLCPP_INFO(this->get_logger(), "hover called");
+		//RCLCPP_INFO(this->get_logger(), "hover called");
 
 		client.hoverAsync();
 	}
@@ -323,24 +323,24 @@ private:
 
 	}
 
-	rclcpp::Subscription<geometry_msgs::msg::Vector3>::SharedPtr moveSubscription_;
-	void move_callback(const geometry_msgs::msg::Vector3::SharedPtr msg) {
-		RCLCPP_INFO(this->get_logger(), "move called");
+	rclcpp::Subscription<geometry_msgs::msg::Twist>::SharedPtr moveSubscription_;
+	void move_callback(const geometry_msgs::msg::Twist::SharedPtr msg) {
+		//RCLCPP_INFO(this->get_logger(), "move called");
 
-		client.moveByVelocityAsync(msg->x, msg->y, msg->z, 1.0);
+		client.moveByVelocityAsync((float)msg->linear.x, (float)msg->linear.y, (float)msg->linear.z, 0.5);
 	}
 
 	rclcpp::Subscription<std_msgs::msg::Float32>::SharedPtr rotateSubscription_;
 	void rotate_callback(const std_msgs::msg::Float32::SharedPtr msg) {
-		RCLCPP_INFO(this->get_logger(), "rotate called");
+		//RCLCPP_INFO(this->get_logger(), "rotate called");
 
-		client.rotateByYawRateAsync(msg->data, 1.0);
+		client.rotateByYawRateAsync(msg->data, 0.5);
 	}
 
 	// Simulator
 	rclcpp::Subscription<std_msgs::msg::Bool>::SharedPtr resetSubscription_;
 	void reset_callback(const std_msgs::msg::Bool::SharedPtr msg) {
-		RCLCPP_INFO(this->get_logger(), "reset called");
+		//RCLCPP_INFO(this->get_logger(), "reset called");
 
 		client.reset();
 		client.confirmConnection();
