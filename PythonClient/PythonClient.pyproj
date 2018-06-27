@@ -38,6 +38,9 @@
     <Compile Include="car\legacy_hello_car.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="car\multi_agent_car.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="car\setup_path.py">
       <SubType>Code</SubType>
     </Compile>
@@ -52,6 +55,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="computer_vision\setup_path.py" />
+    <Compile Include="multirotor\gimbal.py" />
     <Compile Include="multirotor\land.py" />
     <Compile Include="car\pause_continue_car.py">
       <SubType>Code</SubType>
@@ -63,6 +67,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="computer_vision\objects.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="multirotor\multi_agent_drone.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="multirotor\navigate.py">

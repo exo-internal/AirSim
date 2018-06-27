@@ -341,11 +341,11 @@ public: //methods
 
     static void createDefaultSettingsFile()
     {
-        std::string settings_filename = Settings::getUserDirectoryFullPath("settings_json.json");
+        std::string settings_filename = Settings::getUserDirectoryFullPath("settings.json");
         Settings& settings_json = Settings::loadJSonString("{}");
         //write some settings_json in new file otherwise the string "null" is written if all settings_json are empty
         settings_json.setString("SeeDocsAt", "https://github.com/Microsoft/AirSim/blob/master/docs/settings_json.md");
-        settings_json.setDouble("SettingsVersion", 1.0);
+        settings_json.setDouble("SettingsVersion", 1.2);
 
         //TODO: there is a crash in Linux due to settings_json.saveJSonString(). Remove this workaround after we only support Unreal 4.17
         //https://answers.unrealengine.com/questions/664905/unreal-crashes-on-two-lines-of-extremely-simple-st.html
@@ -563,7 +563,8 @@ private:
     static std::unique_ptr<VehicleSetting> createPX4VehicleSetting(const Settings& settings_json) 
     {
         //these settings_json are expected in same section, not in another child
-        auto vehicle_setting = std::unique_ptr<PX4VehicleSetting>(new PX4VehicleSetting());
+        std::unique_ptr<VehicleSetting> vehicle_setting_p = std::unique_ptr<VehicleSetting>(new PX4VehicleSetting());
+        PX4VehicleSetting* vehicle_setting = static_cast<PX4VehicleSetting*>(vehicle_setting_p.get());
 
         //TODO: we should be selecting remote if available else keyboard
         //currently keyboard is not supported so use rc as default
@@ -599,7 +600,7 @@ private:
         connection_info.baud_rate = settings_json.getInt("SerialBaudRate", connection_info.baud_rate);
         connection_info.model = settings_json.getString("Model", connection_info.model);
 
-        return vehicle_setting;
+        return vehicle_setting_p;
     }
 
     static Vector3r createVectorSetting(const Settings& settings_json, const Vector3r& default_vec)
