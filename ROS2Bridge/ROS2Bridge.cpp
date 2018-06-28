@@ -4,6 +4,9 @@
 
 #include <chrono>
 #include <iostream>
+#include <signal.h>
+#include <stdlib.h>
+#include <stdio.h>
 
 #include "opencv2/opencv.hpp"
 
@@ -36,6 +39,8 @@ typedef ImageCaptureBase::ImageRequest ImageRequest;
 typedef ImageCaptureBase::ImageResponse ImageResponse;
 typedef ImageCaptureBase::ImageType ImageType;
 
+msr::airlib::MultirotorRpcLibClient client;
+
 class ROS2AirSim : public rclcpp::Node
 {
 public:
@@ -47,11 +52,6 @@ public:
 		// Create a ping from the bridge
 		bridgeTimer_ = this->create_wall_timer(5000ms, std::bind(&ROS2AirSim::bridge_callback, this));
 		bridgePublisher_ = this->create_publisher<std_msgs::msg::String>("exo/airsim/bridge/ping");
-
-		// Set up the AirSim API
-		client.confirmConnection();
-		client.enableApiControl(true);
-		client.armDisarm(true);
 
 		// Create the state publishers
 		stateTimer_ = this->create_wall_timer(100ms, std::bind(&ROS2AirSim::state_callback, this));
@@ -88,7 +88,6 @@ public:
 	}
 
 private:
-	msr::airlib::MultirotorRpcLibClient client;
 	//time_point<steady_clock> startTime_;
 
 	// Bridge
@@ -349,11 +348,37 @@ private:
 	}
 };
 
+
+void shutdown_handler(sig_atomic_t s) {
+	rclcpp::shutdown();
+
+	exit(1);
+}
+
 int main(int argc, char * argv[])
 {
+	signal(SIGINT, shutdown_handler);
+
+	// Set up the AirSim API
+	client.confirmConnection();
+	client.enableApiControl(true);
+	client.armDisarm(true);
+
 	rclcpp::init(argc, argv);
-	rclcpp::spin(std::make_shared<ROS2AirSim>());
-	rclcpp::shutdown();
-	
+
+	// Restart the executor and node every 15 minutes
+	while (true) {
+		rclcpp::executors::MultiThreadedExecutor executor;
+
+		auto node = std::make_shared<ROS2AirSim>();
+		auto start_time = system_clock::now();
+
+		while (rclcpp::ok() && (duration_cast<duration<double>>(system_clock::now() - start_time).count() < 900)) {
+			executor.spin_node_some(node); // VS2017 doesn't like me passing this type, but it works
+		}
+	}
+
+	shutdown_handler(NULL);
+
 	return 0;
 }
