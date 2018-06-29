@@ -23,6 +23,7 @@
 #include "std_msgs/msg/header.hpp"
 #include "std_msgs/msg/string.hpp"
 #include "std_msgs/msg/float32.hpp"
+#include "sensor_msgs/msg/battery_state.hpp"
 #include "sensor_msgs/msg/compressed_image.hpp"
 #include "sensor_msgs/msg/imu.hpp"
 #include "sensor_msgs/msg/image.hpp"
@@ -55,19 +56,20 @@ public:
 
 		// Create the bridge state publishers
 		bridgeTimer_ = this->create_wall_timer(1000ms, std::bind(&ROS2AirSim::bridge_callback, this));
-		bridgeConnectedPublisher_ = this->create_publisher<std_msgs::msg::Bool>("/exo/airsim/bridge/connected");
-		bridgePingPublisher_ = this->create_publisher<std_msgs::msg::String>("exo/airsim/bridge/ping");
+		bridgeConnectedPublisher_ = this->create_publisher<std_msgs::msg::Bool>("/exo/airsim/drone/bridge/connected");
+		bridgePingPublisher_ = this->create_publisher<std_msgs::msg::String>("exo/airsim/drone/bridge/ping");
 
 		// Create the drone state publishers
 		stateTimer_ = this->create_wall_timer(100ms, std::bind(&ROS2AirSim::state_callback, this));
-		connectedPublisher_ = this->create_publisher<std_msgs::msg::Bool>("/exo/airsim/simulator/connected");
-		pingPublisher_ = this->create_publisher<std_msgs::msg::String>("/exo/airsim/simulator/ping");
+		connectedPublisher_ = this->create_publisher<std_msgs::msg::Bool>("/exo/airsim/drone/simulator/connected");
+		pingPublisher_ = this->create_publisher<std_msgs::msg::String>("/exo/airsim/drone/simulator/ping");
 		accelPublisher_ = this->create_publisher<geometry_msgs::msg::Accel>("/exo/airsim/drone/state/accel");
 		fixPublisher_ = this->create_publisher<sensor_msgs::msg::NavSatFix>("/exo/airsim/drone/state/gps");
 		odomPublisher_ = this->create_publisher<nav_msgs::msg::Odometry>("/exo/airsim/drone/state/odometry");
 		imuPublisher_ = this->create_publisher<sensor_msgs::msg::Imu>("/exo/airsim/drone/state/imu");
 		landedPublisher_ = this->create_publisher<std_msgs::msg::Bool>("/exo/airsim/drone/state/landed");
 		collidedPublisher_ = this->create_publisher<std_msgs::msg::Bool>("/exo/airsim/drone/state/collided");
+		batteryPublisher_ = this->create_publisher<sensor_msgs::msg::BatteryState>("/exo/airsim/drone/state/battery");
 
 		// Create the camera publishers
 		cameraTimer_ = this->create_wall_timer(60ms, std::bind(&ROS2AirSim::camera_callback, this));
@@ -129,6 +131,7 @@ private:
 	rclcpp::Publisher<sensor_msgs::msg::Imu>::SharedPtr imuPublisher_;
 	rclcpp::Publisher<std_msgs::msg::Bool>::SharedPtr landedPublisher_;
 	rclcpp::Publisher<std_msgs::msg::Bool>::SharedPtr collidedPublisher_;
+	rclcpp::Publisher<sensor_msgs::msg::BatteryState>::SharedPtr batteryPublisher_;
 	void state_callback()
 	{
 		stateCount_++;
@@ -204,6 +207,11 @@ private:
 			landedMessage.data = false;
 		}
 		landedPublisher_->publish(landedMessage);
+
+		auto batteryMessage = sensor_msgs::msg::BatteryState();
+		batteryMessage.percentage = 100.0;
+		batteryMessage.present = true;
+		batteryPublisher_->publish(batteryMessage);
 
 		// Publish collision info - TODO: this breaks on .simGetCollisionInfo()
 		/*
