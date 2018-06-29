@@ -40,22 +40,28 @@ typedef ImageCaptureBase::ImageResponse ImageResponse;
 typedef ImageCaptureBase::ImageType ImageType;
 
 msr::airlib::MultirotorRpcLibClient client;
+int initialization_count;
 
 class ROS2AirSim : public rclcpp::Node
 {
 public:
+	bool initialize;
+
 	ROS2AirSim() : Node("AirSim"), bridgeCount_(0), stateCount_(0), cameraCount_(0)
 	{
 		// Set the start time
 		//startTime_ = high_resolution_clock::now();
+		initialize = false;
 
-		// Create a ping from the bridge
-		bridgeTimer_ = this->create_wall_timer(5000ms, std::bind(&ROS2AirSim::bridge_callback, this));
-		bridgePublisher_ = this->create_publisher<std_msgs::msg::String>("exo/airsim/bridge/ping");
+		// Create the bridge state publishers
+		bridgeTimer_ = this->create_wall_timer(1000ms, std::bind(&ROS2AirSim::bridge_callback, this));
+		bridgeConnectedPublisher_ = this->create_publisher<std_msgs::msg::Bool>("/exo/airsim/bridge/connected");
+		bridgePingPublisher_ = this->create_publisher<std_msgs::msg::String>("exo/airsim/bridge/ping");
 
-		// Create the state publishers
+		// Create the drone state publishers
 		stateTimer_ = this->create_wall_timer(100ms, std::bind(&ROS2AirSim::state_callback, this));
-		pingPublisher_ = this->create_publisher<std_msgs::msg::Bool>("/exo/airsim/drone/state/ping");
+		connectedPublisher_ = this->create_publisher<std_msgs::msg::Bool>("/exo/airsim/simulator/connected");
+		pingPublisher_ = this->create_publisher<std_msgs::msg::String>("/exo/airsim/simulator/ping");
 		accelPublisher_ = this->create_publisher<geometry_msgs::msg::Accel>("/exo/airsim/drone/state/accel");
 		fixPublisher_ = this->create_publisher<sensor_msgs::msg::NavSatFix>("/exo/airsim/drone/state/gps");
 		odomPublisher_ = this->create_publisher<nav_msgs::msg::Odometry>("/exo/airsim/drone/state/odometry");
@@ -82,9 +88,11 @@ public:
 		rotateSubscription_ = this->create_subscription<std_msgs::msg::Float32>("/exo/airsim/drone/controls/rotate_by_velocity", std::bind(&ROS2AirSim::rotate_callback, this, _1));
 
 		// Create the simulator subscriptions
+		initializeSubscription_ = this->create_subscription<std_msgs::msg::Bool>("/exo/airsim/drone/simulator/initialize", std::bind(&ROS2AirSim::initialize_callback, this, _1));
+
 		resetSubscription_ = this->create_subscription<std_msgs::msg::Bool>("/exo/airsim/drone/simulator/reset", std::bind(&ROS2AirSim::reset_callback, this, _1));
 
-		RCLCPP_INFO(this->get_logger(), "===== BRIDGE INITIALIZED =====");
+		RCLCPP_INFO(this->get_logger(), "Bridge initialized: %s", std::to_string(initialization_count));
 	}
 
 private:
@@ -93,18 +101,28 @@ private:
 	// Bridge
 	size_t bridgeCount_;
 	rclcpp::TimerBase::SharedPtr bridgeTimer_;
-	rclcpp::Publisher<std_msgs::msg::String>::SharedPtr bridgePublisher_;
+	rclcpp::Publisher<std_msgs::msg::Bool>::SharedPtr bridgeConnectedPublisher_;
+	rclcpp::Publisher<std_msgs::msg::String>::SharedPtr bridgePingPublisher_;
 	void bridge_callback()
 	{
-		auto message = std_msgs::msg::String();
-		message.data = "ping " + std::to_string(bridgeCount_++);
-		bridgePublisher_->publish(message);
+		bridgeCount_++;
+
+		// Publish whether the bridge is connected or not
+		auto bridgeConnectedMessage = std_msgs::msg::Bool();
+		bridgeConnectedMessage.data = true;
+		bridgeConnectedPublisher_->publish(bridgeConnectedMessage);
+
+		// Publish a ping from the bridge
+		auto bridgePingMessage = std_msgs::msg::String();
+		bridgePingMessage.data = "Ping from bridge: " + std::to_string(bridgeCount_);
+		bridgePingPublisher_->publish(bridgePingMessage);
 	}
 
 	// State
 	size_t stateCount_;
 	rclcpp::TimerBase::SharedPtr stateTimer_;
-	rclcpp::Publisher<std_msgs::msg::Bool>::SharedPtr pingPublisher_;
+	rclcpp::Publisher<std_msgs::msg::Bool>::SharedPtr connectedPublisher_;
+	rclcpp::Publisher<std_msgs::msg::String>::SharedPtr pingPublisher_;
 	rclcpp::Publisher<geometry_msgs::msg::Accel>::SharedPtr accelPublisher_;
 	rclcpp::Publisher<sensor_msgs::msg::NavSatFix>::SharedPtr fixPublisher_;
 	rclcpp::Publisher<nav_msgs::msg::Odometry>::SharedPtr odomPublisher_;
@@ -113,11 +131,22 @@ private:
 	rclcpp::Publisher<std_msgs::msg::Bool>::SharedPtr collidedPublisher_;
 	void state_callback()
 	{
+		stateCount_++;
 		//time_point<steady_clock> tickStart = high_resolution_clock::now();
 
+		// Publish whether the drone is connected or not
+		auto connectedMessage = std_msgs::msg::Bool();
+		connectedMessage.data = client.ping();
+		connectedPublisher_->publish(connectedMessage);
+
 		// Publish a ping from AirSim
-		auto pingMessage = std_msgs::msg::Bool();
-		pingMessage.data = client.ping();
+		auto pingMessage = std_msgs::msg::String();
+		if (client.ping()) {
+			pingMessage.data = "Ping from drone: " + std::to_string(stateCount_);
+		}
+		else {
+			pingMessage.data = "Failed to ping drone: " + std::to_string(stateCount_);
+		}
 		pingPublisher_->publish(pingMessage);
 
 		// Publish the multirotor state
@@ -289,62 +318,54 @@ private:
 	// Actions
 	rclcpp::Subscription<std_msgs::msg::Bool>::SharedPtr takeoffSubscription_;
 	void takeoff_callback(const std_msgs::msg::Bool::SharedPtr msg) {
-		//RCLCPP_INFO(this->get_logger(), "takeoff called");
-
 		client.takeoffAsync();
 	}
 
 	rclcpp::Subscription<std_msgs::msg::Bool>::SharedPtr landSubscription_;
 	void land_callback(const std_msgs::msg::Bool::SharedPtr msg) {
-		//RCLCPP_INFO(this->get_logger(), "land called");
-
 		client.landAsync();
 	}
 
 	rclcpp::Subscription<std_msgs::msg::Bool>::SharedPtr goHomeSubscription_;
 	void go_home_callback(const std_msgs::msg::Bool::SharedPtr msg) {
-		//RCLCPP_INFO(this->get_logger(), "go home called");
-
 		client.goHomeAsync();
 	}
 
 	rclcpp::Subscription<std_msgs::msg::Bool>::SharedPtr hoverSubscription_;
 	void hover_callback(const std_msgs::msg::Bool::SharedPtr msg) {
-		//RCLCPP_INFO(this->get_logger(), "hover called");
-
 		client.hoverAsync();
 	}
 
 	// Controls
 	rclcpp::Subscription<geometry_msgs::msg::Twist>::SharedPtr cmdVelSubscription_;
 	void cmd_vel_callback(const geometry_msgs::msg::Twist::SharedPtr msg) {
-		RCLCPP_INFO(this->get_logger(), "cmd_vel called");
-
+		RCLCPP_INFO(this->get_logger(), "cmd_vel called (not implemented)");
 	}
 
 	rclcpp::Subscription<geometry_msgs::msg::Twist>::SharedPtr moveSubscription_;
 	void move_callback(const geometry_msgs::msg::Twist::SharedPtr msg) {
-		//RCLCPP_INFO(this->get_logger(), "move called");
-
 		client.moveByVelocityAsync((float)msg->linear.x, (float)msg->linear.y, (float)msg->linear.z, 0.5);
 	}
 
 	rclcpp::Subscription<std_msgs::msg::Float32>::SharedPtr rotateSubscription_;
 	void rotate_callback(const std_msgs::msg::Float32::SharedPtr msg) {
-		//RCLCPP_INFO(this->get_logger(), "rotate called");
-
 		client.rotateByYawRateAsync(msg->data, 0.5);
 	}
 
 	// Simulator
+	rclcpp::Subscription<std_msgs::msg::Bool>::SharedPtr initializeSubscription_;
+	void initialize_callback(const std_msgs::msg::Bool::SharedPtr msg) {
+		this->initialize = true;
+	}
+
 	rclcpp::Subscription<std_msgs::msg::Bool>::SharedPtr resetSubscription_;
 	void reset_callback(const std_msgs::msg::Bool::SharedPtr msg) {
-		//RCLCPP_INFO(this->get_logger(), "reset called");
-
 		client.reset();
 		client.confirmConnection();
 		client.enableApiControl(true);
 		client.armDisarm(true);
+
+		this->initialize = true;
 	}
 };
 
@@ -364,18 +385,26 @@ int main(int argc, char * argv[])
 	client.enableApiControl(true);
 	client.armDisarm(true);
 
+	// Set up the ROS2 API
 	rclcpp::init(argc, argv);
+	initialization_count = 0;
 
-	// Restart the executor and node every 15 minutes
+	// Reinitialize every five minutes
 	while (true) {
 		rclcpp::executors::MultiThreadedExecutor executor;
 
-		auto node = std::make_shared<ROS2AirSim>();
+		auto node = std::make_shared<ROS2AirSim>();	
 		auto start_time = system_clock::now();
 
-		while (rclcpp::ok() && (duration_cast<duration<double>>(system_clock::now() - start_time).count() < 900)) {
-			executor.spin_node_some(node); // VS2017 doesn't like me passing this type, but it works
+		while (
+			rclcpp::ok() && 
+			!node->initialize &&
+			(duration_cast<duration<double>>(system_clock::now() - start_time).count() < 300)
+		) {
+			executor.spin_node_some(node);
 		}
+
+		initialization_count++;
 	}
 
 	shutdown_handler(NULL);
