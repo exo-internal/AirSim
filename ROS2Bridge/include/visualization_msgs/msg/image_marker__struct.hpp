@@ -20,7 +20,7 @@
 
 // include message dependencies
 #include "builtin_interfaces/msg/duration.hpp"  // lifetime
-#include "geometry_msgs/msg/point.hpp"  // position, points
+#include "geometry_msgs/msg/point.hpp"  // points, position
 #include "std_msgs/msg/color_rgba.hpp"  // fill_color, outline_colors, outline_color
 #include "std_msgs/msg/header.hpp"  // header
 
@@ -107,43 +107,43 @@ struct ImageMarker_
 
   // field types and members
   using _header_type =
-      std_msgs::msg::Header_<ContainerAllocator>;
+    std_msgs::msg::Header_<ContainerAllocator>;
   _header_type header;
   using _ns_type =
-      std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>;
+    std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>;
   _ns_type ns;
   using _id_type =
-      int32_t;
+    int32_t;
   _id_type id;
   using _type_type =
-      int32_t;
+    int32_t;
   _type_type type;
   using _action_type =
-      int32_t;
+    int32_t;
   _action_type action;
   using _position_type =
-      geometry_msgs::msg::Point_<ContainerAllocator>;
+    geometry_msgs::msg::Point_<ContainerAllocator>;
   _position_type position;
   using _scale_type =
-      float;
+    float;
   _scale_type scale;
   using _outline_color_type =
-      std_msgs::msg::ColorRGBA_<ContainerAllocator>;
+    std_msgs::msg::ColorRGBA_<ContainerAllocator>;
   _outline_color_type outline_color;
   using _filled_type =
-      uint8_t;
+    uint8_t;
   _filled_type filled;
   using _fill_color_type =
-      std_msgs::msg::ColorRGBA_<ContainerAllocator>;
+    std_msgs::msg::ColorRGBA_<ContainerAllocator>;
   _fill_color_type fill_color;
   using _lifetime_type =
-      builtin_interfaces::msg::Duration_<ContainerAllocator>;
+    builtin_interfaces::msg::Duration_<ContainerAllocator>;
   _lifetime_type lifetime;
   using _points_type =
-      std::vector<geometry_msgs::msg::Point_<ContainerAllocator>, typename ContainerAllocator::template rebind<geometry_msgs::msg::Point_<ContainerAllocator>>::other>;
+    std::vector<geometry_msgs::msg::Point_<ContainerAllocator>, typename ContainerAllocator::template rebind<geometry_msgs::msg::Point_<ContainerAllocator>>::other>;
   _points_type points;
   using _outline_colors_type =
-      std::vector<std_msgs::msg::ColorRGBA_<ContainerAllocator>, typename ContainerAllocator::template rebind<std_msgs::msg::ColorRGBA_<ContainerAllocator>>::other>;
+    std::vector<std_msgs::msg::ColorRGBA_<ContainerAllocator>, typename ContainerAllocator::template rebind<std_msgs::msg::ColorRGBA_<ContainerAllocator>>::other>;
   _outline_colors_type outline_colors;
 
   // setters for named parameter idiom
@@ -226,42 +226,49 @@ struct ImageMarker_
     return this;
   }
 
-  // constants
-  enum { CIRCLE = 0u };
-  enum { LINE_STRIP = 1u };
-  enum { LINE_LIST = 2u };
-  enum { POLYGON = 3u };
-  enum { POINTS = 4u };
-  enum { ADD = 0u };
-  enum { REMOVE = 1u };
+  // constant declarations
+  static constexpr uint8_t CIRCLE =
+    0u;
+  static constexpr uint8_t LINE_STRIP =
+    1u;
+  static constexpr uint8_t LINE_LIST =
+    2u;
+  static constexpr uint8_t POLYGON =
+    3u;
+  static constexpr uint8_t POINTS =
+    4u;
+  static constexpr uint8_t ADD =
+    0u;
+  static constexpr uint8_t REMOVE =
+    1u;
 
   // pointer types
   using RawPtr =
-      visualization_msgs::msg::ImageMarker_<ContainerAllocator> *;
+    visualization_msgs::msg::ImageMarker_<ContainerAllocator> *;
   using ConstRawPtr =
-      const visualization_msgs::msg::ImageMarker_<ContainerAllocator> *;
+    const visualization_msgs::msg::ImageMarker_<ContainerAllocator> *;
   using SharedPtr =
-      std::shared_ptr<visualization_msgs::msg::ImageMarker_<ContainerAllocator>>;
+    std::shared_ptr<visualization_msgs::msg::ImageMarker_<ContainerAllocator>>;
   using ConstSharedPtr =
-      std::shared_ptr<visualization_msgs::msg::ImageMarker_<ContainerAllocator> const>;
+    std::shared_ptr<visualization_msgs::msg::ImageMarker_<ContainerAllocator> const>;
 
   template<typename Deleter = std::default_delete<
       visualization_msgs::msg::ImageMarker_<ContainerAllocator>>>
   using UniquePtrWithDeleter =
-      std::unique_ptr<visualization_msgs::msg::ImageMarker_<ContainerAllocator>, Deleter>;
+    std::unique_ptr<visualization_msgs::msg::ImageMarker_<ContainerAllocator>, Deleter>;
 
   using UniquePtr = UniquePtrWithDeleter<>;
 
   template<typename Deleter = std::default_delete<
       visualization_msgs::msg::ImageMarker_<ContainerAllocator>>>
   using ConstUniquePtrWithDeleter =
-      std::unique_ptr<visualization_msgs::msg::ImageMarker_<ContainerAllocator> const, Deleter>;
+    std::unique_ptr<visualization_msgs::msg::ImageMarker_<ContainerAllocator> const, Deleter>;
   using ConstUniquePtr = ConstUniquePtrWithDeleter<>;
 
   using WeakPtr =
-      std::weak_ptr<visualization_msgs::msg::ImageMarker_<ContainerAllocator>>;
+    std::weak_ptr<visualization_msgs::msg::ImageMarker_<ContainerAllocator>>;
   using ConstWeakPtr =
-      std::weak_ptr<visualization_msgs::msg::ImageMarker_<ContainerAllocator> const>;
+    std::weak_ptr<visualization_msgs::msg::ImageMarker_<ContainerAllocator> const>;
 
   // pointer types similar to ROS 1, use SharedPtr / ConstSharedPtr instead
   // NOTE: Can't use 'using' here because GNU C++ can't parse attributes properly
@@ -324,9 +331,23 @@ struct ImageMarker_
 
 // alias to use template instance with default allocator
 using ImageMarker =
-    visualization_msgs::msg::ImageMarker_<std::allocator<void>>;
+  visualization_msgs::msg::ImageMarker_<std::allocator<void>>;
 
-// constants requiring out of line definition
+// constant definitions
+template<typename ContainerAllocator>
+constexpr uint8_t ImageMarker_<ContainerAllocator>::CIRCLE;
+template<typename ContainerAllocator>
+constexpr uint8_t ImageMarker_<ContainerAllocator>::LINE_STRIP;
+template<typename ContainerAllocator>
+constexpr uint8_t ImageMarker_<ContainerAllocator>::LINE_LIST;
+template<typename ContainerAllocator>
+constexpr uint8_t ImageMarker_<ContainerAllocator>::POLYGON;
+template<typename ContainerAllocator>
+constexpr uint8_t ImageMarker_<ContainerAllocator>::POINTS;
+template<typename ContainerAllocator>
+constexpr uint8_t ImageMarker_<ContainerAllocator>::ADD;
+template<typename ContainerAllocator>
+constexpr uint8_t ImageMarker_<ContainerAllocator>::REMOVE;
 
 }  // namespace msg
 

@@ -89,25 +89,25 @@ struct NavSatFix_
 
   // field types and members
   using _header_type =
-      std_msgs::msg::Header_<ContainerAllocator>;
+    std_msgs::msg::Header_<ContainerAllocator>;
   _header_type header;
   using _status_type =
-      sensor_msgs::msg::NavSatStatus_<ContainerAllocator>;
+    sensor_msgs::msg::NavSatStatus_<ContainerAllocator>;
   _status_type status;
   using _latitude_type =
-      double;
+    double;
   _latitude_type latitude;
   using _longitude_type =
-      double;
+    double;
   _longitude_type longitude;
   using _altitude_type =
-      double;
+    double;
   _altitude_type altitude;
   using _position_covariance_type =
-      std::array<double, 9>;
+    std::array<double, 9>;
   _position_covariance_type position_covariance;
   using _position_covariance_type_type =
-      uint8_t;
+    uint8_t;
   _position_covariance_type_type position_covariance_type;
 
   // setters for named parameter idiom
@@ -154,39 +154,43 @@ struct NavSatFix_
     return this;
   }
 
-  // constants
-  enum { COVARIANCE_TYPE_UNKNOWN = 0u };
-  enum { COVARIANCE_TYPE_APPROXIMATED = 1u };
-  enum { COVARIANCE_TYPE_DIAGONAL_KNOWN = 2u };
-  enum { COVARIANCE_TYPE_KNOWN = 3u };
+  // constant declarations
+  static constexpr uint8_t COVARIANCE_TYPE_UNKNOWN =
+    0u;
+  static constexpr uint8_t COVARIANCE_TYPE_APPROXIMATED =
+    1u;
+  static constexpr uint8_t COVARIANCE_TYPE_DIAGONAL_KNOWN =
+    2u;
+  static constexpr uint8_t COVARIANCE_TYPE_KNOWN =
+    3u;
 
   // pointer types
   using RawPtr =
-      sensor_msgs::msg::NavSatFix_<ContainerAllocator> *;
+    sensor_msgs::msg::NavSatFix_<ContainerAllocator> *;
   using ConstRawPtr =
-      const sensor_msgs::msg::NavSatFix_<ContainerAllocator> *;
+    const sensor_msgs::msg::NavSatFix_<ContainerAllocator> *;
   using SharedPtr =
-      std::shared_ptr<sensor_msgs::msg::NavSatFix_<ContainerAllocator>>;
+    std::shared_ptr<sensor_msgs::msg::NavSatFix_<ContainerAllocator>>;
   using ConstSharedPtr =
-      std::shared_ptr<sensor_msgs::msg::NavSatFix_<ContainerAllocator> const>;
+    std::shared_ptr<sensor_msgs::msg::NavSatFix_<ContainerAllocator> const>;
 
   template<typename Deleter = std::default_delete<
       sensor_msgs::msg::NavSatFix_<ContainerAllocator>>>
   using UniquePtrWithDeleter =
-      std::unique_ptr<sensor_msgs::msg::NavSatFix_<ContainerAllocator>, Deleter>;
+    std::unique_ptr<sensor_msgs::msg::NavSatFix_<ContainerAllocator>, Deleter>;
 
   using UniquePtr = UniquePtrWithDeleter<>;
 
   template<typename Deleter = std::default_delete<
       sensor_msgs::msg::NavSatFix_<ContainerAllocator>>>
   using ConstUniquePtrWithDeleter =
-      std::unique_ptr<sensor_msgs::msg::NavSatFix_<ContainerAllocator> const, Deleter>;
+    std::unique_ptr<sensor_msgs::msg::NavSatFix_<ContainerAllocator> const, Deleter>;
   using ConstUniquePtr = ConstUniquePtrWithDeleter<>;
 
   using WeakPtr =
-      std::weak_ptr<sensor_msgs::msg::NavSatFix_<ContainerAllocator>>;
+    std::weak_ptr<sensor_msgs::msg::NavSatFix_<ContainerAllocator>>;
   using ConstWeakPtr =
-      std::weak_ptr<sensor_msgs::msg::NavSatFix_<ContainerAllocator> const>;
+    std::weak_ptr<sensor_msgs::msg::NavSatFix_<ContainerAllocator> const>;
 
   // pointer types similar to ROS 1, use SharedPtr / ConstSharedPtr instead
   // NOTE: Can't use 'using' here because GNU C++ can't parse attributes properly
@@ -231,9 +235,17 @@ struct NavSatFix_
 
 // alias to use template instance with default allocator
 using NavSatFix =
-    sensor_msgs::msg::NavSatFix_<std::allocator<void>>;
+  sensor_msgs::msg::NavSatFix_<std::allocator<void>>;
 
-// constants requiring out of line definition
+// constant definitions
+template<typename ContainerAllocator>
+constexpr uint8_t NavSatFix_<ContainerAllocator>::COVARIANCE_TYPE_UNKNOWN;
+template<typename ContainerAllocator>
+constexpr uint8_t NavSatFix_<ContainerAllocator>::COVARIANCE_TYPE_APPROXIMATED;
+template<typename ContainerAllocator>
+constexpr uint8_t NavSatFix_<ContainerAllocator>::COVARIANCE_TYPE_DIAGONAL_KNOWN;
+template<typename ContainerAllocator>
+constexpr uint8_t NavSatFix_<ContainerAllocator>::COVARIANCE_TYPE_KNOWN;
 
 }  // namespace msg
 

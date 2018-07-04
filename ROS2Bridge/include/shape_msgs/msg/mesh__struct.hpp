@@ -53,10 +53,10 @@ struct Mesh_
 
   // field types and members
   using _triangles_type =
-      std::vector<shape_msgs::msg::MeshTriangle_<ContainerAllocator>, typename ContainerAllocator::template rebind<shape_msgs::msg::MeshTriangle_<ContainerAllocator>>::other>;
+    std::vector<shape_msgs::msg::MeshTriangle_<ContainerAllocator>, typename ContainerAllocator::template rebind<shape_msgs::msg::MeshTriangle_<ContainerAllocator>>::other>;
   _triangles_type triangles;
   using _vertices_type =
-      std::vector<geometry_msgs::msg::Point_<ContainerAllocator>, typename ContainerAllocator::template rebind<geometry_msgs::msg::Point_<ContainerAllocator>>::other>;
+    std::vector<geometry_msgs::msg::Point_<ContainerAllocator>, typename ContainerAllocator::template rebind<geometry_msgs::msg::Point_<ContainerAllocator>>::other>;
   _vertices_type vertices;
 
   // setters for named parameter idiom
@@ -73,35 +73,35 @@ struct Mesh_
     return this;
   }
 
-  // constants
+  // constant declarations
 
   // pointer types
   using RawPtr =
-      shape_msgs::msg::Mesh_<ContainerAllocator> *;
+    shape_msgs::msg::Mesh_<ContainerAllocator> *;
   using ConstRawPtr =
-      const shape_msgs::msg::Mesh_<ContainerAllocator> *;
+    const shape_msgs::msg::Mesh_<ContainerAllocator> *;
   using SharedPtr =
-      std::shared_ptr<shape_msgs::msg::Mesh_<ContainerAllocator>>;
+    std::shared_ptr<shape_msgs::msg::Mesh_<ContainerAllocator>>;
   using ConstSharedPtr =
-      std::shared_ptr<shape_msgs::msg::Mesh_<ContainerAllocator> const>;
+    std::shared_ptr<shape_msgs::msg::Mesh_<ContainerAllocator> const>;
 
   template<typename Deleter = std::default_delete<
       shape_msgs::msg::Mesh_<ContainerAllocator>>>
   using UniquePtrWithDeleter =
-      std::unique_ptr<shape_msgs::msg::Mesh_<ContainerAllocator>, Deleter>;
+    std::unique_ptr<shape_msgs::msg::Mesh_<ContainerAllocator>, Deleter>;
 
   using UniquePtr = UniquePtrWithDeleter<>;
 
   template<typename Deleter = std::default_delete<
       shape_msgs::msg::Mesh_<ContainerAllocator>>>
   using ConstUniquePtrWithDeleter =
-      std::unique_ptr<shape_msgs::msg::Mesh_<ContainerAllocator> const, Deleter>;
+    std::unique_ptr<shape_msgs::msg::Mesh_<ContainerAllocator> const, Deleter>;
   using ConstUniquePtr = ConstUniquePtrWithDeleter<>;
 
   using WeakPtr =
-      std::weak_ptr<shape_msgs::msg::Mesh_<ContainerAllocator>>;
+    std::weak_ptr<shape_msgs::msg::Mesh_<ContainerAllocator>>;
   using ConstWeakPtr =
-      std::weak_ptr<shape_msgs::msg::Mesh_<ContainerAllocator> const>;
+    std::weak_ptr<shape_msgs::msg::Mesh_<ContainerAllocator> const>;
 
   // pointer types similar to ROS 1, use SharedPtr / ConstSharedPtr instead
   // NOTE: Can't use 'using' here because GNU C++ can't parse attributes properly
@@ -131,9 +131,9 @@ struct Mesh_
 
 // alias to use template instance with default allocator
 using Mesh =
-    shape_msgs::msg::Mesh_<std::allocator<void>>;
+  shape_msgs::msg::Mesh_<std::allocator<void>>;
 
-// constants requiring out of line definition
+// constant definitions
 
 }  // namespace msg
 

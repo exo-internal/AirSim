@@ -59,7 +59,7 @@ struct JointCommand_
 
   // field types and members
   using _position_type =
-      double;
+    double;
   _position_type position;
 
   // setters for named parameter idiom
@@ -70,35 +70,35 @@ struct JointCommand_
     return this;
   }
 
-  // constants
+  // constant declarations
 
   // pointer types
   using RawPtr =
-      pendulum_msgs::msg::JointCommand_<ContainerAllocator> *;
+    pendulum_msgs::msg::JointCommand_<ContainerAllocator> *;
   using ConstRawPtr =
-      const pendulum_msgs::msg::JointCommand_<ContainerAllocator> *;
+    const pendulum_msgs::msg::JointCommand_<ContainerAllocator> *;
   using SharedPtr =
-      std::shared_ptr<pendulum_msgs::msg::JointCommand_<ContainerAllocator>>;
+    std::shared_ptr<pendulum_msgs::msg::JointCommand_<ContainerAllocator>>;
   using ConstSharedPtr =
-      std::shared_ptr<pendulum_msgs::msg::JointCommand_<ContainerAllocator> const>;
+    std::shared_ptr<pendulum_msgs::msg::JointCommand_<ContainerAllocator> const>;
 
   template<typename Deleter = std::default_delete<
       pendulum_msgs::msg::JointCommand_<ContainerAllocator>>>
   using UniquePtrWithDeleter =
-      std::unique_ptr<pendulum_msgs::msg::JointCommand_<ContainerAllocator>, Deleter>;
+    std::unique_ptr<pendulum_msgs::msg::JointCommand_<ContainerAllocator>, Deleter>;
 
   using UniquePtr = UniquePtrWithDeleter<>;
 
   template<typename Deleter = std::default_delete<
       pendulum_msgs::msg::JointCommand_<ContainerAllocator>>>
   using ConstUniquePtrWithDeleter =
-      std::unique_ptr<pendulum_msgs::msg::JointCommand_<ContainerAllocator> const, Deleter>;
+    std::unique_ptr<pendulum_msgs::msg::JointCommand_<ContainerAllocator> const, Deleter>;
   using ConstUniquePtr = ConstUniquePtrWithDeleter<>;
 
   using WeakPtr =
-      std::weak_ptr<pendulum_msgs::msg::JointCommand_<ContainerAllocator>>;
+    std::weak_ptr<pendulum_msgs::msg::JointCommand_<ContainerAllocator>>;
   using ConstWeakPtr =
-      std::weak_ptr<pendulum_msgs::msg::JointCommand_<ContainerAllocator> const>;
+    std::weak_ptr<pendulum_msgs::msg::JointCommand_<ContainerAllocator> const>;
 
   // pointer types similar to ROS 1, use SharedPtr / ConstSharedPtr instead
   // NOTE: Can't use 'using' here because GNU C++ can't parse attributes properly
@@ -125,9 +125,9 @@ struct JointCommand_
 
 // alias to use template instance with default allocator
 using JointCommand =
-    pendulum_msgs::msg::JointCommand_<std::allocator<void>>;
+  pendulum_msgs::msg::JointCommand_<std::allocator<void>>;
 
-// constants requiring out of line definition
+// constant definitions
 
 }  // namespace msg
 

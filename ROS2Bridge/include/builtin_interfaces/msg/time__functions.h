@@ -4,7 +4,7 @@
 #ifndef BUILTIN_INTERFACES__MSG__TIME__FUNCTIONS_H_
 #define BUILTIN_INTERFACES__MSG__TIME__FUNCTIONS_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -105,7 +105,7 @@ ROSIDL_GENERATOR_C_PUBLIC_builtin_interfaces
 void
 builtin_interfaces__msg__Time__Array__destroy(builtin_interfaces__msg__Time__Array * array);
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

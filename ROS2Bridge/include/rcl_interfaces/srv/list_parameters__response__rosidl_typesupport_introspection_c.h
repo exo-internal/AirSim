@@ -10,7 +10,7 @@
 
 #include "rcl_interfaces/msg/rosidl_typesupport_introspection_c__visibility_control.h"
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -19,7 +19,7 @@ ROSIDL_TYPESUPPORT_INTROSPECTION_C_PUBLIC_rcl_interfaces
 const rosidl_message_type_support_t *
   ROSIDL_TYPESUPPORT_INTERFACE__MESSAGE_SYMBOL_NAME(rosidl_typesupport_introspection_c, rcl_interfaces, srv, ListParameters_Response)();
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

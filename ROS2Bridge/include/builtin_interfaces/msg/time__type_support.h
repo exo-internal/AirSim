@@ -4,7 +4,7 @@
 #ifndef BUILTIN_INTERFACES__MSG__TIME__TYPE_SUPPORT_H_
 #define BUILTIN_INTERFACES__MSG__TIME__TYPE_SUPPORT_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -19,7 +19,7 @@ ROSIDL_GENERATOR_C_PUBLIC_builtin_interfaces
 const rosidl_message_type_support_t *
   ROSIDL_TYPESUPPORT_INTERFACE__MESSAGE_SYMBOL_NAME(rosidl_typesupport_c, builtin_interfaces, msg, Time)();
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

@@ -4,7 +4,7 @@
 #ifndef ACTIONLIB_MSGS__MSG__GOAL_ID__STRUCT_H_
 #define ACTIONLIB_MSGS__MSG__GOAL_ID__STRUCT_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -36,7 +36,7 @@ typedef struct actionlib_msgs__msg__GoalID__Array
   size_t capacity;
 } actionlib_msgs__msg__GoalID__Array;
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

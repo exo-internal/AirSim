@@ -15,7 +15,7 @@
 #ifndef RMW__TYPES_H_
 #define RMW__TYPES_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -23,6 +23,9 @@ extern "C"
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
+
+// map rcutils specific log levels to rmw speicfic type
+#include <rcutils/logging.h>
 
 #include "rmw/visibility_control.h"
 
@@ -219,6 +222,15 @@ typedef struct RMW_PUBLIC_TYPE rmw_gid_t
   uint8_t data[RMW_GID_STORAGE_SIZE];
 } rmw_gid_t;
 
+typedef struct RMW_PUBLIC_TYPE rmw_serialized_message_t
+{
+  // serialized message data
+  char * buffer;
+  size_t buffer_length;
+  size_t buffer_capacity;
+  rcutils_allocator_t allocator;
+} rmw_serialized_message_t;
+
 typedef struct RMW_PUBLIC_TYPE rmw_message_info_t
 {
   // const rmw_time_t received_timestamp;
@@ -228,7 +240,18 @@ typedef struct RMW_PUBLIC_TYPE rmw_message_info_t
 
 enum {RMW_QOS_POLICY_DEPTH_SYSTEM_DEFAULT = 0};
 
-#if __cplusplus
+// Type mapping of rcutil log severity types to
+// rmw specific types.
+typedef enum RWM_PUBLIC_TYPE
+{
+  RMW_LOG_SEVERITY_DEBUG = RCUTILS_LOG_SEVERITY_DEBUG,
+  RMW_LOG_SEVERITY_INFO = RCUTILS_LOG_SEVERITY_INFO,
+  RMW_LOG_SEVERITY_WARN = RCUTILS_LOG_SEVERITY_WARN,
+  RMW_LOG_SEVERITY_ERROR = RCUTILS_LOG_SEVERITY_ERROR,
+  RMW_LOG_SEVERITY_FATAL = RCUTILS_LOG_SEVERITY_FATAL
+} rmw_log_severity_t;
+
+#ifdef __cplusplus
 }
 #endif
 

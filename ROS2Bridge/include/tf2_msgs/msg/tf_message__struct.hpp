@@ -52,7 +52,7 @@ struct TFMessage_
 
   // field types and members
   using _transforms_type =
-      std::vector<geometry_msgs::msg::TransformStamped_<ContainerAllocator>, typename ContainerAllocator::template rebind<geometry_msgs::msg::TransformStamped_<ContainerAllocator>>::other>;
+    std::vector<geometry_msgs::msg::TransformStamped_<ContainerAllocator>, typename ContainerAllocator::template rebind<geometry_msgs::msg::TransformStamped_<ContainerAllocator>>::other>;
   _transforms_type transforms;
 
   // setters for named parameter idiom
@@ -63,35 +63,35 @@ struct TFMessage_
     return this;
   }
 
-  // constants
+  // constant declarations
 
   // pointer types
   using RawPtr =
-      tf2_msgs::msg::TFMessage_<ContainerAllocator> *;
+    tf2_msgs::msg::TFMessage_<ContainerAllocator> *;
   using ConstRawPtr =
-      const tf2_msgs::msg::TFMessage_<ContainerAllocator> *;
+    const tf2_msgs::msg::TFMessage_<ContainerAllocator> *;
   using SharedPtr =
-      std::shared_ptr<tf2_msgs::msg::TFMessage_<ContainerAllocator>>;
+    std::shared_ptr<tf2_msgs::msg::TFMessage_<ContainerAllocator>>;
   using ConstSharedPtr =
-      std::shared_ptr<tf2_msgs::msg::TFMessage_<ContainerAllocator> const>;
+    std::shared_ptr<tf2_msgs::msg::TFMessage_<ContainerAllocator> const>;
 
   template<typename Deleter = std::default_delete<
       tf2_msgs::msg::TFMessage_<ContainerAllocator>>>
   using UniquePtrWithDeleter =
-      std::unique_ptr<tf2_msgs::msg::TFMessage_<ContainerAllocator>, Deleter>;
+    std::unique_ptr<tf2_msgs::msg::TFMessage_<ContainerAllocator>, Deleter>;
 
   using UniquePtr = UniquePtrWithDeleter<>;
 
   template<typename Deleter = std::default_delete<
       tf2_msgs::msg::TFMessage_<ContainerAllocator>>>
   using ConstUniquePtrWithDeleter =
-      std::unique_ptr<tf2_msgs::msg::TFMessage_<ContainerAllocator> const, Deleter>;
+    std::unique_ptr<tf2_msgs::msg::TFMessage_<ContainerAllocator> const, Deleter>;
   using ConstUniquePtr = ConstUniquePtrWithDeleter<>;
 
   using WeakPtr =
-      std::weak_ptr<tf2_msgs::msg::TFMessage_<ContainerAllocator>>;
+    std::weak_ptr<tf2_msgs::msg::TFMessage_<ContainerAllocator>>;
   using ConstWeakPtr =
-      std::weak_ptr<tf2_msgs::msg::TFMessage_<ContainerAllocator> const>;
+    std::weak_ptr<tf2_msgs::msg::TFMessage_<ContainerAllocator> const>;
 
   // pointer types similar to ROS 1, use SharedPtr / ConstSharedPtr instead
   // NOTE: Can't use 'using' here because GNU C++ can't parse attributes properly
@@ -118,9 +118,9 @@ struct TFMessage_
 
 // alias to use template instance with default allocator
 using TFMessage =
-    tf2_msgs::msg::TFMessage_<std::allocator<void>>;
+  tf2_msgs::msg::TFMessage_<std::allocator<void>>;
 
-// constants requiring out of line definition
+// constant definitions
 
 }  // namespace msg
 

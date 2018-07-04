@@ -4,7 +4,7 @@
 #ifndef RCL_INTERFACES__MSG__PARAMETER_TYPE__STRUCT_H_
 #define RCL_INTERFACES__MSG__PARAMETER_TYPE__STRUCT_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -39,10 +39,30 @@ enum
 {
   rcl_interfaces__msg__ParameterType__PARAMETER_STRING = 4u
 };
-// PARAMETER_BYTES
+// PARAMETER_BYTE_ARRAY
 enum
 {
-  rcl_interfaces__msg__ParameterType__PARAMETER_BYTES = 5u
+  rcl_interfaces__msg__ParameterType__PARAMETER_BYTE_ARRAY = 5u
+};
+// PARAMETER_BOOL_ARRAY
+enum
+{
+  rcl_interfaces__msg__ParameterType__PARAMETER_BOOL_ARRAY = 6u
+};
+// PARAMETER_INTEGER_ARRAY
+enum
+{
+  rcl_interfaces__msg__ParameterType__PARAMETER_INTEGER_ARRAY = 7u
+};
+// PARAMETER_DOUBLE_ARRAY
+enum
+{
+  rcl_interfaces__msg__ParameterType__PARAMETER_DOUBLE_ARRAY = 8u
+};
+// PARAMETER_STRING_ARRAY
+enum
+{
+  rcl_interfaces__msg__ParameterType__PARAMETER_STRING_ARRAY = 9u
 };
 
 /// Struct of message rcl_interfaces/ParameterType
@@ -61,7 +81,7 @@ typedef struct rcl_interfaces__msg__ParameterType__Array
   size_t capacity;
 } rcl_interfaces__msg__ParameterType__Array;
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

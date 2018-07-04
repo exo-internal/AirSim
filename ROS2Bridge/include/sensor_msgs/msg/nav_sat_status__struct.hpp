@@ -61,10 +61,10 @@ struct NavSatStatus_
 
   // field types and members
   using _status_type =
-      int8_t;
+    int8_t;
   _status_type status;
   using _service_type =
-      uint16_t;
+    uint16_t;
   _service_type service;
 
   // setters for named parameter idiom
@@ -81,43 +81,51 @@ struct NavSatStatus_
     return this;
   }
 
-  // constants
-  enum { STATUS_NO_FIX = -1 };
-  enum { STATUS_FIX = 0 };
-  enum { STATUS_SBAS_FIX = 1 };
-  enum { STATUS_GBAS_FIX = 2 };
-  enum { SERVICE_GPS = 1u };
-  enum { SERVICE_GLONASS = 2u };
-  enum { SERVICE_COMPASS = 4u };
-  enum { SERVICE_GALILEO = 8u };
+  // constant declarations
+  static constexpr int8_t STATUS_NO_FIX =
+    -1;
+  static constexpr int8_t STATUS_FIX =
+    0;
+  static constexpr int8_t STATUS_SBAS_FIX =
+    1;
+  static constexpr int8_t STATUS_GBAS_FIX =
+    2;
+  static constexpr uint16_t SERVICE_GPS =
+    1u;
+  static constexpr uint16_t SERVICE_GLONASS =
+    2u;
+  static constexpr uint16_t SERVICE_COMPASS =
+    4u;
+  static constexpr uint16_t SERVICE_GALILEO =
+    8u;
 
   // pointer types
   using RawPtr =
-      sensor_msgs::msg::NavSatStatus_<ContainerAllocator> *;
+    sensor_msgs::msg::NavSatStatus_<ContainerAllocator> *;
   using ConstRawPtr =
-      const sensor_msgs::msg::NavSatStatus_<ContainerAllocator> *;
+    const sensor_msgs::msg::NavSatStatus_<ContainerAllocator> *;
   using SharedPtr =
-      std::shared_ptr<sensor_msgs::msg::NavSatStatus_<ContainerAllocator>>;
+    std::shared_ptr<sensor_msgs::msg::NavSatStatus_<ContainerAllocator>>;
   using ConstSharedPtr =
-      std::shared_ptr<sensor_msgs::msg::NavSatStatus_<ContainerAllocator> const>;
+    std::shared_ptr<sensor_msgs::msg::NavSatStatus_<ContainerAllocator> const>;
 
   template<typename Deleter = std::default_delete<
       sensor_msgs::msg::NavSatStatus_<ContainerAllocator>>>
   using UniquePtrWithDeleter =
-      std::unique_ptr<sensor_msgs::msg::NavSatStatus_<ContainerAllocator>, Deleter>;
+    std::unique_ptr<sensor_msgs::msg::NavSatStatus_<ContainerAllocator>, Deleter>;
 
   using UniquePtr = UniquePtrWithDeleter<>;
 
   template<typename Deleter = std::default_delete<
       sensor_msgs::msg::NavSatStatus_<ContainerAllocator>>>
   using ConstUniquePtrWithDeleter =
-      std::unique_ptr<sensor_msgs::msg::NavSatStatus_<ContainerAllocator> const, Deleter>;
+    std::unique_ptr<sensor_msgs::msg::NavSatStatus_<ContainerAllocator> const, Deleter>;
   using ConstUniquePtr = ConstUniquePtrWithDeleter<>;
 
   using WeakPtr =
-      std::weak_ptr<sensor_msgs::msg::NavSatStatus_<ContainerAllocator>>;
+    std::weak_ptr<sensor_msgs::msg::NavSatStatus_<ContainerAllocator>>;
   using ConstWeakPtr =
-      std::weak_ptr<sensor_msgs::msg::NavSatStatus_<ContainerAllocator> const>;
+    std::weak_ptr<sensor_msgs::msg::NavSatStatus_<ContainerAllocator> const>;
 
   // pointer types similar to ROS 1, use SharedPtr / ConstSharedPtr instead
   // NOTE: Can't use 'using' here because GNU C++ can't parse attributes properly
@@ -147,9 +155,25 @@ struct NavSatStatus_
 
 // alias to use template instance with default allocator
 using NavSatStatus =
-    sensor_msgs::msg::NavSatStatus_<std::allocator<void>>;
+  sensor_msgs::msg::NavSatStatus_<std::allocator<void>>;
 
-// constants requiring out of line definition
+// constant definitions
+template<typename ContainerAllocator>
+constexpr int8_t NavSatStatus_<ContainerAllocator>::STATUS_NO_FIX;
+template<typename ContainerAllocator>
+constexpr int8_t NavSatStatus_<ContainerAllocator>::STATUS_FIX;
+template<typename ContainerAllocator>
+constexpr int8_t NavSatStatus_<ContainerAllocator>::STATUS_SBAS_FIX;
+template<typename ContainerAllocator>
+constexpr int8_t NavSatStatus_<ContainerAllocator>::STATUS_GBAS_FIX;
+template<typename ContainerAllocator>
+constexpr uint16_t NavSatStatus_<ContainerAllocator>::SERVICE_GPS;
+template<typename ContainerAllocator>
+constexpr uint16_t NavSatStatus_<ContainerAllocator>::SERVICE_GLONASS;
+template<typename ContainerAllocator>
+constexpr uint16_t NavSatStatus_<ContainerAllocator>::SERVICE_COMPASS;
+template<typename ContainerAllocator>
+constexpr uint16_t NavSatStatus_<ContainerAllocator>::SERVICE_GALILEO;
 
 }  // namespace msg
 

@@ -4,7 +4,7 @@
 #ifndef DIAGNOSTIC_MSGS__SRV__SELF_TEST__REQUEST__STRUCT_H_
 #define DIAGNOSTIC_MSGS__SRV__SELF_TEST__REQUEST__STRUCT_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -29,7 +29,7 @@ typedef struct diagnostic_msgs__srv__SelfTest_Request__Array
   size_t capacity;
 } diagnostic_msgs__srv__SelfTest_Request__Array;
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

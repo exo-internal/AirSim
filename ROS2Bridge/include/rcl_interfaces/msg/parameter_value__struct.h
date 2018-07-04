@@ -4,7 +4,7 @@
 #ifndef RCL_INTERFACES__MSG__PARAMETER_VALUE__STRUCT_H_
 #define RCL_INTERFACES__MSG__PARAMETER_VALUE__STRUCT_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -15,8 +15,12 @@ extern "C"
 
 // include message dependencies
 // string_value
+// string_array_value
 #include "rosidl_generator_c/string.h"
-// bytes_value
+// byte_array_value
+// bool_array_value
+// integer_array_value
+// double_array_value
 #include "rosidl_generator_c/primitives_array.h"
 
 /// Struct of message rcl_interfaces/ParameterValue
@@ -27,7 +31,11 @@ typedef struct rcl_interfaces__msg__ParameterValue
   int64_t integer_value;
   double double_value;
   rosidl_generator_c__String string_value;
-  rosidl_generator_c__byte__Array bytes_value;
+  rosidl_generator_c__byte__Array byte_array_value;
+  rosidl_generator_c__bool__Array bool_array_value;
+  rosidl_generator_c__int64__Array integer_array_value;
+  rosidl_generator_c__float64__Array double_array_value;
+  rosidl_generator_c__String__Array string_array_value;
 } rcl_interfaces__msg__ParameterValue;
 
 /// Struct for an array of messages
@@ -40,7 +48,7 @@ typedef struct rcl_interfaces__msg__ParameterValue__Array
   size_t capacity;
 } rcl_interfaces__msg__ParameterValue__Array;
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

@@ -63,13 +63,13 @@ struct Illuminance_
 
   // field types and members
   using _header_type =
-      std_msgs::msg::Header_<ContainerAllocator>;
+    std_msgs::msg::Header_<ContainerAllocator>;
   _header_type header;
   using _illuminance_type =
-      double;
+    double;
   _illuminance_type illuminance;
   using _variance_type =
-      double;
+    double;
   _variance_type variance;
 
   // setters for named parameter idiom
@@ -92,35 +92,35 @@ struct Illuminance_
     return this;
   }
 
-  // constants
+  // constant declarations
 
   // pointer types
   using RawPtr =
-      sensor_msgs::msg::Illuminance_<ContainerAllocator> *;
+    sensor_msgs::msg::Illuminance_<ContainerAllocator> *;
   using ConstRawPtr =
-      const sensor_msgs::msg::Illuminance_<ContainerAllocator> *;
+    const sensor_msgs::msg::Illuminance_<ContainerAllocator> *;
   using SharedPtr =
-      std::shared_ptr<sensor_msgs::msg::Illuminance_<ContainerAllocator>>;
+    std::shared_ptr<sensor_msgs::msg::Illuminance_<ContainerAllocator>>;
   using ConstSharedPtr =
-      std::shared_ptr<sensor_msgs::msg::Illuminance_<ContainerAllocator> const>;
+    std::shared_ptr<sensor_msgs::msg::Illuminance_<ContainerAllocator> const>;
 
   template<typename Deleter = std::default_delete<
       sensor_msgs::msg::Illuminance_<ContainerAllocator>>>
   using UniquePtrWithDeleter =
-      std::unique_ptr<sensor_msgs::msg::Illuminance_<ContainerAllocator>, Deleter>;
+    std::unique_ptr<sensor_msgs::msg::Illuminance_<ContainerAllocator>, Deleter>;
 
   using UniquePtr = UniquePtrWithDeleter<>;
 
   template<typename Deleter = std::default_delete<
       sensor_msgs::msg::Illuminance_<ContainerAllocator>>>
   using ConstUniquePtrWithDeleter =
-      std::unique_ptr<sensor_msgs::msg::Illuminance_<ContainerAllocator> const, Deleter>;
+    std::unique_ptr<sensor_msgs::msg::Illuminance_<ContainerAllocator> const, Deleter>;
   using ConstUniquePtr = ConstUniquePtrWithDeleter<>;
 
   using WeakPtr =
-      std::weak_ptr<sensor_msgs::msg::Illuminance_<ContainerAllocator>>;
+    std::weak_ptr<sensor_msgs::msg::Illuminance_<ContainerAllocator>>;
   using ConstWeakPtr =
-      std::weak_ptr<sensor_msgs::msg::Illuminance_<ContainerAllocator> const>;
+    std::weak_ptr<sensor_msgs::msg::Illuminance_<ContainerAllocator> const>;
 
   // pointer types similar to ROS 1, use SharedPtr / ConstSharedPtr instead
   // NOTE: Can't use 'using' here because GNU C++ can't parse attributes properly
@@ -153,9 +153,9 @@ struct Illuminance_
 
 // alias to use template instance with default allocator
 using Illuminance =
-    sensor_msgs::msg::Illuminance_<std::allocator<void>>;
+  sensor_msgs::msg::Illuminance_<std::allocator<void>>;
 
-// constants requiring out of line definition
+// constant definitions
 
 }  // namespace msg
 

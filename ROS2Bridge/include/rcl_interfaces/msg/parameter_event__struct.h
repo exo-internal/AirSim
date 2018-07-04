@@ -4,7 +4,7 @@
 #ifndef RCL_INTERFACES__MSG__PARAMETER_EVENT__STRUCT_H_
 #define RCL_INTERFACES__MSG__PARAMETER_EVENT__STRUCT_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -37,7 +37,7 @@ typedef struct rcl_interfaces__msg__ParameterEvent__Array
   size_t capacity;
 } rcl_interfaces__msg__ParameterEvent__Array;
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

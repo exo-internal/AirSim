@@ -4,7 +4,7 @@
 #ifndef GEOMETRY_MSGS__MSG__POSE_WITH_COVARIANCE__FUNCTIONS_H_
 #define GEOMETRY_MSGS__MSG__POSE_WITH_COVARIANCE__FUNCTIONS_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -105,7 +105,7 @@ ROSIDL_GENERATOR_C_PUBLIC_geometry_msgs
 void
 geometry_msgs__msg__PoseWithCovariance__Array__destroy(geometry_msgs__msg__PoseWithCovariance__Array * array);
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

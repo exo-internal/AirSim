@@ -89,16 +89,16 @@ struct PointField_
 
   // field types and members
   using _name_type =
-      std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>;
+    std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>;
   _name_type name;
   using _offset_type =
-      uint32_t;
+    uint32_t;
   _offset_type offset;
   using _datatype_type =
-      uint8_t;
+    uint8_t;
   _datatype_type datatype;
   using _count_type =
-      uint32_t;
+    uint32_t;
   _count_type count;
 
   // setters for named parameter idiom
@@ -127,43 +127,51 @@ struct PointField_
     return this;
   }
 
-  // constants
-  enum { INT8 = 1u };
-  enum { UINT8 = 2u };
-  enum { INT16 = 3u };
-  enum { UINT16 = 4u };
-  enum { INT32 = 5u };
-  enum { UINT32 = 6u };
-  enum { FLOAT32 = 7u };
-  enum { FLOAT64 = 8u };
+  // constant declarations
+  static constexpr uint8_t INT8 =
+    1u;
+  static constexpr uint8_t UINT8 =
+    2u;
+  static constexpr uint8_t INT16 =
+    3u;
+  static constexpr uint8_t UINT16 =
+    4u;
+  static constexpr uint8_t INT32 =
+    5u;
+  static constexpr uint8_t UINT32 =
+    6u;
+  static constexpr uint8_t FLOAT32 =
+    7u;
+  static constexpr uint8_t FLOAT64 =
+    8u;
 
   // pointer types
   using RawPtr =
-      sensor_msgs::msg::PointField_<ContainerAllocator> *;
+    sensor_msgs::msg::PointField_<ContainerAllocator> *;
   using ConstRawPtr =
-      const sensor_msgs::msg::PointField_<ContainerAllocator> *;
+    const sensor_msgs::msg::PointField_<ContainerAllocator> *;
   using SharedPtr =
-      std::shared_ptr<sensor_msgs::msg::PointField_<ContainerAllocator>>;
+    std::shared_ptr<sensor_msgs::msg::PointField_<ContainerAllocator>>;
   using ConstSharedPtr =
-      std::shared_ptr<sensor_msgs::msg::PointField_<ContainerAllocator> const>;
+    std::shared_ptr<sensor_msgs::msg::PointField_<ContainerAllocator> const>;
 
   template<typename Deleter = std::default_delete<
       sensor_msgs::msg::PointField_<ContainerAllocator>>>
   using UniquePtrWithDeleter =
-      std::unique_ptr<sensor_msgs::msg::PointField_<ContainerAllocator>, Deleter>;
+    std::unique_ptr<sensor_msgs::msg::PointField_<ContainerAllocator>, Deleter>;
 
   using UniquePtr = UniquePtrWithDeleter<>;
 
   template<typename Deleter = std::default_delete<
       sensor_msgs::msg::PointField_<ContainerAllocator>>>
   using ConstUniquePtrWithDeleter =
-      std::unique_ptr<sensor_msgs::msg::PointField_<ContainerAllocator> const, Deleter>;
+    std::unique_ptr<sensor_msgs::msg::PointField_<ContainerAllocator> const, Deleter>;
   using ConstUniquePtr = ConstUniquePtrWithDeleter<>;
 
   using WeakPtr =
-      std::weak_ptr<sensor_msgs::msg::PointField_<ContainerAllocator>>;
+    std::weak_ptr<sensor_msgs::msg::PointField_<ContainerAllocator>>;
   using ConstWeakPtr =
-      std::weak_ptr<sensor_msgs::msg::PointField_<ContainerAllocator> const>;
+    std::weak_ptr<sensor_msgs::msg::PointField_<ContainerAllocator> const>;
 
   // pointer types similar to ROS 1, use SharedPtr / ConstSharedPtr instead
   // NOTE: Can't use 'using' here because GNU C++ can't parse attributes properly
@@ -199,9 +207,25 @@ struct PointField_
 
 // alias to use template instance with default allocator
 using PointField =
-    sensor_msgs::msg::PointField_<std::allocator<void>>;
+  sensor_msgs::msg::PointField_<std::allocator<void>>;
 
-// constants requiring out of line definition
+// constant definitions
+template<typename ContainerAllocator>
+constexpr uint8_t PointField_<ContainerAllocator>::INT8;
+template<typename ContainerAllocator>
+constexpr uint8_t PointField_<ContainerAllocator>::UINT8;
+template<typename ContainerAllocator>
+constexpr uint8_t PointField_<ContainerAllocator>::INT16;
+template<typename ContainerAllocator>
+constexpr uint8_t PointField_<ContainerAllocator>::UINT16;
+template<typename ContainerAllocator>
+constexpr uint8_t PointField_<ContainerAllocator>::INT32;
+template<typename ContainerAllocator>
+constexpr uint8_t PointField_<ContainerAllocator>::UINT32;
+template<typename ContainerAllocator>
+constexpr uint8_t PointField_<ContainerAllocator>::FLOAT32;
+template<typename ContainerAllocator>
+constexpr uint8_t PointField_<ContainerAllocator>::FLOAT64;
 
 }  // namespace msg
 

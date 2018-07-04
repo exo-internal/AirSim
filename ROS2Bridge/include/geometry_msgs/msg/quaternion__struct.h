@@ -4,7 +4,7 @@
 #ifndef GEOMETRY_MSGS__MSG__QUATERNION__STRUCT_H_
 #define GEOMETRY_MSGS__MSG__QUATERNION__STRUCT_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -32,7 +32,7 @@ typedef struct geometry_msgs__msg__Quaternion__Array
   size_t capacity;
 } geometry_msgs__msg__Quaternion__Array;
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

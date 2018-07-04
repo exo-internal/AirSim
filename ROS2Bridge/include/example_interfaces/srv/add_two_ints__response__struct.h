@@ -4,7 +4,7 @@
 #ifndef EXAMPLE_INTERFACES__SRV__ADD_TWO_INTS__RESPONSE__STRUCT_H_
 #define EXAMPLE_INTERFACES__SRV__ADD_TWO_INTS__RESPONSE__STRUCT_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -29,7 +29,7 @@ typedef struct example_interfaces__srv__AddTwoInts_Response__Array
   size_t capacity;
 } example_interfaces__srv__AddTwoInts_Response__Array;
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

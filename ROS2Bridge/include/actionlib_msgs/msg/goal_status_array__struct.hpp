@@ -54,10 +54,10 @@ struct GoalStatusArray_
 
   // field types and members
   using _header_type =
-      std_msgs::msg::Header_<ContainerAllocator>;
+    std_msgs::msg::Header_<ContainerAllocator>;
   _header_type header;
   using _status_list_type =
-      std::vector<actionlib_msgs::msg::GoalStatus_<ContainerAllocator>, typename ContainerAllocator::template rebind<actionlib_msgs::msg::GoalStatus_<ContainerAllocator>>::other>;
+    std::vector<actionlib_msgs::msg::GoalStatus_<ContainerAllocator>, typename ContainerAllocator::template rebind<actionlib_msgs::msg::GoalStatus_<ContainerAllocator>>::other>;
   _status_list_type status_list;
 
   // setters for named parameter idiom
@@ -74,35 +74,35 @@ struct GoalStatusArray_
     return this;
   }
 
-  // constants
+  // constant declarations
 
   // pointer types
   using RawPtr =
-      actionlib_msgs::msg::GoalStatusArray_<ContainerAllocator> *;
+    actionlib_msgs::msg::GoalStatusArray_<ContainerAllocator> *;
   using ConstRawPtr =
-      const actionlib_msgs::msg::GoalStatusArray_<ContainerAllocator> *;
+    const actionlib_msgs::msg::GoalStatusArray_<ContainerAllocator> *;
   using SharedPtr =
-      std::shared_ptr<actionlib_msgs::msg::GoalStatusArray_<ContainerAllocator>>;
+    std::shared_ptr<actionlib_msgs::msg::GoalStatusArray_<ContainerAllocator>>;
   using ConstSharedPtr =
-      std::shared_ptr<actionlib_msgs::msg::GoalStatusArray_<ContainerAllocator> const>;
+    std::shared_ptr<actionlib_msgs::msg::GoalStatusArray_<ContainerAllocator> const>;
 
   template<typename Deleter = std::default_delete<
       actionlib_msgs::msg::GoalStatusArray_<ContainerAllocator>>>
   using UniquePtrWithDeleter =
-      std::unique_ptr<actionlib_msgs::msg::GoalStatusArray_<ContainerAllocator>, Deleter>;
+    std::unique_ptr<actionlib_msgs::msg::GoalStatusArray_<ContainerAllocator>, Deleter>;
 
   using UniquePtr = UniquePtrWithDeleter<>;
 
   template<typename Deleter = std::default_delete<
       actionlib_msgs::msg::GoalStatusArray_<ContainerAllocator>>>
   using ConstUniquePtrWithDeleter =
-      std::unique_ptr<actionlib_msgs::msg::GoalStatusArray_<ContainerAllocator> const, Deleter>;
+    std::unique_ptr<actionlib_msgs::msg::GoalStatusArray_<ContainerAllocator> const, Deleter>;
   using ConstUniquePtr = ConstUniquePtrWithDeleter<>;
 
   using WeakPtr =
-      std::weak_ptr<actionlib_msgs::msg::GoalStatusArray_<ContainerAllocator>>;
+    std::weak_ptr<actionlib_msgs::msg::GoalStatusArray_<ContainerAllocator>>;
   using ConstWeakPtr =
-      std::weak_ptr<actionlib_msgs::msg::GoalStatusArray_<ContainerAllocator> const>;
+    std::weak_ptr<actionlib_msgs::msg::GoalStatusArray_<ContainerAllocator> const>;
 
   // pointer types similar to ROS 1, use SharedPtr / ConstSharedPtr instead
   // NOTE: Can't use 'using' here because GNU C++ can't parse attributes properly
@@ -132,9 +132,9 @@ struct GoalStatusArray_
 
 // alias to use template instance with default allocator
 using GoalStatusArray =
-    actionlib_msgs::msg::GoalStatusArray_<std::allocator<void>>;
+  actionlib_msgs::msg::GoalStatusArray_<std::allocator<void>>;
 
-// constants requiring out of line definition
+// constant definitions
 
 }  // namespace msg
 

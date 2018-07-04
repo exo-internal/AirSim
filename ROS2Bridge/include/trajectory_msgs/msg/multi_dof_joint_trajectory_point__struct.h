@@ -4,7 +4,7 @@
 #ifndef TRAJECTORY_MSGS__MSG__MULTI_DOF_JOINT_TRAJECTORY_POINT__STRUCT_H_
 #define TRAJECTORY_MSGS__MSG__MULTI_DOF_JOINT_TRAJECTORY_POINT__STRUCT_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -41,7 +41,7 @@ typedef struct trajectory_msgs__msg__MultiDOFJointTrajectoryPoint__Array
   size_t capacity;
 } trajectory_msgs__msg__MultiDOFJointTrajectoryPoint__Array;
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

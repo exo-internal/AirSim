@@ -4,7 +4,7 @@
 #ifndef PENDULUM_MSGS__MSG__RTTEST_RESULTS__FUNCTIONS_H_
 #define PENDULUM_MSGS__MSG__RTTEST_RESULTS__FUNCTIONS_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -105,7 +105,7 @@ ROSIDL_GENERATOR_C_PUBLIC_pendulum_msgs
 void
 pendulum_msgs__msg__RttestResults__Array__destroy(pendulum_msgs__msg__RttestResults__Array * array);
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

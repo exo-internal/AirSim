@@ -4,7 +4,7 @@
 #ifndef TEST_MSGS__MSG__NESTED__STRUCT_H_
 #define TEST_MSGS__MSG__NESTED__STRUCT_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -33,7 +33,7 @@ typedef struct test_msgs__msg__Nested__Array
   size_t capacity;
 } test_msgs__msg__Nested__Array;
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

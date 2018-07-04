@@ -4,7 +4,7 @@
 #ifndef NAV_MSGS__MSG__OCCUPANCY_GRID__STRUCT_H_
 #define NAV_MSGS__MSG__OCCUPANCY_GRID__STRUCT_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -39,7 +39,7 @@ typedef struct nav_msgs__msg__OccupancyGrid__Array
   size_t capacity;
 } nav_msgs__msg__OccupancyGrid__Array;
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

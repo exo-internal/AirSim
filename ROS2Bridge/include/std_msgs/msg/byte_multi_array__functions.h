@@ -4,7 +4,7 @@
 #ifndef STD_MSGS__MSG__BYTE_MULTI_ARRAY__FUNCTIONS_H_
 #define STD_MSGS__MSG__BYTE_MULTI_ARRAY__FUNCTIONS_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -105,7 +105,7 @@ ROSIDL_GENERATOR_C_PUBLIC_std_msgs
 void
 std_msgs__msg__ByteMultiArray__Array__destroy(std_msgs__msg__ByteMultiArray__Array * array);
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

@@ -4,7 +4,7 @@
 #ifndef VISUALIZATION_MSGS__MSG__MENU_ENTRY__STRUCT_H_
 #define VISUALIZATION_MSGS__MSG__MENU_ENTRY__STRUCT_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -55,7 +55,7 @@ typedef struct visualization_msgs__msg__MenuEntry__Array
   size_t capacity;
 } visualization_msgs__msg__MenuEntry__Array;
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

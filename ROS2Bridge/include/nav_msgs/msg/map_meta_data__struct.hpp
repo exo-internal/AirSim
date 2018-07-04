@@ -76,19 +76,19 @@ struct MapMetaData_
 
   // field types and members
   using _map_load_time_type =
-      builtin_interfaces::msg::Time_<ContainerAllocator>;
+    builtin_interfaces::msg::Time_<ContainerAllocator>;
   _map_load_time_type map_load_time;
   using _resolution_type =
-      float;
+    float;
   _resolution_type resolution;
   using _width_type =
-      uint32_t;
+    uint32_t;
   _width_type width;
   using _height_type =
-      uint32_t;
+    uint32_t;
   _height_type height;
   using _origin_type =
-      geometry_msgs::msg::Pose_<ContainerAllocator>;
+    geometry_msgs::msg::Pose_<ContainerAllocator>;
   _origin_type origin;
 
   // setters for named parameter idiom
@@ -123,35 +123,35 @@ struct MapMetaData_
     return this;
   }
 
-  // constants
+  // constant declarations
 
   // pointer types
   using RawPtr =
-      nav_msgs::msg::MapMetaData_<ContainerAllocator> *;
+    nav_msgs::msg::MapMetaData_<ContainerAllocator> *;
   using ConstRawPtr =
-      const nav_msgs::msg::MapMetaData_<ContainerAllocator> *;
+    const nav_msgs::msg::MapMetaData_<ContainerAllocator> *;
   using SharedPtr =
-      std::shared_ptr<nav_msgs::msg::MapMetaData_<ContainerAllocator>>;
+    std::shared_ptr<nav_msgs::msg::MapMetaData_<ContainerAllocator>>;
   using ConstSharedPtr =
-      std::shared_ptr<nav_msgs::msg::MapMetaData_<ContainerAllocator> const>;
+    std::shared_ptr<nav_msgs::msg::MapMetaData_<ContainerAllocator> const>;
 
   template<typename Deleter = std::default_delete<
       nav_msgs::msg::MapMetaData_<ContainerAllocator>>>
   using UniquePtrWithDeleter =
-      std::unique_ptr<nav_msgs::msg::MapMetaData_<ContainerAllocator>, Deleter>;
+    std::unique_ptr<nav_msgs::msg::MapMetaData_<ContainerAllocator>, Deleter>;
 
   using UniquePtr = UniquePtrWithDeleter<>;
 
   template<typename Deleter = std::default_delete<
       nav_msgs::msg::MapMetaData_<ContainerAllocator>>>
   using ConstUniquePtrWithDeleter =
-      std::unique_ptr<nav_msgs::msg::MapMetaData_<ContainerAllocator> const, Deleter>;
+    std::unique_ptr<nav_msgs::msg::MapMetaData_<ContainerAllocator> const, Deleter>;
   using ConstUniquePtr = ConstUniquePtrWithDeleter<>;
 
   using WeakPtr =
-      std::weak_ptr<nav_msgs::msg::MapMetaData_<ContainerAllocator>>;
+    std::weak_ptr<nav_msgs::msg::MapMetaData_<ContainerAllocator>>;
   using ConstWeakPtr =
-      std::weak_ptr<nav_msgs::msg::MapMetaData_<ContainerAllocator> const>;
+    std::weak_ptr<nav_msgs::msg::MapMetaData_<ContainerAllocator> const>;
 
   // pointer types similar to ROS 1, use SharedPtr / ConstSharedPtr instead
   // NOTE: Can't use 'using' here because GNU C++ can't parse attributes properly
@@ -190,9 +190,9 @@ struct MapMetaData_
 
 // alias to use template instance with default allocator
 using MapMetaData =
-    nav_msgs::msg::MapMetaData_<std::allocator<void>>;
+  nav_msgs::msg::MapMetaData_<std::allocator<void>>;
 
-// constants requiring out of line definition
+// constant definitions
 
 }  // namespace msg
 

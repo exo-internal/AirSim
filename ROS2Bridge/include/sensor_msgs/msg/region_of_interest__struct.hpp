@@ -75,19 +75,19 @@ struct RegionOfInterest_
 
   // field types and members
   using _x_offset_type =
-      uint32_t;
+    uint32_t;
   _x_offset_type x_offset;
   using _y_offset_type =
-      uint32_t;
+    uint32_t;
   _y_offset_type y_offset;
   using _height_type =
-      uint32_t;
+    uint32_t;
   _height_type height;
   using _width_type =
-      uint32_t;
+    uint32_t;
   _width_type width;
   using _do_rectify_type =
-      bool;
+    bool;
   _do_rectify_type do_rectify;
 
   // setters for named parameter idiom
@@ -122,35 +122,35 @@ struct RegionOfInterest_
     return this;
   }
 
-  // constants
+  // constant declarations
 
   // pointer types
   using RawPtr =
-      sensor_msgs::msg::RegionOfInterest_<ContainerAllocator> *;
+    sensor_msgs::msg::RegionOfInterest_<ContainerAllocator> *;
   using ConstRawPtr =
-      const sensor_msgs::msg::RegionOfInterest_<ContainerAllocator> *;
+    const sensor_msgs::msg::RegionOfInterest_<ContainerAllocator> *;
   using SharedPtr =
-      std::shared_ptr<sensor_msgs::msg::RegionOfInterest_<ContainerAllocator>>;
+    std::shared_ptr<sensor_msgs::msg::RegionOfInterest_<ContainerAllocator>>;
   using ConstSharedPtr =
-      std::shared_ptr<sensor_msgs::msg::RegionOfInterest_<ContainerAllocator> const>;
+    std::shared_ptr<sensor_msgs::msg::RegionOfInterest_<ContainerAllocator> const>;
 
   template<typename Deleter = std::default_delete<
       sensor_msgs::msg::RegionOfInterest_<ContainerAllocator>>>
   using UniquePtrWithDeleter =
-      std::unique_ptr<sensor_msgs::msg::RegionOfInterest_<ContainerAllocator>, Deleter>;
+    std::unique_ptr<sensor_msgs::msg::RegionOfInterest_<ContainerAllocator>, Deleter>;
 
   using UniquePtr = UniquePtrWithDeleter<>;
 
   template<typename Deleter = std::default_delete<
       sensor_msgs::msg::RegionOfInterest_<ContainerAllocator>>>
   using ConstUniquePtrWithDeleter =
-      std::unique_ptr<sensor_msgs::msg::RegionOfInterest_<ContainerAllocator> const, Deleter>;
+    std::unique_ptr<sensor_msgs::msg::RegionOfInterest_<ContainerAllocator> const, Deleter>;
   using ConstUniquePtr = ConstUniquePtrWithDeleter<>;
 
   using WeakPtr =
-      std::weak_ptr<sensor_msgs::msg::RegionOfInterest_<ContainerAllocator>>;
+    std::weak_ptr<sensor_msgs::msg::RegionOfInterest_<ContainerAllocator>>;
   using ConstWeakPtr =
-      std::weak_ptr<sensor_msgs::msg::RegionOfInterest_<ContainerAllocator> const>;
+    std::weak_ptr<sensor_msgs::msg::RegionOfInterest_<ContainerAllocator> const>;
 
   // pointer types similar to ROS 1, use SharedPtr / ConstSharedPtr instead
   // NOTE: Can't use 'using' here because GNU C++ can't parse attributes properly
@@ -189,9 +189,9 @@ struct RegionOfInterest_
 
 // alias to use template instance with default allocator
 using RegionOfInterest =
-    sensor_msgs::msg::RegionOfInterest_<std::allocator<void>>;
+  sensor_msgs::msg::RegionOfInterest_<std::allocator<void>>;
 
-// constants requiring out of line definition
+// constant definitions
 
 }  // namespace msg
 

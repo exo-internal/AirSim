@@ -4,7 +4,7 @@
 #ifndef SHAPE_MSGS__MSG__MESH_TRIANGLE__STRUCT_H_
 #define SHAPE_MSGS__MSG__MESH_TRIANGLE__STRUCT_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -29,7 +29,7 @@ typedef struct shape_msgs__msg__MeshTriangle__Array
   size_t capacity;
 } shape_msgs__msg__MeshTriangle__Array;
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

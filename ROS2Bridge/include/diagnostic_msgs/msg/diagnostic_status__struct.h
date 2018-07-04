@@ -4,7 +4,7 @@
 #ifndef DIAGNOSTIC_MSGS__MSG__DIAGNOSTIC_STATUS__STRUCT_H_
 #define DIAGNOSTIC_MSGS__MSG__DIAGNOSTIC_STATUS__STRUCT_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -63,7 +63,7 @@ typedef struct diagnostic_msgs__msg__DiagnosticStatus__Array
   size_t capacity;
 } diagnostic_msgs__msg__DiagnosticStatus__Array;
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

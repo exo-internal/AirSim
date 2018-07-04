@@ -72,13 +72,13 @@ struct GoalStatus_
 
   // field types and members
   using _goal_id_type =
-      actionlib_msgs::msg::GoalID_<ContainerAllocator>;
+    actionlib_msgs::msg::GoalID_<ContainerAllocator>;
   _goal_id_type goal_id;
   using _status_type =
-      uint8_t;
+    uint8_t;
   _status_type status;
   using _text_type =
-      std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>;
+    std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>;
   _text_type text;
 
   // setters for named parameter idiom
@@ -101,45 +101,55 @@ struct GoalStatus_
     return this;
   }
 
-  // constants
-  enum { PENDING = 0u };
-  enum { ACTIVE = 1u };
-  enum { PREEMPTED = 2u };
-  enum { SUCCEEDED = 3u };
-  enum { ABORTED = 4u };
-  enum { REJECTED = 5u };
-  enum { PREEMPTING = 6u };
-  enum { RECALLING = 7u };
-  enum { RECALLED = 8u };
-  enum { LOST = 9u };
+  // constant declarations
+  static constexpr uint8_t PENDING =
+    0u;
+  static constexpr uint8_t ACTIVE =
+    1u;
+  static constexpr uint8_t PREEMPTED =
+    2u;
+  static constexpr uint8_t SUCCEEDED =
+    3u;
+  static constexpr uint8_t ABORTED =
+    4u;
+  static constexpr uint8_t REJECTED =
+    5u;
+  static constexpr uint8_t PREEMPTING =
+    6u;
+  static constexpr uint8_t RECALLING =
+    7u;
+  static constexpr uint8_t RECALLED =
+    8u;
+  static constexpr uint8_t LOST =
+    9u;
 
   // pointer types
   using RawPtr =
-      actionlib_msgs::msg::GoalStatus_<ContainerAllocator> *;
+    actionlib_msgs::msg::GoalStatus_<ContainerAllocator> *;
   using ConstRawPtr =
-      const actionlib_msgs::msg::GoalStatus_<ContainerAllocator> *;
+    const actionlib_msgs::msg::GoalStatus_<ContainerAllocator> *;
   using SharedPtr =
-      std::shared_ptr<actionlib_msgs::msg::GoalStatus_<ContainerAllocator>>;
+    std::shared_ptr<actionlib_msgs::msg::GoalStatus_<ContainerAllocator>>;
   using ConstSharedPtr =
-      std::shared_ptr<actionlib_msgs::msg::GoalStatus_<ContainerAllocator> const>;
+    std::shared_ptr<actionlib_msgs::msg::GoalStatus_<ContainerAllocator> const>;
 
   template<typename Deleter = std::default_delete<
       actionlib_msgs::msg::GoalStatus_<ContainerAllocator>>>
   using UniquePtrWithDeleter =
-      std::unique_ptr<actionlib_msgs::msg::GoalStatus_<ContainerAllocator>, Deleter>;
+    std::unique_ptr<actionlib_msgs::msg::GoalStatus_<ContainerAllocator>, Deleter>;
 
   using UniquePtr = UniquePtrWithDeleter<>;
 
   template<typename Deleter = std::default_delete<
       actionlib_msgs::msg::GoalStatus_<ContainerAllocator>>>
   using ConstUniquePtrWithDeleter =
-      std::unique_ptr<actionlib_msgs::msg::GoalStatus_<ContainerAllocator> const, Deleter>;
+    std::unique_ptr<actionlib_msgs::msg::GoalStatus_<ContainerAllocator> const, Deleter>;
   using ConstUniquePtr = ConstUniquePtrWithDeleter<>;
 
   using WeakPtr =
-      std::weak_ptr<actionlib_msgs::msg::GoalStatus_<ContainerAllocator>>;
+    std::weak_ptr<actionlib_msgs::msg::GoalStatus_<ContainerAllocator>>;
   using ConstWeakPtr =
-      std::weak_ptr<actionlib_msgs::msg::GoalStatus_<ContainerAllocator> const>;
+    std::weak_ptr<actionlib_msgs::msg::GoalStatus_<ContainerAllocator> const>;
 
   // pointer types similar to ROS 1, use SharedPtr / ConstSharedPtr instead
   // NOTE: Can't use 'using' here because GNU C++ can't parse attributes properly
@@ -172,9 +182,29 @@ struct GoalStatus_
 
 // alias to use template instance with default allocator
 using GoalStatus =
-    actionlib_msgs::msg::GoalStatus_<std::allocator<void>>;
+  actionlib_msgs::msg::GoalStatus_<std::allocator<void>>;
 
-// constants requiring out of line definition
+// constant definitions
+template<typename ContainerAllocator>
+constexpr uint8_t GoalStatus_<ContainerAllocator>::PENDING;
+template<typename ContainerAllocator>
+constexpr uint8_t GoalStatus_<ContainerAllocator>::ACTIVE;
+template<typename ContainerAllocator>
+constexpr uint8_t GoalStatus_<ContainerAllocator>::PREEMPTED;
+template<typename ContainerAllocator>
+constexpr uint8_t GoalStatus_<ContainerAllocator>::SUCCEEDED;
+template<typename ContainerAllocator>
+constexpr uint8_t GoalStatus_<ContainerAllocator>::ABORTED;
+template<typename ContainerAllocator>
+constexpr uint8_t GoalStatus_<ContainerAllocator>::REJECTED;
+template<typename ContainerAllocator>
+constexpr uint8_t GoalStatus_<ContainerAllocator>::PREEMPTING;
+template<typename ContainerAllocator>
+constexpr uint8_t GoalStatus_<ContainerAllocator>::RECALLING;
+template<typename ContainerAllocator>
+constexpr uint8_t GoalStatus_<ContainerAllocator>::RECALLED;
+template<typename ContainerAllocator>
+constexpr uint8_t GoalStatus_<ContainerAllocator>::LOST;
 
 }  // namespace msg
 

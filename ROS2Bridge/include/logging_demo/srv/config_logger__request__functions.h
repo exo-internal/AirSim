@@ -4,7 +4,7 @@
 #ifndef LOGGING_DEMO__SRV__CONFIG_LOGGER__REQUEST__FUNCTIONS_H_
 #define LOGGING_DEMO__SRV__CONFIG_LOGGER__REQUEST__FUNCTIONS_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -105,7 +105,7 @@ ROSIDL_GENERATOR_C_PUBLIC_logging_demo
 void
 logging_demo__srv__ConfigLogger_Request__Array__destroy(logging_demo__srv__ConfigLogger_Request__Array * array);
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

@@ -62,10 +62,10 @@ struct ChangeState_Request_
 
   // field types and members
   using _node_name_type =
-      std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>;
+    std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>;
   _node_name_type node_name;
   using _transition_type =
-      lifecycle_msgs::msg::Transition_<ContainerAllocator>;
+    lifecycle_msgs::msg::Transition_<ContainerAllocator>;
   _transition_type transition;
 
   // setters for named parameter idiom
@@ -82,35 +82,35 @@ struct ChangeState_Request_
     return this;
   }
 
-  // constants
+  // constant declarations
 
   // pointer types
   using RawPtr =
-      lifecycle_msgs::srv::ChangeState_Request_<ContainerAllocator> *;
+    lifecycle_msgs::srv::ChangeState_Request_<ContainerAllocator> *;
   using ConstRawPtr =
-      const lifecycle_msgs::srv::ChangeState_Request_<ContainerAllocator> *;
+    const lifecycle_msgs::srv::ChangeState_Request_<ContainerAllocator> *;
   using SharedPtr =
-      std::shared_ptr<lifecycle_msgs::srv::ChangeState_Request_<ContainerAllocator>>;
+    std::shared_ptr<lifecycle_msgs::srv::ChangeState_Request_<ContainerAllocator>>;
   using ConstSharedPtr =
-      std::shared_ptr<lifecycle_msgs::srv::ChangeState_Request_<ContainerAllocator> const>;
+    std::shared_ptr<lifecycle_msgs::srv::ChangeState_Request_<ContainerAllocator> const>;
 
   template<typename Deleter = std::default_delete<
       lifecycle_msgs::srv::ChangeState_Request_<ContainerAllocator>>>
   using UniquePtrWithDeleter =
-      std::unique_ptr<lifecycle_msgs::srv::ChangeState_Request_<ContainerAllocator>, Deleter>;
+    std::unique_ptr<lifecycle_msgs::srv::ChangeState_Request_<ContainerAllocator>, Deleter>;
 
   using UniquePtr = UniquePtrWithDeleter<>;
 
   template<typename Deleter = std::default_delete<
       lifecycle_msgs::srv::ChangeState_Request_<ContainerAllocator>>>
   using ConstUniquePtrWithDeleter =
-      std::unique_ptr<lifecycle_msgs::srv::ChangeState_Request_<ContainerAllocator> const, Deleter>;
+    std::unique_ptr<lifecycle_msgs::srv::ChangeState_Request_<ContainerAllocator> const, Deleter>;
   using ConstUniquePtr = ConstUniquePtrWithDeleter<>;
 
   using WeakPtr =
-      std::weak_ptr<lifecycle_msgs::srv::ChangeState_Request_<ContainerAllocator>>;
+    std::weak_ptr<lifecycle_msgs::srv::ChangeState_Request_<ContainerAllocator>>;
   using ConstWeakPtr =
-      std::weak_ptr<lifecycle_msgs::srv::ChangeState_Request_<ContainerAllocator> const>;
+    std::weak_ptr<lifecycle_msgs::srv::ChangeState_Request_<ContainerAllocator> const>;
 
   // pointer types similar to ROS 1, use SharedPtr / ConstSharedPtr instead
   // NOTE: Can't use 'using' here because GNU C++ can't parse attributes properly
@@ -140,9 +140,9 @@ struct ChangeState_Request_
 
 // alias to use template instance with default allocator
 using ChangeState_Request =
-    lifecycle_msgs::srv::ChangeState_Request_<std::allocator<void>>;
+  lifecycle_msgs::srv::ChangeState_Request_<std::allocator<void>>;
 
-// constants requiring out of line definition
+// constant definitions
 
 }  // namespace srv
 

@@ -69,10 +69,10 @@ struct TF2Error_
 
   // field types and members
   using _error_type =
-      uint8_t;
+    uint8_t;
   _error_type error;
   using _error_string_type =
-      std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>;
+    std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>;
   _error_string_type error_string;
 
   // setters for named parameter idiom
@@ -89,42 +89,49 @@ struct TF2Error_
     return this;
   }
 
-  // constants
-  enum { NO_ERROR = 0u };
-  enum { LOOKUP_ERROR = 1u };
-  enum { CONNECTIVITY_ERROR = 2u };
-  enum { EXTRAPOLATION_ERROR = 3u };
-  enum { INVALID_ARGUMENT_ERROR = 4u };
-  enum { TIMEOUT_ERROR = 5u };
-  enum { TRANSFORM_ERROR = 6u };
+  // constant declarations
+  static constexpr uint8_t NO_ERROR =
+    0u;
+  static constexpr uint8_t LOOKUP_ERROR =
+    1u;
+  static constexpr uint8_t CONNECTIVITY_ERROR =
+    2u;
+  static constexpr uint8_t EXTRAPOLATION_ERROR =
+    3u;
+  static constexpr uint8_t INVALID_ARGUMENT_ERROR =
+    4u;
+  static constexpr uint8_t TIMEOUT_ERROR =
+    5u;
+  static constexpr uint8_t TRANSFORM_ERROR =
+    6u;
 
   // pointer types
   using RawPtr =
-      tf2_msgs::msg::TF2Error_<ContainerAllocator> *;
+    tf2_msgs::msg::TF2Error_<ContainerAllocator> *;
   using ConstRawPtr =
-      const tf2_msgs::msg::TF2Error_<ContainerAllocator> *;
+    const tf2_msgs::msg::TF2Error_<ContainerAllocator> *;
   using SharedPtr =
-      std::shared_ptr<tf2_msgs::msg::TF2Error_<ContainerAllocator>>;
+    std::shared_ptr<tf2_msgs::msg::TF2Error_<ContainerAllocator>>;
   using ConstSharedPtr =
-      std::shared_ptr<tf2_msgs::msg::TF2Error_<ContainerAllocator> const>;
+    std::shared_ptr<tf2_msgs::msg::TF2Error_<ContainerAllocator> const>;
 
   template<typename Deleter = std::default_delete<
       tf2_msgs::msg::TF2Error_<ContainerAllocator>>>
   using UniquePtrWithDeleter =
-      std::unique_ptr<tf2_msgs::msg::TF2Error_<ContainerAllocator>, Deleter>;
+    std::unique_ptr<tf2_msgs::msg::TF2Error_<ContainerAllocator>, Deleter>;
 
   using UniquePtr = UniquePtrWithDeleter<>;
 
   template<typename Deleter = std::default_delete<
       tf2_msgs::msg::TF2Error_<ContainerAllocator>>>
   using ConstUniquePtrWithDeleter =
-      std::unique_ptr<tf2_msgs::msg::TF2Error_<ContainerAllocator> const, Deleter>;
+    std::unique_ptr<tf2_msgs::msg::TF2Error_<ContainerAllocator> const, Deleter>;
   using ConstUniquePtr = ConstUniquePtrWithDeleter<>;
 
   using WeakPtr =
-      std::weak_ptr<tf2_msgs::msg::TF2Error_<ContainerAllocator>>;
+    std::weak_ptr<tf2_msgs::msg::TF2Error_<ContainerAllocator>>;
   using ConstWeakPtr =
-      std::weak_ptr<tf2_msgs::msg::TF2Error_<ContainerAllocator> const>;
+    std::weak_ptr<tf2_msgs::msg::TF2Error_<ContainerAllocator> const>;
 
   // pointer types similar to ROS 1, use SharedPtr / ConstSharedPtr instead
   // NOTE: Can't use 'using' here because GNU C++ can't parse attributes properly
@@ -154,9 +161,23 @@ struct TF2Error_
 
 // alias to use template instance with default allocator
 using TF2Error =
-    tf2_msgs::msg::TF2Error_<std::allocator<void>>;
+  tf2_msgs::msg::TF2Error_<std::allocator<void>>;
 
-// constants requiring out of line definition
+// constant definitions
+template<typename ContainerAllocator>
+constexpr uint8_t TF2Error_<ContainerAllocator>::NO_ERROR;
+template<typename ContainerAllocator>
+constexpr uint8_t TF2Error_<ContainerAllocator>::LOOKUP_ERROR;
+template<typename ContainerAllocator>
+constexpr uint8_t TF2Error_<ContainerAllocator>::CONNECTIVITY_ERROR;
+template<typename ContainerAllocator>
+constexpr uint8_t TF2Error_<ContainerAllocator>::EXTRAPOLATION_ERROR;
+template<typename ContainerAllocator>
+constexpr uint8_t TF2Error_<ContainerAllocator>::INVALID_ARGUMENT_ERROR;
+template<typename ContainerAllocator>
+constexpr uint8_t TF2Error_<ContainerAllocator>::TIMEOUT_ERROR;
+template<typename ContainerAllocator>
+constexpr uint8_t TF2Error_<ContainerAllocator>::TRANSFORM_ERROR;
 
 }  // namespace msg
 

@@ -4,7 +4,7 @@
 #ifndef TEST_MSGS__SRV__EMPTY__RESPONSE__STRUCT_H_
 #define TEST_MSGS__SRV__EMPTY__RESPONSE__STRUCT_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -29,7 +29,7 @@ typedef struct test_msgs__srv__Empty_Response__Array
   size_t capacity;
 } test_msgs__srv__Empty_Response__Array;
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

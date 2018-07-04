@@ -76,19 +76,19 @@ struct DiagnosticStatus_
 
   // field types and members
   using _level_type =
-      uint8_t;
+    uint8_t;
   _level_type level;
   using _name_type =
-      std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>;
+    std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>;
   _name_type name;
   using _message_type =
-      std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>;
+    std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>;
   _message_type message;
   using _hardware_id_type =
-      std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>;
+    std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>;
   _hardware_id_type hardware_id;
   using _values_type =
-      std::vector<diagnostic_msgs::msg::KeyValue_<ContainerAllocator>, typename ContainerAllocator::template rebind<diagnostic_msgs::msg::KeyValue_<ContainerAllocator>>::other>;
+    std::vector<diagnostic_msgs::msg::KeyValue_<ContainerAllocator>, typename ContainerAllocator::template rebind<diagnostic_msgs::msg::KeyValue_<ContainerAllocator>>::other>;
   _values_type values;
 
   // setters for named parameter idiom
@@ -123,39 +123,43 @@ struct DiagnosticStatus_
     return this;
   }
 
-  // constants
-  enum { OK = 0 };
-  enum { WARN = 1 };
-  enum { ERROR = 2 };
-  enum { STALE = 3 };
+  // constant declarations
+  static constexpr uint8_t OK =
+    0;
+  static constexpr uint8_t WARN =
+    1;
+  static constexpr uint8_t ERROR =
+    2;
+  static constexpr uint8_t STALE =
+    3;
 
   // pointer types
   using RawPtr =
-      diagnostic_msgs::msg::DiagnosticStatus_<ContainerAllocator> *;
+    diagnostic_msgs::msg::DiagnosticStatus_<ContainerAllocator> *;
   using ConstRawPtr =
-      const diagnostic_msgs::msg::DiagnosticStatus_<ContainerAllocator> *;
+    const diagnostic_msgs::msg::DiagnosticStatus_<ContainerAllocator> *;
   using SharedPtr =
-      std::shared_ptr<diagnostic_msgs::msg::DiagnosticStatus_<ContainerAllocator>>;
+    std::shared_ptr<diagnostic_msgs::msg::DiagnosticStatus_<ContainerAllocator>>;
   using ConstSharedPtr =
-      std::shared_ptr<diagnostic_msgs::msg::DiagnosticStatus_<ContainerAllocator> const>;
+    std::shared_ptr<diagnostic_msgs::msg::DiagnosticStatus_<ContainerAllocator> const>;
 
   template<typename Deleter = std::default_delete<
       diagnostic_msgs::msg::DiagnosticStatus_<ContainerAllocator>>>
   using UniquePtrWithDeleter =
-      std::unique_ptr<diagnostic_msgs::msg::DiagnosticStatus_<ContainerAllocator>, Deleter>;
+    std::unique_ptr<diagnostic_msgs::msg::DiagnosticStatus_<ContainerAllocator>, Deleter>;
 
   using UniquePtr = UniquePtrWithDeleter<>;
 
   template<typename Deleter = std::default_delete<
       diagnostic_msgs::msg::DiagnosticStatus_<ContainerAllocator>>>
   using ConstUniquePtrWithDeleter =
-      std::unique_ptr<diagnostic_msgs::msg::DiagnosticStatus_<ContainerAllocator> const, Deleter>;
+    std::unique_ptr<diagnostic_msgs::msg::DiagnosticStatus_<ContainerAllocator> const, Deleter>;
   using ConstUniquePtr = ConstUniquePtrWithDeleter<>;
 
   using WeakPtr =
-      std::weak_ptr<diagnostic_msgs::msg::DiagnosticStatus_<ContainerAllocator>>;
+    std::weak_ptr<diagnostic_msgs::msg::DiagnosticStatus_<ContainerAllocator>>;
   using ConstWeakPtr =
-      std::weak_ptr<diagnostic_msgs::msg::DiagnosticStatus_<ContainerAllocator> const>;
+    std::weak_ptr<diagnostic_msgs::msg::DiagnosticStatus_<ContainerAllocator> const>;
 
   // pointer types similar to ROS 1, use SharedPtr / ConstSharedPtr instead
   // NOTE: Can't use 'using' here because GNU C++ can't parse attributes properly
@@ -194,9 +198,17 @@ struct DiagnosticStatus_
 
 // alias to use template instance with default allocator
 using DiagnosticStatus =
-    diagnostic_msgs::msg::DiagnosticStatus_<std::allocator<void>>;
+  diagnostic_msgs::msg::DiagnosticStatus_<std::allocator<void>>;
 
-// constants requiring out of line definition
+// constant definitions
+template<typename ContainerAllocator>
+constexpr uint8_t DiagnosticStatus_<ContainerAllocator>::OK;
+template<typename ContainerAllocator>
+constexpr uint8_t DiagnosticStatus_<ContainerAllocator>::WARN;
+template<typename ContainerAllocator>
+constexpr uint8_t DiagnosticStatus_<ContainerAllocator>::ERROR;
+template<typename ContainerAllocator>
+constexpr uint8_t DiagnosticStatus_<ContainerAllocator>::STALE;
 
 }  // namespace msg
 

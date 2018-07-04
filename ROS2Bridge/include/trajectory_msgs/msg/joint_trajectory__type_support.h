@@ -4,7 +4,7 @@
 #ifndef TRAJECTORY_MSGS__MSG__JOINT_TRAJECTORY__TYPE_SUPPORT_H_
 #define TRAJECTORY_MSGS__MSG__JOINT_TRAJECTORY__TYPE_SUPPORT_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -19,7 +19,7 @@ ROSIDL_GENERATOR_C_PUBLIC_trajectory_msgs
 const rosidl_message_type_support_t *
   ROSIDL_TYPESUPPORT_INTERFACE__MESSAGE_SYMBOL_NAME(rosidl_typesupport_c, trajectory_msgs, msg, JointTrajectory)();
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

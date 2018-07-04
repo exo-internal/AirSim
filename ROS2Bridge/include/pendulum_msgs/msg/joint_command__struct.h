@@ -4,7 +4,7 @@
 #ifndef PENDULUM_MSGS__MSG__JOINT_COMMAND__STRUCT_H_
 #define PENDULUM_MSGS__MSG__JOINT_COMMAND__STRUCT_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -29,7 +29,7 @@ typedef struct pendulum_msgs__msg__JointCommand__Array
   size_t capacity;
 } pendulum_msgs__msg__JointCommand__Array;
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

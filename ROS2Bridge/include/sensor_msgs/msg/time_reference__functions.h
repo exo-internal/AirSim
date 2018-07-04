@@ -4,7 +4,7 @@
 #ifndef SENSOR_MSGS__MSG__TIME_REFERENCE__FUNCTIONS_H_
 #define SENSOR_MSGS__MSG__TIME_REFERENCE__FUNCTIONS_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -105,7 +105,7 @@ ROSIDL_GENERATOR_C_PUBLIC_sensor_msgs
 void
 sensor_msgs__msg__TimeReference__Array__destroy(sensor_msgs__msg__TimeReference__Array * array);
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

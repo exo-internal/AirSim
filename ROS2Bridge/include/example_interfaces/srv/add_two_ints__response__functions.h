@@ -4,7 +4,7 @@
 #ifndef EXAMPLE_INTERFACES__SRV__ADD_TWO_INTS__RESPONSE__FUNCTIONS_H_
 #define EXAMPLE_INTERFACES__SRV__ADD_TWO_INTS__RESPONSE__FUNCTIONS_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -105,7 +105,7 @@ ROSIDL_GENERATOR_C_PUBLIC_example_interfaces
 void
 example_interfaces__srv__AddTwoInts_Response__Array__destroy(example_interfaces__srv__AddTwoInts_Response__Array * array);
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

@@ -4,7 +4,7 @@
 #ifndef NAV_MSGS__MSG__GRID_CELLS__TYPE_SUPPORT_H_
 #define NAV_MSGS__MSG__GRID_CELLS__TYPE_SUPPORT_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -19,7 +19,7 @@ ROSIDL_GENERATOR_C_PUBLIC_nav_msgs
 const rosidl_message_type_support_t *
   ROSIDL_TYPESUPPORT_INTERFACE__MESSAGE_SYMBOL_NAME(rosidl_typesupport_c, nav_msgs, msg, GridCells)();
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

@@ -1,0 +1,275 @@
+#ifndef COLORRGBA_DCPS_IDL_
+#define COLORRGBA_DCPS_IDL_
+
+#include "dds_dcps.idl"
+
+#include "ColorRGBA_.idl"
+
+module std_msgs {
+
+    module msg {
+
+        module dds_ {
+
+            typedef sequence<ColorRGBA_> ColorRGBA_Seq;
+
+            local interface ColorRGBA_TypeSupportInterface : ::DDS::TypeSupport { };
+
+            local interface ColorRGBA_DataWriter : ::DDS::DataWriter {
+                ::DDS::InstanceHandle_t register_instance(
+                  in ColorRGBA_ instance_data);
+
+                ::DDS::InstanceHandle_t register_instance_w_timestamp(
+                  in ColorRGBA_ instance_data,
+                  in ::DDS::Time_t source_timestamp);
+
+                ::DDS::ReturnCode_t unregister_instance(
+                  in ColorRGBA_ instance_data,
+                  in ::DDS::InstanceHandle_t handle);
+
+                ::DDS::ReturnCode_t unregister_instance_w_timestamp(
+                  in ColorRGBA_ instance_data,
+                  in ::DDS::InstanceHandle_t handle,
+                  in ::DDS::Time_t source_timestamp);
+
+                ::DDS::ReturnCode_t write(
+                  in ColorRGBA_ instance_data,
+                  in ::DDS::InstanceHandle_t handle);
+
+                ::DDS::ReturnCode_t write_w_timestamp(
+                  in ColorRGBA_ instance_data,
+                  in ::DDS::InstanceHandle_t handle,
+                  in ::DDS::Time_t source_timestamp);
+
+                ::DDS::ReturnCode_t dispose(
+                  in ColorRGBA_ instance_data,
+                  in ::DDS::InstanceHandle_t handle);
+
+                ::DDS::ReturnCode_t dispose_w_timestamp(
+                  in ColorRGBA_ instance_data,
+                  in ::DDS::InstanceHandle_t handle,
+                  in ::DDS::Time_t source_timestamp);
+
+                ::DDS::ReturnCode_t writedispose(
+                  in ColorRGBA_ instance_data,
+                  in ::DDS::InstanceHandle_t handle);
+
+                ::DDS::ReturnCode_t writedispose_w_timestamp(
+                  in ColorRGBA_ instance_data,
+                  in ::DDS::InstanceHandle_t handle,
+                  in ::DDS::Time_t source_timestamp);
+
+                ::DDS::ReturnCode_t get_key_value(
+                  inout ColorRGBA_ key_holder,
+                  in ::DDS::InstanceHandle_t handle);
+
+                ::DDS::InstanceHandle_t lookup_instance(
+                  in ColorRGBA_ instance_data);
+
+            };
+
+            local interface ColorRGBA_DataReader : ::DDS::DataReader {
+                ::DDS::ReturnCode_t read(
+                  inout ColorRGBA_Seq received_data,
+                  inout ::DDS::SampleInfoSeq info_seq,
+                  in long max_samples,
+                  in ::DDS::SampleStateMask sample_states,
+                  in ::DDS::ViewStateMask view_states,
+                  in ::DDS::InstanceStateMask instance_states);
+
+                ::DDS::ReturnCode_t take(
+                  inout ColorRGBA_Seq received_data,
+                  inout ::DDS::SampleInfoSeq info_seq,
+                  in long max_samples,
+                  in ::DDS::SampleStateMask sample_states,
+                  in ::DDS::ViewStateMask view_states,
+                  in ::DDS::InstanceStateMask instance_states);
+
+                ::DDS::ReturnCode_t read_w_condition(
+                  inout ColorRGBA_Seq received_data,
+                  inout ::DDS::SampleInfoSeq info_seq,
+                  in long max_samples,
+                  in ::DDS::ReadCondition a_condition);
+
+                ::DDS::ReturnCode_t take_w_condition(
+                  inout ColorRGBA_Seq received_data,
+                  inout ::DDS::SampleInfoSeq info_seq,
+                  in long max_samples,
+                  in ::DDS::ReadCondition a_condition);
+
+                ::DDS::ReturnCode_t read_next_sample(
+                  inout ColorRGBA_ received_data,
+                  inout ::DDS::SampleInfo sample_info);
+
+                ::DDS::ReturnCode_t take_next_sample(
+                  inout ColorRGBA_ received_data,
+                  inout ::DDS::SampleInfo sample_info);
+
+                ::DDS::ReturnCode_t read_instance(
+                  inout ColorRGBA_Seq received_data,
+                  inout ::DDS::SampleInfoSeq info_seq,
+                  in long max_samples,
+                  in ::DDS::InstanceHandle_t a_handle,
+                  in ::DDS::SampleStateMask sample_states,
+                  in ::DDS::ViewStateMask view_states,
+                  in ::DDS::InstanceStateMask instance_states);
+
+                ::DDS::ReturnCode_t take_instance(
+                  inout ColorRGBA_Seq received_data,
+                  inout ::DDS::SampleInfoSeq info_seq,
+                  in long max_samples,
+                  in ::DDS::InstanceHandle_t a_handle,
+                  in ::DDS::SampleStateMask sample_states,
+                  in ::DDS::ViewStateMask view_states,
+                  in ::DDS::InstanceStateMask instance_states);
+
+                ::DDS::ReturnCode_t read_next_instance(
+                  inout ColorRGBA_Seq received_data,
+                  inout ::DDS::SampleInfoSeq info_seq,
+                  in long max_samples,
+                  in ::DDS::InstanceHandle_t a_handle,
+                  in ::DDS::SampleStateMask sample_states,
+                  in ::DDS::ViewStateMask view_states,
+                  in ::DDS::InstanceStateMask instance_states);
+
+                ::DDS::ReturnCode_t take_next_instance(
+                  inout ColorRGBA_Seq received_data,
+                  inout ::DDS::SampleInfoSeq info_seq,
+                  in long max_samples,
+                  in ::DDS::InstanceHandle_t a_handle,
+                  in ::DDS::SampleStateMask sample_states,
+                  in ::DDS::ViewStateMask view_states,
+                  in ::DDS::InstanceStateMask instance_states);
+
+                ::DDS::ReturnCode_t read_next_instance_w_condition(
+                  inout ColorRGBA_Seq received_data,
+                  inout ::DDS::SampleInfoSeq info_seq,
+                  in long max_samples,
+                  in ::DDS::InstanceHandle_t a_handle,
+                  in ::DDS::ReadCondition a_condition);
+
+                ::DDS::ReturnCode_t take_next_instance_w_condition(
+                  inout ColorRGBA_Seq received_data,
+                  inout ::DDS::SampleInfoSeq info_seq,
+                  in long max_samples,
+                  in ::DDS::InstanceHandle_t a_handle,
+                  in ::DDS::ReadCondition a_condition);
+
+                ::DDS::ReturnCode_t return_loan(
+                  inout ColorRGBA_Seq received_data,
+                  inout ::DDS::SampleInfoSeq info_seq);
+
+                ::DDS::ReturnCode_t get_key_value(
+                  inout ColorRGBA_ key_holder,
+                  in ::DDS::InstanceHandle_t handle);
+
+                ::DDS::InstanceHandle_t lookup_instance(
+                  in ColorRGBA_ instance);
+
+            };
+
+            local interface ColorRGBA_DataReaderView : ::DDS::DataReaderView {
+                ::DDS::ReturnCode_t read(
+                  inout ColorRGBA_Seq received_data,
+                  inout ::DDS::SampleInfoSeq info_seq,
+                  in long max_samples,
+                  in ::DDS::SampleStateMask sample_states,
+                  in ::DDS::ViewStateMask view_states,
+                  in ::DDS::InstanceStateMask instance_states);
+
+                ::DDS::ReturnCode_t take(
+                  inout ColorRGBA_Seq received_data,
+                  inout ::DDS::SampleInfoSeq info_seq,
+                  in long max_samples,
+                  in ::DDS::SampleStateMask sample_states,
+                  in ::DDS::ViewStateMask view_states,
+                  in ::DDS::InstanceStateMask instance_states);
+
+                ::DDS::ReturnCode_t read_w_condition(
+                  inout ColorRGBA_Seq received_data,
+                  inout ::DDS::SampleInfoSeq info_seq,
+                  in long max_samples,
+                  in ::DDS::ReadCondition a_condition);
+
+                ::DDS::ReturnCode_t take_w_condition(
+                  inout ColorRGBA_Seq received_data,
+                  inout ::DDS::SampleInfoSeq info_seq,
+                  in long max_samples,
+                  in ::DDS::ReadCondition a_condition);
+
+                ::DDS::ReturnCode_t read_next_sample(
+                  inout ColorRGBA_ received_data,
+                  inout ::DDS::SampleInfo sample_info);
+
+                ::DDS::ReturnCode_t take_next_sample(
+                  inout ColorRGBA_ received_data,
+                  inout ::DDS::SampleInfo sample_info);
+
+                ::DDS::ReturnCode_t read_instance(
+                  inout ColorRGBA_Seq received_data,
+                  inout ::DDS::SampleInfoSeq info_seq,
+                  in long max_samples,
+                  in ::DDS::InstanceHandle_t a_handle,
+                  in ::DDS::SampleStateMask sample_states,
+                  in ::DDS::ViewStateMask view_states,
+                  in ::DDS::InstanceStateMask instance_states);
+
+                ::DDS::ReturnCode_t take_instance(
+                  inout ColorRGBA_Seq received_data,
+                  inout ::DDS::SampleInfoSeq info_seq,
+                  in long max_samples,
+                  in ::DDS::InstanceHandle_t a_handle,
+                  in ::DDS::SampleStateMask sample_states,
+                  in ::DDS::ViewStateMask view_states,
+                  in ::DDS::InstanceStateMask instance_states);
+
+                ::DDS::ReturnCode_t read_next_instance(
+                  inout ColorRGBA_Seq received_data,
+                  inout ::DDS::SampleInfoSeq info_seq,
+                  in long max_samples,
+                  in ::DDS::InstanceHandle_t a_handle,
+                  in ::DDS::SampleStateMask sample_states,
+                  in ::DDS::ViewStateMask view_states,
+                  in ::DDS::InstanceStateMask instance_states);
+
+                ::DDS::ReturnCode_t take_next_instance(
+                  inout ColorRGBA_Seq received_data,
+                  inout ::DDS::SampleInfoSeq info_seq,
+                  in long max_samples,
+                  in ::DDS::InstanceHandle_t a_handle,
+                  in ::DDS::SampleStateMask sample_states,
+                  in ::DDS::ViewStateMask view_states,
+                  in ::DDS::InstanceStateMask instance_states);
+
+                ::DDS::ReturnCode_t read_next_instance_w_condition(
+                  inout ColorRGBA_Seq received_data,
+                  inout ::DDS::SampleInfoSeq info_seq,
+                  in long max_samples,
+                  in ::DDS::InstanceHandle_t a_handle,
+                  in ::DDS::ReadCondition a_condition);
+
+                ::DDS::ReturnCode_t take_next_instance_w_condition(
+                  inout ColorRGBA_Seq received_data,
+                  inout ::DDS::SampleInfoSeq info_seq,
+                  in long max_samples,
+                  in ::DDS::InstanceHandle_t a_handle,
+                  in ::DDS::ReadCondition a_condition);
+
+                ::DDS::ReturnCode_t return_loan(
+                  inout ColorRGBA_Seq received_data,
+                  inout ::DDS::SampleInfoSeq info_seq);
+
+                ::DDS::ReturnCode_t get_key_value(
+                  inout ColorRGBA_ key_holder,
+                  in ::DDS::InstanceHandle_t handle);
+
+                ::DDS::InstanceHandle_t lookup_instance(
+                  in ColorRGBA_ instance);
+            };
+        };
+
+    };
+
+};
+
+#endif

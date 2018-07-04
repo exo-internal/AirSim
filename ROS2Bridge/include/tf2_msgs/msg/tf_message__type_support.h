@@ -4,7 +4,7 @@
 #ifndef TF2_MSGS__MSG__TF_MESSAGE__TYPE_SUPPORT_H_
 #define TF2_MSGS__MSG__TF_MESSAGE__TYPE_SUPPORT_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -19,7 +19,7 @@ ROSIDL_GENERATOR_C_PUBLIC_tf2_msgs
 const rosidl_message_type_support_t *
   ROSIDL_TYPESUPPORT_INTERFACE__MESSAGE_SYMBOL_NAME(rosidl_typesupport_c, tf2_msgs, msg, TFMessage)();
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

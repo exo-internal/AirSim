@@ -52,7 +52,7 @@ struct BoundedArrayNested_
 
   // field types and members
   using _primitive_values_type =
-      rosidl_generator_cpp::BoundedVector<test_msgs::msg::Primitives_<ContainerAllocator>, 4, typename ContainerAllocator::template rebind<test_msgs::msg::Primitives_<ContainerAllocator>>::other>;
+    rosidl_generator_cpp::BoundedVector<test_msgs::msg::Primitives_<ContainerAllocator>, 4, typename ContainerAllocator::template rebind<test_msgs::msg::Primitives_<ContainerAllocator>>::other>;
   _primitive_values_type primitive_values;
 
   // setters for named parameter idiom
@@ -63,35 +63,35 @@ struct BoundedArrayNested_
     return this;
   }
 
-  // constants
+  // constant declarations
 
   // pointer types
   using RawPtr =
-      test_msgs::msg::BoundedArrayNested_<ContainerAllocator> *;
+    test_msgs::msg::BoundedArrayNested_<ContainerAllocator> *;
   using ConstRawPtr =
-      const test_msgs::msg::BoundedArrayNested_<ContainerAllocator> *;
+    const test_msgs::msg::BoundedArrayNested_<ContainerAllocator> *;
   using SharedPtr =
-      std::shared_ptr<test_msgs::msg::BoundedArrayNested_<ContainerAllocator>>;
+    std::shared_ptr<test_msgs::msg::BoundedArrayNested_<ContainerAllocator>>;
   using ConstSharedPtr =
-      std::shared_ptr<test_msgs::msg::BoundedArrayNested_<ContainerAllocator> const>;
+    std::shared_ptr<test_msgs::msg::BoundedArrayNested_<ContainerAllocator> const>;
 
   template<typename Deleter = std::default_delete<
       test_msgs::msg::BoundedArrayNested_<ContainerAllocator>>>
   using UniquePtrWithDeleter =
-      std::unique_ptr<test_msgs::msg::BoundedArrayNested_<ContainerAllocator>, Deleter>;
+    std::unique_ptr<test_msgs::msg::BoundedArrayNested_<ContainerAllocator>, Deleter>;
 
   using UniquePtr = UniquePtrWithDeleter<>;
 
   template<typename Deleter = std::default_delete<
       test_msgs::msg::BoundedArrayNested_<ContainerAllocator>>>
   using ConstUniquePtrWithDeleter =
-      std::unique_ptr<test_msgs::msg::BoundedArrayNested_<ContainerAllocator> const, Deleter>;
+    std::unique_ptr<test_msgs::msg::BoundedArrayNested_<ContainerAllocator> const, Deleter>;
   using ConstUniquePtr = ConstUniquePtrWithDeleter<>;
 
   using WeakPtr =
-      std::weak_ptr<test_msgs::msg::BoundedArrayNested_<ContainerAllocator>>;
+    std::weak_ptr<test_msgs::msg::BoundedArrayNested_<ContainerAllocator>>;
   using ConstWeakPtr =
-      std::weak_ptr<test_msgs::msg::BoundedArrayNested_<ContainerAllocator> const>;
+    std::weak_ptr<test_msgs::msg::BoundedArrayNested_<ContainerAllocator> const>;
 
   // pointer types similar to ROS 1, use SharedPtr / ConstSharedPtr instead
   // NOTE: Can't use 'using' here because GNU C++ can't parse attributes properly
@@ -118,9 +118,9 @@ struct BoundedArrayNested_
 
 // alias to use template instance with default allocator
 using BoundedArrayNested =
-    test_msgs::msg::BoundedArrayNested_<std::allocator<void>>;
+  test_msgs::msg::BoundedArrayNested_<std::allocator<void>>;
 
-// constants requiring out of line definition
+// constant definitions
 
 }  // namespace msg
 

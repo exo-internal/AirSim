@@ -4,7 +4,7 @@
 #ifndef VISUALIZATION_MSGS__MSG__INTERACTIVE_MARKER_UPDATE__TYPE_SUPPORT_H_
 #define VISUALIZATION_MSGS__MSG__INTERACTIVE_MARKER_UPDATE__TYPE_SUPPORT_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -19,7 +19,7 @@ ROSIDL_GENERATOR_C_PUBLIC_visualization_msgs
 const rosidl_message_type_support_t *
   ROSIDL_TYPESUPPORT_INTERFACE__MESSAGE_SYMBOL_NAME(rosidl_typesupport_c, visualization_msgs, msg, InteractiveMarkerUpdate)();
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

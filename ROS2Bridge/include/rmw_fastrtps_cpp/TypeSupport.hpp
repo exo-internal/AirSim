@@ -42,6 +42,13 @@
 namespace rmw_fastrtps_cpp
 {
 
+// Publishers write method will receive a pointer to this struct
+struct SerializedData
+{
+  bool is_cdr_buffer;  // Whether next field is a pointer to a Cdr or to a plain ros message
+  void * data;
+};
+
 // Helper class that uses template specialization to read/write string types to/from a
 // eprosima::fastcdr::Cdr
 template<typename MembersType>
@@ -53,6 +60,27 @@ template<>
 struct StringHelper<rosidl_typesupport_introspection_c__MessageMembers>
 {
   using type = rosidl_generator_c__String;
+
+  static size_t next_field_align(void * data, size_t current_alignment)
+  {
+    auto c_string = static_cast<rosidl_generator_c__String *>(data);
+    if (!c_string) {
+      RCUTILS_LOG_ERROR_NAMED(
+        "rmw_fastrtps_cpp",
+        "Failed to cast data as rosidl_generator_c__String")
+      return current_alignment;
+    }
+    if (!c_string->data) {
+      RCUTILS_LOG_ERROR_NAMED(
+        "rmw_fastrtps_cpp",
+        "rosidl_generator_c_String had invalid data")
+      return current_alignment;
+    }
+
+    current_alignment += eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+    current_alignment += 4;
+    return current_alignment + strlen(c_string->data) + 1;
+  }
 
   static std::string convert_to_std_string(void * data)
   {
@@ -111,13 +139,15 @@ template<typename MembersType>
 class TypeSupport : public eprosima::fastrtps::TopicDataType
 {
 public:
+  size_t getEstimatedSerializedSize(const void * ros_message);
+
   bool serializeROSmessage(const void * ros_message, eprosima::fastcdr::Cdr & ser);
 
-  bool deserializeROSmessage(eprosima::fastcdr::FastBuffer * data, void * ros_message);
+  bool deserializeROSmessage(eprosima::fastcdr::Cdr & deser, void * ros_message);
 
-  bool serialize(void * data, SerializedPayload_t * payload);
+  bool serialize(void * data, eprosima::fastrtps::rtps::SerializedPayload_t * payload);
 
-  bool deserialize(SerializedPayload_t * payload, void * data);
+  bool deserialize(eprosima::fastrtps::rtps::SerializedPayload_t * payload, void * data);
 
   std::function<uint32_t()> getSerializedSizeProvider(void * data);
 
@@ -131,8 +161,12 @@ protected:
   size_t calculateMaxSerializedSize(const MembersType * members, size_t current_alignment);
 
   const MembersType * members_;
+  bool max_size_bound_;
 
 private:
+  size_t getEstimatedSerializedSize(
+    const MembersType * members, const void * ros_message, size_t current_alignment);
+
   bool serializeROSmessage(
     eprosima::fastcdr::Cdr & ser, const MembersType * members, const void * ros_message);
 

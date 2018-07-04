@@ -61,10 +61,10 @@ struct IntraProcessMessage_
 
   // field types and members
   using _publisher_id_type =
-      uint64_t;
+    uint64_t;
   _publisher_id_type publisher_id;
   using _message_sequence_type =
-      uint64_t;
+    uint64_t;
   _message_sequence_type message_sequence;
 
   // setters for named parameter idiom
@@ -81,35 +81,35 @@ struct IntraProcessMessage_
     return this;
   }
 
-  // constants
+  // constant declarations
 
   // pointer types
   using RawPtr =
-      rcl_interfaces::msg::IntraProcessMessage_<ContainerAllocator> *;
+    rcl_interfaces::msg::IntraProcessMessage_<ContainerAllocator> *;
   using ConstRawPtr =
-      const rcl_interfaces::msg::IntraProcessMessage_<ContainerAllocator> *;
+    const rcl_interfaces::msg::IntraProcessMessage_<ContainerAllocator> *;
   using SharedPtr =
-      std::shared_ptr<rcl_interfaces::msg::IntraProcessMessage_<ContainerAllocator>>;
+    std::shared_ptr<rcl_interfaces::msg::IntraProcessMessage_<ContainerAllocator>>;
   using ConstSharedPtr =
-      std::shared_ptr<rcl_interfaces::msg::IntraProcessMessage_<ContainerAllocator> const>;
+    std::shared_ptr<rcl_interfaces::msg::IntraProcessMessage_<ContainerAllocator> const>;
 
   template<typename Deleter = std::default_delete<
       rcl_interfaces::msg::IntraProcessMessage_<ContainerAllocator>>>
   using UniquePtrWithDeleter =
-      std::unique_ptr<rcl_interfaces::msg::IntraProcessMessage_<ContainerAllocator>, Deleter>;
+    std::unique_ptr<rcl_interfaces::msg::IntraProcessMessage_<ContainerAllocator>, Deleter>;
 
   using UniquePtr = UniquePtrWithDeleter<>;
 
   template<typename Deleter = std::default_delete<
       rcl_interfaces::msg::IntraProcessMessage_<ContainerAllocator>>>
   using ConstUniquePtrWithDeleter =
-      std::unique_ptr<rcl_interfaces::msg::IntraProcessMessage_<ContainerAllocator> const, Deleter>;
+    std::unique_ptr<rcl_interfaces::msg::IntraProcessMessage_<ContainerAllocator> const, Deleter>;
   using ConstUniquePtr = ConstUniquePtrWithDeleter<>;
 
   using WeakPtr =
-      std::weak_ptr<rcl_interfaces::msg::IntraProcessMessage_<ContainerAllocator>>;
+    std::weak_ptr<rcl_interfaces::msg::IntraProcessMessage_<ContainerAllocator>>;
   using ConstWeakPtr =
-      std::weak_ptr<rcl_interfaces::msg::IntraProcessMessage_<ContainerAllocator> const>;
+    std::weak_ptr<rcl_interfaces::msg::IntraProcessMessage_<ContainerAllocator> const>;
 
   // pointer types similar to ROS 1, use SharedPtr / ConstSharedPtr instead
   // NOTE: Can't use 'using' here because GNU C++ can't parse attributes properly
@@ -139,9 +139,9 @@ struct IntraProcessMessage_
 
 // alias to use template instance with default allocator
 using IntraProcessMessage =
-    rcl_interfaces::msg::IntraProcessMessage_<std::allocator<void>>;
+  rcl_interfaces::msg::IntraProcessMessage_<std::allocator<void>>;
 
-// constants requiring out of line definition
+// constant definitions
 
 }  // namespace msg
 

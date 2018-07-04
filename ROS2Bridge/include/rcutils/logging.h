@@ -21,13 +21,23 @@
 
 #include "rcutils/allocator.h"
 #include "rcutils/error_handling.h"
+#include "rcutils/time.h"
 #include "rcutils/types/rcutils_ret.h"
 #include "rcutils/visibility_control.h"
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
+
+#define RCUTILS_LOGGING_SEPARATOR_CHAR '.'
+#define RCUTILS_LOGGING_SEPARATOR_STRING "."
+
+/**
+ * \def RCUTILS_DEFAULT_LOGGER_DEFAULT_LEVEL
+ * \brief The default severity level of the default logger.
+ */
+#define RCUTILS_DEFAULT_LOGGER_DEFAULT_LEVEL RCUTILS_LOG_SEVERITY_INFO
 
 /// The flag if the logging system has been initialized.
 RCUTILS_PUBLIC
@@ -55,6 +65,8 @@ extern bool g_rcutils_logging_initialized;
  *   - `message`, the message string after it has been formatted
  *   - `name`, the full logger name
  *   - `severity`, the name of the severity level, e.g. `INFO`
+ *   - `time`, the timestamp of log message in floating point seconds
+ *   - `time_as_nanoseconds`, the timestamp of log message in integer nanoseconds
  *
  * The format string can use these tokens by referencing them in curly brackets,
  * e.g. `"[{severity}] [{name}]: {message} ({function_name}() at {file_name}:{line_number})"`.
@@ -71,7 +83,7 @@ extern bool g_rcutils_logging_initialized;
  *
  * \param allocator rcutils_allocator_t to be used.
  * \return `RCUTILS_RET_OK` if successful.
- * \retrun `RCUTILS_RET_INVALID_ARGUMENT` if the allocator is invalid, in which
+ * \return `RCUTILS_RET_INVALID_ARGUMENT` if the allocator is invalid, in which
  *   case initialization will fail.
  * \return `RCUTILS_RET_INVALID_ARGUMENT` if an error occurs reading the output
  *   format from the `RCUTILS_CONSOLE_OUTPUT_FORMAT` environment variable, in
@@ -107,7 +119,7 @@ rcutils_ret_t rcutils_logging_initialize_with_allocator(rcutils_allocator_t allo
  */
 RCUTILS_PUBLIC
 RCUTILS_WARN_UNUSED
-rcutils_ret_t rcutils_logging_initialize();
+rcutils_ret_t rcutils_logging_initialize(void);
 
 /// Shutdown the logging system.
 /**
@@ -128,7 +140,7 @@ rcutils_ret_t rcutils_logging_initialize();
  */
 RCUTILS_PUBLIC
 RCUTILS_WARN_UNUSED
-rcutils_ret_t rcutils_logging_shutdown();
+rcutils_ret_t rcutils_logging_shutdown(void);
 
 /// The structure identifying the caller location in the source code.
 typedef struct rcutils_log_location_t
@@ -155,18 +167,43 @@ enum RCUTILS_LOG_SEVERITY
 /// The names of severity levels.
 extern const char * g_rcutils_log_severity_names[RCUTILS_LOG_SEVERITY_FATAL + 1];
 
+/// Get a severity value from its string representation (e.g. DEBUG).
+/**
+ * String representation must match one of the values in
+ * `g_rcutils_log_severity_names`, but is not case-sensitive.
+ * Examples: UNSET, DEBUG, INFO, WARN, Error, fatal.
+ *
+ * \param[in] severity_string String representation of the severity, must be a
+ *   null terminated c string
+ * \param[in] allocator rcutils_allocator_t to be used
+ * \param[in,out] severity The severity level as a represented by the
+ *   `RCUTILS_LOG_SEVERITY` enum
+ * \return `RCUTILS_RET_OK` if successful, or
+ * \return `RCUTILS_RET_INVALID_ARGUMENT` on invalid arguments, or
+ * \return `RCUTILS_RET_LOGGING_SEVERITY_STRING_INVALID` if unable to match
+ *   string, or
+ * \return `RCUTILS_RET_ERROR` if an unspecified error occured
+ */
+RCUTILS_PUBLIC
+RCUTILS_WARN_UNUSED
+rcutils_ret_t
+rcutils_logging_severity_level_from_string(
+  const char * severity_string, rcutils_allocator_t allocator, int * severity);
+
 /// The function signature to log messages.
 /**
  * \param location The pointer to the location struct
  * \param severity The severity level
  * \param name The name of the logger
+ * \param timestamp The timestamp
  * \param format The format string
  * \param args The variable argument list
  */
 typedef void (* rcutils_logging_output_handler_t)(
-  rcutils_log_location_t *,  // location
+  const rcutils_log_location_t *,  // location
   int,  // severity
   const char *,  // name
+  rcutils_time_point_value_t,  // timestamp
   const char *,  // format
   va_list *  // args
 );
@@ -234,6 +271,10 @@ int rcutils_logging_get_default_logger_level();
 
 /// Set the default severity level for loggers.
 /**
+ * If the severity level requested is `RCUTILS_LOG_SEVERITY_UNSET`, the default
+ * value for the default logger (`RCUTILS_DEFAULT_LOGGER_DEFAULT_LEVEL`)
+ * will be restored instead.
+ *
  * <hr>
  * Attribute          | Adherence
  * ------------------ | -------------
@@ -390,7 +431,7 @@ int rcutils_logging_get_logger_effective_level(const char * name);
  */
 RCUTILS_PUBLIC
 void rcutils_log(
-  rcutils_log_location_t * location,
+  const rcutils_log_location_t * location,
   int severity,
   const char * name,
   const char * format,
@@ -417,13 +458,15 @@ void rcutils_log(
  * \param location The pointer to the location struct or NULL
  * \param severity The severity level
  * \param name The name of the logger, must be null terminated c string
+ * \param timestamp The timestamp for when the log message was made
  * \param format The format string for the message contents
  * \param args The variable argument list for the message format string
  */
 RCUTILS_PUBLIC
 void rcutils_logging_console_output_handler(
-  rcutils_log_location_t * location,
-  int severity, const char * name, const char * format, va_list * args);
+  const rcutils_log_location_t * location,
+  int severity, const char * name, rcutils_time_point_value_t timestamp,
+  const char * format, va_list * args);
 
 // Provide the compiler with branch prediction information
 #ifndef _WIN32
@@ -469,7 +512,7 @@ void rcutils_logging_console_output_handler(
     } \
   }
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

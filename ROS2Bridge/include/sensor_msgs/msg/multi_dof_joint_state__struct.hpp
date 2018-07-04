@@ -56,19 +56,19 @@ struct MultiDOFJointState_
 
   // field types and members
   using _header_type =
-      std_msgs::msg::Header_<ContainerAllocator>;
+    std_msgs::msg::Header_<ContainerAllocator>;
   _header_type header;
   using _joint_names_type =
-      std::vector<std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>, typename ContainerAllocator::template rebind<std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>>::other>;
+    std::vector<std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>, typename ContainerAllocator::template rebind<std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>>::other>;
   _joint_names_type joint_names;
   using _transforms_type =
-      std::vector<geometry_msgs::msg::Transform_<ContainerAllocator>, typename ContainerAllocator::template rebind<geometry_msgs::msg::Transform_<ContainerAllocator>>::other>;
+    std::vector<geometry_msgs::msg::Transform_<ContainerAllocator>, typename ContainerAllocator::template rebind<geometry_msgs::msg::Transform_<ContainerAllocator>>::other>;
   _transforms_type transforms;
   using _twist_type =
-      std::vector<geometry_msgs::msg::Twist_<ContainerAllocator>, typename ContainerAllocator::template rebind<geometry_msgs::msg::Twist_<ContainerAllocator>>::other>;
+    std::vector<geometry_msgs::msg::Twist_<ContainerAllocator>, typename ContainerAllocator::template rebind<geometry_msgs::msg::Twist_<ContainerAllocator>>::other>;
   _twist_type twist;
   using _wrench_type =
-      std::vector<geometry_msgs::msg::Wrench_<ContainerAllocator>, typename ContainerAllocator::template rebind<geometry_msgs::msg::Wrench_<ContainerAllocator>>::other>;
+    std::vector<geometry_msgs::msg::Wrench_<ContainerAllocator>, typename ContainerAllocator::template rebind<geometry_msgs::msg::Wrench_<ContainerAllocator>>::other>;
   _wrench_type wrench;
 
   // setters for named parameter idiom
@@ -103,35 +103,35 @@ struct MultiDOFJointState_
     return this;
   }
 
-  // constants
+  // constant declarations
 
   // pointer types
   using RawPtr =
-      sensor_msgs::msg::MultiDOFJointState_<ContainerAllocator> *;
+    sensor_msgs::msg::MultiDOFJointState_<ContainerAllocator> *;
   using ConstRawPtr =
-      const sensor_msgs::msg::MultiDOFJointState_<ContainerAllocator> *;
+    const sensor_msgs::msg::MultiDOFJointState_<ContainerAllocator> *;
   using SharedPtr =
-      std::shared_ptr<sensor_msgs::msg::MultiDOFJointState_<ContainerAllocator>>;
+    std::shared_ptr<sensor_msgs::msg::MultiDOFJointState_<ContainerAllocator>>;
   using ConstSharedPtr =
-      std::shared_ptr<sensor_msgs::msg::MultiDOFJointState_<ContainerAllocator> const>;
+    std::shared_ptr<sensor_msgs::msg::MultiDOFJointState_<ContainerAllocator> const>;
 
   template<typename Deleter = std::default_delete<
       sensor_msgs::msg::MultiDOFJointState_<ContainerAllocator>>>
   using UniquePtrWithDeleter =
-      std::unique_ptr<sensor_msgs::msg::MultiDOFJointState_<ContainerAllocator>, Deleter>;
+    std::unique_ptr<sensor_msgs::msg::MultiDOFJointState_<ContainerAllocator>, Deleter>;
 
   using UniquePtr = UniquePtrWithDeleter<>;
 
   template<typename Deleter = std::default_delete<
       sensor_msgs::msg::MultiDOFJointState_<ContainerAllocator>>>
   using ConstUniquePtrWithDeleter =
-      std::unique_ptr<sensor_msgs::msg::MultiDOFJointState_<ContainerAllocator> const, Deleter>;
+    std::unique_ptr<sensor_msgs::msg::MultiDOFJointState_<ContainerAllocator> const, Deleter>;
   using ConstUniquePtr = ConstUniquePtrWithDeleter<>;
 
   using WeakPtr =
-      std::weak_ptr<sensor_msgs::msg::MultiDOFJointState_<ContainerAllocator>>;
+    std::weak_ptr<sensor_msgs::msg::MultiDOFJointState_<ContainerAllocator>>;
   using ConstWeakPtr =
-      std::weak_ptr<sensor_msgs::msg::MultiDOFJointState_<ContainerAllocator> const>;
+    std::weak_ptr<sensor_msgs::msg::MultiDOFJointState_<ContainerAllocator> const>;
 
   // pointer types similar to ROS 1, use SharedPtr / ConstSharedPtr instead
   // NOTE: Can't use 'using' here because GNU C++ can't parse attributes properly
@@ -170,9 +170,9 @@ struct MultiDOFJointState_
 
 // alias to use template instance with default allocator
 using MultiDOFJointState =
-    sensor_msgs::msg::MultiDOFJointState_<std::allocator<void>>;
+  sensor_msgs::msg::MultiDOFJointState_<std::allocator<void>>;
 
-// constants requiring out of line definition
+// constant definitions
 
 }  // namespace msg
 

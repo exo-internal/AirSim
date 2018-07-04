@@ -4,7 +4,7 @@
 #ifndef NAV_MSGS__MSG__OCCUPANCY_GRID__FUNCTIONS_H_
 #define NAV_MSGS__MSG__OCCUPANCY_GRID__FUNCTIONS_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -105,7 +105,7 @@ ROSIDL_GENERATOR_C_PUBLIC_nav_msgs
 void
 nav_msgs__msg__OccupancyGrid__Array__destroy(nav_msgs__msg__OccupancyGrid__Array * array);
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

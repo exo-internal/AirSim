@@ -4,7 +4,7 @@
 #ifndef TF2_MSGS__MSG__TF_MESSAGE__STRUCT_H_
 #define TF2_MSGS__MSG__TF_MESSAGE__STRUCT_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -33,7 +33,7 @@ typedef struct tf2_msgs__msg__TFMessage__Array
   size_t capacity;
 } tf2_msgs__msg__TFMessage__Array;
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

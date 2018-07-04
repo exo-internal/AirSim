@@ -4,7 +4,7 @@
 #ifndef SHAPE_MSGS__MSG__SOLID_PRIMITIVE__STRUCT_H_
 #define SHAPE_MSGS__MSG__SOLID_PRIMITIVE__STRUCT_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -103,7 +103,7 @@ typedef struct shape_msgs__msg__SolidPrimitive__Array
   size_t capacity;
 } shape_msgs__msg__SolidPrimitive__Array;
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

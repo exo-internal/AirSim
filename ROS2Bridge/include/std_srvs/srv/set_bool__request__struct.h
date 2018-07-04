@@ -4,7 +4,7 @@
 #ifndef STD_SRVS__SRV__SET_BOOL__REQUEST__STRUCT_H_
 #define STD_SRVS__SRV__SET_BOOL__REQUEST__STRUCT_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -29,7 +29,7 @@ typedef struct std_srvs__srv__SetBool_Request__Array
   size_t capacity;
 } std_srvs__srv__SetBool_Request__Array;
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

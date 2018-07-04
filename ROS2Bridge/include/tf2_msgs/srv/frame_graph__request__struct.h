@@ -4,7 +4,7 @@
 #ifndef TF2_MSGS__SRV__FRAME_GRAPH__REQUEST__STRUCT_H_
 #define TF2_MSGS__SRV__FRAME_GRAPH__REQUEST__STRUCT_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -29,7 +29,7 @@ typedef struct tf2_msgs__srv__FrameGraph_Request__Array
   size_t capacity;
 } tf2_msgs__srv__FrameGraph_Request__Array;
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

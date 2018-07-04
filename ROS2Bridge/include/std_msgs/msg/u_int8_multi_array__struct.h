@@ -4,7 +4,7 @@
 #ifndef STD_MSGS__MSG__U_INT8_MULTI_ARRAY__STRUCT_H_
 #define STD_MSGS__MSG__U_INT8_MULTI_ARRAY__STRUCT_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -36,7 +36,7 @@ typedef struct std_msgs__msg__UInt8MultiArray__Array
   size_t capacity;
 } std_msgs__msg__UInt8MultiArray__Array;
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

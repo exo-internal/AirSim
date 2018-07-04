@@ -99,23 +99,35 @@ struct ParameterValue_
 
   // field types and members
   using _type_type =
-      uint8_t;
+    uint8_t;
   _type_type type;
   using _bool_value_type =
-      bool;
+    bool;
   _bool_value_type bool_value;
   using _integer_value_type =
-      int64_t;
+    int64_t;
   _integer_value_type integer_value;
   using _double_value_type =
-      double;
+    double;
   _double_value_type double_value;
   using _string_value_type =
-      std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>;
+    std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>;
   _string_value_type string_value;
-  using _bytes_value_type =
-      std::vector<uint8_t, typename ContainerAllocator::template rebind<uint8_t>::other>;
-  _bytes_value_type bytes_value;
+  using _byte_array_value_type =
+    std::vector<uint8_t, typename ContainerAllocator::template rebind<uint8_t>::other>;
+  _byte_array_value_type byte_array_value;
+  using _bool_array_value_type =
+    std::vector<bool, typename ContainerAllocator::template rebind<bool>::other>;
+  _bool_array_value_type bool_array_value;
+  using _integer_array_value_type =
+    std::vector<int64_t, typename ContainerAllocator::template rebind<int64_t>::other>;
+  _integer_array_value_type integer_array_value;
+  using _double_array_value_type =
+    std::vector<double, typename ContainerAllocator::template rebind<double>::other>;
+  _double_array_value_type double_array_value;
+  using _string_array_value_type =
+    std::vector<std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>, typename ContainerAllocator::template rebind<std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>>::other>;
+  _string_array_value_type string_array_value;
 
   // setters for named parameter idiom
   Type * set__type(
@@ -148,42 +160,66 @@ struct ParameterValue_
     this->string_value = _arg;
     return this;
   }
-  Type * set__bytes_value(
+  Type * set__byte_array_value(
     const std::vector<uint8_t, typename ContainerAllocator::template rebind<uint8_t>::other> & _arg)
   {
-    this->bytes_value = _arg;
+    this->byte_array_value = _arg;
+    return this;
+  }
+  Type * set__bool_array_value(
+    const std::vector<bool, typename ContainerAllocator::template rebind<bool>::other> & _arg)
+  {
+    this->bool_array_value = _arg;
+    return this;
+  }
+  Type * set__integer_array_value(
+    const std::vector<int64_t, typename ContainerAllocator::template rebind<int64_t>::other> & _arg)
+  {
+    this->integer_array_value = _arg;
+    return this;
+  }
+  Type * set__double_array_value(
+    const std::vector<double, typename ContainerAllocator::template rebind<double>::other> & _arg)
+  {
+    this->double_array_value = _arg;
+    return this;
+  }
+  Type * set__string_array_value(
+    const std::vector<std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>, typename ContainerAllocator::template rebind<std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>>::other> & _arg)
+  {
+    this->string_array_value = _arg;
     return this;
   }
 
-  // constants
+  // constant declarations
 
   // pointer types
   using RawPtr =
-      rcl_interfaces::msg::ParameterValue_<ContainerAllocator> *;
+    rcl_interfaces::msg::ParameterValue_<ContainerAllocator> *;
   using ConstRawPtr =
-      const rcl_interfaces::msg::ParameterValue_<ContainerAllocator> *;
+    const rcl_interfaces::msg::ParameterValue_<ContainerAllocator> *;
   using SharedPtr =
-      std::shared_ptr<rcl_interfaces::msg::ParameterValue_<ContainerAllocator>>;
+    std::shared_ptr<rcl_interfaces::msg::ParameterValue_<ContainerAllocator>>;
   using ConstSharedPtr =
-      std::shared_ptr<rcl_interfaces::msg::ParameterValue_<ContainerAllocator> const>;
+    std::shared_ptr<rcl_interfaces::msg::ParameterValue_<ContainerAllocator> const>;
 
   template<typename Deleter = std::default_delete<
       rcl_interfaces::msg::ParameterValue_<ContainerAllocator>>>
   using UniquePtrWithDeleter =
-      std::unique_ptr<rcl_interfaces::msg::ParameterValue_<ContainerAllocator>, Deleter>;
+    std::unique_ptr<rcl_interfaces::msg::ParameterValue_<ContainerAllocator>, Deleter>;
 
   using UniquePtr = UniquePtrWithDeleter<>;
 
   template<typename Deleter = std::default_delete<
       rcl_interfaces::msg::ParameterValue_<ContainerAllocator>>>
   using ConstUniquePtrWithDeleter =
-      std::unique_ptr<rcl_interfaces::msg::ParameterValue_<ContainerAllocator> const, Deleter>;
+    std::unique_ptr<rcl_interfaces::msg::ParameterValue_<ContainerAllocator> const, Deleter>;
   using ConstUniquePtr = ConstUniquePtrWithDeleter<>;
 
   using WeakPtr =
-      std::weak_ptr<rcl_interfaces::msg::ParameterValue_<ContainerAllocator>>;
+    std::weak_ptr<rcl_interfaces::msg::ParameterValue_<ContainerAllocator>>;
   using ConstWeakPtr =
-      std::weak_ptr<rcl_interfaces::msg::ParameterValue_<ContainerAllocator> const>;
+    std::weak_ptr<rcl_interfaces::msg::ParameterValue_<ContainerAllocator> const>;
 
   // pointer types similar to ROS 1, use SharedPtr / ConstSharedPtr instead
   // NOTE: Can't use 'using' here because GNU C++ can't parse attributes properly
@@ -212,7 +248,19 @@ struct ParameterValue_
     if (this->string_value != other.string_value) {
       return false;
     }
-    if (this->bytes_value != other.bytes_value) {
+    if (this->byte_array_value != other.byte_array_value) {
+      return false;
+    }
+    if (this->bool_array_value != other.bool_array_value) {
+      return false;
+    }
+    if (this->integer_array_value != other.integer_array_value) {
+      return false;
+    }
+    if (this->double_array_value != other.double_array_value) {
+      return false;
+    }
+    if (this->string_array_value != other.string_array_value) {
       return false;
     }
     return true;
@@ -225,9 +273,9 @@ struct ParameterValue_
 
 // alias to use template instance with default allocator
 using ParameterValue =
-    rcl_interfaces::msg::ParameterValue_<std::allocator<void>>;
+  rcl_interfaces::msg::ParameterValue_<std::allocator<void>>;
 
-// constants requiring out of line definition
+// constant definitions
 
 }  // namespace msg
 

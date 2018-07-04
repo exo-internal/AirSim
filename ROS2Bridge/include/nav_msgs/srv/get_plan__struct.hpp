@@ -1,4 +1,4 @@
-// generated from rosidl_generator_cpp/resource/msg__struct.hpp.em
+// generated from rosidl_generator_cpp/resource/srv__struct.hpp.em
 // generated code does not contain a copyright notice
 
 #ifndef NAV_MSGS__SRV__GET_PLAN__STRUCT_HPP_

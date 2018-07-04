@@ -59,7 +59,7 @@ struct Byte_
 
   // field types and members
   using _data_type =
-      uint8_t;
+    uint8_t;
   _data_type data;
 
   // setters for named parameter idiom
@@ -70,35 +70,35 @@ struct Byte_
     return this;
   }
 
-  // constants
+  // constant declarations
 
   // pointer types
   using RawPtr =
-      std_msgs::msg::Byte_<ContainerAllocator> *;
+    std_msgs::msg::Byte_<ContainerAllocator> *;
   using ConstRawPtr =
-      const std_msgs::msg::Byte_<ContainerAllocator> *;
+    const std_msgs::msg::Byte_<ContainerAllocator> *;
   using SharedPtr =
-      std::shared_ptr<std_msgs::msg::Byte_<ContainerAllocator>>;
+    std::shared_ptr<std_msgs::msg::Byte_<ContainerAllocator>>;
   using ConstSharedPtr =
-      std::shared_ptr<std_msgs::msg::Byte_<ContainerAllocator> const>;
+    std::shared_ptr<std_msgs::msg::Byte_<ContainerAllocator> const>;
 
   template<typename Deleter = std::default_delete<
       std_msgs::msg::Byte_<ContainerAllocator>>>
   using UniquePtrWithDeleter =
-      std::unique_ptr<std_msgs::msg::Byte_<ContainerAllocator>, Deleter>;
+    std::unique_ptr<std_msgs::msg::Byte_<ContainerAllocator>, Deleter>;
 
   using UniquePtr = UniquePtrWithDeleter<>;
 
   template<typename Deleter = std::default_delete<
       std_msgs::msg::Byte_<ContainerAllocator>>>
   using ConstUniquePtrWithDeleter =
-      std::unique_ptr<std_msgs::msg::Byte_<ContainerAllocator> const, Deleter>;
+    std::unique_ptr<std_msgs::msg::Byte_<ContainerAllocator> const, Deleter>;
   using ConstUniquePtr = ConstUniquePtrWithDeleter<>;
 
   using WeakPtr =
-      std::weak_ptr<std_msgs::msg::Byte_<ContainerAllocator>>;
+    std::weak_ptr<std_msgs::msg::Byte_<ContainerAllocator>>;
   using ConstWeakPtr =
-      std::weak_ptr<std_msgs::msg::Byte_<ContainerAllocator> const>;
+    std::weak_ptr<std_msgs::msg::Byte_<ContainerAllocator> const>;
 
   // pointer types similar to ROS 1, use SharedPtr / ConstSharedPtr instead
   // NOTE: Can't use 'using' here because GNU C++ can't parse attributes properly
@@ -125,9 +125,9 @@ struct Byte_
 
 // alias to use template instance with default allocator
 using Byte =
-    std_msgs::msg::Byte_<std::allocator<void>>;
+  std_msgs::msg::Byte_<std::allocator<void>>;
 
-// constants requiring out of line definition
+// constant definitions
 
 }  // namespace msg
 

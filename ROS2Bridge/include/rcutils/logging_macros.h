@@ -24,7 +24,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -1430,7 +1430,7 @@ typedef bool (* RclLogFilter)();
 #endif
 ///@}
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

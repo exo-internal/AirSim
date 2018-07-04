@@ -51,7 +51,7 @@ struct LaserEcho_
 
   // field types and members
   using _echoes_type =
-      std::vector<float, typename ContainerAllocator::template rebind<float>::other>;
+    std::vector<float, typename ContainerAllocator::template rebind<float>::other>;
   _echoes_type echoes;
 
   // setters for named parameter idiom
@@ -62,35 +62,35 @@ struct LaserEcho_
     return this;
   }
 
-  // constants
+  // constant declarations
 
   // pointer types
   using RawPtr =
-      sensor_msgs::msg::LaserEcho_<ContainerAllocator> *;
+    sensor_msgs::msg::LaserEcho_<ContainerAllocator> *;
   using ConstRawPtr =
-      const sensor_msgs::msg::LaserEcho_<ContainerAllocator> *;
+    const sensor_msgs::msg::LaserEcho_<ContainerAllocator> *;
   using SharedPtr =
-      std::shared_ptr<sensor_msgs::msg::LaserEcho_<ContainerAllocator>>;
+    std::shared_ptr<sensor_msgs::msg::LaserEcho_<ContainerAllocator>>;
   using ConstSharedPtr =
-      std::shared_ptr<sensor_msgs::msg::LaserEcho_<ContainerAllocator> const>;
+    std::shared_ptr<sensor_msgs::msg::LaserEcho_<ContainerAllocator> const>;
 
   template<typename Deleter = std::default_delete<
       sensor_msgs::msg::LaserEcho_<ContainerAllocator>>>
   using UniquePtrWithDeleter =
-      std::unique_ptr<sensor_msgs::msg::LaserEcho_<ContainerAllocator>, Deleter>;
+    std::unique_ptr<sensor_msgs::msg::LaserEcho_<ContainerAllocator>, Deleter>;
 
   using UniquePtr = UniquePtrWithDeleter<>;
 
   template<typename Deleter = std::default_delete<
       sensor_msgs::msg::LaserEcho_<ContainerAllocator>>>
   using ConstUniquePtrWithDeleter =
-      std::unique_ptr<sensor_msgs::msg::LaserEcho_<ContainerAllocator> const, Deleter>;
+    std::unique_ptr<sensor_msgs::msg::LaserEcho_<ContainerAllocator> const, Deleter>;
   using ConstUniquePtr = ConstUniquePtrWithDeleter<>;
 
   using WeakPtr =
-      std::weak_ptr<sensor_msgs::msg::LaserEcho_<ContainerAllocator>>;
+    std::weak_ptr<sensor_msgs::msg::LaserEcho_<ContainerAllocator>>;
   using ConstWeakPtr =
-      std::weak_ptr<sensor_msgs::msg::LaserEcho_<ContainerAllocator> const>;
+    std::weak_ptr<sensor_msgs::msg::LaserEcho_<ContainerAllocator> const>;
 
   // pointer types similar to ROS 1, use SharedPtr / ConstSharedPtr instead
   // NOTE: Can't use 'using' here because GNU C++ can't parse attributes properly
@@ -117,9 +117,9 @@ struct LaserEcho_
 
 // alias to use template instance with default allocator
 using LaserEcho =
-    sensor_msgs::msg::LaserEcho_<std::allocator<void>>;
+  sensor_msgs::msg::LaserEcho_<std::allocator<void>>;
 
-// constants requiring out of line definition
+// constant definitions
 
 }  // namespace msg
 

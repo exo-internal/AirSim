@@ -4,7 +4,7 @@
 #ifndef VISUALIZATION_MSGS__MSG__INTERACTIVE_MARKER_UPDATE__FUNCTIONS_H_
 #define VISUALIZATION_MSGS__MSG__INTERACTIVE_MARKER_UPDATE__FUNCTIONS_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -105,7 +105,7 @@ ROSIDL_GENERATOR_C_PUBLIC_visualization_msgs
 void
 visualization_msgs__msg__InteractiveMarkerUpdate__Array__destroy(visualization_msgs__msg__InteractiveMarkerUpdate__Array * array);
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

@@ -15,18 +15,10 @@
 #ifndef _FASTCDR_CONFIG_H_
 #define _FASTCDR_CONFIG_H_
 
-#ifndef FASTCDR_VERSION_MAJOR
 #define FASTCDR_VERSION_MAJOR 1
-#endif
-#ifndef FASTCDR_VERSION_MINOR
 #define FASTCDR_VERSION_MINOR 0
-#endif
-#ifndef FASTCDR_VERSION_MICRO
 #define FASTCDR_VERSION_MICRO 7
-#endif
-#ifndef FASTCDR_VERSION_STR
 #define FASTCDR_VERSION_STR "1.0.7"
-#endif
 
 // C++11 support defines
 #ifndef HAVE_CXX11
@@ -52,15 +44,6 @@
 // Endianness defines
 #ifndef __BIG_ENDIAN__
 #define __BIG_ENDIAN__ 0
-#endif
-
-// C++11 Non-copyable feature
-#ifndef NON_COPYABLE_CXX11
-#if !defined(HAVE_CXX0X) || (defined(_MSC_VER) && _MSC_VER <= 1600)
-#define NON_COPYABLE_CXX11
-#else
-#define NON_COPYABLE_CXX11 = delete
-#endif
 #endif
 
 #endif // _FASTCDR_CONFIG_H_

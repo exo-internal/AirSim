@@ -109,46 +109,46 @@ struct BatteryState_
 
   // field types and members
   using _header_type =
-      std_msgs::msg::Header_<ContainerAllocator>;
+    std_msgs::msg::Header_<ContainerAllocator>;
   _header_type header;
   using _voltage_type =
-      float;
+    float;
   _voltage_type voltage;
   using _current_type =
-      float;
+    float;
   _current_type current;
   using _charge_type =
-      float;
+    float;
   _charge_type charge;
   using _capacity_type =
-      float;
+    float;
   _capacity_type capacity;
   using _design_capacity_type =
-      float;
+    float;
   _design_capacity_type design_capacity;
   using _percentage_type =
-      float;
+    float;
   _percentage_type percentage;
   using _power_supply_status_type =
-      uint8_t;
+    uint8_t;
   _power_supply_status_type power_supply_status;
   using _power_supply_health_type =
-      uint8_t;
+    uint8_t;
   _power_supply_health_type power_supply_health;
   using _power_supply_technology_type =
-      uint8_t;
+    uint8_t;
   _power_supply_technology_type power_supply_technology;
   using _present_type =
-      bool;
+    bool;
   _present_type present;
   using _cell_voltage_type =
-      std::vector<float, typename ContainerAllocator::template rebind<float>::other>;
+    std::vector<float, typename ContainerAllocator::template rebind<float>::other>;
   _cell_voltage_type cell_voltage;
   using _location_type =
-      std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>;
+    std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>;
   _location_type location;
   using _serial_number_type =
-      std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>;
+    std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>;
   _serial_number_type serial_number;
 
   // setters for named parameter idiom
@@ -237,56 +237,77 @@ struct BatteryState_
     return this;
   }
 
-  // constants
-  enum { POWER_SUPPLY_STATUS_UNKNOWN = 0u };
-  enum { POWER_SUPPLY_STATUS_CHARGING = 1u };
-  enum { POWER_SUPPLY_STATUS_DISCHARGING = 2u };
-  enum { POWER_SUPPLY_STATUS_NOT_CHARGING = 3u };
-  enum { POWER_SUPPLY_STATUS_FULL = 4u };
-  enum { POWER_SUPPLY_HEALTH_UNKNOWN = 0u };
-  enum { POWER_SUPPLY_HEALTH_GOOD = 1u };
-  enum { POWER_SUPPLY_HEALTH_OVERHEAT = 2u };
-  enum { POWER_SUPPLY_HEALTH_DEAD = 3u };
-  enum { POWER_SUPPLY_HEALTH_OVERVOLTAGE = 4u };
-  enum { POWER_SUPPLY_HEALTH_UNSPEC_FAILURE = 5u };
-  enum { POWER_SUPPLY_HEALTH_COLD = 6u };
-  enum { POWER_SUPPLY_HEALTH_WATCHDOG_TIMER_EXPIRE = 7u };
-  enum { POWER_SUPPLY_HEALTH_SAFETY_TIMER_EXPIRE = 8u };
-  enum { POWER_SUPPLY_TECHNOLOGY_UNKNOWN = 0u };
-  enum { POWER_SUPPLY_TECHNOLOGY_NIMH = 1u };
-  enum { POWER_SUPPLY_TECHNOLOGY_LION = 2u };
-  enum { POWER_SUPPLY_TECHNOLOGY_LIPO = 3u };
-  enum { POWER_SUPPLY_TECHNOLOGY_LIFE = 4u };
-  enum { POWER_SUPPLY_TECHNOLOGY_NICD = 5u };
-  enum { POWER_SUPPLY_TECHNOLOGY_LIMN = 6u };
+  // constant declarations
+  static constexpr uint8_t POWER_SUPPLY_STATUS_UNKNOWN =
+    0u;
+  static constexpr uint8_t POWER_SUPPLY_STATUS_CHARGING =
+    1u;
+  static constexpr uint8_t POWER_SUPPLY_STATUS_DISCHARGING =
+    2u;
+  static constexpr uint8_t POWER_SUPPLY_STATUS_NOT_CHARGING =
+    3u;
+  static constexpr uint8_t POWER_SUPPLY_STATUS_FULL =
+    4u;
+  static constexpr uint8_t POWER_SUPPLY_HEALTH_UNKNOWN =
+    0u;
+  static constexpr uint8_t POWER_SUPPLY_HEALTH_GOOD =
+    1u;
+  static constexpr uint8_t POWER_SUPPLY_HEALTH_OVERHEAT =
+    2u;
+  static constexpr uint8_t POWER_SUPPLY_HEALTH_DEAD =
+    3u;
+  static constexpr uint8_t POWER_SUPPLY_HEALTH_OVERVOLTAGE =
+    4u;
+  static constexpr uint8_t POWER_SUPPLY_HEALTH_UNSPEC_FAILURE =
+    5u;
+  static constexpr uint8_t POWER_SUPPLY_HEALTH_COLD =
+    6u;
+  static constexpr uint8_t POWER_SUPPLY_HEALTH_WATCHDOG_TIMER_EXPIRE =
+    7u;
+  static constexpr uint8_t POWER_SUPPLY_HEALTH_SAFETY_TIMER_EXPIRE =
+    8u;
+  static constexpr uint8_t POWER_SUPPLY_TECHNOLOGY_UNKNOWN =
+    0u;
+  static constexpr uint8_t POWER_SUPPLY_TECHNOLOGY_NIMH =
+    1u;
+  static constexpr uint8_t POWER_SUPPLY_TECHNOLOGY_LION =
+    2u;
+  static constexpr uint8_t POWER_SUPPLY_TECHNOLOGY_LIPO =
+    3u;
+  static constexpr uint8_t POWER_SUPPLY_TECHNOLOGY_LIFE =
+    4u;
+  static constexpr uint8_t POWER_SUPPLY_TECHNOLOGY_NICD =
+    5u;
+  static constexpr uint8_t POWER_SUPPLY_TECHNOLOGY_LIMN =
+    6u;
 
   // pointer types
   using RawPtr =
-      sensor_msgs::msg::BatteryState_<ContainerAllocator> *;
+    sensor_msgs::msg::BatteryState_<ContainerAllocator> *;
   using ConstRawPtr =
-      const sensor_msgs::msg::BatteryState_<ContainerAllocator> *;
+    const sensor_msgs::msg::BatteryState_<ContainerAllocator> *;
   using SharedPtr =
-      std::shared_ptr<sensor_msgs::msg::BatteryState_<ContainerAllocator>>;
+    std::shared_ptr<sensor_msgs::msg::BatteryState_<ContainerAllocator>>;
   using ConstSharedPtr =
-      std::shared_ptr<sensor_msgs::msg::BatteryState_<ContainerAllocator> const>;
+    std::shared_ptr<sensor_msgs::msg::BatteryState_<ContainerAllocator> const>;
 
   template<typename Deleter = std::default_delete<
       sensor_msgs::msg::BatteryState_<ContainerAllocator>>>
   using UniquePtrWithDeleter =
-      std::unique_ptr<sensor_msgs::msg::BatteryState_<ContainerAllocator>, Deleter>;
+    std::unique_ptr<sensor_msgs::msg::BatteryState_<ContainerAllocator>, Deleter>;
 
   using UniquePtr = UniquePtrWithDeleter<>;
 
   template<typename Deleter = std::default_delete<
       sensor_msgs::msg::BatteryState_<ContainerAllocator>>>
   using ConstUniquePtrWithDeleter =
-      std::unique_ptr<sensor_msgs::msg::BatteryState_<ContainerAllocator> const, Deleter>;
+    std::unique_ptr<sensor_msgs::msg::BatteryState_<ContainerAllocator> const, Deleter>;
   using ConstUniquePtr = ConstUniquePtrWithDeleter<>;
 
   using WeakPtr =
-      std::weak_ptr<sensor_msgs::msg::BatteryState_<ContainerAllocator>>;
+    std::weak_ptr<sensor_msgs::msg::BatteryState_<ContainerAllocator>>;
   using ConstWeakPtr =
-      std::weak_ptr<sensor_msgs::msg::BatteryState_<ContainerAllocator> const>;
+    std::weak_ptr<sensor_msgs::msg::BatteryState_<ContainerAllocator> const>;
 
   // pointer types similar to ROS 1, use SharedPtr / ConstSharedPtr instead
   // NOTE: Can't use 'using' here because GNU C++ can't parse attributes properly
@@ -352,9 +373,51 @@ struct BatteryState_
 
 // alias to use template instance with default allocator
 using BatteryState =
-    sensor_msgs::msg::BatteryState_<std::allocator<void>>;
+  sensor_msgs::msg::BatteryState_<std::allocator<void>>;
 
-// constants requiring out of line definition
+// constant definitions
+template<typename ContainerAllocator>
+constexpr uint8_t BatteryState_<ContainerAllocator>::POWER_SUPPLY_STATUS_UNKNOWN;
+template<typename ContainerAllocator>
+constexpr uint8_t BatteryState_<ContainerAllocator>::POWER_SUPPLY_STATUS_CHARGING;
+template<typename ContainerAllocator>
+constexpr uint8_t BatteryState_<ContainerAllocator>::POWER_SUPPLY_STATUS_DISCHARGING;
+template<typename ContainerAllocator>
+constexpr uint8_t BatteryState_<ContainerAllocator>::POWER_SUPPLY_STATUS_NOT_CHARGING;
+template<typename ContainerAllocator>
+constexpr uint8_t BatteryState_<ContainerAllocator>::POWER_SUPPLY_STATUS_FULL;
+template<typename ContainerAllocator>
+constexpr uint8_t BatteryState_<ContainerAllocator>::POWER_SUPPLY_HEALTH_UNKNOWN;
+template<typename ContainerAllocator>
+constexpr uint8_t BatteryState_<ContainerAllocator>::POWER_SUPPLY_HEALTH_GOOD;
+template<typename ContainerAllocator>
+constexpr uint8_t BatteryState_<ContainerAllocator>::POWER_SUPPLY_HEALTH_OVERHEAT;
+template<typename ContainerAllocator>
+constexpr uint8_t BatteryState_<ContainerAllocator>::POWER_SUPPLY_HEALTH_DEAD;
+template<typename ContainerAllocator>
+constexpr uint8_t BatteryState_<ContainerAllocator>::POWER_SUPPLY_HEALTH_OVERVOLTAGE;
+template<typename ContainerAllocator>
+constexpr uint8_t BatteryState_<ContainerAllocator>::POWER_SUPPLY_HEALTH_UNSPEC_FAILURE;
+template<typename ContainerAllocator>
+constexpr uint8_t BatteryState_<ContainerAllocator>::POWER_SUPPLY_HEALTH_COLD;
+template<typename ContainerAllocator>
+constexpr uint8_t BatteryState_<ContainerAllocator>::POWER_SUPPLY_HEALTH_WATCHDOG_TIMER_EXPIRE;
+template<typename ContainerAllocator>
+constexpr uint8_t BatteryState_<ContainerAllocator>::POWER_SUPPLY_HEALTH_SAFETY_TIMER_EXPIRE;
+template<typename ContainerAllocator>
+constexpr uint8_t BatteryState_<ContainerAllocator>::POWER_SUPPLY_TECHNOLOGY_UNKNOWN;
+template<typename ContainerAllocator>
+constexpr uint8_t BatteryState_<ContainerAllocator>::POWER_SUPPLY_TECHNOLOGY_NIMH;
+template<typename ContainerAllocator>
+constexpr uint8_t BatteryState_<ContainerAllocator>::POWER_SUPPLY_TECHNOLOGY_LION;
+template<typename ContainerAllocator>
+constexpr uint8_t BatteryState_<ContainerAllocator>::POWER_SUPPLY_TECHNOLOGY_LIPO;
+template<typename ContainerAllocator>
+constexpr uint8_t BatteryState_<ContainerAllocator>::POWER_SUPPLY_TECHNOLOGY_LIFE;
+template<typename ContainerAllocator>
+constexpr uint8_t BatteryState_<ContainerAllocator>::POWER_SUPPLY_TECHNOLOGY_NICD;
+template<typename ContainerAllocator>
+constexpr uint8_t BatteryState_<ContainerAllocator>::POWER_SUPPLY_TECHNOLOGY_LIMN;
 
 }  // namespace msg
 

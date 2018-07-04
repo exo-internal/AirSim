@@ -4,7 +4,7 @@
 #ifndef ACTIONLIB_MSGS__MSG__GOAL_STATUS__FUNCTIONS_H_
 #define ACTIONLIB_MSGS__MSG__GOAL_STATUS__FUNCTIONS_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -105,7 +105,7 @@ ROSIDL_GENERATOR_C_PUBLIC_actionlib_msgs
 void
 actionlib_msgs__msg__GoalStatus__Array__destroy(actionlib_msgs__msg__GoalStatus__Array * array);
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

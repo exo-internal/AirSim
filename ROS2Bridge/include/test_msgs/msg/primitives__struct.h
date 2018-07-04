@@ -4,7 +4,7 @@
 #ifndef TEST_MSGS__MSG__PRIMITIVES__STRUCT_H_
 #define TEST_MSGS__MSG__PRIMITIVES__STRUCT_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -46,7 +46,7 @@ typedef struct test_msgs__msg__Primitives__Array
   size_t capacity;
 } test_msgs__msg__Primitives__Array;
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

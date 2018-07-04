@@ -4,7 +4,7 @@
 #ifndef GEOMETRY_MSGS__MSG__ACCEL__STRUCT_H_
 #define GEOMETRY_MSGS__MSG__ACCEL__STRUCT_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -35,7 +35,7 @@ typedef struct geometry_msgs__msg__Accel__Array
   size_t capacity;
 } geometry_msgs__msg__Accel__Array;
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

@@ -4,7 +4,7 @@
 #ifndef RCL_INTERFACES__SRV__DESCRIBE_PARAMETERS__RESPONSE__STRUCT_H_
 #define RCL_INTERFACES__SRV__DESCRIBE_PARAMETERS__RESPONSE__STRUCT_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -33,7 +33,7 @@ typedef struct rcl_interfaces__srv__DescribeParameters_Response__Array
   size_t capacity;
 } rcl_interfaces__srv__DescribeParameters_Response__Array;
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

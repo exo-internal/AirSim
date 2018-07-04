@@ -52,7 +52,7 @@ struct DescribeParameters_Response_
 
   // field types and members
   using _descriptors_type =
-      std::vector<rcl_interfaces::msg::ParameterDescriptor_<ContainerAllocator>, typename ContainerAllocator::template rebind<rcl_interfaces::msg::ParameterDescriptor_<ContainerAllocator>>::other>;
+    std::vector<rcl_interfaces::msg::ParameterDescriptor_<ContainerAllocator>, typename ContainerAllocator::template rebind<rcl_interfaces::msg::ParameterDescriptor_<ContainerAllocator>>::other>;
   _descriptors_type descriptors;
 
   // setters for named parameter idiom
@@ -63,35 +63,35 @@ struct DescribeParameters_Response_
     return this;
   }
 
-  // constants
+  // constant declarations
 
   // pointer types
   using RawPtr =
-      rcl_interfaces::srv::DescribeParameters_Response_<ContainerAllocator> *;
+    rcl_interfaces::srv::DescribeParameters_Response_<ContainerAllocator> *;
   using ConstRawPtr =
-      const rcl_interfaces::srv::DescribeParameters_Response_<ContainerAllocator> *;
+    const rcl_interfaces::srv::DescribeParameters_Response_<ContainerAllocator> *;
   using SharedPtr =
-      std::shared_ptr<rcl_interfaces::srv::DescribeParameters_Response_<ContainerAllocator>>;
+    std::shared_ptr<rcl_interfaces::srv::DescribeParameters_Response_<ContainerAllocator>>;
   using ConstSharedPtr =
-      std::shared_ptr<rcl_interfaces::srv::DescribeParameters_Response_<ContainerAllocator> const>;
+    std::shared_ptr<rcl_interfaces::srv::DescribeParameters_Response_<ContainerAllocator> const>;
 
   template<typename Deleter = std::default_delete<
       rcl_interfaces::srv::DescribeParameters_Response_<ContainerAllocator>>>
   using UniquePtrWithDeleter =
-      std::unique_ptr<rcl_interfaces::srv::DescribeParameters_Response_<ContainerAllocator>, Deleter>;
+    std::unique_ptr<rcl_interfaces::srv::DescribeParameters_Response_<ContainerAllocator>, Deleter>;
 
   using UniquePtr = UniquePtrWithDeleter<>;
 
   template<typename Deleter = std::default_delete<
       rcl_interfaces::srv::DescribeParameters_Response_<ContainerAllocator>>>
   using ConstUniquePtrWithDeleter =
-      std::unique_ptr<rcl_interfaces::srv::DescribeParameters_Response_<ContainerAllocator> const, Deleter>;
+    std::unique_ptr<rcl_interfaces::srv::DescribeParameters_Response_<ContainerAllocator> const, Deleter>;
   using ConstUniquePtr = ConstUniquePtrWithDeleter<>;
 
   using WeakPtr =
-      std::weak_ptr<rcl_interfaces::srv::DescribeParameters_Response_<ContainerAllocator>>;
+    std::weak_ptr<rcl_interfaces::srv::DescribeParameters_Response_<ContainerAllocator>>;
   using ConstWeakPtr =
-      std::weak_ptr<rcl_interfaces::srv::DescribeParameters_Response_<ContainerAllocator> const>;
+    std::weak_ptr<rcl_interfaces::srv::DescribeParameters_Response_<ContainerAllocator> const>;
 
   // pointer types similar to ROS 1, use SharedPtr / ConstSharedPtr instead
   // NOTE: Can't use 'using' here because GNU C++ can't parse attributes properly
@@ -118,9 +118,9 @@ struct DescribeParameters_Response_
 
 // alias to use template instance with default allocator
 using DescribeParameters_Response =
-    rcl_interfaces::srv::DescribeParameters_Response_<std::allocator<void>>;
+  rcl_interfaces::srv::DescribeParameters_Response_<std::allocator<void>>;
 
-// constants requiring out of line definition
+// constant definitions
 
 }  // namespace srv
 

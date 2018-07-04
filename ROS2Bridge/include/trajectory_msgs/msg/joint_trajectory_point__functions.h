@@ -4,7 +4,7 @@
 #ifndef TRAJECTORY_MSGS__MSG__JOINT_TRAJECTORY_POINT__FUNCTIONS_H_
 #define TRAJECTORY_MSGS__MSG__JOINT_TRAJECTORY_POINT__FUNCTIONS_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -105,7 +105,7 @@ ROSIDL_GENERATOR_C_PUBLIC_trajectory_msgs
 void
 trajectory_msgs__msg__JointTrajectoryPoint__Array__destroy(trajectory_msgs__msg__JointTrajectoryPoint__Array * array);
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

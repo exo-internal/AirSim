@@ -65,13 +65,13 @@ struct TransformStamped_
 
   // field types and members
   using _header_type =
-      std_msgs::msg::Header_<ContainerAllocator>;
+    std_msgs::msg::Header_<ContainerAllocator>;
   _header_type header;
   using _child_frame_id_type =
-      std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>;
+    std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>;
   _child_frame_id_type child_frame_id;
   using _transform_type =
-      geometry_msgs::msg::Transform_<ContainerAllocator>;
+    geometry_msgs::msg::Transform_<ContainerAllocator>;
   _transform_type transform;
 
   // setters for named parameter idiom
@@ -94,35 +94,35 @@ struct TransformStamped_
     return this;
   }
 
-  // constants
+  // constant declarations
 
   // pointer types
   using RawPtr =
-      geometry_msgs::msg::TransformStamped_<ContainerAllocator> *;
+    geometry_msgs::msg::TransformStamped_<ContainerAllocator> *;
   using ConstRawPtr =
-      const geometry_msgs::msg::TransformStamped_<ContainerAllocator> *;
+    const geometry_msgs::msg::TransformStamped_<ContainerAllocator> *;
   using SharedPtr =
-      std::shared_ptr<geometry_msgs::msg::TransformStamped_<ContainerAllocator>>;
+    std::shared_ptr<geometry_msgs::msg::TransformStamped_<ContainerAllocator>>;
   using ConstSharedPtr =
-      std::shared_ptr<geometry_msgs::msg::TransformStamped_<ContainerAllocator> const>;
+    std::shared_ptr<geometry_msgs::msg::TransformStamped_<ContainerAllocator> const>;
 
   template<typename Deleter = std::default_delete<
       geometry_msgs::msg::TransformStamped_<ContainerAllocator>>>
   using UniquePtrWithDeleter =
-      std::unique_ptr<geometry_msgs::msg::TransformStamped_<ContainerAllocator>, Deleter>;
+    std::unique_ptr<geometry_msgs::msg::TransformStamped_<ContainerAllocator>, Deleter>;
 
   using UniquePtr = UniquePtrWithDeleter<>;
 
   template<typename Deleter = std::default_delete<
       geometry_msgs::msg::TransformStamped_<ContainerAllocator>>>
   using ConstUniquePtrWithDeleter =
-      std::unique_ptr<geometry_msgs::msg::TransformStamped_<ContainerAllocator> const, Deleter>;
+    std::unique_ptr<geometry_msgs::msg::TransformStamped_<ContainerAllocator> const, Deleter>;
   using ConstUniquePtr = ConstUniquePtrWithDeleter<>;
 
   using WeakPtr =
-      std::weak_ptr<geometry_msgs::msg::TransformStamped_<ContainerAllocator>>;
+    std::weak_ptr<geometry_msgs::msg::TransformStamped_<ContainerAllocator>>;
   using ConstWeakPtr =
-      std::weak_ptr<geometry_msgs::msg::TransformStamped_<ContainerAllocator> const>;
+    std::weak_ptr<geometry_msgs::msg::TransformStamped_<ContainerAllocator> const>;
 
   // pointer types similar to ROS 1, use SharedPtr / ConstSharedPtr instead
   // NOTE: Can't use 'using' here because GNU C++ can't parse attributes properly
@@ -155,9 +155,9 @@ struct TransformStamped_
 
 // alias to use template instance with default allocator
 using TransformStamped =
-    geometry_msgs::msg::TransformStamped_<std::allocator<void>>;
+  geometry_msgs::msg::TransformStamped_<std::allocator<void>>;
 
-// constants requiring out of line definition
+// constant definitions
 
 }  // namespace msg
 

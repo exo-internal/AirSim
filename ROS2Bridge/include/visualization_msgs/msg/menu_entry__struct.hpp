@@ -84,19 +84,19 @@ struct MenuEntry_
 
   // field types and members
   using _id_type =
-      uint32_t;
+    uint32_t;
   _id_type id;
   using _parent_id_type =
-      uint32_t;
+    uint32_t;
   _parent_id_type parent_id;
   using _title_type =
-      std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>;
+    std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>;
   _title_type title;
   using _command_type =
-      std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>;
+    std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>;
   _command_type command;
   using _command_type_type =
-      uint8_t;
+    uint8_t;
   _command_type_type command_type;
 
   // setters for named parameter idiom
@@ -131,38 +131,41 @@ struct MenuEntry_
     return this;
   }
 
-  // constants
-  enum { FEEDBACK = 0u };
-  enum { ROSRUN = 1u };
-  enum { ROSLAUNCH = 2u };
+  // constant declarations
+  static constexpr uint8_t FEEDBACK =
+    0u;
+  static constexpr uint8_t ROSRUN =
+    1u;
+  static constexpr uint8_t ROSLAUNCH =
+    2u;
 
   // pointer types
   using RawPtr =
-      visualization_msgs::msg::MenuEntry_<ContainerAllocator> *;
+    visualization_msgs::msg::MenuEntry_<ContainerAllocator> *;
   using ConstRawPtr =
-      const visualization_msgs::msg::MenuEntry_<ContainerAllocator> *;
+    const visualization_msgs::msg::MenuEntry_<ContainerAllocator> *;
   using SharedPtr =
-      std::shared_ptr<visualization_msgs::msg::MenuEntry_<ContainerAllocator>>;
+    std::shared_ptr<visualization_msgs::msg::MenuEntry_<ContainerAllocator>>;
   using ConstSharedPtr =
-      std::shared_ptr<visualization_msgs::msg::MenuEntry_<ContainerAllocator> const>;
+    std::shared_ptr<visualization_msgs::msg::MenuEntry_<ContainerAllocator> const>;
 
   template<typename Deleter = std::default_delete<
       visualization_msgs::msg::MenuEntry_<ContainerAllocator>>>
   using UniquePtrWithDeleter =
-      std::unique_ptr<visualization_msgs::msg::MenuEntry_<ContainerAllocator>, Deleter>;
+    std::unique_ptr<visualization_msgs::msg::MenuEntry_<ContainerAllocator>, Deleter>;
 
   using UniquePtr = UniquePtrWithDeleter<>;
 
   template<typename Deleter = std::default_delete<
       visualization_msgs::msg::MenuEntry_<ContainerAllocator>>>
   using ConstUniquePtrWithDeleter =
-      std::unique_ptr<visualization_msgs::msg::MenuEntry_<ContainerAllocator> const, Deleter>;
+    std::unique_ptr<visualization_msgs::msg::MenuEntry_<ContainerAllocator> const, Deleter>;
   using ConstUniquePtr = ConstUniquePtrWithDeleter<>;
 
   using WeakPtr =
-      std::weak_ptr<visualization_msgs::msg::MenuEntry_<ContainerAllocator>>;
+    std::weak_ptr<visualization_msgs::msg::MenuEntry_<ContainerAllocator>>;
   using ConstWeakPtr =
-      std::weak_ptr<visualization_msgs::msg::MenuEntry_<ContainerAllocator> const>;
+    std::weak_ptr<visualization_msgs::msg::MenuEntry_<ContainerAllocator> const>;
 
   // pointer types similar to ROS 1, use SharedPtr / ConstSharedPtr instead
   // NOTE: Can't use 'using' here because GNU C++ can't parse attributes properly
@@ -201,9 +204,15 @@ struct MenuEntry_
 
 // alias to use template instance with default allocator
 using MenuEntry =
-    visualization_msgs::msg::MenuEntry_<std::allocator<void>>;
+  visualization_msgs::msg::MenuEntry_<std::allocator<void>>;
 
-// constants requiring out of line definition
+// constant definitions
+template<typename ContainerAllocator>
+constexpr uint8_t MenuEntry_<ContainerAllocator>::FEEDBACK;
+template<typename ContainerAllocator>
+constexpr uint8_t MenuEntry_<ContainerAllocator>::ROSRUN;
+template<typename ContainerAllocator>
+constexpr uint8_t MenuEntry_<ContainerAllocator>::ROSLAUNCH;
 
 }  // namespace msg
 

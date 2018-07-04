@@ -59,49 +59,49 @@ struct DynamicArrayPrimitives_
 
   // field types and members
   using _bool_values_type =
-      std::vector<bool, typename ContainerAllocator::template rebind<bool>::other>;
+    std::vector<bool, typename ContainerAllocator::template rebind<bool>::other>;
   _bool_values_type bool_values;
   using _byte_values_type =
-      std::vector<uint8_t, typename ContainerAllocator::template rebind<uint8_t>::other>;
+    std::vector<uint8_t, typename ContainerAllocator::template rebind<uint8_t>::other>;
   _byte_values_type byte_values;
   using _char_values_type =
-      std::vector<char, typename ContainerAllocator::template rebind<char>::other>;
+    std::vector<char, typename ContainerAllocator::template rebind<char>::other>;
   _char_values_type char_values;
   using _float32_values_type =
-      std::vector<float, typename ContainerAllocator::template rebind<float>::other>;
+    std::vector<float, typename ContainerAllocator::template rebind<float>::other>;
   _float32_values_type float32_values;
   using _float64_values_type =
-      std::vector<double, typename ContainerAllocator::template rebind<double>::other>;
+    std::vector<double, typename ContainerAllocator::template rebind<double>::other>;
   _float64_values_type float64_values;
   using _int8_values_type =
-      std::vector<int8_t, typename ContainerAllocator::template rebind<int8_t>::other>;
+    std::vector<int8_t, typename ContainerAllocator::template rebind<int8_t>::other>;
   _int8_values_type int8_values;
   using _uint8_values_type =
-      std::vector<uint8_t, typename ContainerAllocator::template rebind<uint8_t>::other>;
+    std::vector<uint8_t, typename ContainerAllocator::template rebind<uint8_t>::other>;
   _uint8_values_type uint8_values;
   using _int16_values_type =
-      std::vector<int16_t, typename ContainerAllocator::template rebind<int16_t>::other>;
+    std::vector<int16_t, typename ContainerAllocator::template rebind<int16_t>::other>;
   _int16_values_type int16_values;
   using _uint16_values_type =
-      std::vector<uint16_t, typename ContainerAllocator::template rebind<uint16_t>::other>;
+    std::vector<uint16_t, typename ContainerAllocator::template rebind<uint16_t>::other>;
   _uint16_values_type uint16_values;
   using _int32_values_type =
-      std::vector<int32_t, typename ContainerAllocator::template rebind<int32_t>::other>;
+    std::vector<int32_t, typename ContainerAllocator::template rebind<int32_t>::other>;
   _int32_values_type int32_values;
   using _uint32_values_type =
-      std::vector<uint32_t, typename ContainerAllocator::template rebind<uint32_t>::other>;
+    std::vector<uint32_t, typename ContainerAllocator::template rebind<uint32_t>::other>;
   _uint32_values_type uint32_values;
   using _int64_values_type =
-      std::vector<int64_t, typename ContainerAllocator::template rebind<int64_t>::other>;
+    std::vector<int64_t, typename ContainerAllocator::template rebind<int64_t>::other>;
   _int64_values_type int64_values;
   using _uint64_values_type =
-      std::vector<uint64_t, typename ContainerAllocator::template rebind<uint64_t>::other>;
+    std::vector<uint64_t, typename ContainerAllocator::template rebind<uint64_t>::other>;
   _uint64_values_type uint64_values;
   using _string_values_type =
-      std::vector<std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>, typename ContainerAllocator::template rebind<std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>>::other>;
+    std::vector<std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>, typename ContainerAllocator::template rebind<std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>>::other>;
   _string_values_type string_values;
   using _check_type =
-      int32_t;
+    int32_t;
   _check_type check;
 
   // setters for named parameter idiom
@@ -196,35 +196,35 @@ struct DynamicArrayPrimitives_
     return this;
   }
 
-  // constants
+  // constant declarations
 
   // pointer types
   using RawPtr =
-      test_msgs::msg::DynamicArrayPrimitives_<ContainerAllocator> *;
+    test_msgs::msg::DynamicArrayPrimitives_<ContainerAllocator> *;
   using ConstRawPtr =
-      const test_msgs::msg::DynamicArrayPrimitives_<ContainerAllocator> *;
+    const test_msgs::msg::DynamicArrayPrimitives_<ContainerAllocator> *;
   using SharedPtr =
-      std::shared_ptr<test_msgs::msg::DynamicArrayPrimitives_<ContainerAllocator>>;
+    std::shared_ptr<test_msgs::msg::DynamicArrayPrimitives_<ContainerAllocator>>;
   using ConstSharedPtr =
-      std::shared_ptr<test_msgs::msg::DynamicArrayPrimitives_<ContainerAllocator> const>;
+    std::shared_ptr<test_msgs::msg::DynamicArrayPrimitives_<ContainerAllocator> const>;
 
   template<typename Deleter = std::default_delete<
       test_msgs::msg::DynamicArrayPrimitives_<ContainerAllocator>>>
   using UniquePtrWithDeleter =
-      std::unique_ptr<test_msgs::msg::DynamicArrayPrimitives_<ContainerAllocator>, Deleter>;
+    std::unique_ptr<test_msgs::msg::DynamicArrayPrimitives_<ContainerAllocator>, Deleter>;
 
   using UniquePtr = UniquePtrWithDeleter<>;
 
   template<typename Deleter = std::default_delete<
       test_msgs::msg::DynamicArrayPrimitives_<ContainerAllocator>>>
   using ConstUniquePtrWithDeleter =
-      std::unique_ptr<test_msgs::msg::DynamicArrayPrimitives_<ContainerAllocator> const, Deleter>;
+    std::unique_ptr<test_msgs::msg::DynamicArrayPrimitives_<ContainerAllocator> const, Deleter>;
   using ConstUniquePtr = ConstUniquePtrWithDeleter<>;
 
   using WeakPtr =
-      std::weak_ptr<test_msgs::msg::DynamicArrayPrimitives_<ContainerAllocator>>;
+    std::weak_ptr<test_msgs::msg::DynamicArrayPrimitives_<ContainerAllocator>>;
   using ConstWeakPtr =
-      std::weak_ptr<test_msgs::msg::DynamicArrayPrimitives_<ContainerAllocator> const>;
+    std::weak_ptr<test_msgs::msg::DynamicArrayPrimitives_<ContainerAllocator> const>;
 
   // pointer types similar to ROS 1, use SharedPtr / ConstSharedPtr instead
   // NOTE: Can't use 'using' here because GNU C++ can't parse attributes properly
@@ -293,9 +293,9 @@ struct DynamicArrayPrimitives_
 
 // alias to use template instance with default allocator
 using DynamicArrayPrimitives =
-    test_msgs::msg::DynamicArrayPrimitives_<std::allocator<void>>;
+  test_msgs::msg::DynamicArrayPrimitives_<std::allocator<void>>;
 
-// constants requiring out of line definition
+// constant definitions
 
 }  // namespace msg
 

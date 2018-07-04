@@ -4,7 +4,7 @@
 #ifndef COMPOSITION__SRV__LOAD_NODE__RESPONSE__FUNCTIONS_H_
 #define COMPOSITION__SRV__LOAD_NODE__RESPONSE__FUNCTIONS_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -105,7 +105,7 @@ ROSIDL_GENERATOR_C_PUBLIC_composition
 void
 composition__srv__LoadNode_Response__Array__destroy(composition__srv__LoadNode_Response__Array * array);
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

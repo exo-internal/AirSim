@@ -53,35 +53,35 @@ struct SelfTest_Request_
 
   // setters for named parameter idiom
 
-  // constants
+  // constant declarations
 
   // pointer types
   using RawPtr =
-      diagnostic_msgs::srv::SelfTest_Request_<ContainerAllocator> *;
+    diagnostic_msgs::srv::SelfTest_Request_<ContainerAllocator> *;
   using ConstRawPtr =
-      const diagnostic_msgs::srv::SelfTest_Request_<ContainerAllocator> *;
+    const diagnostic_msgs::srv::SelfTest_Request_<ContainerAllocator> *;
   using SharedPtr =
-      std::shared_ptr<diagnostic_msgs::srv::SelfTest_Request_<ContainerAllocator>>;
+    std::shared_ptr<diagnostic_msgs::srv::SelfTest_Request_<ContainerAllocator>>;
   using ConstSharedPtr =
-      std::shared_ptr<diagnostic_msgs::srv::SelfTest_Request_<ContainerAllocator> const>;
+    std::shared_ptr<diagnostic_msgs::srv::SelfTest_Request_<ContainerAllocator> const>;
 
   template<typename Deleter = std::default_delete<
       diagnostic_msgs::srv::SelfTest_Request_<ContainerAllocator>>>
   using UniquePtrWithDeleter =
-      std::unique_ptr<diagnostic_msgs::srv::SelfTest_Request_<ContainerAllocator>, Deleter>;
+    std::unique_ptr<diagnostic_msgs::srv::SelfTest_Request_<ContainerAllocator>, Deleter>;
 
   using UniquePtr = UniquePtrWithDeleter<>;
 
   template<typename Deleter = std::default_delete<
       diagnostic_msgs::srv::SelfTest_Request_<ContainerAllocator>>>
   using ConstUniquePtrWithDeleter =
-      std::unique_ptr<diagnostic_msgs::srv::SelfTest_Request_<ContainerAllocator> const, Deleter>;
+    std::unique_ptr<diagnostic_msgs::srv::SelfTest_Request_<ContainerAllocator> const, Deleter>;
   using ConstUniquePtr = ConstUniquePtrWithDeleter<>;
 
   using WeakPtr =
-      std::weak_ptr<diagnostic_msgs::srv::SelfTest_Request_<ContainerAllocator>>;
+    std::weak_ptr<diagnostic_msgs::srv::SelfTest_Request_<ContainerAllocator>>;
   using ConstWeakPtr =
-      std::weak_ptr<diagnostic_msgs::srv::SelfTest_Request_<ContainerAllocator> const>;
+    std::weak_ptr<diagnostic_msgs::srv::SelfTest_Request_<ContainerAllocator> const>;
 
   // pointer types similar to ROS 1, use SharedPtr / ConstSharedPtr instead
   // NOTE: Can't use 'using' here because GNU C++ can't parse attributes properly
@@ -106,9 +106,9 @@ struct SelfTest_Request_
 
 // alias to use template instance with default allocator
 using SelfTest_Request =
-    diagnostic_msgs::srv::SelfTest_Request_<std::allocator<void>>;
+  diagnostic_msgs::srv::SelfTest_Request_<std::allocator<void>>;
 
-// constants requiring out of line definition
+// constant definitions
 
 }  // namespace srv
 

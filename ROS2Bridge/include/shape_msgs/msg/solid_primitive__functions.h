@@ -4,7 +4,7 @@
 #ifndef SHAPE_MSGS__MSG__SOLID_PRIMITIVE__FUNCTIONS_H_
 #define SHAPE_MSGS__MSG__SOLID_PRIMITIVE__FUNCTIONS_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -105,7 +105,7 @@ ROSIDL_GENERATOR_C_PUBLIC_shape_msgs
 void
 shape_msgs__msg__SolidPrimitive__Array__destroy(shape_msgs__msg__SolidPrimitive__Array * array);
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

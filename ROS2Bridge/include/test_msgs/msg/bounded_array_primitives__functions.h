@@ -4,7 +4,7 @@
 #ifndef TEST_MSGS__MSG__BOUNDED_ARRAY_PRIMITIVES__FUNCTIONS_H_
 #define TEST_MSGS__MSG__BOUNDED_ARRAY_PRIMITIVES__FUNCTIONS_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -105,7 +105,7 @@ ROSIDL_GENERATOR_C_PUBLIC_test_msgs
 void
 test_msgs__msg__BoundedArrayPrimitives__Array__destroy(test_msgs__msg__BoundedArrayPrimitives__Array * array);
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

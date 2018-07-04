@@ -15,7 +15,7 @@
 #ifndef RMW__VALIDATE_NAMESPACE_H_
 #define RMW__VALIDATE_NAMESPACE_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -95,13 +95,29 @@ rmw_validate_namespace(
   int * validation_result,
   size_t * invalid_index);
 
+/// Deterimine if a given namespace is valid.
+/**
+ * This is an overload with an extra parameter for the length of namespace_.
+ * \param[in] namespace_length The number of characters in namespace_.
+ *
+ * \sa rmw_validate_namespace(const char *, int *, size_t *)
+ */
+RMW_PUBLIC
+RMW_WARN_UNUSED
+rmw_ret_t
+rmw_validate_namespace_with_size(
+  const char * namespace_,
+  size_t namespace_length,
+  int * validation_result,
+  size_t * invalid_index);
+
 /// Return a validation result description, or NULL if unknown or RMW_NAMESPACE_VALID.
 RMW_PUBLIC
 RMW_WARN_UNUSED
 const char *
 rmw_namespace_validation_result_string(int validation_result);
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

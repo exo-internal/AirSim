@@ -4,7 +4,7 @@
 #ifndef SENSOR_MSGS__MSG__MAGNETIC_FIELD__STRUCT_H_
 #define SENSOR_MSGS__MSG__MAGNETIC_FIELD__STRUCT_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -37,7 +37,7 @@ typedef struct sensor_msgs__msg__MagneticField__Array
   size_t capacity;
 } sensor_msgs__msg__MagneticField__Array;
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

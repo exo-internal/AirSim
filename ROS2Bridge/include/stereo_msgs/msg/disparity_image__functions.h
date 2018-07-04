@@ -4,7 +4,7 @@
 #ifndef STEREO_MSGS__MSG__DISPARITY_IMAGE__FUNCTIONS_H_
 #define STEREO_MSGS__MSG__DISPARITY_IMAGE__FUNCTIONS_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -105,7 +105,7 @@ ROSIDL_GENERATOR_C_PUBLIC_stereo_msgs
 void
 stereo_msgs__msg__DisparityImage__Array__destroy(stereo_msgs__msg__DisparityImage__Array * array);
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

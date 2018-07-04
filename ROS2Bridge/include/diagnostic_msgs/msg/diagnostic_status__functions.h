@@ -4,7 +4,7 @@
 #ifndef DIAGNOSTIC_MSGS__MSG__DIAGNOSTIC_STATUS__FUNCTIONS_H_
 #define DIAGNOSTIC_MSGS__MSG__DIAGNOSTIC_STATUS__FUNCTIONS_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -105,7 +105,7 @@ ROSIDL_GENERATOR_C_PUBLIC_diagnostic_msgs
 void
 diagnostic_msgs__msg__DiagnosticStatus__Array__destroy(diagnostic_msgs__msg__DiagnosticStatus__Array * array);
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

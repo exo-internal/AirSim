@@ -4,7 +4,7 @@
 #ifndef DIAGNOSTIC_MSGS__MSG__DIAGNOSTIC_STATUS__TYPE_SUPPORT_H_
 #define DIAGNOSTIC_MSGS__MSG__DIAGNOSTIC_STATUS__TYPE_SUPPORT_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -19,7 +19,7 @@ ROSIDL_GENERATOR_C_PUBLIC_diagnostic_msgs
 const rosidl_message_type_support_t *
   ROSIDL_TYPESUPPORT_INTERFACE__MESSAGE_SYMBOL_NAME(rosidl_typesupport_c, diagnostic_msgs, msg, DiagnosticStatus)();
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 
