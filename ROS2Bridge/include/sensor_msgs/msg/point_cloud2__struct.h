@@ -4,7 +4,7 @@
 #ifndef SENSOR_MSGS__MSG__POINT_CLOUD2__STRUCT_H_
 #define SENSOR_MSGS__MSG__POINT_CLOUD2__STRUCT_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -45,7 +45,7 @@ typedef struct sensor_msgs__msg__PointCloud2__Array
   size_t capacity;
 } sensor_msgs__msg__PointCloud2__Array;
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

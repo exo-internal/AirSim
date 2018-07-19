@@ -52,7 +52,7 @@ struct DynamicArrayPrimitivesNested_
 
   // field types and members
   using _dynamic_array_primitive_values_type =
-      std::vector<test_msgs::msg::DynamicArrayPrimitives_<ContainerAllocator>, typename ContainerAllocator::template rebind<test_msgs::msg::DynamicArrayPrimitives_<ContainerAllocator>>::other>;
+    std::vector<test_msgs::msg::DynamicArrayPrimitives_<ContainerAllocator>, typename ContainerAllocator::template rebind<test_msgs::msg::DynamicArrayPrimitives_<ContainerAllocator>>::other>;
   _dynamic_array_primitive_values_type dynamic_array_primitive_values;
 
   // setters for named parameter idiom
@@ -63,35 +63,35 @@ struct DynamicArrayPrimitivesNested_
     return this;
   }
 
-  // constants
+  // constant declarations
 
   // pointer types
   using RawPtr =
-      test_msgs::msg::DynamicArrayPrimitivesNested_<ContainerAllocator> *;
+    test_msgs::msg::DynamicArrayPrimitivesNested_<ContainerAllocator> *;
   using ConstRawPtr =
-      const test_msgs::msg::DynamicArrayPrimitivesNested_<ContainerAllocator> *;
+    const test_msgs::msg::DynamicArrayPrimitivesNested_<ContainerAllocator> *;
   using SharedPtr =
-      std::shared_ptr<test_msgs::msg::DynamicArrayPrimitivesNested_<ContainerAllocator>>;
+    std::shared_ptr<test_msgs::msg::DynamicArrayPrimitivesNested_<ContainerAllocator>>;
   using ConstSharedPtr =
-      std::shared_ptr<test_msgs::msg::DynamicArrayPrimitivesNested_<ContainerAllocator> const>;
+    std::shared_ptr<test_msgs::msg::DynamicArrayPrimitivesNested_<ContainerAllocator> const>;
 
   template<typename Deleter = std::default_delete<
       test_msgs::msg::DynamicArrayPrimitivesNested_<ContainerAllocator>>>
   using UniquePtrWithDeleter =
-      std::unique_ptr<test_msgs::msg::DynamicArrayPrimitivesNested_<ContainerAllocator>, Deleter>;
+    std::unique_ptr<test_msgs::msg::DynamicArrayPrimitivesNested_<ContainerAllocator>, Deleter>;
 
   using UniquePtr = UniquePtrWithDeleter<>;
 
   template<typename Deleter = std::default_delete<
       test_msgs::msg::DynamicArrayPrimitivesNested_<ContainerAllocator>>>
   using ConstUniquePtrWithDeleter =
-      std::unique_ptr<test_msgs::msg::DynamicArrayPrimitivesNested_<ContainerAllocator> const, Deleter>;
+    std::unique_ptr<test_msgs::msg::DynamicArrayPrimitivesNested_<ContainerAllocator> const, Deleter>;
   using ConstUniquePtr = ConstUniquePtrWithDeleter<>;
 
   using WeakPtr =
-      std::weak_ptr<test_msgs::msg::DynamicArrayPrimitivesNested_<ContainerAllocator>>;
+    std::weak_ptr<test_msgs::msg::DynamicArrayPrimitivesNested_<ContainerAllocator>>;
   using ConstWeakPtr =
-      std::weak_ptr<test_msgs::msg::DynamicArrayPrimitivesNested_<ContainerAllocator> const>;
+    std::weak_ptr<test_msgs::msg::DynamicArrayPrimitivesNested_<ContainerAllocator> const>;
 
   // pointer types similar to ROS 1, use SharedPtr / ConstSharedPtr instead
   // NOTE: Can't use 'using' here because GNU C++ can't parse attributes properly
@@ -118,9 +118,9 @@ struct DynamicArrayPrimitivesNested_
 
 // alias to use template instance with default allocator
 using DynamicArrayPrimitivesNested =
-    test_msgs::msg::DynamicArrayPrimitivesNested_<std::allocator<void>>;
+  test_msgs::msg::DynamicArrayPrimitivesNested_<std::allocator<void>>;
 
-// constants requiring out of line definition
+// constant definitions
 
 }  // namespace msg
 

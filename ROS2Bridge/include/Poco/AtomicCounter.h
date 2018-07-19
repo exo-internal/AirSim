@@ -1,8 +1,6 @@
 //
 // AtomicCounter.h
 //
-// $Id: //poco/1.4/Foundation/include/Poco/AtomicCounter.h#4 $
-//
 // Library: Foundation
 // Package: Core
 // Module:  AtomicCounter
@@ -24,9 +22,13 @@
 #if POCO_OS == POCO_OS_WINDOWS_NT
 	#include "Poco/UnWindows.h"
 #elif POCO_OS == POCO_OS_MAC_OS_X
-	#if __MAC_OS_X_VERSION_MAX_ALLOWED >= __MAC_10_12 || __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0 || __TV_OS_VERSION_MAX_ALLOWED >= __TVOS_10_0 || __WATCH_OS_VERSION_MAX_ALLOWED >= __WATCHOS_3_0
-		#ifndef POCO_HAVE_STD_ATOMICS
-			#define POCO_HAVE_STD_ATOMICS
+	#if __MAC_OS_X_VERSION_MAX_ALLOWED >= 101200 || __IPHONE_OS_VERSION_MAX_ALLOWED >= 100000 || __TV_OS_VERSION_MAX_ALLOWED >= 100000 || __WATCH_OS_VERSION_MAX_ALLOWED >= 30000
+		#if __cplusplus >= 201103L
+			#ifndef POCO_HAVE_STD_ATOMICS
+				#define POCO_HAVE_STD_ATOMICS
+			#endif
+		#else
+			#include <libkern/OSAtomic.h>
 		#endif
 	#else
 		#include <libkern/OSAtomic.h>

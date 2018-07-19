@@ -53,41 +53,55 @@ struct ParameterType_
 
   // setters for named parameter idiom
 
-  // constants
-  enum { PARAMETER_NOT_SET = 0u };
-  enum { PARAMETER_BOOL = 1u };
-  enum { PARAMETER_INTEGER = 2u };
-  enum { PARAMETER_DOUBLE = 3u };
-  enum { PARAMETER_STRING = 4u };
-  enum { PARAMETER_BYTES = 5u };
+  // constant declarations
+  static constexpr uint8_t PARAMETER_NOT_SET =
+    0u;
+  static constexpr uint8_t PARAMETER_BOOL =
+    1u;
+  static constexpr uint8_t PARAMETER_INTEGER =
+    2u;
+  static constexpr uint8_t PARAMETER_DOUBLE =
+    3u;
+  static constexpr uint8_t PARAMETER_STRING =
+    4u;
+  static constexpr uint8_t PARAMETER_BYTE_ARRAY =
+    5u;
+  static constexpr uint8_t PARAMETER_BOOL_ARRAY =
+    6u;
+  static constexpr uint8_t PARAMETER_INTEGER_ARRAY =
+    7u;
+  static constexpr uint8_t PARAMETER_DOUBLE_ARRAY =
+    8u;
+  static constexpr uint8_t PARAMETER_STRING_ARRAY =
+    9u;
 
   // pointer types
   using RawPtr =
-      rcl_interfaces::msg::ParameterType_<ContainerAllocator> *;
+    rcl_interfaces::msg::ParameterType_<ContainerAllocator> *;
   using ConstRawPtr =
-      const rcl_interfaces::msg::ParameterType_<ContainerAllocator> *;
+    const rcl_interfaces::msg::ParameterType_<ContainerAllocator> *;
   using SharedPtr =
-      std::shared_ptr<rcl_interfaces::msg::ParameterType_<ContainerAllocator>>;
+    std::shared_ptr<rcl_interfaces::msg::ParameterType_<ContainerAllocator>>;
   using ConstSharedPtr =
-      std::shared_ptr<rcl_interfaces::msg::ParameterType_<ContainerAllocator> const>;
+    std::shared_ptr<rcl_interfaces::msg::ParameterType_<ContainerAllocator> const>;
 
   template<typename Deleter = std::default_delete<
       rcl_interfaces::msg::ParameterType_<ContainerAllocator>>>
   using UniquePtrWithDeleter =
-      std::unique_ptr<rcl_interfaces::msg::ParameterType_<ContainerAllocator>, Deleter>;
+    std::unique_ptr<rcl_interfaces::msg::ParameterType_<ContainerAllocator>, Deleter>;
 
   using UniquePtr = UniquePtrWithDeleter<>;
 
   template<typename Deleter = std::default_delete<
       rcl_interfaces::msg::ParameterType_<ContainerAllocator>>>
   using ConstUniquePtrWithDeleter =
-      std::unique_ptr<rcl_interfaces::msg::ParameterType_<ContainerAllocator> const, Deleter>;
+    std::unique_ptr<rcl_interfaces::msg::ParameterType_<ContainerAllocator> const, Deleter>;
   using ConstUniquePtr = ConstUniquePtrWithDeleter<>;
 
   using WeakPtr =
-      std::weak_ptr<rcl_interfaces::msg::ParameterType_<ContainerAllocator>>;
+    std::weak_ptr<rcl_interfaces::msg::ParameterType_<ContainerAllocator>>;
   using ConstWeakPtr =
-      std::weak_ptr<rcl_interfaces::msg::ParameterType_<ContainerAllocator> const>;
+    std::weak_ptr<rcl_interfaces::msg::ParameterType_<ContainerAllocator> const>;
 
   // pointer types similar to ROS 1, use SharedPtr / ConstSharedPtr instead
   // NOTE: Can't use 'using' here because GNU C++ can't parse attributes properly
@@ -112,9 +126,29 @@ struct ParameterType_
 
 // alias to use template instance with default allocator
 using ParameterType =
-    rcl_interfaces::msg::ParameterType_<std::allocator<void>>;
+  rcl_interfaces::msg::ParameterType_<std::allocator<void>>;
 
-// constants requiring out of line definition
+// constant definitions
+template<typename ContainerAllocator>
+constexpr uint8_t ParameterType_<ContainerAllocator>::PARAMETER_NOT_SET;
+template<typename ContainerAllocator>
+constexpr uint8_t ParameterType_<ContainerAllocator>::PARAMETER_BOOL;
+template<typename ContainerAllocator>
+constexpr uint8_t ParameterType_<ContainerAllocator>::PARAMETER_INTEGER;
+template<typename ContainerAllocator>
+constexpr uint8_t ParameterType_<ContainerAllocator>::PARAMETER_DOUBLE;
+template<typename ContainerAllocator>
+constexpr uint8_t ParameterType_<ContainerAllocator>::PARAMETER_STRING;
+template<typename ContainerAllocator>
+constexpr uint8_t ParameterType_<ContainerAllocator>::PARAMETER_BYTE_ARRAY;
+template<typename ContainerAllocator>
+constexpr uint8_t ParameterType_<ContainerAllocator>::PARAMETER_BOOL_ARRAY;
+template<typename ContainerAllocator>
+constexpr uint8_t ParameterType_<ContainerAllocator>::PARAMETER_INTEGER_ARRAY;
+template<typename ContainerAllocator>
+constexpr uint8_t ParameterType_<ContainerAllocator>::PARAMETER_DOUBLE_ARRAY;
+template<typename ContainerAllocator>
+constexpr uint8_t ParameterType_<ContainerAllocator>::PARAMETER_STRING_ARRAY;
 
 }  // namespace msg
 

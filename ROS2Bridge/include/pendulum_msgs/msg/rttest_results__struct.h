@@ -4,7 +4,7 @@
 #ifndef PENDULUM_MSGS__MSG__RTTEST_RESULTS__STRUCT_H_
 #define PENDULUM_MSGS__MSG__RTTEST_RESULTS__STRUCT_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -45,7 +45,7 @@ typedef struct pendulum_msgs__msg__RttestResults__Array
   size_t capacity;
 } pendulum_msgs__msg__RttestResults__Array;
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

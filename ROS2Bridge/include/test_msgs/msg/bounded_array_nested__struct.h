@@ -4,7 +4,7 @@
 #ifndef TEST_MSGS__MSG__BOUNDED_ARRAY_NESTED__STRUCT_H_
 #define TEST_MSGS__MSG__BOUNDED_ARRAY_NESTED__STRUCT_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -40,7 +40,7 @@ typedef struct test_msgs__msg__BoundedArrayNested__Array
   size_t capacity;
 } test_msgs__msg__BoundedArrayNested__Array;
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

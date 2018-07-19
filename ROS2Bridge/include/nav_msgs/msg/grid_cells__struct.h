@@ -4,7 +4,7 @@
 #ifndef NAV_MSGS__MSG__GRID_CELLS__STRUCT_H_
 #define NAV_MSGS__MSG__GRID_CELLS__STRUCT_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -38,7 +38,7 @@ typedef struct nav_msgs__msg__GridCells__Array
   size_t capacity;
 } nav_msgs__msg__GridCells__Array;
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

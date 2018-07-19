@@ -73,28 +73,28 @@ struct Inertia_
 
   // field types and members
   using _m_type =
-      double;
+    double;
   _m_type m;
   using _com_type =
-      geometry_msgs::msg::Vector3_<ContainerAllocator>;
+    geometry_msgs::msg::Vector3_<ContainerAllocator>;
   _com_type com;
   using _ixx_type =
-      double;
+    double;
   _ixx_type ixx;
   using _ixy_type =
-      double;
+    double;
   _ixy_type ixy;
   using _ixz_type =
-      double;
+    double;
   _ixz_type ixz;
   using _iyy_type =
-      double;
+    double;
   _iyy_type iyy;
   using _iyz_type =
-      double;
+    double;
   _iyz_type iyz;
   using _izz_type =
-      double;
+    double;
   _izz_type izz;
 
   // setters for named parameter idiom
@@ -147,35 +147,35 @@ struct Inertia_
     return this;
   }
 
-  // constants
+  // constant declarations
 
   // pointer types
   using RawPtr =
-      geometry_msgs::msg::Inertia_<ContainerAllocator> *;
+    geometry_msgs::msg::Inertia_<ContainerAllocator> *;
   using ConstRawPtr =
-      const geometry_msgs::msg::Inertia_<ContainerAllocator> *;
+    const geometry_msgs::msg::Inertia_<ContainerAllocator> *;
   using SharedPtr =
-      std::shared_ptr<geometry_msgs::msg::Inertia_<ContainerAllocator>>;
+    std::shared_ptr<geometry_msgs::msg::Inertia_<ContainerAllocator>>;
   using ConstSharedPtr =
-      std::shared_ptr<geometry_msgs::msg::Inertia_<ContainerAllocator> const>;
+    std::shared_ptr<geometry_msgs::msg::Inertia_<ContainerAllocator> const>;
 
   template<typename Deleter = std::default_delete<
       geometry_msgs::msg::Inertia_<ContainerAllocator>>>
   using UniquePtrWithDeleter =
-      std::unique_ptr<geometry_msgs::msg::Inertia_<ContainerAllocator>, Deleter>;
+    std::unique_ptr<geometry_msgs::msg::Inertia_<ContainerAllocator>, Deleter>;
 
   using UniquePtr = UniquePtrWithDeleter<>;
 
   template<typename Deleter = std::default_delete<
       geometry_msgs::msg::Inertia_<ContainerAllocator>>>
   using ConstUniquePtrWithDeleter =
-      std::unique_ptr<geometry_msgs::msg::Inertia_<ContainerAllocator> const, Deleter>;
+    std::unique_ptr<geometry_msgs::msg::Inertia_<ContainerAllocator> const, Deleter>;
   using ConstUniquePtr = ConstUniquePtrWithDeleter<>;
 
   using WeakPtr =
-      std::weak_ptr<geometry_msgs::msg::Inertia_<ContainerAllocator>>;
+    std::weak_ptr<geometry_msgs::msg::Inertia_<ContainerAllocator>>;
   using ConstWeakPtr =
-      std::weak_ptr<geometry_msgs::msg::Inertia_<ContainerAllocator> const>;
+    std::weak_ptr<geometry_msgs::msg::Inertia_<ContainerAllocator> const>;
 
   // pointer types similar to ROS 1, use SharedPtr / ConstSharedPtr instead
   // NOTE: Can't use 'using' here because GNU C++ can't parse attributes properly
@@ -223,9 +223,9 @@ struct Inertia_
 
 // alias to use template instance with default allocator
 using Inertia =
-    geometry_msgs::msg::Inertia_<std::allocator<void>>;
+  geometry_msgs::msg::Inertia_<std::allocator<void>>;
 
-// constants requiring out of line definition
+// constant definitions
 
 }  // namespace msg
 

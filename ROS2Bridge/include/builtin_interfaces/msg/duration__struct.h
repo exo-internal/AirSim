@@ -4,7 +4,7 @@
 #ifndef BUILTIN_INTERFACES__MSG__DURATION__STRUCT_H_
 #define BUILTIN_INTERFACES__MSG__DURATION__STRUCT_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -30,7 +30,7 @@ typedef struct builtin_interfaces__msg__Duration__Array
   size_t capacity;
 } builtin_interfaces__msg__Duration__Array;
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

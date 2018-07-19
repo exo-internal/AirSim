@@ -19,7 +19,7 @@
 #include <vector>
 
 // include message dependencies
-#include "rcl_interfaces/msg/parameter.hpp"  // deleted_parameters, changed_parameters, new_parameters
+#include "rcl_interfaces/msg/parameter.hpp"  // deleted_parameters, new_parameters, changed_parameters
 
 #ifndef _WIN32
 # define DEPRECATED_rcl_interfaces_msg_ParameterEvent __attribute__((deprecated))
@@ -52,13 +52,13 @@ struct ParameterEvent_
 
   // field types and members
   using _new_parameters_type =
-      std::vector<rcl_interfaces::msg::Parameter_<ContainerAllocator>, typename ContainerAllocator::template rebind<rcl_interfaces::msg::Parameter_<ContainerAllocator>>::other>;
+    std::vector<rcl_interfaces::msg::Parameter_<ContainerAllocator>, typename ContainerAllocator::template rebind<rcl_interfaces::msg::Parameter_<ContainerAllocator>>::other>;
   _new_parameters_type new_parameters;
   using _changed_parameters_type =
-      std::vector<rcl_interfaces::msg::Parameter_<ContainerAllocator>, typename ContainerAllocator::template rebind<rcl_interfaces::msg::Parameter_<ContainerAllocator>>::other>;
+    std::vector<rcl_interfaces::msg::Parameter_<ContainerAllocator>, typename ContainerAllocator::template rebind<rcl_interfaces::msg::Parameter_<ContainerAllocator>>::other>;
   _changed_parameters_type changed_parameters;
   using _deleted_parameters_type =
-      std::vector<rcl_interfaces::msg::Parameter_<ContainerAllocator>, typename ContainerAllocator::template rebind<rcl_interfaces::msg::Parameter_<ContainerAllocator>>::other>;
+    std::vector<rcl_interfaces::msg::Parameter_<ContainerAllocator>, typename ContainerAllocator::template rebind<rcl_interfaces::msg::Parameter_<ContainerAllocator>>::other>;
   _deleted_parameters_type deleted_parameters;
 
   // setters for named parameter idiom
@@ -81,35 +81,35 @@ struct ParameterEvent_
     return this;
   }
 
-  // constants
+  // constant declarations
 
   // pointer types
   using RawPtr =
-      rcl_interfaces::msg::ParameterEvent_<ContainerAllocator> *;
+    rcl_interfaces::msg::ParameterEvent_<ContainerAllocator> *;
   using ConstRawPtr =
-      const rcl_interfaces::msg::ParameterEvent_<ContainerAllocator> *;
+    const rcl_interfaces::msg::ParameterEvent_<ContainerAllocator> *;
   using SharedPtr =
-      std::shared_ptr<rcl_interfaces::msg::ParameterEvent_<ContainerAllocator>>;
+    std::shared_ptr<rcl_interfaces::msg::ParameterEvent_<ContainerAllocator>>;
   using ConstSharedPtr =
-      std::shared_ptr<rcl_interfaces::msg::ParameterEvent_<ContainerAllocator> const>;
+    std::shared_ptr<rcl_interfaces::msg::ParameterEvent_<ContainerAllocator> const>;
 
   template<typename Deleter = std::default_delete<
       rcl_interfaces::msg::ParameterEvent_<ContainerAllocator>>>
   using UniquePtrWithDeleter =
-      std::unique_ptr<rcl_interfaces::msg::ParameterEvent_<ContainerAllocator>, Deleter>;
+    std::unique_ptr<rcl_interfaces::msg::ParameterEvent_<ContainerAllocator>, Deleter>;
 
   using UniquePtr = UniquePtrWithDeleter<>;
 
   template<typename Deleter = std::default_delete<
       rcl_interfaces::msg::ParameterEvent_<ContainerAllocator>>>
   using ConstUniquePtrWithDeleter =
-      std::unique_ptr<rcl_interfaces::msg::ParameterEvent_<ContainerAllocator> const, Deleter>;
+    std::unique_ptr<rcl_interfaces::msg::ParameterEvent_<ContainerAllocator> const, Deleter>;
   using ConstUniquePtr = ConstUniquePtrWithDeleter<>;
 
   using WeakPtr =
-      std::weak_ptr<rcl_interfaces::msg::ParameterEvent_<ContainerAllocator>>;
+    std::weak_ptr<rcl_interfaces::msg::ParameterEvent_<ContainerAllocator>>;
   using ConstWeakPtr =
-      std::weak_ptr<rcl_interfaces::msg::ParameterEvent_<ContainerAllocator> const>;
+    std::weak_ptr<rcl_interfaces::msg::ParameterEvent_<ContainerAllocator> const>;
 
   // pointer types similar to ROS 1, use SharedPtr / ConstSharedPtr instead
   // NOTE: Can't use 'using' here because GNU C++ can't parse attributes properly
@@ -142,9 +142,9 @@ struct ParameterEvent_
 
 // alias to use template instance with default allocator
 using ParameterEvent =
-    rcl_interfaces::msg::ParameterEvent_<std::allocator<void>>;
+  rcl_interfaces::msg::ParameterEvent_<std::allocator<void>>;
 
-// constants requiring out of line definition
+// constant definitions
 
 }  // namespace msg
 

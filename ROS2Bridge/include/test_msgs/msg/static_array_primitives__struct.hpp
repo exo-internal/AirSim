@@ -170,46 +170,46 @@ struct StaticArrayPrimitives_
 
   // field types and members
   using _bool_values_type =
-      std::array<bool, 3>;
+    std::array<bool, 3>;
   _bool_values_type bool_values;
   using _byte_values_type =
-      std::array<uint8_t, 3>;
+    std::array<uint8_t, 3>;
   _byte_values_type byte_values;
   using _char_values_type =
-      std::array<char, 3>;
+    std::array<char, 3>;
   _char_values_type char_values;
   using _float32_values_type =
-      std::array<float, 3>;
+    std::array<float, 3>;
   _float32_values_type float32_values;
   using _float64_values_type =
-      std::array<double, 3>;
+    std::array<double, 3>;
   _float64_values_type float64_values;
   using _int8_values_type =
-      std::array<int8_t, 3>;
+    std::array<int8_t, 3>;
   _int8_values_type int8_values;
   using _uint8_values_type =
-      std::array<uint8_t, 3>;
+    std::array<uint8_t, 3>;
   _uint8_values_type uint8_values;
   using _int16_values_type =
-      std::array<int16_t, 3>;
+    std::array<int16_t, 3>;
   _int16_values_type int16_values;
   using _uint16_values_type =
-      std::array<uint16_t, 3>;
+    std::array<uint16_t, 3>;
   _uint16_values_type uint16_values;
   using _int32_values_type =
-      std::array<int32_t, 3>;
+    std::array<int32_t, 3>;
   _int32_values_type int32_values;
   using _uint32_values_type =
-      std::array<uint32_t, 3>;
+    std::array<uint32_t, 3>;
   _uint32_values_type uint32_values;
   using _int64_values_type =
-      std::array<int64_t, 3>;
+    std::array<int64_t, 3>;
   _int64_values_type int64_values;
   using _uint64_values_type =
-      std::array<uint64_t, 3>;
+    std::array<uint64_t, 3>;
   _uint64_values_type uint64_values;
   using _string_values_type =
-      std::array<std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>, 3>;
+    std::array<std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>, 3>;
   _string_values_type string_values;
 
   // setters for named parameter idiom
@@ -298,35 +298,35 @@ struct StaticArrayPrimitives_
     return this;
   }
 
-  // constants
+  // constant declarations
 
   // pointer types
   using RawPtr =
-      test_msgs::msg::StaticArrayPrimitives_<ContainerAllocator> *;
+    test_msgs::msg::StaticArrayPrimitives_<ContainerAllocator> *;
   using ConstRawPtr =
-      const test_msgs::msg::StaticArrayPrimitives_<ContainerAllocator> *;
+    const test_msgs::msg::StaticArrayPrimitives_<ContainerAllocator> *;
   using SharedPtr =
-      std::shared_ptr<test_msgs::msg::StaticArrayPrimitives_<ContainerAllocator>>;
+    std::shared_ptr<test_msgs::msg::StaticArrayPrimitives_<ContainerAllocator>>;
   using ConstSharedPtr =
-      std::shared_ptr<test_msgs::msg::StaticArrayPrimitives_<ContainerAllocator> const>;
+    std::shared_ptr<test_msgs::msg::StaticArrayPrimitives_<ContainerAllocator> const>;
 
   template<typename Deleter = std::default_delete<
       test_msgs::msg::StaticArrayPrimitives_<ContainerAllocator>>>
   using UniquePtrWithDeleter =
-      std::unique_ptr<test_msgs::msg::StaticArrayPrimitives_<ContainerAllocator>, Deleter>;
+    std::unique_ptr<test_msgs::msg::StaticArrayPrimitives_<ContainerAllocator>, Deleter>;
 
   using UniquePtr = UniquePtrWithDeleter<>;
 
   template<typename Deleter = std::default_delete<
       test_msgs::msg::StaticArrayPrimitives_<ContainerAllocator>>>
   using ConstUniquePtrWithDeleter =
-      std::unique_ptr<test_msgs::msg::StaticArrayPrimitives_<ContainerAllocator> const, Deleter>;
+    std::unique_ptr<test_msgs::msg::StaticArrayPrimitives_<ContainerAllocator> const, Deleter>;
   using ConstUniquePtr = ConstUniquePtrWithDeleter<>;
 
   using WeakPtr =
-      std::weak_ptr<test_msgs::msg::StaticArrayPrimitives_<ContainerAllocator>>;
+    std::weak_ptr<test_msgs::msg::StaticArrayPrimitives_<ContainerAllocator>>;
   using ConstWeakPtr =
-      std::weak_ptr<test_msgs::msg::StaticArrayPrimitives_<ContainerAllocator> const>;
+    std::weak_ptr<test_msgs::msg::StaticArrayPrimitives_<ContainerAllocator> const>;
 
   // pointer types similar to ROS 1, use SharedPtr / ConstSharedPtr instead
   // NOTE: Can't use 'using' here because GNU C++ can't parse attributes properly
@@ -392,9 +392,9 @@ struct StaticArrayPrimitives_
 
 // alias to use template instance with default allocator
 using StaticArrayPrimitives =
-    test_msgs::msg::StaticArrayPrimitives_<std::allocator<void>>;
+  test_msgs::msg::StaticArrayPrimitives_<std::allocator<void>>;
 
-// constants requiring out of line definition
+// constant definitions
 
 }  // namespace msg
 

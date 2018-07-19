@@ -4,7 +4,7 @@
 #ifndef TF2_MSGS__MSG__TF_MESSAGE__FUNCTIONS_H_
 #define TF2_MSGS__MSG__TF_MESSAGE__FUNCTIONS_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -105,7 +105,7 @@ ROSIDL_GENERATOR_C_PUBLIC_tf2_msgs
 void
 tf2_msgs__msg__TFMessage__Array__destroy(tf2_msgs__msg__TFMessage__Array * array);
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

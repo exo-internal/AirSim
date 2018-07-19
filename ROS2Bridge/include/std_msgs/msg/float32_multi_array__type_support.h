@@ -4,7 +4,7 @@
 #ifndef STD_MSGS__MSG__FLOAT32_MULTI_ARRAY__TYPE_SUPPORT_H_
 #define STD_MSGS__MSG__FLOAT32_MULTI_ARRAY__TYPE_SUPPORT_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -19,7 +19,7 @@ ROSIDL_GENERATOR_C_PUBLIC_std_msgs
 const rosidl_message_type_support_t *
   ROSIDL_TYPESUPPORT_INTERFACE__MESSAGE_SYMBOL_NAME(rosidl_typesupport_c, std_msgs, msg, Float32MultiArray)();
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

@@ -4,7 +4,7 @@
 #ifndef STD_SRVS__SRV__EMPTY__REQUEST__FUNCTIONS_H_
 #define STD_SRVS__SRV__EMPTY__REQUEST__FUNCTIONS_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -105,7 +105,7 @@ ROSIDL_GENERATOR_C_PUBLIC_std_srvs
 void
 std_srvs__srv__Empty_Request__Array__destroy(std_srvs__srv__Empty_Request__Array * array);
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

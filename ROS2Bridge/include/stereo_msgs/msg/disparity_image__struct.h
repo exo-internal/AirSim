@@ -4,7 +4,7 @@
 #ifndef STEREO_MSGS__MSG__DISPARITY_IMAGE__STRUCT_H_
 #define STEREO_MSGS__MSG__DISPARITY_IMAGE__STRUCT_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -44,7 +44,7 @@ typedef struct stereo_msgs__msg__DisparityImage__Array
   size_t capacity;
 } stereo_msgs__msg__DisparityImage__Array;
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

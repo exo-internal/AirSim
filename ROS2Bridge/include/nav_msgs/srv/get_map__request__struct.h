@@ -4,7 +4,7 @@
 #ifndef NAV_MSGS__SRV__GET_MAP__REQUEST__STRUCT_H_
 #define NAV_MSGS__SRV__GET_MAP__REQUEST__STRUCT_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -29,7 +29,7 @@ typedef struct nav_msgs__srv__GetMap_Request__Array
   size_t capacity;
 } nav_msgs__srv__GetMap_Request__Array;
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

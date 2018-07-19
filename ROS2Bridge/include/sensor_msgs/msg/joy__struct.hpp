@@ -53,13 +53,13 @@ struct Joy_
 
   // field types and members
   using _header_type =
-      std_msgs::msg::Header_<ContainerAllocator>;
+    std_msgs::msg::Header_<ContainerAllocator>;
   _header_type header;
   using _axes_type =
-      std::vector<float, typename ContainerAllocator::template rebind<float>::other>;
+    std::vector<float, typename ContainerAllocator::template rebind<float>::other>;
   _axes_type axes;
   using _buttons_type =
-      std::vector<int32_t, typename ContainerAllocator::template rebind<int32_t>::other>;
+    std::vector<int32_t, typename ContainerAllocator::template rebind<int32_t>::other>;
   _buttons_type buttons;
 
   // setters for named parameter idiom
@@ -82,35 +82,35 @@ struct Joy_
     return this;
   }
 
-  // constants
+  // constant declarations
 
   // pointer types
   using RawPtr =
-      sensor_msgs::msg::Joy_<ContainerAllocator> *;
+    sensor_msgs::msg::Joy_<ContainerAllocator> *;
   using ConstRawPtr =
-      const sensor_msgs::msg::Joy_<ContainerAllocator> *;
+    const sensor_msgs::msg::Joy_<ContainerAllocator> *;
   using SharedPtr =
-      std::shared_ptr<sensor_msgs::msg::Joy_<ContainerAllocator>>;
+    std::shared_ptr<sensor_msgs::msg::Joy_<ContainerAllocator>>;
   using ConstSharedPtr =
-      std::shared_ptr<sensor_msgs::msg::Joy_<ContainerAllocator> const>;
+    std::shared_ptr<sensor_msgs::msg::Joy_<ContainerAllocator> const>;
 
   template<typename Deleter = std::default_delete<
       sensor_msgs::msg::Joy_<ContainerAllocator>>>
   using UniquePtrWithDeleter =
-      std::unique_ptr<sensor_msgs::msg::Joy_<ContainerAllocator>, Deleter>;
+    std::unique_ptr<sensor_msgs::msg::Joy_<ContainerAllocator>, Deleter>;
 
   using UniquePtr = UniquePtrWithDeleter<>;
 
   template<typename Deleter = std::default_delete<
       sensor_msgs::msg::Joy_<ContainerAllocator>>>
   using ConstUniquePtrWithDeleter =
-      std::unique_ptr<sensor_msgs::msg::Joy_<ContainerAllocator> const, Deleter>;
+    std::unique_ptr<sensor_msgs::msg::Joy_<ContainerAllocator> const, Deleter>;
   using ConstUniquePtr = ConstUniquePtrWithDeleter<>;
 
   using WeakPtr =
-      std::weak_ptr<sensor_msgs::msg::Joy_<ContainerAllocator>>;
+    std::weak_ptr<sensor_msgs::msg::Joy_<ContainerAllocator>>;
   using ConstWeakPtr =
-      std::weak_ptr<sensor_msgs::msg::Joy_<ContainerAllocator> const>;
+    std::weak_ptr<sensor_msgs::msg::Joy_<ContainerAllocator> const>;
 
   // pointer types similar to ROS 1, use SharedPtr / ConstSharedPtr instead
   // NOTE: Can't use 'using' here because GNU C++ can't parse attributes properly
@@ -143,9 +143,9 @@ struct Joy_
 
 // alias to use template instance with default allocator
 using Joy =
-    sensor_msgs::msg::Joy_<std::allocator<void>>;
+  sensor_msgs::msg::Joy_<std::allocator<void>>;
 
-// constants requiring out of line definition
+// constant definitions
 
 }  // namespace msg
 

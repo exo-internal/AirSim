@@ -54,10 +54,10 @@ struct DiagnosticArray_
 
   // field types and members
   using _header_type =
-      std_msgs::msg::Header_<ContainerAllocator>;
+    std_msgs::msg::Header_<ContainerAllocator>;
   _header_type header;
   using _status_type =
-      std::vector<diagnostic_msgs::msg::DiagnosticStatus_<ContainerAllocator>, typename ContainerAllocator::template rebind<diagnostic_msgs::msg::DiagnosticStatus_<ContainerAllocator>>::other>;
+    std::vector<diagnostic_msgs::msg::DiagnosticStatus_<ContainerAllocator>, typename ContainerAllocator::template rebind<diagnostic_msgs::msg::DiagnosticStatus_<ContainerAllocator>>::other>;
   _status_type status;
 
   // setters for named parameter idiom
@@ -74,35 +74,35 @@ struct DiagnosticArray_
     return this;
   }
 
-  // constants
+  // constant declarations
 
   // pointer types
   using RawPtr =
-      diagnostic_msgs::msg::DiagnosticArray_<ContainerAllocator> *;
+    diagnostic_msgs::msg::DiagnosticArray_<ContainerAllocator> *;
   using ConstRawPtr =
-      const diagnostic_msgs::msg::DiagnosticArray_<ContainerAllocator> *;
+    const diagnostic_msgs::msg::DiagnosticArray_<ContainerAllocator> *;
   using SharedPtr =
-      std::shared_ptr<diagnostic_msgs::msg::DiagnosticArray_<ContainerAllocator>>;
+    std::shared_ptr<diagnostic_msgs::msg::DiagnosticArray_<ContainerAllocator>>;
   using ConstSharedPtr =
-      std::shared_ptr<diagnostic_msgs::msg::DiagnosticArray_<ContainerAllocator> const>;
+    std::shared_ptr<diagnostic_msgs::msg::DiagnosticArray_<ContainerAllocator> const>;
 
   template<typename Deleter = std::default_delete<
       diagnostic_msgs::msg::DiagnosticArray_<ContainerAllocator>>>
   using UniquePtrWithDeleter =
-      std::unique_ptr<diagnostic_msgs::msg::DiagnosticArray_<ContainerAllocator>, Deleter>;
+    std::unique_ptr<diagnostic_msgs::msg::DiagnosticArray_<ContainerAllocator>, Deleter>;
 
   using UniquePtr = UniquePtrWithDeleter<>;
 
   template<typename Deleter = std::default_delete<
       diagnostic_msgs::msg::DiagnosticArray_<ContainerAllocator>>>
   using ConstUniquePtrWithDeleter =
-      std::unique_ptr<diagnostic_msgs::msg::DiagnosticArray_<ContainerAllocator> const, Deleter>;
+    std::unique_ptr<diagnostic_msgs::msg::DiagnosticArray_<ContainerAllocator> const, Deleter>;
   using ConstUniquePtr = ConstUniquePtrWithDeleter<>;
 
   using WeakPtr =
-      std::weak_ptr<diagnostic_msgs::msg::DiagnosticArray_<ContainerAllocator>>;
+    std::weak_ptr<diagnostic_msgs::msg::DiagnosticArray_<ContainerAllocator>>;
   using ConstWeakPtr =
-      std::weak_ptr<diagnostic_msgs::msg::DiagnosticArray_<ContainerAllocator> const>;
+    std::weak_ptr<diagnostic_msgs::msg::DiagnosticArray_<ContainerAllocator> const>;
 
   // pointer types similar to ROS 1, use SharedPtr / ConstSharedPtr instead
   // NOTE: Can't use 'using' here because GNU C++ can't parse attributes properly
@@ -132,9 +132,9 @@ struct DiagnosticArray_
 
 // alias to use template instance with default allocator
 using DiagnosticArray =
-    diagnostic_msgs::msg::DiagnosticArray_<std::allocator<void>>;
+  diagnostic_msgs::msg::DiagnosticArray_<std::allocator<void>>;
 
-// constants requiring out of line definition
+// constant definitions
 
 }  // namespace msg
 

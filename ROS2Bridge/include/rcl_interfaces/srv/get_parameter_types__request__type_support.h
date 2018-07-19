@@ -4,7 +4,7 @@
 #ifndef RCL_INTERFACES__SRV__GET_PARAMETER_TYPES__REQUEST__TYPE_SUPPORT_H_
 #define RCL_INTERFACES__SRV__GET_PARAMETER_TYPES__REQUEST__TYPE_SUPPORT_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -19,7 +19,7 @@ ROSIDL_GENERATOR_C_PUBLIC_rcl_interfaces
 const rosidl_message_type_support_t *
   ROSIDL_TYPESUPPORT_INTERFACE__MESSAGE_SYMBOL_NAME(rosidl_typesupport_c, rcl_interfaces, srv, GetParameterTypes_Request)();
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

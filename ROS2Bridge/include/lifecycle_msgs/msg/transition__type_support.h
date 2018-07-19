@@ -4,7 +4,7 @@
 #ifndef LIFECYCLE_MSGS__MSG__TRANSITION__TYPE_SUPPORT_H_
 #define LIFECYCLE_MSGS__MSG__TRANSITION__TYPE_SUPPORT_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -19,7 +19,7 @@ ROSIDL_GENERATOR_C_PUBLIC_lifecycle_msgs
 const rosidl_message_type_support_t *
   ROSIDL_TYPESUPPORT_INTERFACE__MESSAGE_SYMBOL_NAME(rosidl_typesupport_c, lifecycle_msgs, msg, Transition)();
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

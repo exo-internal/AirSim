@@ -56,10 +56,10 @@ struct Pose_
 
   // field types and members
   using _position_type =
-      geometry_msgs::msg::Point_<ContainerAllocator>;
+    geometry_msgs::msg::Point_<ContainerAllocator>;
   _position_type position;
   using _orientation_type =
-      geometry_msgs::msg::Quaternion_<ContainerAllocator>;
+    geometry_msgs::msg::Quaternion_<ContainerAllocator>;
   _orientation_type orientation;
 
   // setters for named parameter idiom
@@ -76,35 +76,35 @@ struct Pose_
     return this;
   }
 
-  // constants
+  // constant declarations
 
   // pointer types
   using RawPtr =
-      geometry_msgs::msg::Pose_<ContainerAllocator> *;
+    geometry_msgs::msg::Pose_<ContainerAllocator> *;
   using ConstRawPtr =
-      const geometry_msgs::msg::Pose_<ContainerAllocator> *;
+    const geometry_msgs::msg::Pose_<ContainerAllocator> *;
   using SharedPtr =
-      std::shared_ptr<geometry_msgs::msg::Pose_<ContainerAllocator>>;
+    std::shared_ptr<geometry_msgs::msg::Pose_<ContainerAllocator>>;
   using ConstSharedPtr =
-      std::shared_ptr<geometry_msgs::msg::Pose_<ContainerAllocator> const>;
+    std::shared_ptr<geometry_msgs::msg::Pose_<ContainerAllocator> const>;
 
   template<typename Deleter = std::default_delete<
       geometry_msgs::msg::Pose_<ContainerAllocator>>>
   using UniquePtrWithDeleter =
-      std::unique_ptr<geometry_msgs::msg::Pose_<ContainerAllocator>, Deleter>;
+    std::unique_ptr<geometry_msgs::msg::Pose_<ContainerAllocator>, Deleter>;
 
   using UniquePtr = UniquePtrWithDeleter<>;
 
   template<typename Deleter = std::default_delete<
       geometry_msgs::msg::Pose_<ContainerAllocator>>>
   using ConstUniquePtrWithDeleter =
-      std::unique_ptr<geometry_msgs::msg::Pose_<ContainerAllocator> const, Deleter>;
+    std::unique_ptr<geometry_msgs::msg::Pose_<ContainerAllocator> const, Deleter>;
   using ConstUniquePtr = ConstUniquePtrWithDeleter<>;
 
   using WeakPtr =
-      std::weak_ptr<geometry_msgs::msg::Pose_<ContainerAllocator>>;
+    std::weak_ptr<geometry_msgs::msg::Pose_<ContainerAllocator>>;
   using ConstWeakPtr =
-      std::weak_ptr<geometry_msgs::msg::Pose_<ContainerAllocator> const>;
+    std::weak_ptr<geometry_msgs::msg::Pose_<ContainerAllocator> const>;
 
   // pointer types similar to ROS 1, use SharedPtr / ConstSharedPtr instead
   // NOTE: Can't use 'using' here because GNU C++ can't parse attributes properly
@@ -134,9 +134,9 @@ struct Pose_
 
 // alias to use template instance with default allocator
 using Pose =
-    geometry_msgs::msg::Pose_<std::allocator<void>>;
+  geometry_msgs::msg::Pose_<std::allocator<void>>;
 
-// constants requiring out of line definition
+// constant definitions
 
 }  // namespace msg
 

@@ -93,31 +93,31 @@ struct RttestResults_
 
   // field types and members
   using _stamp_type =
-      builtin_interfaces::msg::Time_<ContainerAllocator>;
+    builtin_interfaces::msg::Time_<ContainerAllocator>;
   _stamp_type stamp;
   using _command_type =
-      pendulum_msgs::msg::JointCommand_<ContainerAllocator>;
+    pendulum_msgs::msg::JointCommand_<ContainerAllocator>;
   _command_type command;
   using _state_type =
-      pendulum_msgs::msg::JointState_<ContainerAllocator>;
+    pendulum_msgs::msg::JointState_<ContainerAllocator>;
   _state_type state;
   using _cur_latency_type =
-      uint64_t;
+    uint64_t;
   _cur_latency_type cur_latency;
   using _mean_latency_type =
-      double;
+    double;
   _mean_latency_type mean_latency;
   using _min_latency_type =
-      uint64_t;
+    uint64_t;
   _min_latency_type min_latency;
   using _max_latency_type =
-      uint64_t;
+    uint64_t;
   _max_latency_type max_latency;
   using _minor_pagefaults_type =
-      uint64_t;
+    uint64_t;
   _minor_pagefaults_type minor_pagefaults;
   using _major_pagefaults_type =
-      uint64_t;
+    uint64_t;
   _major_pagefaults_type major_pagefaults;
 
   // setters for named parameter idiom
@@ -176,35 +176,35 @@ struct RttestResults_
     return this;
   }
 
-  // constants
+  // constant declarations
 
   // pointer types
   using RawPtr =
-      pendulum_msgs::msg::RttestResults_<ContainerAllocator> *;
+    pendulum_msgs::msg::RttestResults_<ContainerAllocator> *;
   using ConstRawPtr =
-      const pendulum_msgs::msg::RttestResults_<ContainerAllocator> *;
+    const pendulum_msgs::msg::RttestResults_<ContainerAllocator> *;
   using SharedPtr =
-      std::shared_ptr<pendulum_msgs::msg::RttestResults_<ContainerAllocator>>;
+    std::shared_ptr<pendulum_msgs::msg::RttestResults_<ContainerAllocator>>;
   using ConstSharedPtr =
-      std::shared_ptr<pendulum_msgs::msg::RttestResults_<ContainerAllocator> const>;
+    std::shared_ptr<pendulum_msgs::msg::RttestResults_<ContainerAllocator> const>;
 
   template<typename Deleter = std::default_delete<
       pendulum_msgs::msg::RttestResults_<ContainerAllocator>>>
   using UniquePtrWithDeleter =
-      std::unique_ptr<pendulum_msgs::msg::RttestResults_<ContainerAllocator>, Deleter>;
+    std::unique_ptr<pendulum_msgs::msg::RttestResults_<ContainerAllocator>, Deleter>;
 
   using UniquePtr = UniquePtrWithDeleter<>;
 
   template<typename Deleter = std::default_delete<
       pendulum_msgs::msg::RttestResults_<ContainerAllocator>>>
   using ConstUniquePtrWithDeleter =
-      std::unique_ptr<pendulum_msgs::msg::RttestResults_<ContainerAllocator> const, Deleter>;
+    std::unique_ptr<pendulum_msgs::msg::RttestResults_<ContainerAllocator> const, Deleter>;
   using ConstUniquePtr = ConstUniquePtrWithDeleter<>;
 
   using WeakPtr =
-      std::weak_ptr<pendulum_msgs::msg::RttestResults_<ContainerAllocator>>;
+    std::weak_ptr<pendulum_msgs::msg::RttestResults_<ContainerAllocator>>;
   using ConstWeakPtr =
-      std::weak_ptr<pendulum_msgs::msg::RttestResults_<ContainerAllocator> const>;
+    std::weak_ptr<pendulum_msgs::msg::RttestResults_<ContainerAllocator> const>;
 
   // pointer types similar to ROS 1, use SharedPtr / ConstSharedPtr instead
   // NOTE: Can't use 'using' here because GNU C++ can't parse attributes properly
@@ -255,9 +255,9 @@ struct RttestResults_
 
 // alias to use template instance with default allocator
 using RttestResults =
-    pendulum_msgs::msg::RttestResults_<std::allocator<void>>;
+  pendulum_msgs::msg::RttestResults_<std::allocator<void>>;
 
-// constants requiring out of line definition
+// constant definitions
 
 }  // namespace msg
 

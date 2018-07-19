@@ -4,7 +4,7 @@
 #ifndef NAV_MSGS__SRV__GET_MAP__REQUEST__FUNCTIONS_H_
 #define NAV_MSGS__SRV__GET_MAP__REQUEST__FUNCTIONS_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -105,7 +105,7 @@ ROSIDL_GENERATOR_C_PUBLIC_nav_msgs
 void
 nav_msgs__srv__GetMap_Request__Array__destroy(nav_msgs__srv__GetMap_Request__Array * array);
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

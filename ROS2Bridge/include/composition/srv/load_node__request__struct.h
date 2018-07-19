@@ -4,7 +4,7 @@
 #ifndef COMPOSITION__SRV__LOAD_NODE__REQUEST__STRUCT_H_
 #define COMPOSITION__SRV__LOAD_NODE__REQUEST__STRUCT_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -35,7 +35,7 @@ typedef struct composition__srv__LoadNode_Request__Array
   size_t capacity;
 } composition__srv__LoadNode_Request__Array;
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

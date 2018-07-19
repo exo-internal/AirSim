@@ -77,22 +77,22 @@ struct Range_
 
   // field types and members
   using _header_type =
-      std_msgs::msg::Header_<ContainerAllocator>;
+    std_msgs::msg::Header_<ContainerAllocator>;
   _header_type header;
   using _radiation_type_type =
-      uint8_t;
+    uint8_t;
   _radiation_type_type radiation_type;
   using _field_of_view_type =
-      float;
+    float;
   _field_of_view_type field_of_view;
   using _min_range_type =
-      float;
+    float;
   _min_range_type min_range;
   using _max_range_type =
-      float;
+    float;
   _max_range_type max_range;
   using _range_type =
-      float;
+    float;
   _range_type range;
 
   // setters for named parameter idiom
@@ -133,37 +133,39 @@ struct Range_
     return this;
   }
 
-  // constants
-  enum { ULTRASOUND = 0u };
-  enum { INFRARED = 1u };
+  // constant declarations
+  static constexpr uint8_t ULTRASOUND =
+    0u;
+  static constexpr uint8_t INFRARED =
+    1u;
 
   // pointer types
   using RawPtr =
-      sensor_msgs::msg::Range_<ContainerAllocator> *;
+    sensor_msgs::msg::Range_<ContainerAllocator> *;
   using ConstRawPtr =
-      const sensor_msgs::msg::Range_<ContainerAllocator> *;
+    const sensor_msgs::msg::Range_<ContainerAllocator> *;
   using SharedPtr =
-      std::shared_ptr<sensor_msgs::msg::Range_<ContainerAllocator>>;
+    std::shared_ptr<sensor_msgs::msg::Range_<ContainerAllocator>>;
   using ConstSharedPtr =
-      std::shared_ptr<sensor_msgs::msg::Range_<ContainerAllocator> const>;
+    std::shared_ptr<sensor_msgs::msg::Range_<ContainerAllocator> const>;
 
   template<typename Deleter = std::default_delete<
       sensor_msgs::msg::Range_<ContainerAllocator>>>
   using UniquePtrWithDeleter =
-      std::unique_ptr<sensor_msgs::msg::Range_<ContainerAllocator>, Deleter>;
+    std::unique_ptr<sensor_msgs::msg::Range_<ContainerAllocator>, Deleter>;
 
   using UniquePtr = UniquePtrWithDeleter<>;
 
   template<typename Deleter = std::default_delete<
       sensor_msgs::msg::Range_<ContainerAllocator>>>
   using ConstUniquePtrWithDeleter =
-      std::unique_ptr<sensor_msgs::msg::Range_<ContainerAllocator> const, Deleter>;
+    std::unique_ptr<sensor_msgs::msg::Range_<ContainerAllocator> const, Deleter>;
   using ConstUniquePtr = ConstUniquePtrWithDeleter<>;
 
   using WeakPtr =
-      std::weak_ptr<sensor_msgs::msg::Range_<ContainerAllocator>>;
+    std::weak_ptr<sensor_msgs::msg::Range_<ContainerAllocator>>;
   using ConstWeakPtr =
-      std::weak_ptr<sensor_msgs::msg::Range_<ContainerAllocator> const>;
+    std::weak_ptr<sensor_msgs::msg::Range_<ContainerAllocator> const>;
 
   // pointer types similar to ROS 1, use SharedPtr / ConstSharedPtr instead
   // NOTE: Can't use 'using' here because GNU C++ can't parse attributes properly
@@ -205,9 +207,13 @@ struct Range_
 
 // alias to use template instance with default allocator
 using Range =
-    sensor_msgs::msg::Range_<std::allocator<void>>;
+  sensor_msgs::msg::Range_<std::allocator<void>>;
 
-// constants requiring out of line definition
+// constant definitions
+template<typename ContainerAllocator>
+constexpr uint8_t Range_<ContainerAllocator>::ULTRASOUND;
+template<typename ContainerAllocator>
+constexpr uint8_t Range_<ContainerAllocator>::INFRARED;
 
 }  // namespace msg
 

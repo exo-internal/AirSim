@@ -4,7 +4,7 @@
 #ifndef VISUALIZATION_MSGS__MSG__MARKER_ARRAY__STRUCT_H_
 #define VISUALIZATION_MSGS__MSG__MARKER_ARRAY__STRUCT_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -33,7 +33,7 @@ typedef struct visualization_msgs__msg__MarkerArray__Array
   size_t capacity;
 } visualization_msgs__msg__MarkerArray__Array;
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

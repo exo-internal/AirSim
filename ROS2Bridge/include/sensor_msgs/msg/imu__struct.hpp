@@ -76,25 +76,25 @@ struct Imu_
 
   // field types and members
   using _header_type =
-      std_msgs::msg::Header_<ContainerAllocator>;
+    std_msgs::msg::Header_<ContainerAllocator>;
   _header_type header;
   using _orientation_type =
-      geometry_msgs::msg::Quaternion_<ContainerAllocator>;
+    geometry_msgs::msg::Quaternion_<ContainerAllocator>;
   _orientation_type orientation;
   using _orientation_covariance_type =
-      std::array<double, 9>;
+    std::array<double, 9>;
   _orientation_covariance_type orientation_covariance;
   using _angular_velocity_type =
-      geometry_msgs::msg::Vector3_<ContainerAllocator>;
+    geometry_msgs::msg::Vector3_<ContainerAllocator>;
   _angular_velocity_type angular_velocity;
   using _angular_velocity_covariance_type =
-      std::array<double, 9>;
+    std::array<double, 9>;
   _angular_velocity_covariance_type angular_velocity_covariance;
   using _linear_acceleration_type =
-      geometry_msgs::msg::Vector3_<ContainerAllocator>;
+    geometry_msgs::msg::Vector3_<ContainerAllocator>;
   _linear_acceleration_type linear_acceleration;
   using _linear_acceleration_covariance_type =
-      std::array<double, 9>;
+    std::array<double, 9>;
   _linear_acceleration_covariance_type linear_acceleration_covariance;
 
   // setters for named parameter idiom
@@ -141,35 +141,35 @@ struct Imu_
     return this;
   }
 
-  // constants
+  // constant declarations
 
   // pointer types
   using RawPtr =
-      sensor_msgs::msg::Imu_<ContainerAllocator> *;
+    sensor_msgs::msg::Imu_<ContainerAllocator> *;
   using ConstRawPtr =
-      const sensor_msgs::msg::Imu_<ContainerAllocator> *;
+    const sensor_msgs::msg::Imu_<ContainerAllocator> *;
   using SharedPtr =
-      std::shared_ptr<sensor_msgs::msg::Imu_<ContainerAllocator>>;
+    std::shared_ptr<sensor_msgs::msg::Imu_<ContainerAllocator>>;
   using ConstSharedPtr =
-      std::shared_ptr<sensor_msgs::msg::Imu_<ContainerAllocator> const>;
+    std::shared_ptr<sensor_msgs::msg::Imu_<ContainerAllocator> const>;
 
   template<typename Deleter = std::default_delete<
       sensor_msgs::msg::Imu_<ContainerAllocator>>>
   using UniquePtrWithDeleter =
-      std::unique_ptr<sensor_msgs::msg::Imu_<ContainerAllocator>, Deleter>;
+    std::unique_ptr<sensor_msgs::msg::Imu_<ContainerAllocator>, Deleter>;
 
   using UniquePtr = UniquePtrWithDeleter<>;
 
   template<typename Deleter = std::default_delete<
       sensor_msgs::msg::Imu_<ContainerAllocator>>>
   using ConstUniquePtrWithDeleter =
-      std::unique_ptr<sensor_msgs::msg::Imu_<ContainerAllocator> const, Deleter>;
+    std::unique_ptr<sensor_msgs::msg::Imu_<ContainerAllocator> const, Deleter>;
   using ConstUniquePtr = ConstUniquePtrWithDeleter<>;
 
   using WeakPtr =
-      std::weak_ptr<sensor_msgs::msg::Imu_<ContainerAllocator>>;
+    std::weak_ptr<sensor_msgs::msg::Imu_<ContainerAllocator>>;
   using ConstWeakPtr =
-      std::weak_ptr<sensor_msgs::msg::Imu_<ContainerAllocator> const>;
+    std::weak_ptr<sensor_msgs::msg::Imu_<ContainerAllocator> const>;
 
   // pointer types similar to ROS 1, use SharedPtr / ConstSharedPtr instead
   // NOTE: Can't use 'using' here because GNU C++ can't parse attributes properly
@@ -214,9 +214,9 @@ struct Imu_
 
 // alias to use template instance with default allocator
 using Imu =
-    sensor_msgs::msg::Imu_<std::allocator<void>>;
+  sensor_msgs::msg::Imu_<std::allocator<void>>;
 
-// constants requiring out of line definition
+// constant definitions
 
 }  // namespace msg
 

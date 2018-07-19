@@ -94,25 +94,25 @@ struct Image_
 
   // field types and members
   using _header_type =
-      std_msgs::msg::Header_<ContainerAllocator>;
+    std_msgs::msg::Header_<ContainerAllocator>;
   _header_type header;
   using _height_type =
-      uint32_t;
+    uint32_t;
   _height_type height;
   using _width_type =
-      uint32_t;
+    uint32_t;
   _width_type width;
   using _encoding_type =
-      std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>;
+    std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>;
   _encoding_type encoding;
   using _is_bigendian_type =
-      uint8_t;
+    uint8_t;
   _is_bigendian_type is_bigendian;
   using _step_type =
-      uint32_t;
+    uint32_t;
   _step_type step;
   using _data_type =
-      std::vector<uint8_t, typename ContainerAllocator::template rebind<uint8_t>::other>;
+    std::vector<uint8_t, typename ContainerAllocator::template rebind<uint8_t>::other>;
   _data_type data;
 
   // setters for named parameter idiom
@@ -159,35 +159,35 @@ struct Image_
     return this;
   }
 
-  // constants
+  // constant declarations
 
   // pointer types
   using RawPtr =
-      sensor_msgs::msg::Image_<ContainerAllocator> *;
+    sensor_msgs::msg::Image_<ContainerAllocator> *;
   using ConstRawPtr =
-      const sensor_msgs::msg::Image_<ContainerAllocator> *;
+    const sensor_msgs::msg::Image_<ContainerAllocator> *;
   using SharedPtr =
-      std::shared_ptr<sensor_msgs::msg::Image_<ContainerAllocator>>;
+    std::shared_ptr<sensor_msgs::msg::Image_<ContainerAllocator>>;
   using ConstSharedPtr =
-      std::shared_ptr<sensor_msgs::msg::Image_<ContainerAllocator> const>;
+    std::shared_ptr<sensor_msgs::msg::Image_<ContainerAllocator> const>;
 
   template<typename Deleter = std::default_delete<
       sensor_msgs::msg::Image_<ContainerAllocator>>>
   using UniquePtrWithDeleter =
-      std::unique_ptr<sensor_msgs::msg::Image_<ContainerAllocator>, Deleter>;
+    std::unique_ptr<sensor_msgs::msg::Image_<ContainerAllocator>, Deleter>;
 
   using UniquePtr = UniquePtrWithDeleter<>;
 
   template<typename Deleter = std::default_delete<
       sensor_msgs::msg::Image_<ContainerAllocator>>>
   using ConstUniquePtrWithDeleter =
-      std::unique_ptr<sensor_msgs::msg::Image_<ContainerAllocator> const, Deleter>;
+    std::unique_ptr<sensor_msgs::msg::Image_<ContainerAllocator> const, Deleter>;
   using ConstUniquePtr = ConstUniquePtrWithDeleter<>;
 
   using WeakPtr =
-      std::weak_ptr<sensor_msgs::msg::Image_<ContainerAllocator>>;
+    std::weak_ptr<sensor_msgs::msg::Image_<ContainerAllocator>>;
   using ConstWeakPtr =
-      std::weak_ptr<sensor_msgs::msg::Image_<ContainerAllocator> const>;
+    std::weak_ptr<sensor_msgs::msg::Image_<ContainerAllocator> const>;
 
   // pointer types similar to ROS 1, use SharedPtr / ConstSharedPtr instead
   // NOTE: Can't use 'using' here because GNU C++ can't parse attributes properly
@@ -232,9 +232,9 @@ struct Image_
 
 // alias to use template instance with default allocator
 using Image =
-    sensor_msgs::msg::Image_<std::allocator<void>>;
+  sensor_msgs::msg::Image_<std::allocator<void>>;
 
-// constants requiring out of line definition
+// constant definitions
 
 }  // namespace msg
 

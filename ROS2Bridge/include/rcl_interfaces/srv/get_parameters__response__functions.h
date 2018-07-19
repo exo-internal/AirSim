@@ -4,7 +4,7 @@
 #ifndef RCL_INTERFACES__SRV__GET_PARAMETERS__RESPONSE__FUNCTIONS_H_
 #define RCL_INTERFACES__SRV__GET_PARAMETERS__RESPONSE__FUNCTIONS_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -105,7 +105,7 @@ ROSIDL_GENERATOR_C_PUBLIC_rcl_interfaces
 void
 rcl_interfaces__srv__GetParameters_Response__Array__destroy(rcl_interfaces__srv__GetParameters_Response__Array * array);
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

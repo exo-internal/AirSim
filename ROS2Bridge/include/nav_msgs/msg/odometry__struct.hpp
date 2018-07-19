@@ -68,16 +68,16 @@ struct Odometry_
 
   // field types and members
   using _header_type =
-      std_msgs::msg::Header_<ContainerAllocator>;
+    std_msgs::msg::Header_<ContainerAllocator>;
   _header_type header;
   using _child_frame_id_type =
-      std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>;
+    std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>;
   _child_frame_id_type child_frame_id;
   using _pose_type =
-      geometry_msgs::msg::PoseWithCovariance_<ContainerAllocator>;
+    geometry_msgs::msg::PoseWithCovariance_<ContainerAllocator>;
   _pose_type pose;
   using _twist_type =
-      geometry_msgs::msg::TwistWithCovariance_<ContainerAllocator>;
+    geometry_msgs::msg::TwistWithCovariance_<ContainerAllocator>;
   _twist_type twist;
 
   // setters for named parameter idiom
@@ -106,35 +106,35 @@ struct Odometry_
     return this;
   }
 
-  // constants
+  // constant declarations
 
   // pointer types
   using RawPtr =
-      nav_msgs::msg::Odometry_<ContainerAllocator> *;
+    nav_msgs::msg::Odometry_<ContainerAllocator> *;
   using ConstRawPtr =
-      const nav_msgs::msg::Odometry_<ContainerAllocator> *;
+    const nav_msgs::msg::Odometry_<ContainerAllocator> *;
   using SharedPtr =
-      std::shared_ptr<nav_msgs::msg::Odometry_<ContainerAllocator>>;
+    std::shared_ptr<nav_msgs::msg::Odometry_<ContainerAllocator>>;
   using ConstSharedPtr =
-      std::shared_ptr<nav_msgs::msg::Odometry_<ContainerAllocator> const>;
+    std::shared_ptr<nav_msgs::msg::Odometry_<ContainerAllocator> const>;
 
   template<typename Deleter = std::default_delete<
       nav_msgs::msg::Odometry_<ContainerAllocator>>>
   using UniquePtrWithDeleter =
-      std::unique_ptr<nav_msgs::msg::Odometry_<ContainerAllocator>, Deleter>;
+    std::unique_ptr<nav_msgs::msg::Odometry_<ContainerAllocator>, Deleter>;
 
   using UniquePtr = UniquePtrWithDeleter<>;
 
   template<typename Deleter = std::default_delete<
       nav_msgs::msg::Odometry_<ContainerAllocator>>>
   using ConstUniquePtrWithDeleter =
-      std::unique_ptr<nav_msgs::msg::Odometry_<ContainerAllocator> const, Deleter>;
+    std::unique_ptr<nav_msgs::msg::Odometry_<ContainerAllocator> const, Deleter>;
   using ConstUniquePtr = ConstUniquePtrWithDeleter<>;
 
   using WeakPtr =
-      std::weak_ptr<nav_msgs::msg::Odometry_<ContainerAllocator>>;
+    std::weak_ptr<nav_msgs::msg::Odometry_<ContainerAllocator>>;
   using ConstWeakPtr =
-      std::weak_ptr<nav_msgs::msg::Odometry_<ContainerAllocator> const>;
+    std::weak_ptr<nav_msgs::msg::Odometry_<ContainerAllocator> const>;
 
   // pointer types similar to ROS 1, use SharedPtr / ConstSharedPtr instead
   // NOTE: Can't use 'using' here because GNU C++ can't parse attributes properly
@@ -170,9 +170,9 @@ struct Odometry_
 
 // alias to use template instance with default allocator
 using Odometry =
-    nav_msgs::msg::Odometry_<std::allocator<void>>;
+  nav_msgs::msg::Odometry_<std::allocator<void>>;
 
-// constants requiring out of line definition
+// constant definitions
 
 }  // namespace msg
 

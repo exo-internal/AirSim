@@ -4,7 +4,7 @@
 #ifndef LOGGING_DEMO__SRV__CONFIG_LOGGER__RESPONSE__STRUCT_H_
 #define LOGGING_DEMO__SRV__CONFIG_LOGGER__RESPONSE__STRUCT_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -29,7 +29,7 @@ typedef struct logging_demo__srv__ConfigLogger_Response__Array
   size_t capacity;
 } logging_demo__srv__ConfigLogger_Response__Array;
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

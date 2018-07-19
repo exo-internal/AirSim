@@ -15,7 +15,7 @@
 #ifndef RCL__NODE_H_
 #define RCL__NODE_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -23,6 +23,7 @@ extern "C"
 #include <stdint.h>
 
 #include "rcl/allocator.h"
+#include "rcl/arguments.h"
 #include "rcl/macros.h"
 #include "rcl/types.h"
 #include "rcl/visibility_control.h"
@@ -65,6 +66,12 @@ typedef struct rcl_node_options_t
 
   /// Custom allocator used for internal allocations.
   rcl_allocator_t allocator;
+
+  /// If false then only use arguments in this struct, otherwise use global arguments also.
+  bool use_global_arguments;
+
+  /// Command line arguments that apply only to this node.
+  rcl_arguments_t arguments;
 } rcl_node_options_t;
 
 /// Return a rcl_node_t struct with members initialized to `NULL`.
@@ -145,7 +152,9 @@ rcl_get_zero_initialized_node(void);
  * \param[inout] node a preallocated rcl_node_t
  * \param[in] name the name of the node, must be a valid c-string
  * \param[in] namespace_ the namespace of the node, must be a valid c-string
- * \param[in] options the node options
+ * \param[in] options the node options.
+ *  The options are deep copied into the node.
+ *  The caller is always responsible for freeing memory used options they pass in.
  * \return `RCL_RET_OK` if the node was initialized successfully, or
  * \return `RCL_RET_ALREADY_INIT` if the node has already be initialized, or
  * \return `RCL_RET_INVALID_ARGUMENT` if any arguments are invalid, or
@@ -201,6 +210,34 @@ RCL_PUBLIC
 rcl_node_options_t
 rcl_node_get_default_options(void);
 
+/// Copy one options structure into another.
+/**
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | Yes
+ * Thread-Safe        | No
+ * Uses Atomics       | No
+ * Lock-Free          | Yes
+ *
+ * \param[in] error_alloc an alocator to use if an error occurs.
+ *  This allocator is not used to allocate the output.
+ * \param[in] options The structure to be copied.
+ *  Its allocator is used to copy memory into the new structure.
+ * \param[out] options_out An options structure containing default values.
+ * \return `RCL_RET_OK` if the structure was copied successfully, or
+ * \return `RCL_RET_INVALID_ARGUMENT` if any function arguments are invalid, or
+ * \return `RCL_RET_BAD_ALLOC` if allocating memory failed, or
+ * \return `RCL_RET_ERROR` if an unspecified error occurs.
+ */
+RCL_PUBLIC
+RCL_WARN_UNUSED
+rcl_ret_t
+rcl_node_options_copy(
+  rcl_allocator_t error_alloc,
+  const rcl_node_options_t * options,
+  rcl_node_options_t * options_out);
+
 /// Return `true` if the node is valid, else `false`.
 /**
  * Also return `false` if the node pointer is `NULL` or the allocator is invalid.
@@ -238,7 +275,7 @@ rcl_node_get_default_options(void);
  * <i>[1] if `atomic_is_lock_free()` returns true for `atomic_uint_least64_t`</i>
  *
  * \param[in] node rcl_node_t to be validated
- * \param[in] allocator a valid allocator or `NULL`
+ * \param[in] error_msg_allocator a valid allocator or `NULL`
  * \return `true` if the node and allocator are valid, otherwise `false`.
  */
 RCL_PUBLIC
@@ -452,7 +489,34 @@ RCL_WARN_UNUSED
 const struct rcl_guard_condition_t *
 rcl_node_get_graph_guard_condition(const rcl_node_t * node);
 
-#if __cplusplus
+/// Return the logger name of the node.
+/**
+ * This function returns the node's internal logger name string.
+ * This function can fail, and therefore return `NULL`, if:
+ *   - node is `NULL`
+ *   - node has not been initialized (the implementation is invalid)
+ *
+ * The returned string is only valid as long as the given rcl_node_t is valid.
+ * The value of the string may change if the value in the rcl_node_t changes,
+ * and therefore copying the string is recommended if this is a concern.
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | No
+ * Thread-Safe        | No
+ * Uses Atomics       | No
+ * Lock-Free          | Yes
+ *
+ * \param[in] node pointer to the node
+ * \return logger_name string if successful, otherwise `NULL`
+ */
+RCL_PUBLIC
+RCL_WARN_UNUSED
+const char *
+rcl_node_get_logger_name(const rcl_node_t * node);
+
+#ifdef __cplusplus
 }
 #endif
 

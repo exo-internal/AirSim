@@ -157,46 +157,46 @@ struct Primitives_Response_
 
   // field types and members
   using _bool_value_type =
-      bool;
+    bool;
   _bool_value_type bool_value;
   using _byte_value_type =
-      uint8_t;
+    uint8_t;
   _byte_value_type byte_value;
   using _char_value_type =
-      char;
+    char;
   _char_value_type char_value;
   using _float32_value_type =
-      float;
+    float;
   _float32_value_type float32_value;
   using _float64_value_type =
-      double;
+    double;
   _float64_value_type float64_value;
   using _int8_value_type =
-      int8_t;
+    int8_t;
   _int8_value_type int8_value;
   using _uint8_value_type =
-      uint8_t;
+    uint8_t;
   _uint8_value_type uint8_value;
   using _int16_value_type =
-      int16_t;
+    int16_t;
   _int16_value_type int16_value;
   using _uint16_value_type =
-      uint16_t;
+    uint16_t;
   _uint16_value_type uint16_value;
   using _int32_value_type =
-      int32_t;
+    int32_t;
   _int32_value_type int32_value;
   using _uint32_value_type =
-      uint32_t;
+    uint32_t;
   _uint32_value_type uint32_value;
   using _int64_value_type =
-      int64_t;
+    int64_t;
   _int64_value_type int64_value;
   using _uint64_value_type =
-      uint64_t;
+    uint64_t;
   _uint64_value_type uint64_value;
   using _string_value_type =
-      std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>;
+    std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>;
   _string_value_type string_value;
 
   // setters for named parameter idiom
@@ -285,35 +285,35 @@ struct Primitives_Response_
     return this;
   }
 
-  // constants
+  // constant declarations
 
   // pointer types
   using RawPtr =
-      test_msgs::srv::Primitives_Response_<ContainerAllocator> *;
+    test_msgs::srv::Primitives_Response_<ContainerAllocator> *;
   using ConstRawPtr =
-      const test_msgs::srv::Primitives_Response_<ContainerAllocator> *;
+    const test_msgs::srv::Primitives_Response_<ContainerAllocator> *;
   using SharedPtr =
-      std::shared_ptr<test_msgs::srv::Primitives_Response_<ContainerAllocator>>;
+    std::shared_ptr<test_msgs::srv::Primitives_Response_<ContainerAllocator>>;
   using ConstSharedPtr =
-      std::shared_ptr<test_msgs::srv::Primitives_Response_<ContainerAllocator> const>;
+    std::shared_ptr<test_msgs::srv::Primitives_Response_<ContainerAllocator> const>;
 
   template<typename Deleter = std::default_delete<
       test_msgs::srv::Primitives_Response_<ContainerAllocator>>>
   using UniquePtrWithDeleter =
-      std::unique_ptr<test_msgs::srv::Primitives_Response_<ContainerAllocator>, Deleter>;
+    std::unique_ptr<test_msgs::srv::Primitives_Response_<ContainerAllocator>, Deleter>;
 
   using UniquePtr = UniquePtrWithDeleter<>;
 
   template<typename Deleter = std::default_delete<
       test_msgs::srv::Primitives_Response_<ContainerAllocator>>>
   using ConstUniquePtrWithDeleter =
-      std::unique_ptr<test_msgs::srv::Primitives_Response_<ContainerAllocator> const, Deleter>;
+    std::unique_ptr<test_msgs::srv::Primitives_Response_<ContainerAllocator> const, Deleter>;
   using ConstUniquePtr = ConstUniquePtrWithDeleter<>;
 
   using WeakPtr =
-      std::weak_ptr<test_msgs::srv::Primitives_Response_<ContainerAllocator>>;
+    std::weak_ptr<test_msgs::srv::Primitives_Response_<ContainerAllocator>>;
   using ConstWeakPtr =
-      std::weak_ptr<test_msgs::srv::Primitives_Response_<ContainerAllocator> const>;
+    std::weak_ptr<test_msgs::srv::Primitives_Response_<ContainerAllocator> const>;
 
   // pointer types similar to ROS 1, use SharedPtr / ConstSharedPtr instead
   // NOTE: Can't use 'using' here because GNU C++ can't parse attributes properly
@@ -379,9 +379,9 @@ struct Primitives_Response_
 
 // alias to use template instance with default allocator
 using Primitives_Response =
-    test_msgs::srv::Primitives_Response_<std::allocator<void>>;
+  test_msgs::srv::Primitives_Response_<std::allocator<void>>;
 
-// constants requiring out of line definition
+// constant definitions
 
 }  // namespace srv
 

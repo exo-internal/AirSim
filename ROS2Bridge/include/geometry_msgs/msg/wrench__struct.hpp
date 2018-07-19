@@ -55,10 +55,10 @@ struct Wrench_
 
   // field types and members
   using _force_type =
-      geometry_msgs::msg::Vector3_<ContainerAllocator>;
+    geometry_msgs::msg::Vector3_<ContainerAllocator>;
   _force_type force;
   using _torque_type =
-      geometry_msgs::msg::Vector3_<ContainerAllocator>;
+    geometry_msgs::msg::Vector3_<ContainerAllocator>;
   _torque_type torque;
 
   // setters for named parameter idiom
@@ -75,35 +75,35 @@ struct Wrench_
     return this;
   }
 
-  // constants
+  // constant declarations
 
   // pointer types
   using RawPtr =
-      geometry_msgs::msg::Wrench_<ContainerAllocator> *;
+    geometry_msgs::msg::Wrench_<ContainerAllocator> *;
   using ConstRawPtr =
-      const geometry_msgs::msg::Wrench_<ContainerAllocator> *;
+    const geometry_msgs::msg::Wrench_<ContainerAllocator> *;
   using SharedPtr =
-      std::shared_ptr<geometry_msgs::msg::Wrench_<ContainerAllocator>>;
+    std::shared_ptr<geometry_msgs::msg::Wrench_<ContainerAllocator>>;
   using ConstSharedPtr =
-      std::shared_ptr<geometry_msgs::msg::Wrench_<ContainerAllocator> const>;
+    std::shared_ptr<geometry_msgs::msg::Wrench_<ContainerAllocator> const>;
 
   template<typename Deleter = std::default_delete<
       geometry_msgs::msg::Wrench_<ContainerAllocator>>>
   using UniquePtrWithDeleter =
-      std::unique_ptr<geometry_msgs::msg::Wrench_<ContainerAllocator>, Deleter>;
+    std::unique_ptr<geometry_msgs::msg::Wrench_<ContainerAllocator>, Deleter>;
 
   using UniquePtr = UniquePtrWithDeleter<>;
 
   template<typename Deleter = std::default_delete<
       geometry_msgs::msg::Wrench_<ContainerAllocator>>>
   using ConstUniquePtrWithDeleter =
-      std::unique_ptr<geometry_msgs::msg::Wrench_<ContainerAllocator> const, Deleter>;
+    std::unique_ptr<geometry_msgs::msg::Wrench_<ContainerAllocator> const, Deleter>;
   using ConstUniquePtr = ConstUniquePtrWithDeleter<>;
 
   using WeakPtr =
-      std::weak_ptr<geometry_msgs::msg::Wrench_<ContainerAllocator>>;
+    std::weak_ptr<geometry_msgs::msg::Wrench_<ContainerAllocator>>;
   using ConstWeakPtr =
-      std::weak_ptr<geometry_msgs::msg::Wrench_<ContainerAllocator> const>;
+    std::weak_ptr<geometry_msgs::msg::Wrench_<ContainerAllocator> const>;
 
   // pointer types similar to ROS 1, use SharedPtr / ConstSharedPtr instead
   // NOTE: Can't use 'using' here because GNU C++ can't parse attributes properly
@@ -133,9 +133,9 @@ struct Wrench_
 
 // alias to use template instance with default allocator
 using Wrench =
-    geometry_msgs::msg::Wrench_<std::allocator<void>>;
+  geometry_msgs::msg::Wrench_<std::allocator<void>>;
 
-// constants requiring out of line definition
+// constant definitions
 
 }  // namespace msg
 

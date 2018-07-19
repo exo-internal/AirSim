@@ -59,49 +59,49 @@ struct BoundedArrayPrimitives_
 
   // field types and members
   using _bool_values_type =
-      rosidl_generator_cpp::BoundedVector<bool, 3, typename ContainerAllocator::template rebind<bool>::other>;
+    rosidl_generator_cpp::BoundedVector<bool, 3, typename ContainerAllocator::template rebind<bool>::other>;
   _bool_values_type bool_values;
   using _byte_values_type =
-      rosidl_generator_cpp::BoundedVector<uint8_t, 3, typename ContainerAllocator::template rebind<uint8_t>::other>;
+    rosidl_generator_cpp::BoundedVector<uint8_t, 3, typename ContainerAllocator::template rebind<uint8_t>::other>;
   _byte_values_type byte_values;
   using _char_values_type =
-      rosidl_generator_cpp::BoundedVector<char, 3, typename ContainerAllocator::template rebind<char>::other>;
+    rosidl_generator_cpp::BoundedVector<char, 3, typename ContainerAllocator::template rebind<char>::other>;
   _char_values_type char_values;
   using _float32_values_type =
-      rosidl_generator_cpp::BoundedVector<float, 3, typename ContainerAllocator::template rebind<float>::other>;
+    rosidl_generator_cpp::BoundedVector<float, 3, typename ContainerAllocator::template rebind<float>::other>;
   _float32_values_type float32_values;
   using _float64_values_type =
-      rosidl_generator_cpp::BoundedVector<double, 3, typename ContainerAllocator::template rebind<double>::other>;
+    rosidl_generator_cpp::BoundedVector<double, 3, typename ContainerAllocator::template rebind<double>::other>;
   _float64_values_type float64_values;
   using _int8_values_type =
-      rosidl_generator_cpp::BoundedVector<int8_t, 3, typename ContainerAllocator::template rebind<int8_t>::other>;
+    rosidl_generator_cpp::BoundedVector<int8_t, 3, typename ContainerAllocator::template rebind<int8_t>::other>;
   _int8_values_type int8_values;
   using _uint8_values_type =
-      rosidl_generator_cpp::BoundedVector<uint8_t, 3, typename ContainerAllocator::template rebind<uint8_t>::other>;
+    rosidl_generator_cpp::BoundedVector<uint8_t, 3, typename ContainerAllocator::template rebind<uint8_t>::other>;
   _uint8_values_type uint8_values;
   using _int16_values_type =
-      rosidl_generator_cpp::BoundedVector<int16_t, 3, typename ContainerAllocator::template rebind<int16_t>::other>;
+    rosidl_generator_cpp::BoundedVector<int16_t, 3, typename ContainerAllocator::template rebind<int16_t>::other>;
   _int16_values_type int16_values;
   using _uint16_values_type =
-      rosidl_generator_cpp::BoundedVector<uint16_t, 3, typename ContainerAllocator::template rebind<uint16_t>::other>;
+    rosidl_generator_cpp::BoundedVector<uint16_t, 3, typename ContainerAllocator::template rebind<uint16_t>::other>;
   _uint16_values_type uint16_values;
   using _int32_values_type =
-      rosidl_generator_cpp::BoundedVector<int32_t, 3, typename ContainerAllocator::template rebind<int32_t>::other>;
+    rosidl_generator_cpp::BoundedVector<int32_t, 3, typename ContainerAllocator::template rebind<int32_t>::other>;
   _int32_values_type int32_values;
   using _uint32_values_type =
-      rosidl_generator_cpp::BoundedVector<uint32_t, 3, typename ContainerAllocator::template rebind<uint32_t>::other>;
+    rosidl_generator_cpp::BoundedVector<uint32_t, 3, typename ContainerAllocator::template rebind<uint32_t>::other>;
   _uint32_values_type uint32_values;
   using _int64_values_type =
-      rosidl_generator_cpp::BoundedVector<int64_t, 3, typename ContainerAllocator::template rebind<int64_t>::other>;
+    rosidl_generator_cpp::BoundedVector<int64_t, 3, typename ContainerAllocator::template rebind<int64_t>::other>;
   _int64_values_type int64_values;
   using _uint64_values_type =
-      rosidl_generator_cpp::BoundedVector<uint64_t, 3, typename ContainerAllocator::template rebind<uint64_t>::other>;
+    rosidl_generator_cpp::BoundedVector<uint64_t, 3, typename ContainerAllocator::template rebind<uint64_t>::other>;
   _uint64_values_type uint64_values;
   using _string_values_type =
-      rosidl_generator_cpp::BoundedVector<std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>, 3, typename ContainerAllocator::template rebind<std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>>::other>;
+    rosidl_generator_cpp::BoundedVector<std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>, 3, typename ContainerAllocator::template rebind<std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>>::other>;
   _string_values_type string_values;
   using _check_type =
-      int32_t;
+    int32_t;
   _check_type check;
 
   // setters for named parameter idiom
@@ -196,35 +196,35 @@ struct BoundedArrayPrimitives_
     return this;
   }
 
-  // constants
+  // constant declarations
 
   // pointer types
   using RawPtr =
-      test_msgs::msg::BoundedArrayPrimitives_<ContainerAllocator> *;
+    test_msgs::msg::BoundedArrayPrimitives_<ContainerAllocator> *;
   using ConstRawPtr =
-      const test_msgs::msg::BoundedArrayPrimitives_<ContainerAllocator> *;
+    const test_msgs::msg::BoundedArrayPrimitives_<ContainerAllocator> *;
   using SharedPtr =
-      std::shared_ptr<test_msgs::msg::BoundedArrayPrimitives_<ContainerAllocator>>;
+    std::shared_ptr<test_msgs::msg::BoundedArrayPrimitives_<ContainerAllocator>>;
   using ConstSharedPtr =
-      std::shared_ptr<test_msgs::msg::BoundedArrayPrimitives_<ContainerAllocator> const>;
+    std::shared_ptr<test_msgs::msg::BoundedArrayPrimitives_<ContainerAllocator> const>;
 
   template<typename Deleter = std::default_delete<
       test_msgs::msg::BoundedArrayPrimitives_<ContainerAllocator>>>
   using UniquePtrWithDeleter =
-      std::unique_ptr<test_msgs::msg::BoundedArrayPrimitives_<ContainerAllocator>, Deleter>;
+    std::unique_ptr<test_msgs::msg::BoundedArrayPrimitives_<ContainerAllocator>, Deleter>;
 
   using UniquePtr = UniquePtrWithDeleter<>;
 
   template<typename Deleter = std::default_delete<
       test_msgs::msg::BoundedArrayPrimitives_<ContainerAllocator>>>
   using ConstUniquePtrWithDeleter =
-      std::unique_ptr<test_msgs::msg::BoundedArrayPrimitives_<ContainerAllocator> const, Deleter>;
+    std::unique_ptr<test_msgs::msg::BoundedArrayPrimitives_<ContainerAllocator> const, Deleter>;
   using ConstUniquePtr = ConstUniquePtrWithDeleter<>;
 
   using WeakPtr =
-      std::weak_ptr<test_msgs::msg::BoundedArrayPrimitives_<ContainerAllocator>>;
+    std::weak_ptr<test_msgs::msg::BoundedArrayPrimitives_<ContainerAllocator>>;
   using ConstWeakPtr =
-      std::weak_ptr<test_msgs::msg::BoundedArrayPrimitives_<ContainerAllocator> const>;
+    std::weak_ptr<test_msgs::msg::BoundedArrayPrimitives_<ContainerAllocator> const>;
 
   // pointer types similar to ROS 1, use SharedPtr / ConstSharedPtr instead
   // NOTE: Can't use 'using' here because GNU C++ can't parse attributes properly
@@ -293,9 +293,9 @@ struct BoundedArrayPrimitives_
 
 // alias to use template instance with default allocator
 using BoundedArrayPrimitives =
-    test_msgs::msg::BoundedArrayPrimitives_<std::allocator<void>>;
+  test_msgs::msg::BoundedArrayPrimitives_<std::allocator<void>>;
 
-// constants requiring out of line definition
+// constant definitions
 
 }  // namespace msg
 

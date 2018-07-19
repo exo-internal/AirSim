@@ -4,7 +4,7 @@
 #ifndef STD_MSGS__MSG__FLOAT32__STRUCT_H_
 #define STD_MSGS__MSG__FLOAT32__STRUCT_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -29,7 +29,7 @@ typedef struct std_msgs__msg__Float32__Array
   size_t capacity;
 } std_msgs__msg__Float32__Array;
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

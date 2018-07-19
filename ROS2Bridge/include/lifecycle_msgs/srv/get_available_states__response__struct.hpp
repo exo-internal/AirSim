@@ -52,7 +52,7 @@ struct GetAvailableStates_Response_
 
   // field types and members
   using _available_states_type =
-      std::vector<lifecycle_msgs::msg::State_<ContainerAllocator>, typename ContainerAllocator::template rebind<lifecycle_msgs::msg::State_<ContainerAllocator>>::other>;
+    std::vector<lifecycle_msgs::msg::State_<ContainerAllocator>, typename ContainerAllocator::template rebind<lifecycle_msgs::msg::State_<ContainerAllocator>>::other>;
   _available_states_type available_states;
 
   // setters for named parameter idiom
@@ -63,35 +63,35 @@ struct GetAvailableStates_Response_
     return this;
   }
 
-  // constants
+  // constant declarations
 
   // pointer types
   using RawPtr =
-      lifecycle_msgs::srv::GetAvailableStates_Response_<ContainerAllocator> *;
+    lifecycle_msgs::srv::GetAvailableStates_Response_<ContainerAllocator> *;
   using ConstRawPtr =
-      const lifecycle_msgs::srv::GetAvailableStates_Response_<ContainerAllocator> *;
+    const lifecycle_msgs::srv::GetAvailableStates_Response_<ContainerAllocator> *;
   using SharedPtr =
-      std::shared_ptr<lifecycle_msgs::srv::GetAvailableStates_Response_<ContainerAllocator>>;
+    std::shared_ptr<lifecycle_msgs::srv::GetAvailableStates_Response_<ContainerAllocator>>;
   using ConstSharedPtr =
-      std::shared_ptr<lifecycle_msgs::srv::GetAvailableStates_Response_<ContainerAllocator> const>;
+    std::shared_ptr<lifecycle_msgs::srv::GetAvailableStates_Response_<ContainerAllocator> const>;
 
   template<typename Deleter = std::default_delete<
       lifecycle_msgs::srv::GetAvailableStates_Response_<ContainerAllocator>>>
   using UniquePtrWithDeleter =
-      std::unique_ptr<lifecycle_msgs::srv::GetAvailableStates_Response_<ContainerAllocator>, Deleter>;
+    std::unique_ptr<lifecycle_msgs::srv::GetAvailableStates_Response_<ContainerAllocator>, Deleter>;
 
   using UniquePtr = UniquePtrWithDeleter<>;
 
   template<typename Deleter = std::default_delete<
       lifecycle_msgs::srv::GetAvailableStates_Response_<ContainerAllocator>>>
   using ConstUniquePtrWithDeleter =
-      std::unique_ptr<lifecycle_msgs::srv::GetAvailableStates_Response_<ContainerAllocator> const, Deleter>;
+    std::unique_ptr<lifecycle_msgs::srv::GetAvailableStates_Response_<ContainerAllocator> const, Deleter>;
   using ConstUniquePtr = ConstUniquePtrWithDeleter<>;
 
   using WeakPtr =
-      std::weak_ptr<lifecycle_msgs::srv::GetAvailableStates_Response_<ContainerAllocator>>;
+    std::weak_ptr<lifecycle_msgs::srv::GetAvailableStates_Response_<ContainerAllocator>>;
   using ConstWeakPtr =
-      std::weak_ptr<lifecycle_msgs::srv::GetAvailableStates_Response_<ContainerAllocator> const>;
+    std::weak_ptr<lifecycle_msgs::srv::GetAvailableStates_Response_<ContainerAllocator> const>;
 
   // pointer types similar to ROS 1, use SharedPtr / ConstSharedPtr instead
   // NOTE: Can't use 'using' here because GNU C++ can't parse attributes properly
@@ -118,9 +118,9 @@ struct GetAvailableStates_Response_
 
 // alias to use template instance with default allocator
 using GetAvailableStates_Response =
-    lifecycle_msgs::srv::GetAvailableStates_Response_<std::allocator<void>>;
+  lifecycle_msgs::srv::GetAvailableStates_Response_<std::allocator<void>>;
 
-// constants requiring out of line definition
+// constant definitions
 
 }  // namespace srv
 

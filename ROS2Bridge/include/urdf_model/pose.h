@@ -37,15 +37,7 @@
 #ifndef URDF_INTERFACE_POSE_H
 #define URDF_INTERFACE_POSE_H
 
-//For using the M_PI macro in visual studio it
-//is necessary to define _USE_MATH_DEFINES
-#ifdef _MSC_VER
-#ifndef _USE_MATH_DEFINES
-#define _USE_MATH_DEFINES
-#endif
-#endif
-
-#include <math.h>
+#include <cmath>
 #include <sstream>
 #include <stdexcept>
 #include <string>
@@ -75,13 +67,9 @@ public:
     for (unsigned int i = 0; i < pieces.size(); ++i){
       if (pieces[i] != ""){
         try {
-          xyz.push_back(std::stod(pieces[i]));
-        }
-        catch (std::invalid_argument &/*e*/) {
+          xyz.push_back(strToDouble(pieces[i].c_str()));
+        } catch(std::runtime_error &) {
           throw ParseError("Unable to parse component [" + pieces[i] + "] to a double (while parsing a vector value)");
-        }
-        catch (std::out_of_range &/*e*/) {
-          throw ParseError("Unable to parse component [" + pieces[i] + "] to a double, out of range (while parsing a vector value)");
         }
       }
     }
@@ -126,12 +114,13 @@ public:
 
     // Cases derived from https://orbitalstation.wordpress.com/tag/quaternion/
     double sarg = -2 * (this->x*this->z - this->w*this->y);
+    const double pi_2 = 1.57079632679489661923;
     if (sarg <= -0.99999) {
-      pitch = -0.5*M_PI;
+      pitch = -pi_2;
       roll  = 0;
       yaw   = 2 * atan2(this->x, -this->y);
     } else if (sarg >= 0.99999) {
-      pitch = 0.5*M_PI;
+      pitch = pi_2;
       roll  = 0;
       yaw   = 2 * atan2(-this->x, this->y);
     } else {

@@ -4,7 +4,7 @@
 #ifndef GEOMETRY_MSGS__MSG__WRENCH__TYPE_SUPPORT_H_
 #define GEOMETRY_MSGS__MSG__WRENCH__TYPE_SUPPORT_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -19,7 +19,7 @@ ROSIDL_GENERATOR_C_PUBLIC_geometry_msgs
 const rosidl_message_type_support_t *
   ROSIDL_TYPESUPPORT_INTERFACE__MESSAGE_SYMBOL_NAME(rosidl_typesupport_c, geometry_msgs, msg, Wrench)();
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

@@ -69,10 +69,10 @@ struct ParameterDescriptor_
 
   // field types and members
   using _name_type =
-      std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>;
+    std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>;
   _name_type name;
   using _type_type =
-      uint8_t;
+    uint8_t;
   _type_type type;
 
   // setters for named parameter idiom
@@ -89,35 +89,35 @@ struct ParameterDescriptor_
     return this;
   }
 
-  // constants
+  // constant declarations
 
   // pointer types
   using RawPtr =
-      rcl_interfaces::msg::ParameterDescriptor_<ContainerAllocator> *;
+    rcl_interfaces::msg::ParameterDescriptor_<ContainerAllocator> *;
   using ConstRawPtr =
-      const rcl_interfaces::msg::ParameterDescriptor_<ContainerAllocator> *;
+    const rcl_interfaces::msg::ParameterDescriptor_<ContainerAllocator> *;
   using SharedPtr =
-      std::shared_ptr<rcl_interfaces::msg::ParameterDescriptor_<ContainerAllocator>>;
+    std::shared_ptr<rcl_interfaces::msg::ParameterDescriptor_<ContainerAllocator>>;
   using ConstSharedPtr =
-      std::shared_ptr<rcl_interfaces::msg::ParameterDescriptor_<ContainerAllocator> const>;
+    std::shared_ptr<rcl_interfaces::msg::ParameterDescriptor_<ContainerAllocator> const>;
 
   template<typename Deleter = std::default_delete<
       rcl_interfaces::msg::ParameterDescriptor_<ContainerAllocator>>>
   using UniquePtrWithDeleter =
-      std::unique_ptr<rcl_interfaces::msg::ParameterDescriptor_<ContainerAllocator>, Deleter>;
+    std::unique_ptr<rcl_interfaces::msg::ParameterDescriptor_<ContainerAllocator>, Deleter>;
 
   using UniquePtr = UniquePtrWithDeleter<>;
 
   template<typename Deleter = std::default_delete<
       rcl_interfaces::msg::ParameterDescriptor_<ContainerAllocator>>>
   using ConstUniquePtrWithDeleter =
-      std::unique_ptr<rcl_interfaces::msg::ParameterDescriptor_<ContainerAllocator> const, Deleter>;
+    std::unique_ptr<rcl_interfaces::msg::ParameterDescriptor_<ContainerAllocator> const, Deleter>;
   using ConstUniquePtr = ConstUniquePtrWithDeleter<>;
 
   using WeakPtr =
-      std::weak_ptr<rcl_interfaces::msg::ParameterDescriptor_<ContainerAllocator>>;
+    std::weak_ptr<rcl_interfaces::msg::ParameterDescriptor_<ContainerAllocator>>;
   using ConstWeakPtr =
-      std::weak_ptr<rcl_interfaces::msg::ParameterDescriptor_<ContainerAllocator> const>;
+    std::weak_ptr<rcl_interfaces::msg::ParameterDescriptor_<ContainerAllocator> const>;
 
   // pointer types similar to ROS 1, use SharedPtr / ConstSharedPtr instead
   // NOTE: Can't use 'using' here because GNU C++ can't parse attributes properly
@@ -147,9 +147,9 @@ struct ParameterDescriptor_
 
 // alias to use template instance with default allocator
 using ParameterDescriptor =
-    rcl_interfaces::msg::ParameterDescriptor_<std::allocator<void>>;
+  rcl_interfaces::msg::ParameterDescriptor_<std::allocator<void>>;
 
-// constants requiring out of line definition
+// constant definitions
 
 }  // namespace msg
 

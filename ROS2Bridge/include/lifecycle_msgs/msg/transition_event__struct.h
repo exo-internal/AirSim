@@ -4,7 +4,7 @@
 #ifndef LIFECYCLE_MSGS__MSG__TRANSITION_EVENT__STRUCT_H_
 #define LIFECYCLE_MSGS__MSG__TRANSITION_EVENT__STRUCT_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -39,7 +39,7 @@ typedef struct lifecycle_msgs__msg__TransitionEvent__Array
   size_t capacity;
 } lifecycle_msgs__msg__TransitionEvent__Array;
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

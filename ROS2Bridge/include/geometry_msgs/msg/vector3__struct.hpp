@@ -63,13 +63,13 @@ struct Vector3_
 
   // field types and members
   using _x_type =
-      double;
+    double;
   _x_type x;
   using _y_type =
-      double;
+    double;
   _y_type y;
   using _z_type =
-      double;
+    double;
   _z_type z;
 
   // setters for named parameter idiom
@@ -92,35 +92,35 @@ struct Vector3_
     return this;
   }
 
-  // constants
+  // constant declarations
 
   // pointer types
   using RawPtr =
-      geometry_msgs::msg::Vector3_<ContainerAllocator> *;
+    geometry_msgs::msg::Vector3_<ContainerAllocator> *;
   using ConstRawPtr =
-      const geometry_msgs::msg::Vector3_<ContainerAllocator> *;
+    const geometry_msgs::msg::Vector3_<ContainerAllocator> *;
   using SharedPtr =
-      std::shared_ptr<geometry_msgs::msg::Vector3_<ContainerAllocator>>;
+    std::shared_ptr<geometry_msgs::msg::Vector3_<ContainerAllocator>>;
   using ConstSharedPtr =
-      std::shared_ptr<geometry_msgs::msg::Vector3_<ContainerAllocator> const>;
+    std::shared_ptr<geometry_msgs::msg::Vector3_<ContainerAllocator> const>;
 
   template<typename Deleter = std::default_delete<
       geometry_msgs::msg::Vector3_<ContainerAllocator>>>
   using UniquePtrWithDeleter =
-      std::unique_ptr<geometry_msgs::msg::Vector3_<ContainerAllocator>, Deleter>;
+    std::unique_ptr<geometry_msgs::msg::Vector3_<ContainerAllocator>, Deleter>;
 
   using UniquePtr = UniquePtrWithDeleter<>;
 
   template<typename Deleter = std::default_delete<
       geometry_msgs::msg::Vector3_<ContainerAllocator>>>
   using ConstUniquePtrWithDeleter =
-      std::unique_ptr<geometry_msgs::msg::Vector3_<ContainerAllocator> const, Deleter>;
+    std::unique_ptr<geometry_msgs::msg::Vector3_<ContainerAllocator> const, Deleter>;
   using ConstUniquePtr = ConstUniquePtrWithDeleter<>;
 
   using WeakPtr =
-      std::weak_ptr<geometry_msgs::msg::Vector3_<ContainerAllocator>>;
+    std::weak_ptr<geometry_msgs::msg::Vector3_<ContainerAllocator>>;
   using ConstWeakPtr =
-      std::weak_ptr<geometry_msgs::msg::Vector3_<ContainerAllocator> const>;
+    std::weak_ptr<geometry_msgs::msg::Vector3_<ContainerAllocator> const>;
 
   // pointer types similar to ROS 1, use SharedPtr / ConstSharedPtr instead
   // NOTE: Can't use 'using' here because GNU C++ can't parse attributes properly
@@ -153,9 +153,9 @@ struct Vector3_
 
 // alias to use template instance with default allocator
 using Vector3 =
-    geometry_msgs::msg::Vector3_<std::allocator<void>>;
+  geometry_msgs::msg::Vector3_<std::allocator<void>>;
 
-// constants requiring out of line definition
+// constant definitions
 
 }  // namespace msg
 

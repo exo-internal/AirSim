@@ -53,7 +53,7 @@ struct SetCameraInfo_Request_
 
   // field types and members
   using _camera_info_type =
-      sensor_msgs::msg::CameraInfo_<ContainerAllocator>;
+    sensor_msgs::msg::CameraInfo_<ContainerAllocator>;
   _camera_info_type camera_info;
 
   // setters for named parameter idiom
@@ -64,35 +64,35 @@ struct SetCameraInfo_Request_
     return this;
   }
 
-  // constants
+  // constant declarations
 
   // pointer types
   using RawPtr =
-      sensor_msgs::srv::SetCameraInfo_Request_<ContainerAllocator> *;
+    sensor_msgs::srv::SetCameraInfo_Request_<ContainerAllocator> *;
   using ConstRawPtr =
-      const sensor_msgs::srv::SetCameraInfo_Request_<ContainerAllocator> *;
+    const sensor_msgs::srv::SetCameraInfo_Request_<ContainerAllocator> *;
   using SharedPtr =
-      std::shared_ptr<sensor_msgs::srv::SetCameraInfo_Request_<ContainerAllocator>>;
+    std::shared_ptr<sensor_msgs::srv::SetCameraInfo_Request_<ContainerAllocator>>;
   using ConstSharedPtr =
-      std::shared_ptr<sensor_msgs::srv::SetCameraInfo_Request_<ContainerAllocator> const>;
+    std::shared_ptr<sensor_msgs::srv::SetCameraInfo_Request_<ContainerAllocator> const>;
 
   template<typename Deleter = std::default_delete<
       sensor_msgs::srv::SetCameraInfo_Request_<ContainerAllocator>>>
   using UniquePtrWithDeleter =
-      std::unique_ptr<sensor_msgs::srv::SetCameraInfo_Request_<ContainerAllocator>, Deleter>;
+    std::unique_ptr<sensor_msgs::srv::SetCameraInfo_Request_<ContainerAllocator>, Deleter>;
 
   using UniquePtr = UniquePtrWithDeleter<>;
 
   template<typename Deleter = std::default_delete<
       sensor_msgs::srv::SetCameraInfo_Request_<ContainerAllocator>>>
   using ConstUniquePtrWithDeleter =
-      std::unique_ptr<sensor_msgs::srv::SetCameraInfo_Request_<ContainerAllocator> const, Deleter>;
+    std::unique_ptr<sensor_msgs::srv::SetCameraInfo_Request_<ContainerAllocator> const, Deleter>;
   using ConstUniquePtr = ConstUniquePtrWithDeleter<>;
 
   using WeakPtr =
-      std::weak_ptr<sensor_msgs::srv::SetCameraInfo_Request_<ContainerAllocator>>;
+    std::weak_ptr<sensor_msgs::srv::SetCameraInfo_Request_<ContainerAllocator>>;
   using ConstWeakPtr =
-      std::weak_ptr<sensor_msgs::srv::SetCameraInfo_Request_<ContainerAllocator> const>;
+    std::weak_ptr<sensor_msgs::srv::SetCameraInfo_Request_<ContainerAllocator> const>;
 
   // pointer types similar to ROS 1, use SharedPtr / ConstSharedPtr instead
   // NOTE: Can't use 'using' here because GNU C++ can't parse attributes properly
@@ -119,9 +119,9 @@ struct SetCameraInfo_Request_
 
 // alias to use template instance with default allocator
 using SetCameraInfo_Request =
-    sensor_msgs::srv::SetCameraInfo_Request_<std::allocator<void>>;
+  sensor_msgs::srv::SetCameraInfo_Request_<std::allocator<void>>;
 
-// constants requiring out of line definition
+// constant definitions
 
 }  // namespace srv
 

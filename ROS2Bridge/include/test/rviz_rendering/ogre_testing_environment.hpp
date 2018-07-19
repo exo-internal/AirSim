@@ -32,19 +32,8 @@
 
 #include <string>
 
-#ifndef _WIN32
-# pragma GCC diagnostic push
-# pragma GCC diagnostic ignored "-Wpedantic"
-# ifdef __clang__
-#  pragma clang diagnostic ignored "-Wextra-semi"
-# endif
-#endif
-
 #include <OgreLogManager.h>
-
-#ifndef _WIN32
-# pragma GCC diagnostic pop
-#endif
+#include <OgreRenderWindow.h>
 
 #include "rviz_rendering/visibility_control.hpp"
 
@@ -70,6 +59,8 @@ public:
   }
 
   void setUpRenderSystem();
+
+  Ogre::RenderWindow * createOgreRenderWindow();
 };
 
 }  // namespace rviz_rendering

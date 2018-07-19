@@ -76,7 +76,7 @@
 #ifndef RMW__RMW_H_
 #define RMW__RMW_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -171,6 +171,70 @@ RMW_WARN_UNUSED
 rmw_ret_t
 rmw_publish(const rmw_publisher_t * publisher, const void * ros_message);
 
+/// Publish an already serialized message.
+/**
+ * The publisher must already be registered with the correct message type
+ * support so that it can send serialized data corresponding to that type.
+ * This function sends the serialized byte stream directly over the wire without
+ * having to serialize the message first.
+ * A ROS message can be serialized manually using the rmw_serialize() function.
+ *
+ * \param publisher the publisher object registered to send the message
+ * \param serialized_message the serialized message holding the byte stream
+ * \return `RMW_RET_OK` if successful, or
+ * \return `RMW_RET_ERROR` if an unexpected error occurs.
+ */
+RMW_PUBLIC
+RMW_WARN_UNUSED
+rmw_ret_t
+rmw_publish_serialized_message(
+  const rmw_publisher_t * publisher, const rmw_serialized_message_t * serialized_message);
+
+/// Serialize a ROS message into a rmw_serialized_message_t.
+/**
+ * The ROS message is serialized into a byte stream contained within the
+ * rmw_serialized_message_t structure.
+ * The serialization format depends on the underlying middleware.
+ *
+ * \param ros_message the typed ROS message
+ * \param type_support the typesupport for the ROS message
+ * \param serialized_message the destination for the serialize ROS message
+ * \return `RMW_RET_OK` if successful, or
+ * \return `RMW_RET_BAD_ALLOC` if memory allocation failed, or
+ * \return `RMW_RET_ERROR` if an unexpected error occurs.
+ */
+RMW_PUBLIC
+RMW_WARN_UNUSED
+rmw_ret_t
+rmw_serialize(
+  const void * ros_message,
+  const rosidl_message_type_support_t * type_support,
+  rmw_serialized_message_t * serialized_message);
+
+/// Deserialize a ROS message.
+/**
+ * The given rmw_serialized_message_t's internal byte stream buffer is deserialized
+ * into the given ROS message.
+ * The ROS message must already be allocated and initialized, and must match
+ * the given typesupport structure.
+ * The serialization format expected in the rmw_serialized_message_t depends on the
+ * underlying middleware.
+ *
+ * \param serialized_message the serialized message holding the byte stream
+ * \param type_support the typesupport for the typed ros message
+ * \param ros_message destination for the deserialized ROS message
+ * \return `RMW_RET_OK` if successful, or
+ * \return `RMW_RET_BAD_ALLOC` if memory allocation failed, or
+ * \return `RMW_RET_ERROR` if an unexpected error occurs.
+ */
+RMW_PUBLIC
+RMW_WARN_UNUSED
+rmw_ret_t
+rmw_deserialize(
+  const rmw_serialized_message_t * serialized_message,
+  const rosidl_message_type_support_t * type_support,
+  void * ros_message);
+
 RMW_PUBLIC
 RMW_WARN_UNUSED
 rmw_subscription_t *
@@ -197,6 +261,51 @@ rmw_ret_t
 rmw_take_with_info(
   const rmw_subscription_t * subscription,
   void * ros_message,
+  bool * taken,
+  rmw_message_info_t * message_info);
+
+/// Take a message without deserializing it.
+/**
+ * The message is taken in its serialized form. In contrast to rmw_take, the message
+ * is not deserialized in its ROS type but rather returned as a byte stream.
+ * The subscriber has to be registered for a specific type. But instead of receiving
+ * the message as its corresponding message type, it is taken as a byte stream.
+ * If needed, this byte stream can then be deserialized in a ROS message with a call to
+ * rmw_deserialize.
+ *
+ * \param subscription subscription object to take from
+ * \param serialized_message the destination in which to store the serialized message
+ * \param taken boolean flag indicating if a message was taken or not
+ * \return `RMW_RET_OK` if successful, or
+ * \return `RMW_RET_BAD_ALLOC` if memory allocation failed, or
+ * \return `RMW_RET_ERROR` if an unexpected error occurs.
+ */
+RMW_PUBLIC
+RMW_WARN_UNUSED
+rmw_ret_t
+rmw_take_serialized_message(
+  const rmw_subscription_t * subscription,
+  rmw_serialized_message_t * serialized_message,
+  bool * taken);
+
+/// Take a message without deserializing it and with its additional message information.
+/**
+ * The same as rmw_take_serialized_message(), except it also includes the
+ * rmw_message_info_t.
+ *
+ * \param subscription subscription object to take from
+ * \param serialized_message the destination in which to store the serialized message
+ * \param taken boolean flag indicating if a message was taken or not
+ * \return `RMW_RET_OK` if successful, or
+ * \return `RMW_RET_BAD_ALLOC` if memory allocation failed, or
+ * \return `RMW_RET_ERROR` if an unexpected error occurs.
+ */
+RMW_PUBLIC
+RMW_WARN_UNUSED
+rmw_ret_t
+rmw_take_serialized_message_with_info(
+  const rmw_subscription_t * subscription,
+  rmw_serialized_message_t * serialized_message,
   bool * taken,
   rmw_message_info_t * message_info);
 
@@ -323,7 +432,7 @@ rmw_destroy_wait_set(rmw_wait_set_t * wait_set);
  * \param clients Array of clients to wait on
  * \param wait_set Storage for the wait set
  * \param wait_timeout
- *   If negative, block indefinitely or until a condition is ready.
+ *   If NULL, block until a condition is ready.
  *   If zero, check only for immediately available conditions and don't block.
  *   Else, this represents the maximum time to wait for a response from the
  *   wait set.
@@ -410,7 +519,12 @@ rmw_service_server_is_available(
   const rmw_client_t * client,
   bool * is_available);
 
-#if __cplusplus
+RMW_PUBLIC
+RMW_WARN_UNUSED
+rmw_ret_t
+rmw_set_log_severity(rmw_log_severity_t severity);
+
+#ifdef __cplusplus
 }
 #endif
 

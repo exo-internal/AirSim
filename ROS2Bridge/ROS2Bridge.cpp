@@ -91,7 +91,6 @@ public:
 
 		// Create the simulator subscriptions
 		initializeSubscription_ = this->create_subscription<std_msgs::msg::Bool>("/exo/airsim/drone/simulator/initialize", std::bind(&ROS2AirSim::initialize_callback, this, _1));
-
 		resetSubscription_ = this->create_subscription<std_msgs::msg::Bool>("/exo/airsim/drone/simulator/reset", std::bind(&ROS2AirSim::reset_callback, this, _1));
 
 		RCLCPP_INFO(this->get_logger(), "Bridge initialized: %s", std::to_string(initialization_count));

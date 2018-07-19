@@ -56,10 +56,10 @@ struct Builtins_
 
   // field types and members
   using _duration_value_type =
-      builtin_interfaces::msg::Duration_<ContainerAllocator>;
+    builtin_interfaces::msg::Duration_<ContainerAllocator>;
   _duration_value_type duration_value;
   using _time_value_type =
-      builtin_interfaces::msg::Time_<ContainerAllocator>;
+    builtin_interfaces::msg::Time_<ContainerAllocator>;
   _time_value_type time_value;
 
   // setters for named parameter idiom
@@ -76,35 +76,35 @@ struct Builtins_
     return this;
   }
 
-  // constants
+  // constant declarations
 
   // pointer types
   using RawPtr =
-      test_msgs::msg::Builtins_<ContainerAllocator> *;
+    test_msgs::msg::Builtins_<ContainerAllocator> *;
   using ConstRawPtr =
-      const test_msgs::msg::Builtins_<ContainerAllocator> *;
+    const test_msgs::msg::Builtins_<ContainerAllocator> *;
   using SharedPtr =
-      std::shared_ptr<test_msgs::msg::Builtins_<ContainerAllocator>>;
+    std::shared_ptr<test_msgs::msg::Builtins_<ContainerAllocator>>;
   using ConstSharedPtr =
-      std::shared_ptr<test_msgs::msg::Builtins_<ContainerAllocator> const>;
+    std::shared_ptr<test_msgs::msg::Builtins_<ContainerAllocator> const>;
 
   template<typename Deleter = std::default_delete<
       test_msgs::msg::Builtins_<ContainerAllocator>>>
   using UniquePtrWithDeleter =
-      std::unique_ptr<test_msgs::msg::Builtins_<ContainerAllocator>, Deleter>;
+    std::unique_ptr<test_msgs::msg::Builtins_<ContainerAllocator>, Deleter>;
 
   using UniquePtr = UniquePtrWithDeleter<>;
 
   template<typename Deleter = std::default_delete<
       test_msgs::msg::Builtins_<ContainerAllocator>>>
   using ConstUniquePtrWithDeleter =
-      std::unique_ptr<test_msgs::msg::Builtins_<ContainerAllocator> const, Deleter>;
+    std::unique_ptr<test_msgs::msg::Builtins_<ContainerAllocator> const, Deleter>;
   using ConstUniquePtr = ConstUniquePtrWithDeleter<>;
 
   using WeakPtr =
-      std::weak_ptr<test_msgs::msg::Builtins_<ContainerAllocator>>;
+    std::weak_ptr<test_msgs::msg::Builtins_<ContainerAllocator>>;
   using ConstWeakPtr =
-      std::weak_ptr<test_msgs::msg::Builtins_<ContainerAllocator> const>;
+    std::weak_ptr<test_msgs::msg::Builtins_<ContainerAllocator> const>;
 
   // pointer types similar to ROS 1, use SharedPtr / ConstSharedPtr instead
   // NOTE: Can't use 'using' here because GNU C++ can't parse attributes properly
@@ -134,9 +134,9 @@ struct Builtins_
 
 // alias to use template instance with default allocator
 using Builtins =
-    test_msgs::msg::Builtins_<std::allocator<void>>;
+  test_msgs::msg::Builtins_<std::allocator<void>>;
 
-// constants requiring out of line definition
+// constant definitions
 
 }  // namespace msg
 

@@ -4,7 +4,7 @@
 #ifndef RCL_INTERFACES__SRV__LIST_PARAMETERS__REQUEST__STRUCT_H_
 #define RCL_INTERFACES__SRV__LIST_PARAMETERS__REQUEST__STRUCT_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -41,7 +41,7 @@ typedef struct rcl_interfaces__srv__ListParameters_Request__Array
   size_t capacity;
 } rcl_interfaces__srv__ListParameters_Request__Array;
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

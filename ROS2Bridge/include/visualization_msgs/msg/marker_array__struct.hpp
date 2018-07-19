@@ -52,7 +52,7 @@ struct MarkerArray_
 
   // field types and members
   using _markers_type =
-      std::vector<visualization_msgs::msg::Marker_<ContainerAllocator>, typename ContainerAllocator::template rebind<visualization_msgs::msg::Marker_<ContainerAllocator>>::other>;
+    std::vector<visualization_msgs::msg::Marker_<ContainerAllocator>, typename ContainerAllocator::template rebind<visualization_msgs::msg::Marker_<ContainerAllocator>>::other>;
   _markers_type markers;
 
   // setters for named parameter idiom
@@ -63,35 +63,35 @@ struct MarkerArray_
     return this;
   }
 
-  // constants
+  // constant declarations
 
   // pointer types
   using RawPtr =
-      visualization_msgs::msg::MarkerArray_<ContainerAllocator> *;
+    visualization_msgs::msg::MarkerArray_<ContainerAllocator> *;
   using ConstRawPtr =
-      const visualization_msgs::msg::MarkerArray_<ContainerAllocator> *;
+    const visualization_msgs::msg::MarkerArray_<ContainerAllocator> *;
   using SharedPtr =
-      std::shared_ptr<visualization_msgs::msg::MarkerArray_<ContainerAllocator>>;
+    std::shared_ptr<visualization_msgs::msg::MarkerArray_<ContainerAllocator>>;
   using ConstSharedPtr =
-      std::shared_ptr<visualization_msgs::msg::MarkerArray_<ContainerAllocator> const>;
+    std::shared_ptr<visualization_msgs::msg::MarkerArray_<ContainerAllocator> const>;
 
   template<typename Deleter = std::default_delete<
       visualization_msgs::msg::MarkerArray_<ContainerAllocator>>>
   using UniquePtrWithDeleter =
-      std::unique_ptr<visualization_msgs::msg::MarkerArray_<ContainerAllocator>, Deleter>;
+    std::unique_ptr<visualization_msgs::msg::MarkerArray_<ContainerAllocator>, Deleter>;
 
   using UniquePtr = UniquePtrWithDeleter<>;
 
   template<typename Deleter = std::default_delete<
       visualization_msgs::msg::MarkerArray_<ContainerAllocator>>>
   using ConstUniquePtrWithDeleter =
-      std::unique_ptr<visualization_msgs::msg::MarkerArray_<ContainerAllocator> const, Deleter>;
+    std::unique_ptr<visualization_msgs::msg::MarkerArray_<ContainerAllocator> const, Deleter>;
   using ConstUniquePtr = ConstUniquePtrWithDeleter<>;
 
   using WeakPtr =
-      std::weak_ptr<visualization_msgs::msg::MarkerArray_<ContainerAllocator>>;
+    std::weak_ptr<visualization_msgs::msg::MarkerArray_<ContainerAllocator>>;
   using ConstWeakPtr =
-      std::weak_ptr<visualization_msgs::msg::MarkerArray_<ContainerAllocator> const>;
+    std::weak_ptr<visualization_msgs::msg::MarkerArray_<ContainerAllocator> const>;
 
   // pointer types similar to ROS 1, use SharedPtr / ConstSharedPtr instead
   // NOTE: Can't use 'using' here because GNU C++ can't parse attributes properly
@@ -118,9 +118,9 @@ struct MarkerArray_
 
 // alias to use template instance with default allocator
 using MarkerArray =
-    visualization_msgs::msg::MarkerArray_<std::allocator<void>>;
+  visualization_msgs::msg::MarkerArray_<std::allocator<void>>;
 
-// constants requiring out of line definition
+// constant definitions
 
 }  // namespace msg
 

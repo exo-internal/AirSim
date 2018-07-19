@@ -69,10 +69,10 @@ struct SetParametersResult_
 
   // field types and members
   using _successful_type =
-      bool;
+    bool;
   _successful_type successful;
   using _reason_type =
-      std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>;
+    std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>;
   _reason_type reason;
 
   // setters for named parameter idiom
@@ -89,35 +89,35 @@ struct SetParametersResult_
     return this;
   }
 
-  // constants
+  // constant declarations
 
   // pointer types
   using RawPtr =
-      rcl_interfaces::msg::SetParametersResult_<ContainerAllocator> *;
+    rcl_interfaces::msg::SetParametersResult_<ContainerAllocator> *;
   using ConstRawPtr =
-      const rcl_interfaces::msg::SetParametersResult_<ContainerAllocator> *;
+    const rcl_interfaces::msg::SetParametersResult_<ContainerAllocator> *;
   using SharedPtr =
-      std::shared_ptr<rcl_interfaces::msg::SetParametersResult_<ContainerAllocator>>;
+    std::shared_ptr<rcl_interfaces::msg::SetParametersResult_<ContainerAllocator>>;
   using ConstSharedPtr =
-      std::shared_ptr<rcl_interfaces::msg::SetParametersResult_<ContainerAllocator> const>;
+    std::shared_ptr<rcl_interfaces::msg::SetParametersResult_<ContainerAllocator> const>;
 
   template<typename Deleter = std::default_delete<
       rcl_interfaces::msg::SetParametersResult_<ContainerAllocator>>>
   using UniquePtrWithDeleter =
-      std::unique_ptr<rcl_interfaces::msg::SetParametersResult_<ContainerAllocator>, Deleter>;
+    std::unique_ptr<rcl_interfaces::msg::SetParametersResult_<ContainerAllocator>, Deleter>;
 
   using UniquePtr = UniquePtrWithDeleter<>;
 
   template<typename Deleter = std::default_delete<
       rcl_interfaces::msg::SetParametersResult_<ContainerAllocator>>>
   using ConstUniquePtrWithDeleter =
-      std::unique_ptr<rcl_interfaces::msg::SetParametersResult_<ContainerAllocator> const, Deleter>;
+    std::unique_ptr<rcl_interfaces::msg::SetParametersResult_<ContainerAllocator> const, Deleter>;
   using ConstUniquePtr = ConstUniquePtrWithDeleter<>;
 
   using WeakPtr =
-      std::weak_ptr<rcl_interfaces::msg::SetParametersResult_<ContainerAllocator>>;
+    std::weak_ptr<rcl_interfaces::msg::SetParametersResult_<ContainerAllocator>>;
   using ConstWeakPtr =
-      std::weak_ptr<rcl_interfaces::msg::SetParametersResult_<ContainerAllocator> const>;
+    std::weak_ptr<rcl_interfaces::msg::SetParametersResult_<ContainerAllocator> const>;
 
   // pointer types similar to ROS 1, use SharedPtr / ConstSharedPtr instead
   // NOTE: Can't use 'using' here because GNU C++ can't parse attributes properly
@@ -147,9 +147,9 @@ struct SetParametersResult_
 
 // alias to use template instance with default allocator
 using SetParametersResult =
-    rcl_interfaces::msg::SetParametersResult_<std::allocator<void>>;
+  rcl_interfaces::msg::SetParametersResult_<std::allocator<void>>;
 
-// constants requiring out of line definition
+// constant definitions
 
 }  // namespace msg
 

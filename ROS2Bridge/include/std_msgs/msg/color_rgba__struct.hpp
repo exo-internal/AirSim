@@ -65,16 +65,16 @@ struct ColorRGBA_
 
   // field types and members
   using _r_type =
-      float;
+    float;
   _r_type r;
   using _g_type =
-      float;
+    float;
   _g_type g;
   using _b_type =
-      float;
+    float;
   _b_type b;
   using _a_type =
-      float;
+    float;
   _a_type a;
 
   // setters for named parameter idiom
@@ -103,35 +103,35 @@ struct ColorRGBA_
     return this;
   }
 
-  // constants
+  // constant declarations
 
   // pointer types
   using RawPtr =
-      std_msgs::msg::ColorRGBA_<ContainerAllocator> *;
+    std_msgs::msg::ColorRGBA_<ContainerAllocator> *;
   using ConstRawPtr =
-      const std_msgs::msg::ColorRGBA_<ContainerAllocator> *;
+    const std_msgs::msg::ColorRGBA_<ContainerAllocator> *;
   using SharedPtr =
-      std::shared_ptr<std_msgs::msg::ColorRGBA_<ContainerAllocator>>;
+    std::shared_ptr<std_msgs::msg::ColorRGBA_<ContainerAllocator>>;
   using ConstSharedPtr =
-      std::shared_ptr<std_msgs::msg::ColorRGBA_<ContainerAllocator> const>;
+    std::shared_ptr<std_msgs::msg::ColorRGBA_<ContainerAllocator> const>;
 
   template<typename Deleter = std::default_delete<
       std_msgs::msg::ColorRGBA_<ContainerAllocator>>>
   using UniquePtrWithDeleter =
-      std::unique_ptr<std_msgs::msg::ColorRGBA_<ContainerAllocator>, Deleter>;
+    std::unique_ptr<std_msgs::msg::ColorRGBA_<ContainerAllocator>, Deleter>;
 
   using UniquePtr = UniquePtrWithDeleter<>;
 
   template<typename Deleter = std::default_delete<
       std_msgs::msg::ColorRGBA_<ContainerAllocator>>>
   using ConstUniquePtrWithDeleter =
-      std::unique_ptr<std_msgs::msg::ColorRGBA_<ContainerAllocator> const, Deleter>;
+    std::unique_ptr<std_msgs::msg::ColorRGBA_<ContainerAllocator> const, Deleter>;
   using ConstUniquePtr = ConstUniquePtrWithDeleter<>;
 
   using WeakPtr =
-      std::weak_ptr<std_msgs::msg::ColorRGBA_<ContainerAllocator>>;
+    std::weak_ptr<std_msgs::msg::ColorRGBA_<ContainerAllocator>>;
   using ConstWeakPtr =
-      std::weak_ptr<std_msgs::msg::ColorRGBA_<ContainerAllocator> const>;
+    std::weak_ptr<std_msgs::msg::ColorRGBA_<ContainerAllocator> const>;
 
   // pointer types similar to ROS 1, use SharedPtr / ConstSharedPtr instead
   // NOTE: Can't use 'using' here because GNU C++ can't parse attributes properly
@@ -167,9 +167,9 @@ struct ColorRGBA_
 
 // alias to use template instance with default allocator
 using ColorRGBA =
-    std_msgs::msg::ColorRGBA_<std::allocator<void>>;
+  std_msgs::msg::ColorRGBA_<std::allocator<void>>;
 
-// constants requiring out of line definition
+// constant definitions
 
 }  // namespace msg
 

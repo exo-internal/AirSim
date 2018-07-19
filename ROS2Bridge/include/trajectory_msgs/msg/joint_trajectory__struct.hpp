@@ -54,13 +54,13 @@ struct JointTrajectory_
 
   // field types and members
   using _header_type =
-      std_msgs::msg::Header_<ContainerAllocator>;
+    std_msgs::msg::Header_<ContainerAllocator>;
   _header_type header;
   using _joint_names_type =
-      std::vector<std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>, typename ContainerAllocator::template rebind<std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>>::other>;
+    std::vector<std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>, typename ContainerAllocator::template rebind<std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>>::other>;
   _joint_names_type joint_names;
   using _points_type =
-      std::vector<trajectory_msgs::msg::JointTrajectoryPoint_<ContainerAllocator>, typename ContainerAllocator::template rebind<trajectory_msgs::msg::JointTrajectoryPoint_<ContainerAllocator>>::other>;
+    std::vector<trajectory_msgs::msg::JointTrajectoryPoint_<ContainerAllocator>, typename ContainerAllocator::template rebind<trajectory_msgs::msg::JointTrajectoryPoint_<ContainerAllocator>>::other>;
   _points_type points;
 
   // setters for named parameter idiom
@@ -83,35 +83,35 @@ struct JointTrajectory_
     return this;
   }
 
-  // constants
+  // constant declarations
 
   // pointer types
   using RawPtr =
-      trajectory_msgs::msg::JointTrajectory_<ContainerAllocator> *;
+    trajectory_msgs::msg::JointTrajectory_<ContainerAllocator> *;
   using ConstRawPtr =
-      const trajectory_msgs::msg::JointTrajectory_<ContainerAllocator> *;
+    const trajectory_msgs::msg::JointTrajectory_<ContainerAllocator> *;
   using SharedPtr =
-      std::shared_ptr<trajectory_msgs::msg::JointTrajectory_<ContainerAllocator>>;
+    std::shared_ptr<trajectory_msgs::msg::JointTrajectory_<ContainerAllocator>>;
   using ConstSharedPtr =
-      std::shared_ptr<trajectory_msgs::msg::JointTrajectory_<ContainerAllocator> const>;
+    std::shared_ptr<trajectory_msgs::msg::JointTrajectory_<ContainerAllocator> const>;
 
   template<typename Deleter = std::default_delete<
       trajectory_msgs::msg::JointTrajectory_<ContainerAllocator>>>
   using UniquePtrWithDeleter =
-      std::unique_ptr<trajectory_msgs::msg::JointTrajectory_<ContainerAllocator>, Deleter>;
+    std::unique_ptr<trajectory_msgs::msg::JointTrajectory_<ContainerAllocator>, Deleter>;
 
   using UniquePtr = UniquePtrWithDeleter<>;
 
   template<typename Deleter = std::default_delete<
       trajectory_msgs::msg::JointTrajectory_<ContainerAllocator>>>
   using ConstUniquePtrWithDeleter =
-      std::unique_ptr<trajectory_msgs::msg::JointTrajectory_<ContainerAllocator> const, Deleter>;
+    std::unique_ptr<trajectory_msgs::msg::JointTrajectory_<ContainerAllocator> const, Deleter>;
   using ConstUniquePtr = ConstUniquePtrWithDeleter<>;
 
   using WeakPtr =
-      std::weak_ptr<trajectory_msgs::msg::JointTrajectory_<ContainerAllocator>>;
+    std::weak_ptr<trajectory_msgs::msg::JointTrajectory_<ContainerAllocator>>;
   using ConstWeakPtr =
-      std::weak_ptr<trajectory_msgs::msg::JointTrajectory_<ContainerAllocator> const>;
+    std::weak_ptr<trajectory_msgs::msg::JointTrajectory_<ContainerAllocator> const>;
 
   // pointer types similar to ROS 1, use SharedPtr / ConstSharedPtr instead
   // NOTE: Can't use 'using' here because GNU C++ can't parse attributes properly
@@ -144,9 +144,9 @@ struct JointTrajectory_
 
 // alias to use template instance with default allocator
 using JointTrajectory =
-    trajectory_msgs::msg::JointTrajectory_<std::allocator<void>>;
+  trajectory_msgs::msg::JointTrajectory_<std::allocator<void>>;
 
-// constants requiring out of line definition
+// constant definitions
 
 }  // namespace msg
 

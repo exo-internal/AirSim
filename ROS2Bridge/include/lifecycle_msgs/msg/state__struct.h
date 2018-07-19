@@ -4,7 +4,7 @@
 #ifndef LIFECYCLE_MSGS__MSG__STATE__STRUCT_H_
 #define LIFECYCLE_MSGS__MSG__STATE__STRUCT_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -91,7 +91,7 @@ typedef struct lifecycle_msgs__msg__State__Array
   size_t capacity;
 } lifecycle_msgs__msg__State__Array;
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

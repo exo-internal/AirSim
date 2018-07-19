@@ -96,31 +96,31 @@ struct PointCloud2_
 
   // field types and members
   using _header_type =
-      std_msgs::msg::Header_<ContainerAllocator>;
+    std_msgs::msg::Header_<ContainerAllocator>;
   _header_type header;
   using _height_type =
-      uint32_t;
+    uint32_t;
   _height_type height;
   using _width_type =
-      uint32_t;
+    uint32_t;
   _width_type width;
   using _fields_type =
-      std::vector<sensor_msgs::msg::PointField_<ContainerAllocator>, typename ContainerAllocator::template rebind<sensor_msgs::msg::PointField_<ContainerAllocator>>::other>;
+    std::vector<sensor_msgs::msg::PointField_<ContainerAllocator>, typename ContainerAllocator::template rebind<sensor_msgs::msg::PointField_<ContainerAllocator>>::other>;
   _fields_type fields;
   using _is_bigendian_type =
-      bool;
+    bool;
   _is_bigendian_type is_bigendian;
   using _point_step_type =
-      uint32_t;
+    uint32_t;
   _point_step_type point_step;
   using _row_step_type =
-      uint32_t;
+    uint32_t;
   _row_step_type row_step;
   using _data_type =
-      std::vector<uint8_t, typename ContainerAllocator::template rebind<uint8_t>::other>;
+    std::vector<uint8_t, typename ContainerAllocator::template rebind<uint8_t>::other>;
   _data_type data;
   using _is_dense_type =
-      bool;
+    bool;
   _is_dense_type is_dense;
 
   // setters for named parameter idiom
@@ -179,35 +179,35 @@ struct PointCloud2_
     return this;
   }
 
-  // constants
+  // constant declarations
 
   // pointer types
   using RawPtr =
-      sensor_msgs::msg::PointCloud2_<ContainerAllocator> *;
+    sensor_msgs::msg::PointCloud2_<ContainerAllocator> *;
   using ConstRawPtr =
-      const sensor_msgs::msg::PointCloud2_<ContainerAllocator> *;
+    const sensor_msgs::msg::PointCloud2_<ContainerAllocator> *;
   using SharedPtr =
-      std::shared_ptr<sensor_msgs::msg::PointCloud2_<ContainerAllocator>>;
+    std::shared_ptr<sensor_msgs::msg::PointCloud2_<ContainerAllocator>>;
   using ConstSharedPtr =
-      std::shared_ptr<sensor_msgs::msg::PointCloud2_<ContainerAllocator> const>;
+    std::shared_ptr<sensor_msgs::msg::PointCloud2_<ContainerAllocator> const>;
 
   template<typename Deleter = std::default_delete<
       sensor_msgs::msg::PointCloud2_<ContainerAllocator>>>
   using UniquePtrWithDeleter =
-      std::unique_ptr<sensor_msgs::msg::PointCloud2_<ContainerAllocator>, Deleter>;
+    std::unique_ptr<sensor_msgs::msg::PointCloud2_<ContainerAllocator>, Deleter>;
 
   using UniquePtr = UniquePtrWithDeleter<>;
 
   template<typename Deleter = std::default_delete<
       sensor_msgs::msg::PointCloud2_<ContainerAllocator>>>
   using ConstUniquePtrWithDeleter =
-      std::unique_ptr<sensor_msgs::msg::PointCloud2_<ContainerAllocator> const, Deleter>;
+    std::unique_ptr<sensor_msgs::msg::PointCloud2_<ContainerAllocator> const, Deleter>;
   using ConstUniquePtr = ConstUniquePtrWithDeleter<>;
 
   using WeakPtr =
-      std::weak_ptr<sensor_msgs::msg::PointCloud2_<ContainerAllocator>>;
+    std::weak_ptr<sensor_msgs::msg::PointCloud2_<ContainerAllocator>>;
   using ConstWeakPtr =
-      std::weak_ptr<sensor_msgs::msg::PointCloud2_<ContainerAllocator> const>;
+    std::weak_ptr<sensor_msgs::msg::PointCloud2_<ContainerAllocator> const>;
 
   // pointer types similar to ROS 1, use SharedPtr / ConstSharedPtr instead
   // NOTE: Can't use 'using' here because GNU C++ can't parse attributes properly
@@ -258,9 +258,9 @@ struct PointCloud2_
 
 // alias to use template instance with default allocator
 using PointCloud2 =
-    sensor_msgs::msg::PointCloud2_<std::allocator<void>>;
+  sensor_msgs::msg::PointCloud2_<std::allocator<void>>;
 
-// constants requiring out of line definition
+// constant definitions
 
 }  // namespace msg
 

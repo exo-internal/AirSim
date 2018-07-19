@@ -1,0 +1,275 @@
+#ifndef LOADNODE_REQUEST_DCPS_IDL_
+#define LOADNODE_REQUEST_DCPS_IDL_
+
+#include "dds_dcps.idl"
+
+#include "LoadNode_Request_.idl"
+
+module composition {
+
+    module srv {
+
+        module dds_ {
+
+            typedef sequence<LoadNode_Request_> LoadNode_Request_Seq;
+
+            local interface LoadNode_Request_TypeSupportInterface : ::DDS::TypeSupport { };
+
+            local interface LoadNode_Request_DataWriter : ::DDS::DataWriter {
+                ::DDS::InstanceHandle_t register_instance(
+                  in LoadNode_Request_ instance_data);
+
+                ::DDS::InstanceHandle_t register_instance_w_timestamp(
+                  in LoadNode_Request_ instance_data,
+                  in ::DDS::Time_t source_timestamp);
+
+                ::DDS::ReturnCode_t unregister_instance(
+                  in LoadNode_Request_ instance_data,
+                  in ::DDS::InstanceHandle_t handle);
+
+                ::DDS::ReturnCode_t unregister_instance_w_timestamp(
+                  in LoadNode_Request_ instance_data,
+                  in ::DDS::InstanceHandle_t handle,
+                  in ::DDS::Time_t source_timestamp);
+
+                ::DDS::ReturnCode_t write(
+                  in LoadNode_Request_ instance_data,
+                  in ::DDS::InstanceHandle_t handle);
+
+                ::DDS::ReturnCode_t write_w_timestamp(
+                  in LoadNode_Request_ instance_data,
+                  in ::DDS::InstanceHandle_t handle,
+                  in ::DDS::Time_t source_timestamp);
+
+                ::DDS::ReturnCode_t dispose(
+                  in LoadNode_Request_ instance_data,
+                  in ::DDS::InstanceHandle_t handle);
+
+                ::DDS::ReturnCode_t dispose_w_timestamp(
+                  in LoadNode_Request_ instance_data,
+                  in ::DDS::InstanceHandle_t handle,
+                  in ::DDS::Time_t source_timestamp);
+
+                ::DDS::ReturnCode_t writedispose(
+                  in LoadNode_Request_ instance_data,
+                  in ::DDS::InstanceHandle_t handle);
+
+                ::DDS::ReturnCode_t writedispose_w_timestamp(
+                  in LoadNode_Request_ instance_data,
+                  in ::DDS::InstanceHandle_t handle,
+                  in ::DDS::Time_t source_timestamp);
+
+                ::DDS::ReturnCode_t get_key_value(
+                  inout LoadNode_Request_ key_holder,
+                  in ::DDS::InstanceHandle_t handle);
+
+                ::DDS::InstanceHandle_t lookup_instance(
+                  in LoadNode_Request_ instance_data);
+
+            };
+
+            local interface LoadNode_Request_DataReader : ::DDS::DataReader {
+                ::DDS::ReturnCode_t read(
+                  inout LoadNode_Request_Seq received_data,
+                  inout ::DDS::SampleInfoSeq info_seq,
+                  in long max_samples,
+                  in ::DDS::SampleStateMask sample_states,
+                  in ::DDS::ViewStateMask view_states,
+                  in ::DDS::InstanceStateMask instance_states);
+
+                ::DDS::ReturnCode_t take(
+                  inout LoadNode_Request_Seq received_data,
+                  inout ::DDS::SampleInfoSeq info_seq,
+                  in long max_samples,
+                  in ::DDS::SampleStateMask sample_states,
+                  in ::DDS::ViewStateMask view_states,
+                  in ::DDS::InstanceStateMask instance_states);
+
+                ::DDS::ReturnCode_t read_w_condition(
+                  inout LoadNode_Request_Seq received_data,
+                  inout ::DDS::SampleInfoSeq info_seq,
+                  in long max_samples,
+                  in ::DDS::ReadCondition a_condition);
+
+                ::DDS::ReturnCode_t take_w_condition(
+                  inout LoadNode_Request_Seq received_data,
+                  inout ::DDS::SampleInfoSeq info_seq,
+                  in long max_samples,
+                  in ::DDS::ReadCondition a_condition);
+
+                ::DDS::ReturnCode_t read_next_sample(
+                  inout LoadNode_Request_ received_data,
+                  inout ::DDS::SampleInfo sample_info);
+
+                ::DDS::ReturnCode_t take_next_sample(
+                  inout LoadNode_Request_ received_data,
+                  inout ::DDS::SampleInfo sample_info);
+
+                ::DDS::ReturnCode_t read_instance(
+                  inout LoadNode_Request_Seq received_data,
+                  inout ::DDS::SampleInfoSeq info_seq,
+                  in long max_samples,
+                  in ::DDS::InstanceHandle_t a_handle,
+                  in ::DDS::SampleStateMask sample_states,
+                  in ::DDS::ViewStateMask view_states,
+                  in ::DDS::InstanceStateMask instance_states);
+
+                ::DDS::ReturnCode_t take_instance(
+                  inout LoadNode_Request_Seq received_data,
+                  inout ::DDS::SampleInfoSeq info_seq,
+                  in long max_samples,
+                  in ::DDS::InstanceHandle_t a_handle,
+                  in ::DDS::SampleStateMask sample_states,
+                  in ::DDS::ViewStateMask view_states,
+                  in ::DDS::InstanceStateMask instance_states);
+
+                ::DDS::ReturnCode_t read_next_instance(
+                  inout LoadNode_Request_Seq received_data,
+                  inout ::DDS::SampleInfoSeq info_seq,
+                  in long max_samples,
+                  in ::DDS::InstanceHandle_t a_handle,
+                  in ::DDS::SampleStateMask sample_states,
+                  in ::DDS::ViewStateMask view_states,
+                  in ::DDS::InstanceStateMask instance_states);
+
+                ::DDS::ReturnCode_t take_next_instance(
+                  inout LoadNode_Request_Seq received_data,
+                  inout ::DDS::SampleInfoSeq info_seq,
+                  in long max_samples,
+                  in ::DDS::InstanceHandle_t a_handle,
+                  in ::DDS::SampleStateMask sample_states,
+                  in ::DDS::ViewStateMask view_states,
+                  in ::DDS::InstanceStateMask instance_states);
+
+                ::DDS::ReturnCode_t read_next_instance_w_condition(
+                  inout LoadNode_Request_Seq received_data,
+                  inout ::DDS::SampleInfoSeq info_seq,
+                  in long max_samples,
+                  in ::DDS::InstanceHandle_t a_handle,
+                  in ::DDS::ReadCondition a_condition);
+
+                ::DDS::ReturnCode_t take_next_instance_w_condition(
+                  inout LoadNode_Request_Seq received_data,
+                  inout ::DDS::SampleInfoSeq info_seq,
+                  in long max_samples,
+                  in ::DDS::InstanceHandle_t a_handle,
+                  in ::DDS::ReadCondition a_condition);
+
+                ::DDS::ReturnCode_t return_loan(
+                  inout LoadNode_Request_Seq received_data,
+                  inout ::DDS::SampleInfoSeq info_seq);
+
+                ::DDS::ReturnCode_t get_key_value(
+                  inout LoadNode_Request_ key_holder,
+                  in ::DDS::InstanceHandle_t handle);
+
+                ::DDS::InstanceHandle_t lookup_instance(
+                  in LoadNode_Request_ instance);
+
+            };
+
+            local interface LoadNode_Request_DataReaderView : ::DDS::DataReaderView {
+                ::DDS::ReturnCode_t read(
+                  inout LoadNode_Request_Seq received_data,
+                  inout ::DDS::SampleInfoSeq info_seq,
+                  in long max_samples,
+                  in ::DDS::SampleStateMask sample_states,
+                  in ::DDS::ViewStateMask view_states,
+                  in ::DDS::InstanceStateMask instance_states);
+
+                ::DDS::ReturnCode_t take(
+                  inout LoadNode_Request_Seq received_data,
+                  inout ::DDS::SampleInfoSeq info_seq,
+                  in long max_samples,
+                  in ::DDS::SampleStateMask sample_states,
+                  in ::DDS::ViewStateMask view_states,
+                  in ::DDS::InstanceStateMask instance_states);
+
+                ::DDS::ReturnCode_t read_w_condition(
+                  inout LoadNode_Request_Seq received_data,
+                  inout ::DDS::SampleInfoSeq info_seq,
+                  in long max_samples,
+                  in ::DDS::ReadCondition a_condition);
+
+                ::DDS::ReturnCode_t take_w_condition(
+                  inout LoadNode_Request_Seq received_data,
+                  inout ::DDS::SampleInfoSeq info_seq,
+                  in long max_samples,
+                  in ::DDS::ReadCondition a_condition);
+
+                ::DDS::ReturnCode_t read_next_sample(
+                  inout LoadNode_Request_ received_data,
+                  inout ::DDS::SampleInfo sample_info);
+
+                ::DDS::ReturnCode_t take_next_sample(
+                  inout LoadNode_Request_ received_data,
+                  inout ::DDS::SampleInfo sample_info);
+
+                ::DDS::ReturnCode_t read_instance(
+                  inout LoadNode_Request_Seq received_data,
+                  inout ::DDS::SampleInfoSeq info_seq,
+                  in long max_samples,
+                  in ::DDS::InstanceHandle_t a_handle,
+                  in ::DDS::SampleStateMask sample_states,
+                  in ::DDS::ViewStateMask view_states,
+                  in ::DDS::InstanceStateMask instance_states);
+
+                ::DDS::ReturnCode_t take_instance(
+                  inout LoadNode_Request_Seq received_data,
+                  inout ::DDS::SampleInfoSeq info_seq,
+                  in long max_samples,
+                  in ::DDS::InstanceHandle_t a_handle,
+                  in ::DDS::SampleStateMask sample_states,
+                  in ::DDS::ViewStateMask view_states,
+                  in ::DDS::InstanceStateMask instance_states);
+
+                ::DDS::ReturnCode_t read_next_instance(
+                  inout LoadNode_Request_Seq received_data,
+                  inout ::DDS::SampleInfoSeq info_seq,
+                  in long max_samples,
+                  in ::DDS::InstanceHandle_t a_handle,
+                  in ::DDS::SampleStateMask sample_states,
+                  in ::DDS::ViewStateMask view_states,
+                  in ::DDS::InstanceStateMask instance_states);
+
+                ::DDS::ReturnCode_t take_next_instance(
+                  inout LoadNode_Request_Seq received_data,
+                  inout ::DDS::SampleInfoSeq info_seq,
+                  in long max_samples,
+                  in ::DDS::InstanceHandle_t a_handle,
+                  in ::DDS::SampleStateMask sample_states,
+                  in ::DDS::ViewStateMask view_states,
+                  in ::DDS::InstanceStateMask instance_states);
+
+                ::DDS::ReturnCode_t read_next_instance_w_condition(
+                  inout LoadNode_Request_Seq received_data,
+                  inout ::DDS::SampleInfoSeq info_seq,
+                  in long max_samples,
+                  in ::DDS::InstanceHandle_t a_handle,
+                  in ::DDS::ReadCondition a_condition);
+
+                ::DDS::ReturnCode_t take_next_instance_w_condition(
+                  inout LoadNode_Request_Seq received_data,
+                  inout ::DDS::SampleInfoSeq info_seq,
+                  in long max_samples,
+                  in ::DDS::InstanceHandle_t a_handle,
+                  in ::DDS::ReadCondition a_condition);
+
+                ::DDS::ReturnCode_t return_loan(
+                  inout LoadNode_Request_Seq received_data,
+                  inout ::DDS::SampleInfoSeq info_seq);
+
+                ::DDS::ReturnCode_t get_key_value(
+                  inout LoadNode_Request_ key_holder,
+                  in ::DDS::InstanceHandle_t handle);
+
+                ::DDS::InstanceHandle_t lookup_instance(
+                  in LoadNode_Request_ instance);
+            };
+        };
+
+    };
+
+};
+
+#endif

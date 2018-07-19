@@ -15,7 +15,7 @@
 #ifndef RCL__SERVICE_H_
 #define RCL__SERVICE_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -403,13 +403,14 @@ rcl_service_get_rmw_handle(const rcl_service_t * service);
  * Lock-Free          | Yes
  *
  * \param[in] service pointer to the rcl service
+ * \param[in] error_msg_allocator a valid allocator or `NULL`
  * \return `true` if `service` is valid, otherwise `false`
  */
 RCL_PUBLIC
 bool
 rcl_service_is_valid(const rcl_service_t * service, rcl_allocator_t * error_msg_allocator);
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

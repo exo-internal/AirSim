@@ -4,7 +4,7 @@
 #ifndef TEST_MSGS__MSG__BOUNDED_ARRAY_PRIMITIVES__STRUCT_H_
 #define TEST_MSGS__MSG__BOUNDED_ARRAY_PRIMITIVES__STRUCT_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -133,7 +133,7 @@ typedef struct test_msgs__msg__BoundedArrayPrimitives__Array
   size_t capacity;
 } test_msgs__msg__BoundedArrayPrimitives__Array;
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

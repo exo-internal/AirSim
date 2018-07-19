@@ -4,7 +4,7 @@
 #ifndef RCL_INTERFACES__SRV__SET_PARAMETERS_ATOMICALLY__REQUEST__FUNCTIONS_H_
 #define RCL_INTERFACES__SRV__SET_PARAMETERS_ATOMICALLY__REQUEST__FUNCTIONS_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -105,7 +105,7 @@ ROSIDL_GENERATOR_C_PUBLIC_rcl_interfaces
 void
 rcl_interfaces__srv__SetParametersAtomically_Request__Array__destroy(rcl_interfaces__srv__SetParametersAtomically_Request__Array * array);
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

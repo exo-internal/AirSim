@@ -4,7 +4,7 @@
 #ifndef LIFECYCLE_MSGS__SRV__GET_AVAILABLE_TRANSITIONS__RESPONSE__STRUCT_H_
 #define LIFECYCLE_MSGS__SRV__GET_AVAILABLE_TRANSITIONS__RESPONSE__STRUCT_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -33,7 +33,7 @@ typedef struct lifecycle_msgs__srv__GetAvailableTransitions_Response__Array
   size_t capacity;
 } lifecycle_msgs__srv__GetAvailableTransitions_Response__Array;
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

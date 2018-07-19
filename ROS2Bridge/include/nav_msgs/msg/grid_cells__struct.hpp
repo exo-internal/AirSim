@@ -64,16 +64,16 @@ struct GridCells_
 
   // field types and members
   using _header_type =
-      std_msgs::msg::Header_<ContainerAllocator>;
+    std_msgs::msg::Header_<ContainerAllocator>;
   _header_type header;
   using _cell_width_type =
-      float;
+    float;
   _cell_width_type cell_width;
   using _cell_height_type =
-      float;
+    float;
   _cell_height_type cell_height;
   using _cells_type =
-      std::vector<geometry_msgs::msg::Point_<ContainerAllocator>, typename ContainerAllocator::template rebind<geometry_msgs::msg::Point_<ContainerAllocator>>::other>;
+    std::vector<geometry_msgs::msg::Point_<ContainerAllocator>, typename ContainerAllocator::template rebind<geometry_msgs::msg::Point_<ContainerAllocator>>::other>;
   _cells_type cells;
 
   // setters for named parameter idiom
@@ -102,35 +102,35 @@ struct GridCells_
     return this;
   }
 
-  // constants
+  // constant declarations
 
   // pointer types
   using RawPtr =
-      nav_msgs::msg::GridCells_<ContainerAllocator> *;
+    nav_msgs::msg::GridCells_<ContainerAllocator> *;
   using ConstRawPtr =
-      const nav_msgs::msg::GridCells_<ContainerAllocator> *;
+    const nav_msgs::msg::GridCells_<ContainerAllocator> *;
   using SharedPtr =
-      std::shared_ptr<nav_msgs::msg::GridCells_<ContainerAllocator>>;
+    std::shared_ptr<nav_msgs::msg::GridCells_<ContainerAllocator>>;
   using ConstSharedPtr =
-      std::shared_ptr<nav_msgs::msg::GridCells_<ContainerAllocator> const>;
+    std::shared_ptr<nav_msgs::msg::GridCells_<ContainerAllocator> const>;
 
   template<typename Deleter = std::default_delete<
       nav_msgs::msg::GridCells_<ContainerAllocator>>>
   using UniquePtrWithDeleter =
-      std::unique_ptr<nav_msgs::msg::GridCells_<ContainerAllocator>, Deleter>;
+    std::unique_ptr<nav_msgs::msg::GridCells_<ContainerAllocator>, Deleter>;
 
   using UniquePtr = UniquePtrWithDeleter<>;
 
   template<typename Deleter = std::default_delete<
       nav_msgs::msg::GridCells_<ContainerAllocator>>>
   using ConstUniquePtrWithDeleter =
-      std::unique_ptr<nav_msgs::msg::GridCells_<ContainerAllocator> const, Deleter>;
+    std::unique_ptr<nav_msgs::msg::GridCells_<ContainerAllocator> const, Deleter>;
   using ConstUniquePtr = ConstUniquePtrWithDeleter<>;
 
   using WeakPtr =
-      std::weak_ptr<nav_msgs::msg::GridCells_<ContainerAllocator>>;
+    std::weak_ptr<nav_msgs::msg::GridCells_<ContainerAllocator>>;
   using ConstWeakPtr =
-      std::weak_ptr<nav_msgs::msg::GridCells_<ContainerAllocator> const>;
+    std::weak_ptr<nav_msgs::msg::GridCells_<ContainerAllocator> const>;
 
   // pointer types similar to ROS 1, use SharedPtr / ConstSharedPtr instead
   // NOTE: Can't use 'using' here because GNU C++ can't parse attributes properly
@@ -166,9 +166,9 @@ struct GridCells_
 
 // alias to use template instance with default allocator
 using GridCells =
-    nav_msgs::msg::GridCells_<std::allocator<void>>;
+  nav_msgs::msg::GridCells_<std::allocator<void>>;
 
-// constants requiring out of line definition
+// constant definitions
 
 }  // namespace msg
 

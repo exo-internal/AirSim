@@ -4,7 +4,7 @@
 #ifndef LIFECYCLE_MSGS__SRV__CHANGE_STATE__REQUEST__STRUCT_H_
 #define LIFECYCLE_MSGS__SRV__CHANGE_STATE__REQUEST__STRUCT_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -36,7 +36,7 @@ typedef struct lifecycle_msgs__srv__ChangeState_Request__Array
   size_t capacity;
 } lifecycle_msgs__srv__ChangeState_Request__Array;
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

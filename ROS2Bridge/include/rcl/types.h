@@ -87,4 +87,17 @@ typedef rmw_ret_t rcl_ret_t;
 /// Given rcl_wait_set_t is full return code.
 #define RCL_RET_WAIT_SET_FULL 902
 
+// rcl argument parsing specific ret codes in 1XXX
+/// Argument is not a valid remap rule
+#define RCL_RET_INVALID_REMAP_RULE 1001
+/// Expected one type of lexeme but got another
+#define RCL_RET_WRONG_LEXEME 1002
+/// Argument is not a valid parameter rule
+#define RCL_RET_INVALID_PARAM_RULE 1010
+/// Argument is not a valid log level rule
+#define RCL_RET_INVALID_LOG_LEVEL_RULE 1020
+
+/// typedef for rmw_serialized_message_t;
+typedef rmw_serialized_message_t rcl_serialized_message_t;
+
 #endif  // RCL__TYPES_H_

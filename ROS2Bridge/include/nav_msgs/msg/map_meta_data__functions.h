@@ -4,7 +4,7 @@
 #ifndef NAV_MSGS__MSG__MAP_META_DATA__FUNCTIONS_H_
 #define NAV_MSGS__MSG__MAP_META_DATA__FUNCTIONS_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -105,7 +105,7 @@ ROSIDL_GENERATOR_C_PUBLIC_nav_msgs
 void
 nav_msgs__msg__MapMetaData__Array__destroy(nav_msgs__msg__MapMetaData__Array * array);
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

@@ -114,37 +114,37 @@ struct CameraInfo_
 
   // field types and members
   using _header_type =
-      std_msgs::msg::Header_<ContainerAllocator>;
+    std_msgs::msg::Header_<ContainerAllocator>;
   _header_type header;
   using _height_type =
-      uint32_t;
+    uint32_t;
   _height_type height;
   using _width_type =
-      uint32_t;
+    uint32_t;
   _width_type width;
   using _distortion_model_type =
-      std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>;
+    std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>;
   _distortion_model_type distortion_model;
   using _d_type =
-      std::vector<double, typename ContainerAllocator::template rebind<double>::other>;
+    std::vector<double, typename ContainerAllocator::template rebind<double>::other>;
   _d_type d;
   using _k_type =
-      std::array<double, 9>;
+    std::array<double, 9>;
   _k_type k;
   using _r_type =
-      std::array<double, 9>;
+    std::array<double, 9>;
   _r_type r;
   using _p_type =
-      std::array<double, 12>;
+    std::array<double, 12>;
   _p_type p;
   using _binning_x_type =
-      uint32_t;
+    uint32_t;
   _binning_x_type binning_x;
   using _binning_y_type =
-      uint32_t;
+    uint32_t;
   _binning_y_type binning_y;
   using _roi_type =
-      sensor_msgs::msg::RegionOfInterest_<ContainerAllocator>;
+    sensor_msgs::msg::RegionOfInterest_<ContainerAllocator>;
   _roi_type roi;
 
   // setters for named parameter idiom
@@ -215,35 +215,35 @@ struct CameraInfo_
     return this;
   }
 
-  // constants
+  // constant declarations
 
   // pointer types
   using RawPtr =
-      sensor_msgs::msg::CameraInfo_<ContainerAllocator> *;
+    sensor_msgs::msg::CameraInfo_<ContainerAllocator> *;
   using ConstRawPtr =
-      const sensor_msgs::msg::CameraInfo_<ContainerAllocator> *;
+    const sensor_msgs::msg::CameraInfo_<ContainerAllocator> *;
   using SharedPtr =
-      std::shared_ptr<sensor_msgs::msg::CameraInfo_<ContainerAllocator>>;
+    std::shared_ptr<sensor_msgs::msg::CameraInfo_<ContainerAllocator>>;
   using ConstSharedPtr =
-      std::shared_ptr<sensor_msgs::msg::CameraInfo_<ContainerAllocator> const>;
+    std::shared_ptr<sensor_msgs::msg::CameraInfo_<ContainerAllocator> const>;
 
   template<typename Deleter = std::default_delete<
       sensor_msgs::msg::CameraInfo_<ContainerAllocator>>>
   using UniquePtrWithDeleter =
-      std::unique_ptr<sensor_msgs::msg::CameraInfo_<ContainerAllocator>, Deleter>;
+    std::unique_ptr<sensor_msgs::msg::CameraInfo_<ContainerAllocator>, Deleter>;
 
   using UniquePtr = UniquePtrWithDeleter<>;
 
   template<typename Deleter = std::default_delete<
       sensor_msgs::msg::CameraInfo_<ContainerAllocator>>>
   using ConstUniquePtrWithDeleter =
-      std::unique_ptr<sensor_msgs::msg::CameraInfo_<ContainerAllocator> const, Deleter>;
+    std::unique_ptr<sensor_msgs::msg::CameraInfo_<ContainerAllocator> const, Deleter>;
   using ConstUniquePtr = ConstUniquePtrWithDeleter<>;
 
   using WeakPtr =
-      std::weak_ptr<sensor_msgs::msg::CameraInfo_<ContainerAllocator>>;
+    std::weak_ptr<sensor_msgs::msg::CameraInfo_<ContainerAllocator>>;
   using ConstWeakPtr =
-      std::weak_ptr<sensor_msgs::msg::CameraInfo_<ContainerAllocator> const>;
+    std::weak_ptr<sensor_msgs::msg::CameraInfo_<ContainerAllocator> const>;
 
   // pointer types similar to ROS 1, use SharedPtr / ConstSharedPtr instead
   // NOTE: Can't use 'using' here because GNU C++ can't parse attributes properly
@@ -300,9 +300,9 @@ struct CameraInfo_
 
 // alias to use template instance with default allocator
 using CameraInfo =
-    sensor_msgs::msg::CameraInfo_<std::allocator<void>>;
+  sensor_msgs::msg::CameraInfo_<std::allocator<void>>;
 
-// constants requiring out of line definition
+// constant definitions
 
 }  // namespace msg
 

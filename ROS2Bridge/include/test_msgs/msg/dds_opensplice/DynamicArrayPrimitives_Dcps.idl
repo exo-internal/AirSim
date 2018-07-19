@@ -1,0 +1,275 @@
+#ifndef DYNAMICARRAYPRIMITIVES_DCPS_IDL_
+#define DYNAMICARRAYPRIMITIVES_DCPS_IDL_
+
+#include "dds_dcps.idl"
+
+#include "DynamicArrayPrimitives_.idl"
+
+module test_msgs {
+
+    module msg {
+
+        module dds_ {
+
+            typedef sequence<DynamicArrayPrimitives_> DynamicArrayPrimitives_Seq;
+
+            local interface DynamicArrayPrimitives_TypeSupportInterface : ::DDS::TypeSupport { };
+
+            local interface DynamicArrayPrimitives_DataWriter : ::DDS::DataWriter {
+                ::DDS::InstanceHandle_t register_instance(
+                  in DynamicArrayPrimitives_ instance_data);
+
+                ::DDS::InstanceHandle_t register_instance_w_timestamp(
+                  in DynamicArrayPrimitives_ instance_data,
+                  in ::DDS::Time_t source_timestamp);
+
+                ::DDS::ReturnCode_t unregister_instance(
+                  in DynamicArrayPrimitives_ instance_data,
+                  in ::DDS::InstanceHandle_t handle);
+
+                ::DDS::ReturnCode_t unregister_instance_w_timestamp(
+                  in DynamicArrayPrimitives_ instance_data,
+                  in ::DDS::InstanceHandle_t handle,
+                  in ::DDS::Time_t source_timestamp);
+
+                ::DDS::ReturnCode_t write(
+                  in DynamicArrayPrimitives_ instance_data,
+                  in ::DDS::InstanceHandle_t handle);
+
+                ::DDS::ReturnCode_t write_w_timestamp(
+                  in DynamicArrayPrimitives_ instance_data,
+                  in ::DDS::InstanceHandle_t handle,
+                  in ::DDS::Time_t source_timestamp);
+
+                ::DDS::ReturnCode_t dispose(
+                  in DynamicArrayPrimitives_ instance_data,
+                  in ::DDS::InstanceHandle_t handle);
+
+                ::DDS::ReturnCode_t dispose_w_timestamp(
+                  in DynamicArrayPrimitives_ instance_data,
+                  in ::DDS::InstanceHandle_t handle,
+                  in ::DDS::Time_t source_timestamp);
+
+                ::DDS::ReturnCode_t writedispose(
+                  in DynamicArrayPrimitives_ instance_data,
+                  in ::DDS::InstanceHandle_t handle);
+
+                ::DDS::ReturnCode_t writedispose_w_timestamp(
+                  in DynamicArrayPrimitives_ instance_data,
+                  in ::DDS::InstanceHandle_t handle,
+                  in ::DDS::Time_t source_timestamp);
+
+                ::DDS::ReturnCode_t get_key_value(
+                  inout DynamicArrayPrimitives_ key_holder,
+                  in ::DDS::InstanceHandle_t handle);
+
+                ::DDS::InstanceHandle_t lookup_instance(
+                  in DynamicArrayPrimitives_ instance_data);
+
+            };
+
+            local interface DynamicArrayPrimitives_DataReader : ::DDS::DataReader {
+                ::DDS::ReturnCode_t read(
+                  inout DynamicArrayPrimitives_Seq received_data,
+                  inout ::DDS::SampleInfoSeq info_seq,
+                  in long max_samples,
+                  in ::DDS::SampleStateMask sample_states,
+                  in ::DDS::ViewStateMask view_states,
+                  in ::DDS::InstanceStateMask instance_states);
+
+                ::DDS::ReturnCode_t take(
+                  inout DynamicArrayPrimitives_Seq received_data,
+                  inout ::DDS::SampleInfoSeq info_seq,
+                  in long max_samples,
+                  in ::DDS::SampleStateMask sample_states,
+                  in ::DDS::ViewStateMask view_states,
+                  in ::DDS::InstanceStateMask instance_states);
+
+                ::DDS::ReturnCode_t read_w_condition(
+                  inout DynamicArrayPrimitives_Seq received_data,
+                  inout ::DDS::SampleInfoSeq info_seq,
+                  in long max_samples,
+                  in ::DDS::ReadCondition a_condition);
+
+                ::DDS::ReturnCode_t take_w_condition(
+                  inout DynamicArrayPrimitives_Seq received_data,
+                  inout ::DDS::SampleInfoSeq info_seq,
+                  in long max_samples,
+                  in ::DDS::ReadCondition a_condition);
+
+                ::DDS::ReturnCode_t read_next_sample(
+                  inout DynamicArrayPrimitives_ received_data,
+                  inout ::DDS::SampleInfo sample_info);
+
+                ::DDS::ReturnCode_t take_next_sample(
+                  inout DynamicArrayPrimitives_ received_data,
+                  inout ::DDS::SampleInfo sample_info);
+
+                ::DDS::ReturnCode_t read_instance(
+                  inout DynamicArrayPrimitives_Seq received_data,
+                  inout ::DDS::SampleInfoSeq info_seq,
+                  in long max_samples,
+                  in ::DDS::InstanceHandle_t a_handle,
+                  in ::DDS::SampleStateMask sample_states,
+                  in ::DDS::ViewStateMask view_states,
+                  in ::DDS::InstanceStateMask instance_states);
+
+                ::DDS::ReturnCode_t take_instance(
+                  inout DynamicArrayPrimitives_Seq received_data,
+                  inout ::DDS::SampleInfoSeq info_seq,
+                  in long max_samples,
+                  in ::DDS::InstanceHandle_t a_handle,
+                  in ::DDS::SampleStateMask sample_states,
+                  in ::DDS::ViewStateMask view_states,
+                  in ::DDS::InstanceStateMask instance_states);
+
+                ::DDS::ReturnCode_t read_next_instance(
+                  inout DynamicArrayPrimitives_Seq received_data,
+                  inout ::DDS::SampleInfoSeq info_seq,
+                  in long max_samples,
+                  in ::DDS::InstanceHandle_t a_handle,
+                  in ::DDS::SampleStateMask sample_states,
+                  in ::DDS::ViewStateMask view_states,
+                  in ::DDS::InstanceStateMask instance_states);
+
+                ::DDS::ReturnCode_t take_next_instance(
+                  inout DynamicArrayPrimitives_Seq received_data,
+                  inout ::DDS::SampleInfoSeq info_seq,
+                  in long max_samples,
+                  in ::DDS::InstanceHandle_t a_handle,
+                  in ::DDS::SampleStateMask sample_states,
+                  in ::DDS::ViewStateMask view_states,
+                  in ::DDS::InstanceStateMask instance_states);
+
+                ::DDS::ReturnCode_t read_next_instance_w_condition(
+                  inout DynamicArrayPrimitives_Seq received_data,
+                  inout ::DDS::SampleInfoSeq info_seq,
+                  in long max_samples,
+                  in ::DDS::InstanceHandle_t a_handle,
+                  in ::DDS::ReadCondition a_condition);
+
+                ::DDS::ReturnCode_t take_next_instance_w_condition(
+                  inout DynamicArrayPrimitives_Seq received_data,
+                  inout ::DDS::SampleInfoSeq info_seq,
+                  in long max_samples,
+                  in ::DDS::InstanceHandle_t a_handle,
+                  in ::DDS::ReadCondition a_condition);
+
+                ::DDS::ReturnCode_t return_loan(
+                  inout DynamicArrayPrimitives_Seq received_data,
+                  inout ::DDS::SampleInfoSeq info_seq);
+
+                ::DDS::ReturnCode_t get_key_value(
+                  inout DynamicArrayPrimitives_ key_holder,
+                  in ::DDS::InstanceHandle_t handle);
+
+                ::DDS::InstanceHandle_t lookup_instance(
+                  in DynamicArrayPrimitives_ instance);
+
+            };
+
+            local interface DynamicArrayPrimitives_DataReaderView : ::DDS::DataReaderView {
+                ::DDS::ReturnCode_t read(
+                  inout DynamicArrayPrimitives_Seq received_data,
+                  inout ::DDS::SampleInfoSeq info_seq,
+                  in long max_samples,
+                  in ::DDS::SampleStateMask sample_states,
+                  in ::DDS::ViewStateMask view_states,
+                  in ::DDS::InstanceStateMask instance_states);
+
+                ::DDS::ReturnCode_t take(
+                  inout DynamicArrayPrimitives_Seq received_data,
+                  inout ::DDS::SampleInfoSeq info_seq,
+                  in long max_samples,
+                  in ::DDS::SampleStateMask sample_states,
+                  in ::DDS::ViewStateMask view_states,
+                  in ::DDS::InstanceStateMask instance_states);
+
+                ::DDS::ReturnCode_t read_w_condition(
+                  inout DynamicArrayPrimitives_Seq received_data,
+                  inout ::DDS::SampleInfoSeq info_seq,
+                  in long max_samples,
+                  in ::DDS::ReadCondition a_condition);
+
+                ::DDS::ReturnCode_t take_w_condition(
+                  inout DynamicArrayPrimitives_Seq received_data,
+                  inout ::DDS::SampleInfoSeq info_seq,
+                  in long max_samples,
+                  in ::DDS::ReadCondition a_condition);
+
+                ::DDS::ReturnCode_t read_next_sample(
+                  inout DynamicArrayPrimitives_ received_data,
+                  inout ::DDS::SampleInfo sample_info);
+
+                ::DDS::ReturnCode_t take_next_sample(
+                  inout DynamicArrayPrimitives_ received_data,
+                  inout ::DDS::SampleInfo sample_info);
+
+                ::DDS::ReturnCode_t read_instance(
+                  inout DynamicArrayPrimitives_Seq received_data,
+                  inout ::DDS::SampleInfoSeq info_seq,
+                  in long max_samples,
+                  in ::DDS::InstanceHandle_t a_handle,
+                  in ::DDS::SampleStateMask sample_states,
+                  in ::DDS::ViewStateMask view_states,
+                  in ::DDS::InstanceStateMask instance_states);
+
+                ::DDS::ReturnCode_t take_instance(
+                  inout DynamicArrayPrimitives_Seq received_data,
+                  inout ::DDS::SampleInfoSeq info_seq,
+                  in long max_samples,
+                  in ::DDS::InstanceHandle_t a_handle,
+                  in ::DDS::SampleStateMask sample_states,
+                  in ::DDS::ViewStateMask view_states,
+                  in ::DDS::InstanceStateMask instance_states);
+
+                ::DDS::ReturnCode_t read_next_instance(
+                  inout DynamicArrayPrimitives_Seq received_data,
+                  inout ::DDS::SampleInfoSeq info_seq,
+                  in long max_samples,
+                  in ::DDS::InstanceHandle_t a_handle,
+                  in ::DDS::SampleStateMask sample_states,
+                  in ::DDS::ViewStateMask view_states,
+                  in ::DDS::InstanceStateMask instance_states);
+
+                ::DDS::ReturnCode_t take_next_instance(
+                  inout DynamicArrayPrimitives_Seq received_data,
+                  inout ::DDS::SampleInfoSeq info_seq,
+                  in long max_samples,
+                  in ::DDS::InstanceHandle_t a_handle,
+                  in ::DDS::SampleStateMask sample_states,
+                  in ::DDS::ViewStateMask view_states,
+                  in ::DDS::InstanceStateMask instance_states);
+
+                ::DDS::ReturnCode_t read_next_instance_w_condition(
+                  inout DynamicArrayPrimitives_Seq received_data,
+                  inout ::DDS::SampleInfoSeq info_seq,
+                  in long max_samples,
+                  in ::DDS::InstanceHandle_t a_handle,
+                  in ::DDS::ReadCondition a_condition);
+
+                ::DDS::ReturnCode_t take_next_instance_w_condition(
+                  inout DynamicArrayPrimitives_Seq received_data,
+                  inout ::DDS::SampleInfoSeq info_seq,
+                  in long max_samples,
+                  in ::DDS::InstanceHandle_t a_handle,
+                  in ::DDS::ReadCondition a_condition);
+
+                ::DDS::ReturnCode_t return_loan(
+                  inout DynamicArrayPrimitives_Seq received_data,
+                  inout ::DDS::SampleInfoSeq info_seq);
+
+                ::DDS::ReturnCode_t get_key_value(
+                  inout DynamicArrayPrimitives_ key_holder,
+                  in ::DDS::InstanceHandle_t handle);
+
+                ::DDS::InstanceHandle_t lookup_instance(
+                  in DynamicArrayPrimitives_ instance);
+            };
+        };
+
+    };
+
+};
+
+#endif

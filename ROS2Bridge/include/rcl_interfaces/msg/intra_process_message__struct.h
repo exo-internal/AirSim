@@ -4,7 +4,7 @@
 #ifndef RCL_INTERFACES__MSG__INTRA_PROCESS_MESSAGE__STRUCT_H_
 #define RCL_INTERFACES__MSG__INTRA_PROCESS_MESSAGE__STRUCT_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -30,7 +30,7 @@ typedef struct rcl_interfaces__msg__IntraProcessMessage__Array
   size_t capacity;
 } rcl_interfaces__msg__IntraProcessMessage__Array;
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

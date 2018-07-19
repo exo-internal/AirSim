@@ -10,7 +10,7 @@
 
 #include "tf2_msgs/msg/rosidl_typesupport_introspection_c__visibility_control.h"
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -19,7 +19,7 @@ ROSIDL_TYPESUPPORT_INTROSPECTION_C_PUBLIC_tf2_msgs
 const rosidl_service_type_support_t *
   ROSIDL_TYPESUPPORT_INTERFACE__SERVICE_SYMBOL_NAME(rosidl_typesupport_introspection_c, tf2_msgs, FrameGraph)();
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

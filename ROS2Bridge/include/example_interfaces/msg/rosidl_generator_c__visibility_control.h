@@ -4,7 +4,7 @@
 #ifndef EXAMPLE_INTERFACES__MSG__ROSIDL_GENERATOR_C__VISIBILITY_CONTROL_H_
 #define EXAMPLE_INTERFACES__MSG__ROSIDL_GENERATOR_C__VISIBILITY_CONTROL_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -35,7 +35,7 @@ extern "C"
   #endif
 #endif
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

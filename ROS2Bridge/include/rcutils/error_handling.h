@@ -17,7 +17,7 @@
 #ifndef RCUTILS__ERROR_HANDLING_H_
 #define RCUTILS__ERROR_HANDLING_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -29,6 +29,7 @@ extern "C"
 #include <string.h>
 
 #include "rcutils/allocator.h"
+#include "rcutils/format_string.h"
 #include "rcutils/macros.h"
 #include "rcutils/types/rcutils_ret.h"
 #include "rcutils/visibility_control.h"
@@ -99,7 +100,7 @@ rcutils_error_state_fini(rcutils_error_state_t * error_state);
 RCUTILS_PUBLIC
 void
 rcutils_set_error_state(
-  const char * error_msg, const char * file, size_t line_number, rcutils_allocator_t allocator);
+  const char * error_string, const char * file, size_t line_number, rcutils_allocator_t allocator);
 
 /// Check an argument for a null value.
 /**
@@ -125,7 +126,7 @@ rcutils_set_error_state(
  * \param[in] allocator The allocator to use if an error message needs to be allocated.
  */
 #define RCUTILS_CHECK_FOR_NULL_WITH_MSG(value, msg, error_statement, allocator) \
-  if (!(value)) { \
+  if (NULL == value) { \
     RCUTILS_SET_ERROR_MSG(msg, allocator); \
     error_statement; \
   }
@@ -212,7 +213,7 @@ RCUTILS_PUBLIC
 void
 rcutils_reset_error(void);
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

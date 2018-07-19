@@ -4,7 +4,7 @@
 #ifndef VISUALIZATION_MSGS__MSG__IMAGE_MARKER__STRUCT_H_
 #define VISUALIZATION_MSGS__MSG__IMAGE_MARKER__STRUCT_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -93,7 +93,7 @@ typedef struct visualization_msgs__msg__ImageMarker__Array
   size_t capacity;
 } visualization_msgs__msg__ImageMarker__Array;
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

@@ -80,25 +80,25 @@ struct InteractiveMarker_
 
   // field types and members
   using _header_type =
-      std_msgs::msg::Header_<ContainerAllocator>;
+    std_msgs::msg::Header_<ContainerAllocator>;
   _header_type header;
   using _pose_type =
-      geometry_msgs::msg::Pose_<ContainerAllocator>;
+    geometry_msgs::msg::Pose_<ContainerAllocator>;
   _pose_type pose;
   using _name_type =
-      std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>;
+    std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>;
   _name_type name;
   using _description_type =
-      std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>;
+    std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>;
   _description_type description;
   using _scale_type =
-      float;
+    float;
   _scale_type scale;
   using _menu_entries_type =
-      std::vector<visualization_msgs::msg::MenuEntry_<ContainerAllocator>, typename ContainerAllocator::template rebind<visualization_msgs::msg::MenuEntry_<ContainerAllocator>>::other>;
+    std::vector<visualization_msgs::msg::MenuEntry_<ContainerAllocator>, typename ContainerAllocator::template rebind<visualization_msgs::msg::MenuEntry_<ContainerAllocator>>::other>;
   _menu_entries_type menu_entries;
   using _controls_type =
-      std::vector<visualization_msgs::msg::InteractiveMarkerControl_<ContainerAllocator>, typename ContainerAllocator::template rebind<visualization_msgs::msg::InteractiveMarkerControl_<ContainerAllocator>>::other>;
+    std::vector<visualization_msgs::msg::InteractiveMarkerControl_<ContainerAllocator>, typename ContainerAllocator::template rebind<visualization_msgs::msg::InteractiveMarkerControl_<ContainerAllocator>>::other>;
   _controls_type controls;
 
   // setters for named parameter idiom
@@ -145,35 +145,35 @@ struct InteractiveMarker_
     return this;
   }
 
-  // constants
+  // constant declarations
 
   // pointer types
   using RawPtr =
-      visualization_msgs::msg::InteractiveMarker_<ContainerAllocator> *;
+    visualization_msgs::msg::InteractiveMarker_<ContainerAllocator> *;
   using ConstRawPtr =
-      const visualization_msgs::msg::InteractiveMarker_<ContainerAllocator> *;
+    const visualization_msgs::msg::InteractiveMarker_<ContainerAllocator> *;
   using SharedPtr =
-      std::shared_ptr<visualization_msgs::msg::InteractiveMarker_<ContainerAllocator>>;
+    std::shared_ptr<visualization_msgs::msg::InteractiveMarker_<ContainerAllocator>>;
   using ConstSharedPtr =
-      std::shared_ptr<visualization_msgs::msg::InteractiveMarker_<ContainerAllocator> const>;
+    std::shared_ptr<visualization_msgs::msg::InteractiveMarker_<ContainerAllocator> const>;
 
   template<typename Deleter = std::default_delete<
       visualization_msgs::msg::InteractiveMarker_<ContainerAllocator>>>
   using UniquePtrWithDeleter =
-      std::unique_ptr<visualization_msgs::msg::InteractiveMarker_<ContainerAllocator>, Deleter>;
+    std::unique_ptr<visualization_msgs::msg::InteractiveMarker_<ContainerAllocator>, Deleter>;
 
   using UniquePtr = UniquePtrWithDeleter<>;
 
   template<typename Deleter = std::default_delete<
       visualization_msgs::msg::InteractiveMarker_<ContainerAllocator>>>
   using ConstUniquePtrWithDeleter =
-      std::unique_ptr<visualization_msgs::msg::InteractiveMarker_<ContainerAllocator> const, Deleter>;
+    std::unique_ptr<visualization_msgs::msg::InteractiveMarker_<ContainerAllocator> const, Deleter>;
   using ConstUniquePtr = ConstUniquePtrWithDeleter<>;
 
   using WeakPtr =
-      std::weak_ptr<visualization_msgs::msg::InteractiveMarker_<ContainerAllocator>>;
+    std::weak_ptr<visualization_msgs::msg::InteractiveMarker_<ContainerAllocator>>;
   using ConstWeakPtr =
-      std::weak_ptr<visualization_msgs::msg::InteractiveMarker_<ContainerAllocator> const>;
+    std::weak_ptr<visualization_msgs::msg::InteractiveMarker_<ContainerAllocator> const>;
 
   // pointer types similar to ROS 1, use SharedPtr / ConstSharedPtr instead
   // NOTE: Can't use 'using' here because GNU C++ can't parse attributes properly
@@ -218,9 +218,9 @@ struct InteractiveMarker_
 
 // alias to use template instance with default allocator
 using InteractiveMarker =
-    visualization_msgs::msg::InteractiveMarker_<std::allocator<void>>;
+  visualization_msgs::msg::InteractiveMarker_<std::allocator<void>>;
 
-// constants requiring out of line definition
+// constant definitions
 
 }  // namespace msg
 

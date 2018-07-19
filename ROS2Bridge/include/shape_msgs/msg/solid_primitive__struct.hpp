@@ -59,10 +59,10 @@ struct SolidPrimitive_
 
   // field types and members
   using _type_type =
-      uint8_t;
+    uint8_t;
   _type_type type;
   using _dimensions_type =
-      rosidl_generator_cpp::BoundedVector<double, 3, typename ContainerAllocator::template rebind<double>::other>;
+    rosidl_generator_cpp::BoundedVector<double, 3, typename ContainerAllocator::template rebind<double>::other>;
   _dimensions_type dimensions;
 
   // setters for named parameter idiom
@@ -79,47 +79,59 @@ struct SolidPrimitive_
     return this;
   }
 
-  // constants
-  enum { BOX = 1u };
-  enum { SPHERE = 2u };
-  enum { CYLINDER = 3u };
-  enum { CONE = 4u };
-  enum { BOX_X = 0u };
-  enum { BOX_Y = 1u };
-  enum { BOX_Z = 2u };
-  enum { SPHERE_RADIUS = 0u };
-  enum { CYLINDER_HEIGHT = 0u };
-  enum { CYLINDER_RADIUS = 1u };
-  enum { CONE_HEIGHT = 0u };
-  enum { CONE_RADIUS = 1u };
+  // constant declarations
+  static constexpr uint8_t BOX =
+    1u;
+  static constexpr uint8_t SPHERE =
+    2u;
+  static constexpr uint8_t CYLINDER =
+    3u;
+  static constexpr uint8_t CONE =
+    4u;
+  static constexpr uint8_t BOX_X =
+    0u;
+  static constexpr uint8_t BOX_Y =
+    1u;
+  static constexpr uint8_t BOX_Z =
+    2u;
+  static constexpr uint8_t SPHERE_RADIUS =
+    0u;
+  static constexpr uint8_t CYLINDER_HEIGHT =
+    0u;
+  static constexpr uint8_t CYLINDER_RADIUS =
+    1u;
+  static constexpr uint8_t CONE_HEIGHT =
+    0u;
+  static constexpr uint8_t CONE_RADIUS =
+    1u;
 
   // pointer types
   using RawPtr =
-      shape_msgs::msg::SolidPrimitive_<ContainerAllocator> *;
+    shape_msgs::msg::SolidPrimitive_<ContainerAllocator> *;
   using ConstRawPtr =
-      const shape_msgs::msg::SolidPrimitive_<ContainerAllocator> *;
+    const shape_msgs::msg::SolidPrimitive_<ContainerAllocator> *;
   using SharedPtr =
-      std::shared_ptr<shape_msgs::msg::SolidPrimitive_<ContainerAllocator>>;
+    std::shared_ptr<shape_msgs::msg::SolidPrimitive_<ContainerAllocator>>;
   using ConstSharedPtr =
-      std::shared_ptr<shape_msgs::msg::SolidPrimitive_<ContainerAllocator> const>;
+    std::shared_ptr<shape_msgs::msg::SolidPrimitive_<ContainerAllocator> const>;
 
   template<typename Deleter = std::default_delete<
       shape_msgs::msg::SolidPrimitive_<ContainerAllocator>>>
   using UniquePtrWithDeleter =
-      std::unique_ptr<shape_msgs::msg::SolidPrimitive_<ContainerAllocator>, Deleter>;
+    std::unique_ptr<shape_msgs::msg::SolidPrimitive_<ContainerAllocator>, Deleter>;
 
   using UniquePtr = UniquePtrWithDeleter<>;
 
   template<typename Deleter = std::default_delete<
       shape_msgs::msg::SolidPrimitive_<ContainerAllocator>>>
   using ConstUniquePtrWithDeleter =
-      std::unique_ptr<shape_msgs::msg::SolidPrimitive_<ContainerAllocator> const, Deleter>;
+    std::unique_ptr<shape_msgs::msg::SolidPrimitive_<ContainerAllocator> const, Deleter>;
   using ConstUniquePtr = ConstUniquePtrWithDeleter<>;
 
   using WeakPtr =
-      std::weak_ptr<shape_msgs::msg::SolidPrimitive_<ContainerAllocator>>;
+    std::weak_ptr<shape_msgs::msg::SolidPrimitive_<ContainerAllocator>>;
   using ConstWeakPtr =
-      std::weak_ptr<shape_msgs::msg::SolidPrimitive_<ContainerAllocator> const>;
+    std::weak_ptr<shape_msgs::msg::SolidPrimitive_<ContainerAllocator> const>;
 
   // pointer types similar to ROS 1, use SharedPtr / ConstSharedPtr instead
   // NOTE: Can't use 'using' here because GNU C++ can't parse attributes properly
@@ -149,9 +161,33 @@ struct SolidPrimitive_
 
 // alias to use template instance with default allocator
 using SolidPrimitive =
-    shape_msgs::msg::SolidPrimitive_<std::allocator<void>>;
+  shape_msgs::msg::SolidPrimitive_<std::allocator<void>>;
 
-// constants requiring out of line definition
+// constant definitions
+template<typename ContainerAllocator>
+constexpr uint8_t SolidPrimitive_<ContainerAllocator>::BOX;
+template<typename ContainerAllocator>
+constexpr uint8_t SolidPrimitive_<ContainerAllocator>::SPHERE;
+template<typename ContainerAllocator>
+constexpr uint8_t SolidPrimitive_<ContainerAllocator>::CYLINDER;
+template<typename ContainerAllocator>
+constexpr uint8_t SolidPrimitive_<ContainerAllocator>::CONE;
+template<typename ContainerAllocator>
+constexpr uint8_t SolidPrimitive_<ContainerAllocator>::BOX_X;
+template<typename ContainerAllocator>
+constexpr uint8_t SolidPrimitive_<ContainerAllocator>::BOX_Y;
+template<typename ContainerAllocator>
+constexpr uint8_t SolidPrimitive_<ContainerAllocator>::BOX_Z;
+template<typename ContainerAllocator>
+constexpr uint8_t SolidPrimitive_<ContainerAllocator>::SPHERE_RADIUS;
+template<typename ContainerAllocator>
+constexpr uint8_t SolidPrimitive_<ContainerAllocator>::CYLINDER_HEIGHT;
+template<typename ContainerAllocator>
+constexpr uint8_t SolidPrimitive_<ContainerAllocator>::CYLINDER_RADIUS;
+template<typename ContainerAllocator>
+constexpr uint8_t SolidPrimitive_<ContainerAllocator>::CONE_HEIGHT;
+template<typename ContainerAllocator>
+constexpr uint8_t SolidPrimitive_<ContainerAllocator>::CONE_RADIUS;
 
 }  // namespace msg
 

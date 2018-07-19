@@ -15,7 +15,7 @@
 #ifndef RCUTILS__TYPES__RCUTILS_RET_H_
 #define RCUTILS__TYPES__RCUTILS_RET_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -41,8 +41,10 @@ typedef int rcutils_ret_t;
 
 /// Internal severity map for logger thresholds is invalid.
 #define RCUTILS_RET_LOGGING_SEVERITY_MAP_INVALID 40
+/// String representation of a severity is invalid.
+#define RCUTILS_RET_LOGGING_SEVERITY_STRING_INVALID 41
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

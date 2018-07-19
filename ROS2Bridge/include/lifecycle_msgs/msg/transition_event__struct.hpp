@@ -66,16 +66,16 @@ struct TransitionEvent_
 
   // field types and members
   using _timestamp_type =
-      uint64_t;
+    uint64_t;
   _timestamp_type timestamp;
   using _transition_type =
-      lifecycle_msgs::msg::Transition_<ContainerAllocator>;
+    lifecycle_msgs::msg::Transition_<ContainerAllocator>;
   _transition_type transition;
   using _start_state_type =
-      lifecycle_msgs::msg::State_<ContainerAllocator>;
+    lifecycle_msgs::msg::State_<ContainerAllocator>;
   _start_state_type start_state;
   using _goal_state_type =
-      lifecycle_msgs::msg::State_<ContainerAllocator>;
+    lifecycle_msgs::msg::State_<ContainerAllocator>;
   _goal_state_type goal_state;
 
   // setters for named parameter idiom
@@ -104,35 +104,35 @@ struct TransitionEvent_
     return this;
   }
 
-  // constants
+  // constant declarations
 
   // pointer types
   using RawPtr =
-      lifecycle_msgs::msg::TransitionEvent_<ContainerAllocator> *;
+    lifecycle_msgs::msg::TransitionEvent_<ContainerAllocator> *;
   using ConstRawPtr =
-      const lifecycle_msgs::msg::TransitionEvent_<ContainerAllocator> *;
+    const lifecycle_msgs::msg::TransitionEvent_<ContainerAllocator> *;
   using SharedPtr =
-      std::shared_ptr<lifecycle_msgs::msg::TransitionEvent_<ContainerAllocator>>;
+    std::shared_ptr<lifecycle_msgs::msg::TransitionEvent_<ContainerAllocator>>;
   using ConstSharedPtr =
-      std::shared_ptr<lifecycle_msgs::msg::TransitionEvent_<ContainerAllocator> const>;
+    std::shared_ptr<lifecycle_msgs::msg::TransitionEvent_<ContainerAllocator> const>;
 
   template<typename Deleter = std::default_delete<
       lifecycle_msgs::msg::TransitionEvent_<ContainerAllocator>>>
   using UniquePtrWithDeleter =
-      std::unique_ptr<lifecycle_msgs::msg::TransitionEvent_<ContainerAllocator>, Deleter>;
+    std::unique_ptr<lifecycle_msgs::msg::TransitionEvent_<ContainerAllocator>, Deleter>;
 
   using UniquePtr = UniquePtrWithDeleter<>;
 
   template<typename Deleter = std::default_delete<
       lifecycle_msgs::msg::TransitionEvent_<ContainerAllocator>>>
   using ConstUniquePtrWithDeleter =
-      std::unique_ptr<lifecycle_msgs::msg::TransitionEvent_<ContainerAllocator> const, Deleter>;
+    std::unique_ptr<lifecycle_msgs::msg::TransitionEvent_<ContainerAllocator> const, Deleter>;
   using ConstUniquePtr = ConstUniquePtrWithDeleter<>;
 
   using WeakPtr =
-      std::weak_ptr<lifecycle_msgs::msg::TransitionEvent_<ContainerAllocator>>;
+    std::weak_ptr<lifecycle_msgs::msg::TransitionEvent_<ContainerAllocator>>;
   using ConstWeakPtr =
-      std::weak_ptr<lifecycle_msgs::msg::TransitionEvent_<ContainerAllocator> const>;
+    std::weak_ptr<lifecycle_msgs::msg::TransitionEvent_<ContainerAllocator> const>;
 
   // pointer types similar to ROS 1, use SharedPtr / ConstSharedPtr instead
   // NOTE: Can't use 'using' here because GNU C++ can't parse attributes properly
@@ -168,9 +168,9 @@ struct TransitionEvent_
 
 // alias to use template instance with default allocator
 using TransitionEvent =
-    lifecycle_msgs::msg::TransitionEvent_<std::allocator<void>>;
+  lifecycle_msgs::msg::TransitionEvent_<std::allocator<void>>;
 
-// constants requiring out of line definition
+// constant definitions
 
 }  // namespace msg
 

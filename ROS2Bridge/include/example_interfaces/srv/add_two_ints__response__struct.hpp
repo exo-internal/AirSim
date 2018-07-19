@@ -59,7 +59,7 @@ struct AddTwoInts_Response_
 
   // field types and members
   using _sum_type =
-      int64_t;
+    int64_t;
   _sum_type sum;
 
   // setters for named parameter idiom
@@ -70,35 +70,35 @@ struct AddTwoInts_Response_
     return this;
   }
 
-  // constants
+  // constant declarations
 
   // pointer types
   using RawPtr =
-      example_interfaces::srv::AddTwoInts_Response_<ContainerAllocator> *;
+    example_interfaces::srv::AddTwoInts_Response_<ContainerAllocator> *;
   using ConstRawPtr =
-      const example_interfaces::srv::AddTwoInts_Response_<ContainerAllocator> *;
+    const example_interfaces::srv::AddTwoInts_Response_<ContainerAllocator> *;
   using SharedPtr =
-      std::shared_ptr<example_interfaces::srv::AddTwoInts_Response_<ContainerAllocator>>;
+    std::shared_ptr<example_interfaces::srv::AddTwoInts_Response_<ContainerAllocator>>;
   using ConstSharedPtr =
-      std::shared_ptr<example_interfaces::srv::AddTwoInts_Response_<ContainerAllocator> const>;
+    std::shared_ptr<example_interfaces::srv::AddTwoInts_Response_<ContainerAllocator> const>;
 
   template<typename Deleter = std::default_delete<
       example_interfaces::srv::AddTwoInts_Response_<ContainerAllocator>>>
   using UniquePtrWithDeleter =
-      std::unique_ptr<example_interfaces::srv::AddTwoInts_Response_<ContainerAllocator>, Deleter>;
+    std::unique_ptr<example_interfaces::srv::AddTwoInts_Response_<ContainerAllocator>, Deleter>;
 
   using UniquePtr = UniquePtrWithDeleter<>;
 
   template<typename Deleter = std::default_delete<
       example_interfaces::srv::AddTwoInts_Response_<ContainerAllocator>>>
   using ConstUniquePtrWithDeleter =
-      std::unique_ptr<example_interfaces::srv::AddTwoInts_Response_<ContainerAllocator> const, Deleter>;
+    std::unique_ptr<example_interfaces::srv::AddTwoInts_Response_<ContainerAllocator> const, Deleter>;
   using ConstUniquePtr = ConstUniquePtrWithDeleter<>;
 
   using WeakPtr =
-      std::weak_ptr<example_interfaces::srv::AddTwoInts_Response_<ContainerAllocator>>;
+    std::weak_ptr<example_interfaces::srv::AddTwoInts_Response_<ContainerAllocator>>;
   using ConstWeakPtr =
-      std::weak_ptr<example_interfaces::srv::AddTwoInts_Response_<ContainerAllocator> const>;
+    std::weak_ptr<example_interfaces::srv::AddTwoInts_Response_<ContainerAllocator> const>;
 
   // pointer types similar to ROS 1, use SharedPtr / ConstSharedPtr instead
   // NOTE: Can't use 'using' here because GNU C++ can't parse attributes properly
@@ -125,9 +125,9 @@ struct AddTwoInts_Response_
 
 // alias to use template instance with default allocator
 using AddTwoInts_Response =
-    example_interfaces::srv::AddTwoInts_Response_<std::allocator<void>>;
+  example_interfaces::srv::AddTwoInts_Response_<std::allocator<void>>;
 
-// constants requiring out of line definition
+// constant definitions
 
 }  // namespace srv
 

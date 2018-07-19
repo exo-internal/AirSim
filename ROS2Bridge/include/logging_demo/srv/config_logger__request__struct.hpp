@@ -62,10 +62,10 @@ struct ConfigLogger_Request_
 
   // field types and members
   using _logger_name_type =
-      std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>;
+    std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>;
   _logger_name_type logger_name;
   using _level_type =
-      std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>;
+    std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>;
   _level_type level;
 
   // setters for named parameter idiom
@@ -82,35 +82,35 @@ struct ConfigLogger_Request_
     return this;
   }
 
-  // constants
+  // constant declarations
 
   // pointer types
   using RawPtr =
-      logging_demo::srv::ConfigLogger_Request_<ContainerAllocator> *;
+    logging_demo::srv::ConfigLogger_Request_<ContainerAllocator> *;
   using ConstRawPtr =
-      const logging_demo::srv::ConfigLogger_Request_<ContainerAllocator> *;
+    const logging_demo::srv::ConfigLogger_Request_<ContainerAllocator> *;
   using SharedPtr =
-      std::shared_ptr<logging_demo::srv::ConfigLogger_Request_<ContainerAllocator>>;
+    std::shared_ptr<logging_demo::srv::ConfigLogger_Request_<ContainerAllocator>>;
   using ConstSharedPtr =
-      std::shared_ptr<logging_demo::srv::ConfigLogger_Request_<ContainerAllocator> const>;
+    std::shared_ptr<logging_demo::srv::ConfigLogger_Request_<ContainerAllocator> const>;
 
   template<typename Deleter = std::default_delete<
       logging_demo::srv::ConfigLogger_Request_<ContainerAllocator>>>
   using UniquePtrWithDeleter =
-      std::unique_ptr<logging_demo::srv::ConfigLogger_Request_<ContainerAllocator>, Deleter>;
+    std::unique_ptr<logging_demo::srv::ConfigLogger_Request_<ContainerAllocator>, Deleter>;
 
   using UniquePtr = UniquePtrWithDeleter<>;
 
   template<typename Deleter = std::default_delete<
       logging_demo::srv::ConfigLogger_Request_<ContainerAllocator>>>
   using ConstUniquePtrWithDeleter =
-      std::unique_ptr<logging_demo::srv::ConfigLogger_Request_<ContainerAllocator> const, Deleter>;
+    std::unique_ptr<logging_demo::srv::ConfigLogger_Request_<ContainerAllocator> const, Deleter>;
   using ConstUniquePtr = ConstUniquePtrWithDeleter<>;
 
   using WeakPtr =
-      std::weak_ptr<logging_demo::srv::ConfigLogger_Request_<ContainerAllocator>>;
+    std::weak_ptr<logging_demo::srv::ConfigLogger_Request_<ContainerAllocator>>;
   using ConstWeakPtr =
-      std::weak_ptr<logging_demo::srv::ConfigLogger_Request_<ContainerAllocator> const>;
+    std::weak_ptr<logging_demo::srv::ConfigLogger_Request_<ContainerAllocator> const>;
 
   // pointer types similar to ROS 1, use SharedPtr / ConstSharedPtr instead
   // NOTE: Can't use 'using' here because GNU C++ can't parse attributes properly
@@ -140,9 +140,9 @@ struct ConfigLogger_Request_
 
 // alias to use template instance with default allocator
 using ConfigLogger_Request =
-    logging_demo::srv::ConfigLogger_Request_<std::allocator<void>>;
+  logging_demo::srv::ConfigLogger_Request_<std::allocator<void>>;
 
-// constants requiring out of line definition
+// constant definitions
 
 }  // namespace srv
 

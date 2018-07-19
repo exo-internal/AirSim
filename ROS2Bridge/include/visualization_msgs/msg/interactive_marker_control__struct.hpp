@@ -98,28 +98,28 @@ struct InteractiveMarkerControl_
 
   // field types and members
   using _name_type =
-      std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>;
+    std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>;
   _name_type name;
   using _orientation_type =
-      geometry_msgs::msg::Quaternion_<ContainerAllocator>;
+    geometry_msgs::msg::Quaternion_<ContainerAllocator>;
   _orientation_type orientation;
   using _orientation_mode_type =
-      uint8_t;
+    uint8_t;
   _orientation_mode_type orientation_mode;
   using _interaction_mode_type =
-      uint8_t;
+    uint8_t;
   _interaction_mode_type interaction_mode;
   using _always_visible_type =
-      bool;
+    bool;
   _always_visible_type always_visible;
   using _markers_type =
-      std::vector<visualization_msgs::msg::Marker_<ContainerAllocator>, typename ContainerAllocator::template rebind<visualization_msgs::msg::Marker_<ContainerAllocator>>::other>;
+    std::vector<visualization_msgs::msg::Marker_<ContainerAllocator>, typename ContainerAllocator::template rebind<visualization_msgs::msg::Marker_<ContainerAllocator>>::other>;
   _markers_type markers;
   using _independent_marker_orientation_type =
-      bool;
+    bool;
   _independent_marker_orientation_type independent_marker_orientation;
   using _description_type =
-      std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>;
+    std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>;
   _description_type description;
 
   // setters for named parameter idiom
@@ -172,48 +172,61 @@ struct InteractiveMarkerControl_
     return this;
   }
 
-  // constants
-  enum { INHERIT = 0u };
-  enum { FIXED = 1u };
-  enum { VIEW_FACING = 2u };
-  enum { NONE = 0u };
-  enum { MENU = 1u };
-  enum { BUTTON = 2u };
-  enum { MOVE_AXIS = 3u };
-  enum { MOVE_PLANE = 4u };
-  enum { ROTATE_AXIS = 5u };
-  enum { MOVE_ROTATE = 6u };
-  enum { MOVE_3D = 7u };
-  enum { ROTATE_3D = 8u };
-  enum { MOVE_ROTATE_3D = 9u };
+  // constant declarations
+  static constexpr uint8_t INHERIT =
+    0u;
+  static constexpr uint8_t FIXED =
+    1u;
+  static constexpr uint8_t VIEW_FACING =
+    2u;
+  static constexpr uint8_t NONE =
+    0u;
+  static constexpr uint8_t MENU =
+    1u;
+  static constexpr uint8_t BUTTON =
+    2u;
+  static constexpr uint8_t MOVE_AXIS =
+    3u;
+  static constexpr uint8_t MOVE_PLANE =
+    4u;
+  static constexpr uint8_t ROTATE_AXIS =
+    5u;
+  static constexpr uint8_t MOVE_ROTATE =
+    6u;
+  static constexpr uint8_t MOVE_3D =
+    7u;
+  static constexpr uint8_t ROTATE_3D =
+    8u;
+  static constexpr uint8_t MOVE_ROTATE_3D =
+    9u;
 
   // pointer types
   using RawPtr =
-      visualization_msgs::msg::InteractiveMarkerControl_<ContainerAllocator> *;
+    visualization_msgs::msg::InteractiveMarkerControl_<ContainerAllocator> *;
   using ConstRawPtr =
-      const visualization_msgs::msg::InteractiveMarkerControl_<ContainerAllocator> *;
+    const visualization_msgs::msg::InteractiveMarkerControl_<ContainerAllocator> *;
   using SharedPtr =
-      std::shared_ptr<visualization_msgs::msg::InteractiveMarkerControl_<ContainerAllocator>>;
+    std::shared_ptr<visualization_msgs::msg::InteractiveMarkerControl_<ContainerAllocator>>;
   using ConstSharedPtr =
-      std::shared_ptr<visualization_msgs::msg::InteractiveMarkerControl_<ContainerAllocator> const>;
+    std::shared_ptr<visualization_msgs::msg::InteractiveMarkerControl_<ContainerAllocator> const>;
 
   template<typename Deleter = std::default_delete<
       visualization_msgs::msg::InteractiveMarkerControl_<ContainerAllocator>>>
   using UniquePtrWithDeleter =
-      std::unique_ptr<visualization_msgs::msg::InteractiveMarkerControl_<ContainerAllocator>, Deleter>;
+    std::unique_ptr<visualization_msgs::msg::InteractiveMarkerControl_<ContainerAllocator>, Deleter>;
 
   using UniquePtr = UniquePtrWithDeleter<>;
 
   template<typename Deleter = std::default_delete<
       visualization_msgs::msg::InteractiveMarkerControl_<ContainerAllocator>>>
   using ConstUniquePtrWithDeleter =
-      std::unique_ptr<visualization_msgs::msg::InteractiveMarkerControl_<ContainerAllocator> const, Deleter>;
+    std::unique_ptr<visualization_msgs::msg::InteractiveMarkerControl_<ContainerAllocator> const, Deleter>;
   using ConstUniquePtr = ConstUniquePtrWithDeleter<>;
 
   using WeakPtr =
-      std::weak_ptr<visualization_msgs::msg::InteractiveMarkerControl_<ContainerAllocator>>;
+    std::weak_ptr<visualization_msgs::msg::InteractiveMarkerControl_<ContainerAllocator>>;
   using ConstWeakPtr =
-      std::weak_ptr<visualization_msgs::msg::InteractiveMarkerControl_<ContainerAllocator> const>;
+    std::weak_ptr<visualization_msgs::msg::InteractiveMarkerControl_<ContainerAllocator> const>;
 
   // pointer types similar to ROS 1, use SharedPtr / ConstSharedPtr instead
   // NOTE: Can't use 'using' here because GNU C++ can't parse attributes properly
@@ -261,9 +274,35 @@ struct InteractiveMarkerControl_
 
 // alias to use template instance with default allocator
 using InteractiveMarkerControl =
-    visualization_msgs::msg::InteractiveMarkerControl_<std::allocator<void>>;
+  visualization_msgs::msg::InteractiveMarkerControl_<std::allocator<void>>;
 
-// constants requiring out of line definition
+// constant definitions
+template<typename ContainerAllocator>
+constexpr uint8_t InteractiveMarkerControl_<ContainerAllocator>::INHERIT;
+template<typename ContainerAllocator>
+constexpr uint8_t InteractiveMarkerControl_<ContainerAllocator>::FIXED;
+template<typename ContainerAllocator>
+constexpr uint8_t InteractiveMarkerControl_<ContainerAllocator>::VIEW_FACING;
+template<typename ContainerAllocator>
+constexpr uint8_t InteractiveMarkerControl_<ContainerAllocator>::NONE;
+template<typename ContainerAllocator>
+constexpr uint8_t InteractiveMarkerControl_<ContainerAllocator>::MENU;
+template<typename ContainerAllocator>
+constexpr uint8_t InteractiveMarkerControl_<ContainerAllocator>::BUTTON;
+template<typename ContainerAllocator>
+constexpr uint8_t InteractiveMarkerControl_<ContainerAllocator>::MOVE_AXIS;
+template<typename ContainerAllocator>
+constexpr uint8_t InteractiveMarkerControl_<ContainerAllocator>::MOVE_PLANE;
+template<typename ContainerAllocator>
+constexpr uint8_t InteractiveMarkerControl_<ContainerAllocator>::ROTATE_AXIS;
+template<typename ContainerAllocator>
+constexpr uint8_t InteractiveMarkerControl_<ContainerAllocator>::MOVE_ROTATE;
+template<typename ContainerAllocator>
+constexpr uint8_t InteractiveMarkerControl_<ContainerAllocator>::MOVE_3D;
+template<typename ContainerAllocator>
+constexpr uint8_t InteractiveMarkerControl_<ContainerAllocator>::ROTATE_3D;
+template<typename ContainerAllocator>
+constexpr uint8_t InteractiveMarkerControl_<ContainerAllocator>::MOVE_ROTATE_3D;
 
 }  // namespace msg
 

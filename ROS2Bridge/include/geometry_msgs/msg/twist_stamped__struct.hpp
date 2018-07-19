@@ -56,10 +56,10 @@ struct TwistStamped_
 
   // field types and members
   using _header_type =
-      std_msgs::msg::Header_<ContainerAllocator>;
+    std_msgs::msg::Header_<ContainerAllocator>;
   _header_type header;
   using _twist_type =
-      geometry_msgs::msg::Twist_<ContainerAllocator>;
+    geometry_msgs::msg::Twist_<ContainerAllocator>;
   _twist_type twist;
 
   // setters for named parameter idiom
@@ -76,35 +76,35 @@ struct TwistStamped_
     return this;
   }
 
-  // constants
+  // constant declarations
 
   // pointer types
   using RawPtr =
-      geometry_msgs::msg::TwistStamped_<ContainerAllocator> *;
+    geometry_msgs::msg::TwistStamped_<ContainerAllocator> *;
   using ConstRawPtr =
-      const geometry_msgs::msg::TwistStamped_<ContainerAllocator> *;
+    const geometry_msgs::msg::TwistStamped_<ContainerAllocator> *;
   using SharedPtr =
-      std::shared_ptr<geometry_msgs::msg::TwistStamped_<ContainerAllocator>>;
+    std::shared_ptr<geometry_msgs::msg::TwistStamped_<ContainerAllocator>>;
   using ConstSharedPtr =
-      std::shared_ptr<geometry_msgs::msg::TwistStamped_<ContainerAllocator> const>;
+    std::shared_ptr<geometry_msgs::msg::TwistStamped_<ContainerAllocator> const>;
 
   template<typename Deleter = std::default_delete<
       geometry_msgs::msg::TwistStamped_<ContainerAllocator>>>
   using UniquePtrWithDeleter =
-      std::unique_ptr<geometry_msgs::msg::TwistStamped_<ContainerAllocator>, Deleter>;
+    std::unique_ptr<geometry_msgs::msg::TwistStamped_<ContainerAllocator>, Deleter>;
 
   using UniquePtr = UniquePtrWithDeleter<>;
 
   template<typename Deleter = std::default_delete<
       geometry_msgs::msg::TwistStamped_<ContainerAllocator>>>
   using ConstUniquePtrWithDeleter =
-      std::unique_ptr<geometry_msgs::msg::TwistStamped_<ContainerAllocator> const, Deleter>;
+    std::unique_ptr<geometry_msgs::msg::TwistStamped_<ContainerAllocator> const, Deleter>;
   using ConstUniquePtr = ConstUniquePtrWithDeleter<>;
 
   using WeakPtr =
-      std::weak_ptr<geometry_msgs::msg::TwistStamped_<ContainerAllocator>>;
+    std::weak_ptr<geometry_msgs::msg::TwistStamped_<ContainerAllocator>>;
   using ConstWeakPtr =
-      std::weak_ptr<geometry_msgs::msg::TwistStamped_<ContainerAllocator> const>;
+    std::weak_ptr<geometry_msgs::msg::TwistStamped_<ContainerAllocator> const>;
 
   // pointer types similar to ROS 1, use SharedPtr / ConstSharedPtr instead
   // NOTE: Can't use 'using' here because GNU C++ can't parse attributes properly
@@ -134,9 +134,9 @@ struct TwistStamped_
 
 // alias to use template instance with default allocator
 using TwistStamped =
-    geometry_msgs::msg::TwistStamped_<std::allocator<void>>;
+  geometry_msgs::msg::TwistStamped_<std::allocator<void>>;
 
-// constants requiring out of line definition
+// constant definitions
 
 }  // namespace msg
 

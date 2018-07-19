@@ -75,28 +75,28 @@ struct DisparityImage_
 
   // field types and members
   using _header_type =
-      std_msgs::msg::Header_<ContainerAllocator>;
+    std_msgs::msg::Header_<ContainerAllocator>;
   _header_type header;
   using _image_type =
-      sensor_msgs::msg::Image_<ContainerAllocator>;
+    sensor_msgs::msg::Image_<ContainerAllocator>;
   _image_type image;
   using _f_type =
-      float;
+    float;
   _f_type f;
   using _t_type =
-      float;
+    float;
   _t_type t;
   using _valid_window_type =
-      sensor_msgs::msg::RegionOfInterest_<ContainerAllocator>;
+    sensor_msgs::msg::RegionOfInterest_<ContainerAllocator>;
   _valid_window_type valid_window;
   using _min_disparity_type =
-      float;
+    float;
   _min_disparity_type min_disparity;
   using _max_disparity_type =
-      float;
+    float;
   _max_disparity_type max_disparity;
   using _delta_d_type =
-      float;
+    float;
   _delta_d_type delta_d;
 
   // setters for named parameter idiom
@@ -149,35 +149,35 @@ struct DisparityImage_
     return this;
   }
 
-  // constants
+  // constant declarations
 
   // pointer types
   using RawPtr =
-      stereo_msgs::msg::DisparityImage_<ContainerAllocator> *;
+    stereo_msgs::msg::DisparityImage_<ContainerAllocator> *;
   using ConstRawPtr =
-      const stereo_msgs::msg::DisparityImage_<ContainerAllocator> *;
+    const stereo_msgs::msg::DisparityImage_<ContainerAllocator> *;
   using SharedPtr =
-      std::shared_ptr<stereo_msgs::msg::DisparityImage_<ContainerAllocator>>;
+    std::shared_ptr<stereo_msgs::msg::DisparityImage_<ContainerAllocator>>;
   using ConstSharedPtr =
-      std::shared_ptr<stereo_msgs::msg::DisparityImage_<ContainerAllocator> const>;
+    std::shared_ptr<stereo_msgs::msg::DisparityImage_<ContainerAllocator> const>;
 
   template<typename Deleter = std::default_delete<
       stereo_msgs::msg::DisparityImage_<ContainerAllocator>>>
   using UniquePtrWithDeleter =
-      std::unique_ptr<stereo_msgs::msg::DisparityImage_<ContainerAllocator>, Deleter>;
+    std::unique_ptr<stereo_msgs::msg::DisparityImage_<ContainerAllocator>, Deleter>;
 
   using UniquePtr = UniquePtrWithDeleter<>;
 
   template<typename Deleter = std::default_delete<
       stereo_msgs::msg::DisparityImage_<ContainerAllocator>>>
   using ConstUniquePtrWithDeleter =
-      std::unique_ptr<stereo_msgs::msg::DisparityImage_<ContainerAllocator> const, Deleter>;
+    std::unique_ptr<stereo_msgs::msg::DisparityImage_<ContainerAllocator> const, Deleter>;
   using ConstUniquePtr = ConstUniquePtrWithDeleter<>;
 
   using WeakPtr =
-      std::weak_ptr<stereo_msgs::msg::DisparityImage_<ContainerAllocator>>;
+    std::weak_ptr<stereo_msgs::msg::DisparityImage_<ContainerAllocator>>;
   using ConstWeakPtr =
-      std::weak_ptr<stereo_msgs::msg::DisparityImage_<ContainerAllocator> const>;
+    std::weak_ptr<stereo_msgs::msg::DisparityImage_<ContainerAllocator> const>;
 
   // pointer types similar to ROS 1, use SharedPtr / ConstSharedPtr instead
   // NOTE: Can't use 'using' here because GNU C++ can't parse attributes properly
@@ -225,9 +225,9 @@ struct DisparityImage_
 
 // alias to use template instance with default allocator
 using DisparityImage =
-    stereo_msgs::msg::DisparityImage_<std::allocator<void>>;
+  stereo_msgs::msg::DisparityImage_<std::allocator<void>>;
 
-// constants requiring out of line definition
+// constant definitions
 
 }  // namespace msg
 

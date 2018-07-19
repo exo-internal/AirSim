@@ -53,19 +53,19 @@ struct JointTrajectoryPoint_
 
   // field types and members
   using _positions_type =
-      std::vector<double, typename ContainerAllocator::template rebind<double>::other>;
+    std::vector<double, typename ContainerAllocator::template rebind<double>::other>;
   _positions_type positions;
   using _velocities_type =
-      std::vector<double, typename ContainerAllocator::template rebind<double>::other>;
+    std::vector<double, typename ContainerAllocator::template rebind<double>::other>;
   _velocities_type velocities;
   using _accelerations_type =
-      std::vector<double, typename ContainerAllocator::template rebind<double>::other>;
+    std::vector<double, typename ContainerAllocator::template rebind<double>::other>;
   _accelerations_type accelerations;
   using _effort_type =
-      std::vector<double, typename ContainerAllocator::template rebind<double>::other>;
+    std::vector<double, typename ContainerAllocator::template rebind<double>::other>;
   _effort_type effort;
   using _time_from_start_type =
-      builtin_interfaces::msg::Duration_<ContainerAllocator>;
+    builtin_interfaces::msg::Duration_<ContainerAllocator>;
   _time_from_start_type time_from_start;
 
   // setters for named parameter idiom
@@ -100,35 +100,35 @@ struct JointTrajectoryPoint_
     return this;
   }
 
-  // constants
+  // constant declarations
 
   // pointer types
   using RawPtr =
-      trajectory_msgs::msg::JointTrajectoryPoint_<ContainerAllocator> *;
+    trajectory_msgs::msg::JointTrajectoryPoint_<ContainerAllocator> *;
   using ConstRawPtr =
-      const trajectory_msgs::msg::JointTrajectoryPoint_<ContainerAllocator> *;
+    const trajectory_msgs::msg::JointTrajectoryPoint_<ContainerAllocator> *;
   using SharedPtr =
-      std::shared_ptr<trajectory_msgs::msg::JointTrajectoryPoint_<ContainerAllocator>>;
+    std::shared_ptr<trajectory_msgs::msg::JointTrajectoryPoint_<ContainerAllocator>>;
   using ConstSharedPtr =
-      std::shared_ptr<trajectory_msgs::msg::JointTrajectoryPoint_<ContainerAllocator> const>;
+    std::shared_ptr<trajectory_msgs::msg::JointTrajectoryPoint_<ContainerAllocator> const>;
 
   template<typename Deleter = std::default_delete<
       trajectory_msgs::msg::JointTrajectoryPoint_<ContainerAllocator>>>
   using UniquePtrWithDeleter =
-      std::unique_ptr<trajectory_msgs::msg::JointTrajectoryPoint_<ContainerAllocator>, Deleter>;
+    std::unique_ptr<trajectory_msgs::msg::JointTrajectoryPoint_<ContainerAllocator>, Deleter>;
 
   using UniquePtr = UniquePtrWithDeleter<>;
 
   template<typename Deleter = std::default_delete<
       trajectory_msgs::msg::JointTrajectoryPoint_<ContainerAllocator>>>
   using ConstUniquePtrWithDeleter =
-      std::unique_ptr<trajectory_msgs::msg::JointTrajectoryPoint_<ContainerAllocator> const, Deleter>;
+    std::unique_ptr<trajectory_msgs::msg::JointTrajectoryPoint_<ContainerAllocator> const, Deleter>;
   using ConstUniquePtr = ConstUniquePtrWithDeleter<>;
 
   using WeakPtr =
-      std::weak_ptr<trajectory_msgs::msg::JointTrajectoryPoint_<ContainerAllocator>>;
+    std::weak_ptr<trajectory_msgs::msg::JointTrajectoryPoint_<ContainerAllocator>>;
   using ConstWeakPtr =
-      std::weak_ptr<trajectory_msgs::msg::JointTrajectoryPoint_<ContainerAllocator> const>;
+    std::weak_ptr<trajectory_msgs::msg::JointTrajectoryPoint_<ContainerAllocator> const>;
 
   // pointer types similar to ROS 1, use SharedPtr / ConstSharedPtr instead
   // NOTE: Can't use 'using' here because GNU C++ can't parse attributes properly
@@ -167,9 +167,9 @@ struct JointTrajectoryPoint_
 
 // alias to use template instance with default allocator
 using JointTrajectoryPoint =
-    trajectory_msgs::msg::JointTrajectoryPoint_<std::allocator<void>>;
+  trajectory_msgs::msg::JointTrajectoryPoint_<std::allocator<void>>;
 
-// constants requiring out of line definition
+// constant definitions
 
 }  // namespace msg
 

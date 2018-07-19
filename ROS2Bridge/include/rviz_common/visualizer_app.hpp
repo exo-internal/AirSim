@@ -32,13 +32,14 @@
 #define RVIZ_COMMON__VISUALIZER_APP_HPP_
 
 #include <memory>
-#include <string>
 
 #include <QApplication>  // NOLINT: cpplint is unable to handle the include order here
 #include <QObject>  // NOLINT: cpplint is unable to handle the include order here
 
 #include "rviz_common/ros_integration/ros_client_abstraction_iface.hpp"
 #include "rviz_common/visibility_control.hpp"
+
+#include "rviz_rendering/render_window.hpp"
 
 class QTimer;
 
@@ -59,6 +60,10 @@ public:
 
   void setApp(QApplication * app);
 
+  rviz_rendering::RenderWindow * getRenderWindow();
+
+  void loadConfig(QString config_path);
+
   /// Initialize the Visualizer App given the command line arguments.
   /**
    * \return false on failure, true on success.
@@ -75,7 +80,7 @@ private:
   QApplication * app_;
   QTimer * continue_timer_;
   VisualizationFrame * frame_;
-  std::string node_name_;
+  rviz_common::ros_integration::RosNodeAbstractionIface::WeakPtr node_;
   std::unique_ptr<rviz_common::ros_integration::RosClientAbstractionIface> ros_client_abstraction_;
 };
 

@@ -69,10 +69,10 @@ struct Duration_
 
   // field types and members
   using _sec_type =
-      int32_t;
+    int32_t;
   _sec_type sec;
   using _nanosec_type =
-      uint32_t;
+    uint32_t;
   _nanosec_type nanosec;
 
   // setters for named parameter idiom
@@ -89,35 +89,35 @@ struct Duration_
     return this;
   }
 
-  // constants
+  // constant declarations
 
   // pointer types
   using RawPtr =
-      builtin_interfaces::msg::Duration_<ContainerAllocator> *;
+    builtin_interfaces::msg::Duration_<ContainerAllocator> *;
   using ConstRawPtr =
-      const builtin_interfaces::msg::Duration_<ContainerAllocator> *;
+    const builtin_interfaces::msg::Duration_<ContainerAllocator> *;
   using SharedPtr =
-      std::shared_ptr<builtin_interfaces::msg::Duration_<ContainerAllocator>>;
+    std::shared_ptr<builtin_interfaces::msg::Duration_<ContainerAllocator>>;
   using ConstSharedPtr =
-      std::shared_ptr<builtin_interfaces::msg::Duration_<ContainerAllocator> const>;
+    std::shared_ptr<builtin_interfaces::msg::Duration_<ContainerAllocator> const>;
 
   template<typename Deleter = std::default_delete<
       builtin_interfaces::msg::Duration_<ContainerAllocator>>>
   using UniquePtrWithDeleter =
-      std::unique_ptr<builtin_interfaces::msg::Duration_<ContainerAllocator>, Deleter>;
+    std::unique_ptr<builtin_interfaces::msg::Duration_<ContainerAllocator>, Deleter>;
 
   using UniquePtr = UniquePtrWithDeleter<>;
 
   template<typename Deleter = std::default_delete<
       builtin_interfaces::msg::Duration_<ContainerAllocator>>>
   using ConstUniquePtrWithDeleter =
-      std::unique_ptr<builtin_interfaces::msg::Duration_<ContainerAllocator> const, Deleter>;
+    std::unique_ptr<builtin_interfaces::msg::Duration_<ContainerAllocator> const, Deleter>;
   using ConstUniquePtr = ConstUniquePtrWithDeleter<>;
 
   using WeakPtr =
-      std::weak_ptr<builtin_interfaces::msg::Duration_<ContainerAllocator>>;
+    std::weak_ptr<builtin_interfaces::msg::Duration_<ContainerAllocator>>;
   using ConstWeakPtr =
-      std::weak_ptr<builtin_interfaces::msg::Duration_<ContainerAllocator> const>;
+    std::weak_ptr<builtin_interfaces::msg::Duration_<ContainerAllocator> const>;
 
   // pointer types similar to ROS 1, use SharedPtr / ConstSharedPtr instead
   // NOTE: Can't use 'using' here because GNU C++ can't parse attributes properly
@@ -147,9 +147,9 @@ struct Duration_
 
 // alias to use template instance with default allocator
 using Duration =
-    builtin_interfaces::msg::Duration_<std::allocator<void>>;
+  builtin_interfaces::msg::Duration_<std::allocator<void>>;
 
-// constants requiring out of line definition
+// constant definitions
 
 }  // namespace msg
 

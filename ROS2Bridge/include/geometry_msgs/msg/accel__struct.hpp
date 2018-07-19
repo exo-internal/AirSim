@@ -55,10 +55,10 @@ struct Accel_
 
   // field types and members
   using _linear_type =
-      geometry_msgs::msg::Vector3_<ContainerAllocator>;
+    geometry_msgs::msg::Vector3_<ContainerAllocator>;
   _linear_type linear;
   using _angular_type =
-      geometry_msgs::msg::Vector3_<ContainerAllocator>;
+    geometry_msgs::msg::Vector3_<ContainerAllocator>;
   _angular_type angular;
 
   // setters for named parameter idiom
@@ -75,35 +75,35 @@ struct Accel_
     return this;
   }
 
-  // constants
+  // constant declarations
 
   // pointer types
   using RawPtr =
-      geometry_msgs::msg::Accel_<ContainerAllocator> *;
+    geometry_msgs::msg::Accel_<ContainerAllocator> *;
   using ConstRawPtr =
-      const geometry_msgs::msg::Accel_<ContainerAllocator> *;
+    const geometry_msgs::msg::Accel_<ContainerAllocator> *;
   using SharedPtr =
-      std::shared_ptr<geometry_msgs::msg::Accel_<ContainerAllocator>>;
+    std::shared_ptr<geometry_msgs::msg::Accel_<ContainerAllocator>>;
   using ConstSharedPtr =
-      std::shared_ptr<geometry_msgs::msg::Accel_<ContainerAllocator> const>;
+    std::shared_ptr<geometry_msgs::msg::Accel_<ContainerAllocator> const>;
 
   template<typename Deleter = std::default_delete<
       geometry_msgs::msg::Accel_<ContainerAllocator>>>
   using UniquePtrWithDeleter =
-      std::unique_ptr<geometry_msgs::msg::Accel_<ContainerAllocator>, Deleter>;
+    std::unique_ptr<geometry_msgs::msg::Accel_<ContainerAllocator>, Deleter>;
 
   using UniquePtr = UniquePtrWithDeleter<>;
 
   template<typename Deleter = std::default_delete<
       geometry_msgs::msg::Accel_<ContainerAllocator>>>
   using ConstUniquePtrWithDeleter =
-      std::unique_ptr<geometry_msgs::msg::Accel_<ContainerAllocator> const, Deleter>;
+    std::unique_ptr<geometry_msgs::msg::Accel_<ContainerAllocator> const, Deleter>;
   using ConstUniquePtr = ConstUniquePtrWithDeleter<>;
 
   using WeakPtr =
-      std::weak_ptr<geometry_msgs::msg::Accel_<ContainerAllocator>>;
+    std::weak_ptr<geometry_msgs::msg::Accel_<ContainerAllocator>>;
   using ConstWeakPtr =
-      std::weak_ptr<geometry_msgs::msg::Accel_<ContainerAllocator> const>;
+    std::weak_ptr<geometry_msgs::msg::Accel_<ContainerAllocator> const>;
 
   // pointer types similar to ROS 1, use SharedPtr / ConstSharedPtr instead
   // NOTE: Can't use 'using' here because GNU C++ can't parse attributes properly
@@ -133,9 +133,9 @@ struct Accel_
 
 // alias to use template instance with default allocator
 using Accel =
-    geometry_msgs::msg::Accel_<std::allocator<void>>;
+  geometry_msgs::msg::Accel_<std::allocator<void>>;
 
-// constants requiring out of line definition
+// constant definitions
 
 }  // namespace msg
 

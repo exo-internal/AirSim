@@ -62,10 +62,10 @@ struct Header_
 
   // field types and members
   using _stamp_type =
-      builtin_interfaces::msg::Time_<ContainerAllocator>;
+    builtin_interfaces::msg::Time_<ContainerAllocator>;
   _stamp_type stamp;
   using _frame_id_type =
-      std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>;
+    std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>;
   _frame_id_type frame_id;
 
   // setters for named parameter idiom
@@ -82,35 +82,35 @@ struct Header_
     return this;
   }
 
-  // constants
+  // constant declarations
 
   // pointer types
   using RawPtr =
-      std_msgs::msg::Header_<ContainerAllocator> *;
+    std_msgs::msg::Header_<ContainerAllocator> *;
   using ConstRawPtr =
-      const std_msgs::msg::Header_<ContainerAllocator> *;
+    const std_msgs::msg::Header_<ContainerAllocator> *;
   using SharedPtr =
-      std::shared_ptr<std_msgs::msg::Header_<ContainerAllocator>>;
+    std::shared_ptr<std_msgs::msg::Header_<ContainerAllocator>>;
   using ConstSharedPtr =
-      std::shared_ptr<std_msgs::msg::Header_<ContainerAllocator> const>;
+    std::shared_ptr<std_msgs::msg::Header_<ContainerAllocator> const>;
 
   template<typename Deleter = std::default_delete<
       std_msgs::msg::Header_<ContainerAllocator>>>
   using UniquePtrWithDeleter =
-      std::unique_ptr<std_msgs::msg::Header_<ContainerAllocator>, Deleter>;
+    std::unique_ptr<std_msgs::msg::Header_<ContainerAllocator>, Deleter>;
 
   using UniquePtr = UniquePtrWithDeleter<>;
 
   template<typename Deleter = std::default_delete<
       std_msgs::msg::Header_<ContainerAllocator>>>
   using ConstUniquePtrWithDeleter =
-      std::unique_ptr<std_msgs::msg::Header_<ContainerAllocator> const, Deleter>;
+    std::unique_ptr<std_msgs::msg::Header_<ContainerAllocator> const, Deleter>;
   using ConstUniquePtr = ConstUniquePtrWithDeleter<>;
 
   using WeakPtr =
-      std::weak_ptr<std_msgs::msg::Header_<ContainerAllocator>>;
+    std::weak_ptr<std_msgs::msg::Header_<ContainerAllocator>>;
   using ConstWeakPtr =
-      std::weak_ptr<std_msgs::msg::Header_<ContainerAllocator> const>;
+    std::weak_ptr<std_msgs::msg::Header_<ContainerAllocator> const>;
 
   // pointer types similar to ROS 1, use SharedPtr / ConstSharedPtr instead
   // NOTE: Can't use 'using' here because GNU C++ can't parse attributes properly
@@ -140,9 +140,9 @@ struct Header_
 
 // alias to use template instance with default allocator
 using Header =
-    std_msgs::msg::Header_<std::allocator<void>>;
+  std_msgs::msg::Header_<std::allocator<void>>;
 
-// constants requiring out of line definition
+// constant definitions
 
 }  // namespace msg
 

@@ -15,7 +15,7 @@
 #ifndef RCL__CLIENT_H_
 #define RCL__CLIENT_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -257,6 +257,8 @@ rcl_send_request(const rcl_client_t * client, const void * ros_request, int64_t 
  * occur.
  * The request_header is an rmw struct for meta-information about the request
  * sent (e.g. the sequence number).
+ * The caller must provide a pointer to an allocated struct.
+ * This function will populate the struct's fields.
  * `ros_response` should point to an already allocated ROS response message
  * struct of the correct type, into which the response from the service will be
  * copied.
@@ -377,8 +379,7 @@ rcl_client_get_rmw_handle(const rcl_client_t * client);
 /**
  * The bool returned is `false` if client is invalid
  * The bool returned is `true` otherwise.
- * In the case where `false` is to be returned, an
- * error message is set.
+ * In the case where `false` is to be returned, an error message is set.
  * This function cannot fail.
  *
  * <hr>
@@ -390,13 +391,14 @@ rcl_client_get_rmw_handle(const rcl_client_t * client);
  * Lock-Free          | Yes
  *
  * \param[in] client pointer to the rcl client
+ * \param[in] error_msg_allocator a valid allocator or `NULL`
  * \return `true` if `client` is valid, otherwise `false`
  */
 RCL_PUBLIC
 bool
 rcl_client_is_valid(const rcl_client_t * client, rcl_allocator_t * error_msg_allocator);
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

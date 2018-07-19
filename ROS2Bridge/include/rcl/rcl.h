@@ -68,7 +68,7 @@
 #ifndef RCL__RCL_H_
 #define RCL__RCL_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -121,7 +121,7 @@ extern "C"
 RCL_PUBLIC
 RCL_WARN_UNUSED
 rcl_ret_t
-rcl_init(int argc, char ** argv, rcl_allocator_t allocator);
+rcl_init(int argc, char const * const * argv, rcl_allocator_t allocator);
 
 /// Signal global shutdown of rcl.
 /**
@@ -193,7 +193,7 @@ RCL_WARN_UNUSED
 bool
 rcl_ok(void);
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

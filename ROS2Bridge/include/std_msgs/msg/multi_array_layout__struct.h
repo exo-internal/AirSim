@@ -4,7 +4,7 @@
 #ifndef STD_MSGS__MSG__MULTI_ARRAY_LAYOUT__STRUCT_H_
 #define STD_MSGS__MSG__MULTI_ARRAY_LAYOUT__STRUCT_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -34,7 +34,7 @@ typedef struct std_msgs__msg__MultiArrayLayout__Array
   size_t capacity;
 } std_msgs__msg__MultiArrayLayout__Array;
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

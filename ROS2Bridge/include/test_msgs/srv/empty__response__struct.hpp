@@ -53,35 +53,35 @@ struct Empty_Response_
 
   // setters for named parameter idiom
 
-  // constants
+  // constant declarations
 
   // pointer types
   using RawPtr =
-      test_msgs::srv::Empty_Response_<ContainerAllocator> *;
+    test_msgs::srv::Empty_Response_<ContainerAllocator> *;
   using ConstRawPtr =
-      const test_msgs::srv::Empty_Response_<ContainerAllocator> *;
+    const test_msgs::srv::Empty_Response_<ContainerAllocator> *;
   using SharedPtr =
-      std::shared_ptr<test_msgs::srv::Empty_Response_<ContainerAllocator>>;
+    std::shared_ptr<test_msgs::srv::Empty_Response_<ContainerAllocator>>;
   using ConstSharedPtr =
-      std::shared_ptr<test_msgs::srv::Empty_Response_<ContainerAllocator> const>;
+    std::shared_ptr<test_msgs::srv::Empty_Response_<ContainerAllocator> const>;
 
   template<typename Deleter = std::default_delete<
       test_msgs::srv::Empty_Response_<ContainerAllocator>>>
   using UniquePtrWithDeleter =
-      std::unique_ptr<test_msgs::srv::Empty_Response_<ContainerAllocator>, Deleter>;
+    std::unique_ptr<test_msgs::srv::Empty_Response_<ContainerAllocator>, Deleter>;
 
   using UniquePtr = UniquePtrWithDeleter<>;
 
   template<typename Deleter = std::default_delete<
       test_msgs::srv::Empty_Response_<ContainerAllocator>>>
   using ConstUniquePtrWithDeleter =
-      std::unique_ptr<test_msgs::srv::Empty_Response_<ContainerAllocator> const, Deleter>;
+    std::unique_ptr<test_msgs::srv::Empty_Response_<ContainerAllocator> const, Deleter>;
   using ConstUniquePtr = ConstUniquePtrWithDeleter<>;
 
   using WeakPtr =
-      std::weak_ptr<test_msgs::srv::Empty_Response_<ContainerAllocator>>;
+    std::weak_ptr<test_msgs::srv::Empty_Response_<ContainerAllocator>>;
   using ConstWeakPtr =
-      std::weak_ptr<test_msgs::srv::Empty_Response_<ContainerAllocator> const>;
+    std::weak_ptr<test_msgs::srv::Empty_Response_<ContainerAllocator> const>;
 
   // pointer types similar to ROS 1, use SharedPtr / ConstSharedPtr instead
   // NOTE: Can't use 'using' here because GNU C++ can't parse attributes properly
@@ -106,9 +106,9 @@ struct Empty_Response_
 
 // alias to use template instance with default allocator
 using Empty_Response =
-    test_msgs::srv::Empty_Response_<std::allocator<void>>;
+  test_msgs::srv::Empty_Response_<std::allocator<void>>;
 
-// constants requiring out of line definition
+// constant definitions
 
 }  // namespace srv
 

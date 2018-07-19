@@ -4,7 +4,7 @@
 #ifndef LIFECYCLE_MSGS__MSG__TRANSITION__FUNCTIONS_H_
 #define LIFECYCLE_MSGS__MSG__TRANSITION__FUNCTIONS_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -105,7 +105,7 @@ ROSIDL_GENERATOR_C_PUBLIC_lifecycle_msgs
 void
 lifecycle_msgs__msg__Transition__Array__destroy(lifecycle_msgs__msg__Transition__Array * array);
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

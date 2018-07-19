@@ -4,7 +4,7 @@
 #ifndef STD_MSGS__MSG__U_INT8__FUNCTIONS_H_
 #define STD_MSGS__MSG__U_INT8__FUNCTIONS_H_
 
-#if __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
@@ -105,7 +105,7 @@ ROSIDL_GENERATOR_C_PUBLIC_std_msgs
 void
 std_msgs__msg__UInt8__Array__destroy(std_msgs__msg__UInt8__Array * array);
 
-#if __cplusplus
+#ifdef __cplusplus
 }
 #endif
 
