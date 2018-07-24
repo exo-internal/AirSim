@@ -87,6 +87,7 @@ public:
 		// Create the control subscriptions
 		cmdVelSubscription_ = this->create_subscription<geometry_msgs::msg::Twist>("/exo/airsim/drone/controls/cmd_vel", std::bind(&ROS2AirSim::cmd_vel_callback, this, _1));
 		moveSubscription_ = this->create_subscription<geometry_msgs::msg::Twist>("/exo/airsim/drone/controls/move_by_velocity", std::bind(&ROS2AirSim::move_callback, this, _1));
+		angleSubscription_ = this->create_subscription<geometry_msgs::msg::Twist>("/exo/airsim/drone/controls/move_by_angle", std::bind(&ROS2AirSim::angle_callback, this, _1));
 		rotateSubscription_ = this->create_subscription<std_msgs::msg::Float32>("/exo/airsim/drone/controls/rotate_by_velocity", std::bind(&ROS2AirSim::rotate_callback, this, _1));
 
 		// Create the simulator subscriptions
@@ -352,6 +353,11 @@ private:
 	rclcpp::Subscription<geometry_msgs::msg::Twist>::SharedPtr moveSubscription_;
 	void move_callback(const geometry_msgs::msg::Twist::SharedPtr msg) {
 		client.moveByVelocityAsync((float)msg->linear.x, (float)msg->linear.y, (float)msg->linear.z, 0.5);
+	}
+
+	rclcpp::Subscription<geometry_msgs::msg::Twist>::SharedPtr angleSubscription_;
+	void angle_callback(const geometry_msgs::msg::Twist::SharedPtr msg) {
+		client.moveByAngleThrottleAsync((float)msg->angular.y, (float)msg->angular.x, (float)msg->linear.z, (float)msg->angular.z, 0.03333f);
 	}
 
 	rclcpp::Subscription<std_msgs::msg::Float32>::SharedPtr rotateSubscription_;
