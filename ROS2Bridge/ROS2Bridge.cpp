@@ -19,6 +19,7 @@
 #include "geometry_msgs/msg/vector3.hpp"
 #include "geometry_msgs/msg/vector3_stamped.hpp"
 #include "nav_msgs/msg/odometry.hpp"
+#include "nav_msgs/msg/path.hpp"
 #include "std_msgs/msg/bool.hpp"
 #include "std_msgs/msg/header.hpp"
 #include "std_msgs/msg/string.hpp"
@@ -89,6 +90,7 @@ public:
 		moveSubscription_ = this->create_subscription<geometry_msgs::msg::Twist>("/exo/airsim/drone/controls/move_by_velocity", std::bind(&ROS2AirSim::move_callback, this, _1));
 		angleSubscription_ = this->create_subscription<geometry_msgs::msg::Twist>("/exo/airsim/drone/controls/move_by_angle", std::bind(&ROS2AirSim::angle_callback, this, _1));
 		rotateSubscription_ = this->create_subscription<std_msgs::msg::Float32>("/exo/airsim/drone/controls/rotate_by_velocity", std::bind(&ROS2AirSim::rotate_callback, this, _1));
+		pathSubscription_ = this->create_subscription<nav_msgs::msg::Path>("/exo/airsim/drone/controls/move_by_path", std::bind(&ROS2AirSim::path_callback, this, _1));
 
 		// Create the simulator subscriptions
 		initializeSubscription_ = this->create_subscription<std_msgs::msg::Bool>("/exo/airsim/drone/simulator/initialize", std::bind(&ROS2AirSim::initialize_callback, this, _1));
@@ -365,6 +367,19 @@ private:
 		client.rotateByYawRateAsync(msg->data, 0.5);
 	}
 
+	rclcpp::Subscription<nav_msgs::msg::Path>::SharedPtr pathSubscription_;
+	void path_callback(const nav_msgs::msg::Path::SharedPtr msg) {
+		// take the given ros path, convert it to an airlib path
+		vector<Vector3r> path;
+		for (int i = 0; i < msg->poses.size(); i++) {
+			float x = msg->poses[i].pose.position.x;
+			float y = msg->poses[i].pose.position.y;
+			float z = msg->poses[i].pose.position.z;
+			path.push_back(Vector3r(x, y, z));
+		}
+		client.moveOnPathAsync(path, 2.0f);
+	}
+	
 	// Simulator
 	rclcpp::Subscription<std_msgs::msg::Bool>::SharedPtr initializeSubscription_;
 	void initialize_callback(const std_msgs::msg::Bool::SharedPtr msg) {
