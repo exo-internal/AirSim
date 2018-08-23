@@ -328,47 +328,63 @@ private:
 	// Actions
 	rclcpp::Subscription<std_msgs::msg::Bool>::SharedPtr takeoffSubscription_;
 	void takeoff_callback(const std_msgs::msg::Bool::SharedPtr msg) {
+		RCLCPP_INFO(this->get_logger(), "-> takeoff called");
+
 		client.takeoffAsync();
 	}
 
 	rclcpp::Subscription<std_msgs::msg::Bool>::SharedPtr landSubscription_;
 	void land_callback(const std_msgs::msg::Bool::SharedPtr msg) {
+		RCLCPP_INFO(this->get_logger(), "-> land called");
+
 		client.landAsync();
 	}
 
 	rclcpp::Subscription<std_msgs::msg::Bool>::SharedPtr goHomeSubscription_;
 	void go_home_callback(const std_msgs::msg::Bool::SharedPtr msg) {
+		RCLCPP_INFO(this->get_logger(), "-> go_home called");
+
 		client.goHomeAsync();
 	}
 
 	rclcpp::Subscription<std_msgs::msg::Bool>::SharedPtr hoverSubscription_;
 	void hover_callback(const std_msgs::msg::Bool::SharedPtr msg) {
+		RCLCPP_INFO(this->get_logger(), "-> hover called");
+
 		client.hoverAsync();
 	}
 
 	// Controls
 	rclcpp::Subscription<geometry_msgs::msg::Twist>::SharedPtr cmdVelSubscription_;
 	void cmd_vel_callback(const geometry_msgs::msg::Twist::SharedPtr msg) {
-		RCLCPP_INFO(this->get_logger(), "cmd_vel called (not implemented)");
+		RCLCPP_INFO(this->get_logger(), "-> cmd_vel called (not implemented)");
 	}
 
 	rclcpp::Subscription<geometry_msgs::msg::Twist>::SharedPtr moveSubscription_;
 	void move_callback(const geometry_msgs::msg::Twist::SharedPtr msg) {
+		RCLCPP_INFO(this->get_logger(), "-> move_by_velocity called");
+
 		client.moveByVelocityAsync((float)msg->linear.x, (float)msg->linear.y, (float)msg->linear.z, 0.5);
 	}
 
 	rclcpp::Subscription<geometry_msgs::msg::Twist>::SharedPtr angleSubscription_;
 	void angle_callback(const geometry_msgs::msg::Twist::SharedPtr msg) {
+		RCLCPP_INFO(this->get_logger(), "-> move_by_angle throttle called");
+
 		client.moveByAngleThrottleAsync((float)msg->angular.y, (float)msg->angular.x, (float)msg->linear.z, (float)msg->angular.z, 0.03333f);
 	}
 
 	rclcpp::Subscription<std_msgs::msg::Float32>::SharedPtr rotateSubscription_;
 	void rotate_callback(const std_msgs::msg::Float32::SharedPtr msg) {
+		RCLCPP_INFO(this->get_logger(), "-> rotate_by_velocity called");
+
 		client.rotateByYawRateAsync(msg->data, 0.5);
 	}
 
 	rclcpp::Subscription<nav_msgs::msg::Path>::SharedPtr pathSubscription_;
 	void path_callback(const nav_msgs::msg::Path::SharedPtr msg) {
+		RCLCPP_INFO(this->get_logger(), "-> move_by_path called");
+
 		// take the given ros path, convert it to an airlib path
 		vector<Vector3r> path;
 		for (int i = 0; i < msg->poses.size(); i++) {
@@ -383,11 +399,15 @@ private:
 	// Simulator
 	rclcpp::Subscription<std_msgs::msg::Bool>::SharedPtr initializeSubscription_;
 	void initialize_callback(const std_msgs::msg::Bool::SharedPtr msg) {
+		RCLCPP_INFO(this->get_logger(), "-> initialize called");
+
 		this->initialize = true;
 	}
 
 	rclcpp::Subscription<std_msgs::msg::Bool>::SharedPtr resetSubscription_;
 	void reset_callback(const std_msgs::msg::Bool::SharedPtr msg) {
+		RCLCPP_INFO(this->get_logger(), "-> reset called");
+
 		client.reset();
 		client.confirmConnection();
 		client.enableApiControl(true);
