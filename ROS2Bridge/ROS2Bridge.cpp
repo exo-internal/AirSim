@@ -52,7 +52,7 @@ public:
 	ROS2AirSim() : Node("AirSim"), bridgeCount_(0), stateCount_(0), cameraCount_(0)
 	{
 		// Set the start time
-		//startTime_ = high_resolution_clock::now();
+		startTime_ = high_resolution_clock::now();
 		initialize = false;
 
 		// Create the bridge state publishers
@@ -73,11 +73,18 @@ public:
 		batteryPublisher_ = this->create_publisher<sensor_msgs::msg::BatteryState>("/exo/airsim/drone/state/battery");
 
 		// Create the camera publishers
-		cameraTimer_ = this->create_wall_timer(60ms, std::bind(&ROS2AirSim::camera_callback, this));
+		cameraTimer_ = this->create_wall_timer(65ms, std::bind(&ROS2AirSim::camera_callback, this));
 		frontCameraPosePublisher_ = this->create_publisher<geometry_msgs::msg::Pose>("/exo/airsim/drone/camera/front/pose");
 		frontColorPublisher_ = this->create_publisher<sensor_msgs::msg::CompressedImage>("/exo/airsim/drone/camera/front/color/image_raw/compressed");
 		frontRawDepthPublisher_ = this->create_publisher<sensor_msgs::msg::Image>("/exo/airsim/drone/camera/front/depth/image_raw");
 		frontDepthPublisher_ = this->create_publisher<sensor_msgs::msg::CompressedImage>("/exo/airsim/drone/camera/front/depth/image_raw/compressed");
+
+		//These options are currently unused, but this is the default
+		rmw_qos_profile_t subscriptionOptions;
+		subscriptionOptions.depth = 1;
+		subscriptionOptions.durability = RMW_QOS_POLICY_DURABILITY_VOLATILE;
+		subscriptionOptions.reliability = RMW_QOS_POLICY_RELIABILITY_RELIABLE;
+		subscriptionOptions.history = RMW_QOS_POLICY_HISTORY_KEEP_LAST;
 
 		// Create the action subscriptions
 		takeoffSubscription_ = this->create_subscription<std_msgs::msg::Bool>("/exo/airsim/drone/actions/takeoff", std::bind(&ROS2AirSim::takeoff_callback, this, _1));
@@ -100,7 +107,7 @@ public:
 	}
 
 private:
-	//time_point<steady_clock> startTime_;
+	time_point<steady_clock> startTime_;
 
 	// Bridge
 	size_t bridgeCount_;
@@ -371,7 +378,7 @@ private:
 	void angle_callback(const geometry_msgs::msg::Twist::SharedPtr msg) {
 		RCLCPP_INFO(this->get_logger(), "-> move_by_angle throttle called");
 
-		client.moveByAngleThrottleAsync((float)msg->angular.y, (float)msg->angular.x, (float)msg->linear.z, (float)msg->angular.z, 0.03333f);
+		client.moveByAngleThrottleAsync((float)msg->angular.y, (float)msg->angular.x, (float)msg->linear.z, (float)msg->angular.z, 0.4f);
 	}
 
 	rclcpp::Subscription<std_msgs::msg::Float32>::SharedPtr rotateSubscription_;
@@ -421,6 +428,9 @@ private:
 void shutdown_handler(sig_atomic_t s) {
 	rclcpp::shutdown();
 
+	client.armDisarm(false);
+	client.enableApiControl(false);
+
 	exit(1);
 }
 
@@ -439,17 +449,26 @@ int main(int argc, char * argv[])
 
 	// Reinitialize every five minutes
 	while (true) {
-		rclcpp::executors::MultiThreadedExecutor executor;
+		auto node = std::make_shared<ROS2AirSim>();
 
-		auto node = std::make_shared<ROS2AirSim>();	
+	   	rclcpp::executors::MultiThreadedExecutor executor;
+		executor.add_node(node);
+
+		rclcpp::Rate loop_rate(10);
+
 		auto start_time = system_clock::now();
+		int tick = 0;
 
 		while (
 			rclcpp::ok() && 
 			!node->initialize &&
 			(duration_cast<duration<double>>(system_clock::now() - start_time).count() < 300)
 		) {
-			executor.spin_node_some(node);
+			executor.spin_some();
+			loop_rate.sleep();
+
+			//tick++;
+			//RCLCPP_INFO(node->get_logger(), "tick %s", std::to_string(tick));
 		}
 
 		initialization_count++;
