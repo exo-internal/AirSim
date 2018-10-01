@@ -78,6 +78,8 @@ public:
 		frontColorPublisher_ = this->create_publisher<sensor_msgs::msg::CompressedImage>("/exo/airsim/drone/camera/front/color/image_raw/compressed");
 		frontRawDepthPublisher_ = this->create_publisher<sensor_msgs::msg::Image>("/exo/airsim/drone/camera/front/depth/image_raw");
 		frontDepthPublisher_ = this->create_publisher<sensor_msgs::msg::CompressedImage>("/exo/airsim/drone/camera/front/depth/image_raw/compressed");
+		downColorPublisher_ = this->create_publisher<sensor_msgs::msg::CompressedImage>("/exo/airsim/drone/camera/down/color/image_raw/compressed");
+		rearColorPublisher_ = this->create_publisher<sensor_msgs::msg::CompressedImage>("/exo/airsim/drone/camera/rear/color/image_raw/compressed");
 
 		//These options are currently unused, but this is the default
 		rmw_qos_profile_t subscriptionOptions;
@@ -91,6 +93,7 @@ public:
 		landSubscription_ = this->create_subscription<std_msgs::msg::Bool>("/exo/airsim/drone/actions/land", std::bind(&ROS2AirSim::land_callback, this, _1));
 		goHomeSubscription_ = this->create_subscription<std_msgs::msg::Bool>("/exo/airsim/drone/actions/go_home", std::bind(&ROS2AirSim::go_home_callback, this, _1));
 		hoverSubscription_ = this->create_subscription<std_msgs::msg::Bool>("/exo/airsim/drone/actions/hover", std::bind(&ROS2AirSim::hover_callback, this, _1));
+		flyAroundSubscription_ = this->create_subscription<std_msgs::msg::Bool>("/exo/airsim/drone/actions/fly_around", std::bind(&ROS2AirSim::fly_around_callback, this, _1));
 
 		// Create the control subscriptions
 		cmdVelSubscription_ = this->create_subscription<geometry_msgs::msg::Twist>("/exo/airsim/drone/controls/cmd_vel", std::bind(&ROS2AirSim::cmd_vel_callback, this, _1));
@@ -250,6 +253,8 @@ private:
 	rclcpp::Publisher<sensor_msgs::msg::CompressedImage>::SharedPtr frontColorPublisher_;
 	rclcpp::Publisher<sensor_msgs::msg::Image>::SharedPtr frontRawDepthPublisher_;
 	rclcpp::Publisher<sensor_msgs::msg::CompressedImage>::SharedPtr frontDepthPublisher_;
+	rclcpp::Publisher<sensor_msgs::msg::CompressedImage>::SharedPtr downColorPublisher_;
+	rclcpp::Publisher<sensor_msgs::msg::CompressedImage>::SharedPtr rearColorPublisher_;
 	void camera_callback()
 	{
 		//time_point<steady_clock> tickStart = high_resolution_clock::now();
@@ -258,13 +263,15 @@ private:
 		vector<ImageRequest> imageRequests = {
 			ImageRequest("0", ImageType::Scene, false, true), // front color
 			ImageRequest("0", ImageType::DepthPerspective, true, false), // front depth
-			//ImageRequest("3", ImageType::Scene, false, true), // down color
-			//ImageRequest("4", ImageType::Scene, false, true), // back color
+			ImageRequest("3", ImageType::Scene, false, true), // down color
+			ImageRequest("4", ImageType::Scene, false, true) // back color
 		};
 
 		const vector<ImageResponse>& imageResponses = client.simGetImages(imageRequests);
 		auto front_color_image = imageResponses[0];
 		auto front_depth_image = imageResponses[1];
+		auto down_color_image = imageResponses[2];
+		auto rear_color_image = imageResponses[3];
 
 		//duration<double> t_end = duration_cast<duration<double>>(high_resolution_clock::now() - t_start);
 		//RCLCPP_INFO(this->get_logger(), "-- got images in %s seconds", std::to_string(t_end.count()));
@@ -289,7 +296,7 @@ private:
 		frontColorPublisher_->publish(frontColorMessage);
 
 		//t_end = duration_cast<duration<double>>(high_resolution_clock::now() - t_start);
-		//RCLCPP_INFO(this->get_logger(), "-- published color image in %s seconds", std::to_string(t_end.count()));
+		//RCLCPP_INFO(this->get_logger(), "-- published front color image in %s seconds", std::to_string(t_end.count()));
 
 		//t_start = high_resolution_clock::now();
 		auto frontDepthMessage = sensor_msgs::msg::CompressedImage();
@@ -317,7 +324,29 @@ private:
 		frontDepthPublisher_->publish(frontDepthMessage);
 
 		//t_end = duration_cast<duration<double>>(high_resolution_clock::now() - t_start);
-		//RCLCPP_INFO(this->get_logger(), "-- published depth image in %s seconds", std::to_string(t_end.count()));
+		//RCLCPP_INFO(this->get_logger(), "-- published front depth image in %s seconds", std::to_string(t_end.count()));
+
+		//t_start = high_resolution_clock::now();
+		auto downColorMessage = sensor_msgs::msg::CompressedImage();
+		downColorMessage.header.frame_id = "down_color";
+		downColorMessage.header.stamp.sec = (int32_t)system_clock::to_time_t(system_clock::now());
+		downColorMessage.format = "png";
+		downColorMessage.data = down_color_image.image_data_uint8;
+		downColorPublisher_->publish(downColorMessage);
+
+		//t_end = duration_cast<duration<double>>(high_resolution_clock::now() - t_start);
+		//RCLCPP_INFO(this->get_logger(), "-- published down color image in %s seconds", std::to_string(t_end.count()));
+
+		//t_start = high_resolution_clock::now();
+		auto rearColorMessage = sensor_msgs::msg::CompressedImage();
+		rearColorMessage.header.frame_id = "rear_color";
+		rearColorMessage.header.stamp.sec = (int32_t)system_clock::to_time_t(system_clock::now());
+		rearColorMessage.format = "png";
+		rearColorMessage.data = down_color_image.image_data_uint8;
+		rearColorPublisher_->publish(rearColorMessage);
+
+		//t_end = duration_cast<duration<double>>(high_resolution_clock::now() - t_start);
+		//RCLCPP_INFO(this->get_logger(), "-- published rear color image in %s seconds", std::to_string(t_end.count()));
 
 		/*
 		duration<double> tickEnd = duration_cast<duration<double>>(high_resolution_clock::now() - tickStart);
@@ -359,6 +388,36 @@ private:
 		RCLCPP_INFO(this->get_logger(), "-> hover called");
 
 		client.hoverAsync();
+	}
+
+	rclcpp::Subscription<std_msgs::msg::Bool>::SharedPtr flyAroundSubscription_;
+	void fly_around_callback(const std_msgs::msg::Bool::SharedPtr msg) {
+		RCLCPP_INFO(this->get_logger(), "-> fly around called");
+
+		// moveByVelocityZ is an offboard operation, so we need to set offboard mode.
+		auto position = client.getMultirotorState().getPosition();
+		float z = position.z(); // current position (NED coordinate system).  
+		const float speed = 3.0f;
+		const float size = 10.0f;
+		const float duration = size / speed;
+		DrivetrainType driveTrain = DrivetrainType::ForwardOnly;
+		YawMode yaw_mode(true, 0);
+
+		// Fly the box
+		client.moveByVelocityAsync(0, 0, -speed, duration / 2);
+		std::this_thread::sleep_for(std::chrono::duration<double>(duration / 2));
+
+		client.moveByVelocityZAsync(0, -speed, z, duration, driveTrain, yaw_mode);
+		std::this_thread::sleep_for(std::chrono::duration<double>(duration));
+		
+		client.moveByVelocityZAsync(-speed, 0, z, duration, driveTrain, yaw_mode);
+		std::this_thread::sleep_for(std::chrono::duration<double>(duration));
+		
+		client.moveByVelocityZAsync(0, speed, z, duration, driveTrain, yaw_mode);
+		std::this_thread::sleep_for(std::chrono::duration<double>(duration));
+		
+		client.moveByVelocityZAsync(speed, 0, z, duration, driveTrain, yaw_mode);
+		std::this_thread::sleep_for(std::chrono::duration<double>(duration));
 	}
 
 	// Controls
