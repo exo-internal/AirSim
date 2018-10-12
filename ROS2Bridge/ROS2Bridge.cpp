@@ -49,7 +49,7 @@ class ROS2AirSim : public rclcpp::Node
 public:
 	bool initialize;
 
-	ROS2AirSim() : Node("AirSim"), bridgeCount_(0), stateCount_(0), cameraCount_(0)
+	ROS2AirSim() : Node("AirSim"), bridgeCount_(0), stateCount_(0)
 	{
 		// Set the start time
 		startTime_ = high_resolution_clock::now();
@@ -71,15 +71,6 @@ public:
 		landedPublisher_ = this->create_publisher<std_msgs::msg::Bool>("/exo/airsim/drone/state/landed");
 		collidedPublisher_ = this->create_publisher<std_msgs::msg::Bool>("/exo/airsim/drone/state/collided");
 		batteryPublisher_ = this->create_publisher<sensor_msgs::msg::BatteryState>("/exo/airsim/drone/state/battery");
-
-		// Create the camera publishers
-		cameraTimer_ = this->create_wall_timer(65ms, std::bind(&ROS2AirSim::camera_callback, this));
-		frontCameraPosePublisher_ = this->create_publisher<geometry_msgs::msg::Pose>("/exo/airsim/drone/camera/front/pose");
-		frontColorPublisher_ = this->create_publisher<sensor_msgs::msg::CompressedImage>("/exo/airsim/drone/camera/front/color/image_raw/compressed");
-		frontRawDepthPublisher_ = this->create_publisher<sensor_msgs::msg::Image>("/exo/airsim/drone/camera/front/depth/image_raw");
-		frontDepthPublisher_ = this->create_publisher<sensor_msgs::msg::CompressedImage>("/exo/airsim/drone/camera/front/depth/image_raw/compressed");
-		downColorPublisher_ = this->create_publisher<sensor_msgs::msg::CompressedImage>("/exo/airsim/drone/camera/down/color/image_raw/compressed");
-		rearColorPublisher_ = this->create_publisher<sensor_msgs::msg::CompressedImage>("/exo/airsim/drone/camera/rear/color/image_raw/compressed");
 
 		//These options are currently unused, but this is the default
 		rmw_qos_profile_t subscriptionOptions;
@@ -105,7 +96,12 @@ public:
 		// Create the simulator subscriptions
 		initializeSubscription_ = this->create_subscription<std_msgs::msg::Bool>("/exo/airsim/drone/simulator/initialize", std::bind(&ROS2AirSim::initialize_callback, this, _1));
 		resetSubscription_ = this->create_subscription<std_msgs::msg::Bool>("/exo/airsim/drone/simulator/reset", std::bind(&ROS2AirSim::reset_callback, this, _1));
-		pingSubscription_ = this->create_subscription<std_msgs::msg::String>("/exo/airsim/drone/bridge/ping", std::bind(&ROS2AirSim::ping_callback, this, _1));
+		pingSubscription_ = this->create_subscription<std_msgs::msg::String>(
+			"/exo/airsim/drone/bridge/ping",
+			[this](std_msgs::msg::String::UniquePtr msg) {
+				RCLCPP_INFO(this->get_logger(), "ping");
+			}
+		);
 
 		RCLCPP_INFO(this->get_logger(), "Bridge initialized: %s", std::to_string(initialization_count));
 	}
@@ -246,122 +242,6 @@ private:
 		*/
 	}
 
-	// Camera
-	float precision_coefficient_ = 10000.0;
-	size_t cameraCount_;
-	rclcpp::TimerBase::SharedPtr cameraTimer_;
-	rclcpp::Publisher<geometry_msgs::msg::Pose>::SharedPtr frontCameraPosePublisher_;
-	rclcpp::Publisher<sensor_msgs::msg::CompressedImage>::SharedPtr frontColorPublisher_;
-	rclcpp::Publisher<sensor_msgs::msg::Image>::SharedPtr frontRawDepthPublisher_;
-	rclcpp::Publisher<sensor_msgs::msg::CompressedImage>::SharedPtr frontDepthPublisher_;
-	rclcpp::Publisher<sensor_msgs::msg::CompressedImage>::SharedPtr downColorPublisher_;
-	rclcpp::Publisher<sensor_msgs::msg::CompressedImage>::SharedPtr rearColorPublisher_;
-	void camera_callback()
-	{
-		//time_point<steady_clock> tickStart = high_resolution_clock::now();
-
-		//time_point<steady_clock> t_start = high_resolution_clock::now();
-		vector<ImageRequest> imageRequests = {
-			ImageRequest("front_center", ImageType::Scene, false, true), // front color
-			ImageRequest("front_center", ImageType::DepthPerspective, true, false), // front depth
-			ImageRequest("bottom_center", ImageType::Scene, false, true), // down color 3
-			ImageRequest("back_center", ImageType::Scene, false, true) // back color 4
-		};
-
-		const vector<ImageResponse>& imageResponses = client.simGetImages(imageRequests);
-		auto front_color_image = imageResponses[0];
-		auto front_depth_image = imageResponses[1];
-		auto down_color_image = imageResponses[2];
-		auto rear_color_image = imageResponses[3];
-
-		//duration<double> t_end = duration_cast<duration<double>>(high_resolution_clock::now() - t_start);
-		//RCLCPP_INFO(this->get_logger(), "-- got images in %s seconds", std::to_string(t_end.count()));
-
-		// Publish the pose of the front camera
-		auto frontCameraPoseMessage = geometry_msgs::msg::Pose();
-		frontCameraPoseMessage.position.x = front_color_image.camera_position.x();
-		frontCameraPoseMessage.position.y = front_color_image.camera_position.y();
-		frontCameraPoseMessage.position.z = front_color_image.camera_position.z();
-		frontCameraPoseMessage.orientation.x = front_color_image.camera_orientation.x();
-		frontCameraPoseMessage.orientation.y = front_color_image.camera_orientation.y();
-		frontCameraPoseMessage.orientation.z = front_color_image.camera_orientation.z();
-		frontCameraPoseMessage.orientation.w = front_color_image.camera_orientation.w();
-		frontCameraPosePublisher_->publish(frontCameraPoseMessage);
-
-		//t_start = high_resolution_clock::now();
-		auto frontColorMessage = sensor_msgs::msg::CompressedImage();
-		frontColorMessage.header.frame_id = "front_color";
-		frontColorMessage.header.stamp.sec = (int32_t)system_clock::to_time_t(system_clock::now());
-		frontColorMessage.format = "png";
-		frontColorMessage.data = front_color_image.image_data_uint8;
-		frontColorPublisher_->publish(frontColorMessage);
-
-		//t_end = duration_cast<duration<double>>(high_resolution_clock::now() - t_start);
-		//RCLCPP_INFO(this->get_logger(), "-- published front color image in %s seconds", std::to_string(t_end.count()));
-
-		//t_start = high_resolution_clock::now();
-		auto frontDepthMessage = sensor_msgs::msg::CompressedImage();
-		frontDepthMessage.header.frame_id = "front_depth";
-		frontDepthMessage.header.stamp.sec = (int32_t)system_clock::to_time_t(system_clock::now());
-		frontDepthMessage.format = "png";
-
-		// Convert float values to uint32_t and add to a vector
-		vector<uint32_t> uncompressedDepth(front_depth_image.image_data_float.size());
-		for (int i = 0; i < front_depth_image.image_data_float.size(); i++) {
-			uncompressedDepth[i] = static_cast<uint32_t>(front_depth_image.image_data_float[i] * precision_coefficient_);
-		}
-
-		// Convert to an OpenCV mat
-		cv::Mat depthMat = cv::Mat(cv::Size(front_depth_image.width, front_depth_image.height), CV_8UC4, uncompressedDepth.data());
-
-		// Compress the image
-		vector<uchar> compressedDepth;
-		compressedDepth.resize(front_depth_image.height * front_depth_image.width * 4);
-		cv::imencode(".png", depthMat, compressedDepth);
-		compressedDepth.shrink_to_fit();
-
-		// Publish the image
-		frontDepthMessage.data = compressedDepth;
-		frontDepthPublisher_->publish(frontDepthMessage);
-
-		//t_end = duration_cast<duration<double>>(high_resolution_clock::now() - t_start);
-		//RCLCPP_INFO(this->get_logger(), "-- published front depth image in %s seconds", std::to_string(t_end.count()));
-
-		//t_start = high_resolution_clock::now();
-		auto downColorMessage = sensor_msgs::msg::CompressedImage();
-		downColorMessage.header.frame_id = "down_color";
-		downColorMessage.header.stamp.sec = (int32_t)system_clock::to_time_t(system_clock::now());
-		downColorMessage.format = "png";
-		downColorMessage.data = down_color_image.image_data_uint8;
-		downColorPublisher_->publish(downColorMessage);
-
-		//t_end = duration_cast<duration<double>>(high_resolution_clock::now() - t_start);
-		//RCLCPP_INFO(this->get_logger(), "-- published down color image in %s seconds", std::to_string(t_end.count()));
-
-		//t_start = high_resolution_clock::now();
-		auto rearColorMessage = sensor_msgs::msg::CompressedImage();
-		rearColorMessage.header.frame_id = "rear_color";
-		rearColorMessage.header.stamp.sec = (int32_t)system_clock::to_time_t(system_clock::now());
-		rearColorMessage.format = "png";
-		rearColorMessage.data = rear_color_image.image_data_uint8;
-		rearColorPublisher_->publish(rearColorMessage);
-
-		//t_end = duration_cast<duration<double>>(high_resolution_clock::now() - t_start);
-		//RCLCPP_INFO(this->get_logger(), "-- published rear color image in %s seconds", std::to_string(t_end.count()));
-
-		/*
-		duration<double> tickEnd = duration_cast<duration<double>>(high_resolution_clock::now() - tickStart);
-		RCLCPP_INFO(
-			this->get_logger(),
-			"#%s: Publishing %s images at time %s took %s",
-			std::to_string(cameraCount_++),
-			std::to_string(imageResponses.size()),
-			std::to_string(system_clock::to_time_t(system_clock::now())),
-			std::to_string(tickEnd.count())
-		);
-		*/
-	}
-
 	// Actions
 	rclcpp::Subscription<std_msgs::msg::Bool>::SharedPtr takeoffSubscription_;
 	void takeoff_callback(const std_msgs::msg::Bool::SharedPtr msg) {
@@ -490,6 +370,156 @@ private:
 };
 
 
+class ROS2AirSimCameras : public rclcpp::Node
+{
+public:
+	bool initialize;
+
+	ROS2AirSimCameras() : Node("AirSim"), cameraCount_(0)
+	{
+		// Set the start time
+		startTime_ = high_resolution_clock::now();
+		initialize = false;
+
+		// Create the camera publishers
+		rmw_qos_profile_t cameraOptions;
+		cameraOptions.depth = 1;
+		cameraOptions.durability = RMW_QOS_POLICY_DURABILITY_VOLATILE;
+		cameraOptions.reliability = RMW_QOS_POLICY_RELIABILITY_BEST_EFFORT;
+		cameraOptions.history = RMW_QOS_POLICY_HISTORY_KEEP_LAST;
+
+		cameraTimer_ = this->create_wall_timer(100ms, std::bind(&ROS2AirSimCameras::camera_callback, this));
+		frontCameraPosePublisher_ = this->create_publisher<geometry_msgs::msg::Pose>("/exo/airsim/drone/camera/front/pose", cameraOptions);
+		frontColorPublisher_ = this->create_publisher<sensor_msgs::msg::CompressedImage>("/exo/airsim/drone/camera/front/color/image_raw/compressed", cameraOptions);
+		frontRawDepthPublisher_ = this->create_publisher<sensor_msgs::msg::Image>("/exo/airsim/drone/camera/front/depth/image_raw", cameraOptions);
+		frontDepthPublisher_ = this->create_publisher<sensor_msgs::msg::CompressedImage>("/exo/airsim/drone/camera/front/depth/image_raw/compressed", cameraOptions);
+		downColorPublisher_ = this->create_publisher<sensor_msgs::msg::CompressedImage>("/exo/airsim/drone/camera/down/color/image_raw/compressed", cameraOptions);
+		rearColorPublisher_ = this->create_publisher<sensor_msgs::msg::CompressedImage>("/exo/airsim/drone/camera/rear/color/image_raw/compressed", cameraOptions);
+
+		RCLCPP_INFO(this->get_logger(), "Cameras initialized: %s", std::to_string(initialization_count));
+	}
+
+private:
+	time_point<steady_clock> startTime_;
+
+	// Camera
+	float precision_coefficient_ = 10000.0;
+	size_t cameraCount_;
+	rclcpp::TimerBase::SharedPtr cameraTimer_;
+	rclcpp::Publisher<geometry_msgs::msg::Pose>::SharedPtr frontCameraPosePublisher_;
+	rclcpp::Publisher<sensor_msgs::msg::CompressedImage>::SharedPtr frontColorPublisher_;
+	rclcpp::Publisher<sensor_msgs::msg::Image>::SharedPtr frontRawDepthPublisher_;
+	rclcpp::Publisher<sensor_msgs::msg::CompressedImage>::SharedPtr frontDepthPublisher_;
+	rclcpp::Publisher<sensor_msgs::msg::CompressedImage>::SharedPtr downColorPublisher_;
+	rclcpp::Publisher<sensor_msgs::msg::CompressedImage>::SharedPtr rearColorPublisher_;
+	void camera_callback()
+	{
+		//time_point<steady_clock> tickStart = high_resolution_clock::now();
+
+		//time_point<steady_clock> t_start = high_resolution_clock::now();
+		vector<ImageRequest> imageRequests = {
+			ImageRequest("front_center", ImageType::Scene, false, true), // front color
+			ImageRequest("front_center", ImageType::DepthPerspective, true, false), // front depth
+			ImageRequest("bottom_center", ImageType::Scene, false, true), // down color 3
+			ImageRequest("back_center", ImageType::Scene, false, true) // back color 4
+		};
+
+		const vector<ImageResponse>& imageResponses = client.simGetImages(imageRequests);
+		auto front_color_image = imageResponses[0];
+		auto front_depth_image = imageResponses[1];
+		auto down_color_image = imageResponses[2];
+		auto rear_color_image = imageResponses[3];
+
+		//duration<double> t_end = duration_cast<duration<double>>(high_resolution_clock::now() - t_start);
+		//RCLCPP_INFO(this->get_logger(), "-- got images in %s seconds", std::to_string(t_end.count()));
+
+		// Publish the pose of the front camera
+		auto frontCameraPoseMessage = geometry_msgs::msg::Pose();
+		frontCameraPoseMessage.position.x = front_color_image.camera_position.x();
+		frontCameraPoseMessage.position.y = front_color_image.camera_position.y();
+		frontCameraPoseMessage.position.z = front_color_image.camera_position.z();
+		frontCameraPoseMessage.orientation.x = front_color_image.camera_orientation.x();
+		frontCameraPoseMessage.orientation.y = front_color_image.camera_orientation.y();
+		frontCameraPoseMessage.orientation.z = front_color_image.camera_orientation.z();
+		frontCameraPoseMessage.orientation.w = front_color_image.camera_orientation.w();
+		frontCameraPosePublisher_->publish(frontCameraPoseMessage);
+
+		//t_start = high_resolution_clock::now();
+		auto frontColorMessage = sensor_msgs::msg::CompressedImage();
+		frontColorMessage.header.frame_id = "front_color";
+		frontColorMessage.header.stamp.sec = (int32_t)system_clock::to_time_t(system_clock::now());
+		frontColorMessage.format = "png";
+		frontColorMessage.data = front_color_image.image_data_uint8;
+		frontColorPublisher_->publish(frontColorMessage);
+
+		//t_end = duration_cast<duration<double>>(high_resolution_clock::now() - t_start);
+		//RCLCPP_INFO(this->get_logger(), "-- published front color image in %s seconds", std::to_string(t_end.count()));
+
+		//t_start = high_resolution_clock::now();
+		auto frontDepthMessage = sensor_msgs::msg::CompressedImage();
+		frontDepthMessage.header.frame_id = "front_depth";
+		frontDepthMessage.header.stamp.sec = (int32_t)system_clock::to_time_t(system_clock::now());
+		frontDepthMessage.format = "png";
+
+		// Convert float values to uint32_t and add to a vector
+		vector<uint32_t> uncompressedDepth(front_depth_image.image_data_float.size());
+		for (int i = 0; i < front_depth_image.image_data_float.size(); i++) {
+			uncompressedDepth[i] = static_cast<uint32_t>(front_depth_image.image_data_float[i] * precision_coefficient_);
+		}
+
+		// Convert to an OpenCV mat
+		cv::Mat depthMat = cv::Mat(cv::Size(front_depth_image.width, front_depth_image.height), CV_8UC4, uncompressedDepth.data());
+
+		// Compress the image
+		vector<uchar> compressedDepth;
+		compressedDepth.resize(front_depth_image.height * front_depth_image.width * 4);
+		cv::imencode(".png", depthMat, compressedDepth);
+		compressedDepth.shrink_to_fit();
+
+		// Publish the image
+		frontDepthMessage.data = compressedDepth;
+		frontDepthPublisher_->publish(frontDepthMessage);
+
+		//t_end = duration_cast<duration<double>>(high_resolution_clock::now() - t_start);
+		//RCLCPP_INFO(this->get_logger(), "-- published front depth image in %s seconds", std::to_string(t_end.count()));
+
+		//t_start = high_resolution_clock::now();
+		auto downColorMessage = sensor_msgs::msg::CompressedImage();
+		downColorMessage.header.frame_id = "down_color";
+		downColorMessage.header.stamp.sec = (int32_t)system_clock::to_time_t(system_clock::now());
+		downColorMessage.format = "png";
+		downColorMessage.data = down_color_image.image_data_uint8;
+		downColorPublisher_->publish(downColorMessage);
+
+		//t_end = duration_cast<duration<double>>(high_resolution_clock::now() - t_start);
+		//RCLCPP_INFO(this->get_logger(), "-- published down color image in %s seconds", std::to_string(t_end.count()));
+
+		//t_start = high_resolution_clock::now();
+		auto rearColorMessage = sensor_msgs::msg::CompressedImage();
+		rearColorMessage.header.frame_id = "rear_color";
+		rearColorMessage.header.stamp.sec = (int32_t)system_clock::to_time_t(system_clock::now());
+		rearColorMessage.format = "png";
+		rearColorMessage.data = rear_color_image.image_data_uint8;
+		rearColorPublisher_->publish(rearColorMessage);
+
+		//t_end = duration_cast<duration<double>>(high_resolution_clock::now() - t_start);
+		//RCLCPP_INFO(this->get_logger(), "-- published rear color image in %s seconds", std::to_string(t_end.count()));
+
+		/*
+		duration<double> tickEnd = duration_cast<duration<double>>(high_resolution_clock::now() - tickStart);
+		RCLCPP_INFO(
+			this->get_logger(),
+			"#%s: Publishing %s images at time %s took %s",
+			std::to_string(cameraCount_++),
+			std::to_string(imageResponses.size()),
+			std::to_string(system_clock::to_time_t(system_clock::now())),
+			std::to_string(tickEnd.count())
+		);
+		*/
+	}
+};
+
+
 void shutdown_handler(sig_atomic_t s) {
 	rclcpp::shutdown();
 
@@ -517,14 +547,25 @@ int main(int argc, char * argv[])
 
 	   	rclcpp::executors::MultiThreadedExecutor executor;
 		auto node = std::make_shared<ROS2AirSim>();
+		executor.add_node(node);
+
+		auto camera_node = std::make_shared<ROS2AirSimCameras>();
+		executor.add_node(camera_node);
+
+		rclcpp::Rate loop_rate(1000);
 		auto start_time = system_clock::now();
 
+		//int tick = 0;
 		while (
 			rclcpp::ok() && 
 			!node->initialize &&
 			(duration_cast<duration<double>>(system_clock::now() - start_time).count() < 300)
 		) {
-			executor.spin_node_once(node);
+			executor.spin_once();
+			loop_rate.sleep();
+
+			//tick++;
+			//RCLCPP_INFO(node->get_logger(), "tick %s", std::to_string(tick));
 		}
 
 		initialization_count++;
