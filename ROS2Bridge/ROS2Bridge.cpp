@@ -58,7 +58,7 @@ public:
 		// Create the bridge state publishers
 		bridgeTimer_ = this->create_wall_timer(1000ms, std::bind(&ROS2AirSim::bridge_callback, this));
 		bridgeConnectedPublisher_ = this->create_publisher<std_msgs::msg::Bool>("/exo/airsim/drone/bridge/connected");
-		bridgePingPublisher_ = this->create_publisher<std_msgs::msg::String>("exo/airsim/drone/bridge/ping");
+		bridgePingPublisher_ = this->create_publisher<std_msgs::msg::String>("/exo/airsim/drone/bridge/ping");
 
 		// Create the drone state publishers
 		stateTimer_ = this->create_wall_timer(100ms, std::bind(&ROS2AirSim::state_callback, this));
@@ -105,6 +105,7 @@ public:
 		// Create the simulator subscriptions
 		initializeSubscription_ = this->create_subscription<std_msgs::msg::Bool>("/exo/airsim/drone/simulator/initialize", std::bind(&ROS2AirSim::initialize_callback, this, _1));
 		resetSubscription_ = this->create_subscription<std_msgs::msg::Bool>("/exo/airsim/drone/simulator/reset", std::bind(&ROS2AirSim::reset_callback, this, _1));
+		pingSubscription_ = this->create_subscription<std_msgs::msg::String>("/exo/airsim/drone/bridge/ping", std::bind(&ROS2AirSim::ping_callback, this, _1));
 
 		RCLCPP_INFO(this->get_logger(), "Bridge initialized: %s", std::to_string(initialization_count));
 	}
@@ -480,6 +481,11 @@ private:
 		client.armDisarm(true);
 
 		this->initialize = true;
+	}
+
+	rclcpp::Subscription<std_msgs::msg::String>::SharedPtr pingSubscription_;
+	void ping_callback(const std_msgs::msg::String::SharedPtr msg) {
+		RCLCPP_INFO(this->get_logger(), "-> got ping");
 	}
 };
 
