@@ -261,10 +261,10 @@ private:
 
 		//time_point<steady_clock> t_start = high_resolution_clock::now();
 		vector<ImageRequest> imageRequests = {
-			ImageRequest("0", ImageType::Scene, false, true), // front color
-			ImageRequest("0", ImageType::DepthPerspective, true, false), // front depth
-			ImageRequest("3", ImageType::Scene, false, true), // down color
-			ImageRequest("4", ImageType::Scene, false, true) // back color
+			ImageRequest("front_center", ImageType::Scene, false, true), // front color
+			ImageRequest("front_center", ImageType::DepthPerspective, true, false), // front depth
+			ImageRequest("bottom_center", ImageType::Scene, false, true), // down color 3
+			ImageRequest("back_center", ImageType::Scene, false, true) // back color 4
 		};
 
 		const vector<ImageResponse>& imageResponses = client.simGetImages(imageRequests);
@@ -342,7 +342,7 @@ private:
 		rearColorMessage.header.frame_id = "rear_color";
 		rearColorMessage.header.stamp.sec = (int32_t)system_clock::to_time_t(system_clock::now());
 		rearColorMessage.format = "png";
-		rearColorMessage.data = down_color_image.image_data_uint8;
+		rearColorMessage.data = rear_color_image.image_data_uint8;
 		rearColorPublisher_->publish(rearColorMessage);
 
 		//t_end = duration_cast<duration<double>>(high_resolution_clock::now() - t_start);
@@ -508,26 +508,17 @@ int main(int argc, char * argv[])
 
 	// Reinitialize every five minutes
 	while (true) {
-		auto node = std::make_shared<ROS2AirSim>();
 
 	   	rclcpp::executors::MultiThreadedExecutor executor;
-		executor.add_node(node);
-
-		rclcpp::Rate loop_rate(10);
-
+		auto node = std::make_shared<ROS2AirSim>();
 		auto start_time = system_clock::now();
-		int tick = 0;
 
 		while (
 			rclcpp::ok() && 
 			!node->initialize &&
 			(duration_cast<duration<double>>(system_clock::now() - start_time).count() < 300)
 		) {
-			executor.spin_some();
-			loop_rate.sleep();
-
-			//tick++;
-			//RCLCPP_INFO(node->get_logger(), "tick %s", std::to_string(tick));
+			executor.spin_node_once(node);
 		}
 
 		initialization_count++;
