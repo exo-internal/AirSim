@@ -73,7 +73,7 @@ public:
 		batteryPublisher_ = this->create_publisher<sensor_msgs::msg::BatteryState>("/exo/airsim/drone/state/battery");
 
 		// Create the camera publishers
-		cameraTimer_ = this->create_wall_timer(65ms, std::bind(&ROS2AirSim::camera_callback, this));
+		cameraTimer_ = this->create_wall_timer(250ms, std::bind(&ROS2AirSim::camera_callback, this));
 		frontCameraPosePublisher_ = this->create_publisher<geometry_msgs::msg::Pose>("/exo/airsim/drone/camera/front/pose");
 		frontColorPublisher_ = this->create_publisher<sensor_msgs::msg::CompressedImage>("/exo/airsim/drone/camera/front/color/image_raw/compressed");
 		frontRawDepthPublisher_ = this->create_publisher<sensor_msgs::msg::Image>("/exo/airsim/drone/camera/front/depth/image_raw");
@@ -515,16 +515,24 @@ int main(int argc, char * argv[])
 	// Reinitialize every five minutes
 	while (true) {
 
-	   	rclcpp::executors::MultiThreadedExecutor executor;
+		rclcpp::executors::MultiThreadedExecutor executor(rclcpp::executor::create_default_executor_arguments(), 6, false);
+		std::cout << "threads: " << executor.get_number_of_threads() << "\n";
+		
 		auto node = std::make_shared<ROS2AirSim>();
+		executor.add_node(node);
+
 		auto start_time = system_clock::now();
 
+		//int count = 0;
 		while (
 			rclcpp::ok() && 
 			!node->initialize &&
 			(duration_cast<duration<double>>(system_clock::now() - start_time).count() < 300)
 		) {
-			executor.spin_node_once(node);
+			executor.spin_once();
+
+			//std::cout << "tick " << count << "\n";
+			//count++;
 		}
 
 		initialization_count++;
