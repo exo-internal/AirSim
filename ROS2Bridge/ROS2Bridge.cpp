@@ -42,19 +42,13 @@ typedef ImageCaptureBase::ImageResponse ImageResponse;
 typedef ImageCaptureBase::ImageType ImageType;
 
 msr::airlib::MultirotorRpcLibClient client;
-int initialization_count;
 
 class ROS2AirSim : public rclcpp::Node
 {
 public:
-	bool initialize;
 
 	ROS2AirSim() : Node("AirSim"), bridgeCount_(0), stateCount_(0), cameraCount_(0)
 	{
-		// Set the start time
-		startTime_ = high_resolution_clock::now();
-		initialize = false;
-
 		// Create the bridge state publishers
 		bridgeTimer_ = this->create_wall_timer(1000ms, std::bind(&ROS2AirSim::bridge_callback, this));
 		bridgeConnectedPublisher_ = this->create_publisher<std_msgs::msg::Bool>("/exo/airsim/drone/bridge/connected");
@@ -73,7 +67,7 @@ public:
 		batteryPublisher_ = this->create_publisher<sensor_msgs::msg::BatteryState>("/exo/airsim/drone/state/battery");
 
 		// Create the camera publishers
-		cameraTimer_ = this->create_wall_timer(250ms, std::bind(&ROS2AirSim::camera_callback, this));
+		cameraTimer_ = this->create_wall_timer(70ms, std::bind(&ROS2AirSim::camera_callback, this));
 		frontCameraPosePublisher_ = this->create_publisher<geometry_msgs::msg::Pose>("/exo/airsim/drone/camera/front/pose");
 		frontColorPublisher_ = this->create_publisher<sensor_msgs::msg::CompressedImage>("/exo/airsim/drone/camera/front/color/image_raw/compressed");
 		frontRawDepthPublisher_ = this->create_publisher<sensor_msgs::msg::Image>("/exo/airsim/drone/camera/front/depth/image_raw");
@@ -81,36 +75,11 @@ public:
 		downColorPublisher_ = this->create_publisher<sensor_msgs::msg::CompressedImage>("/exo/airsim/drone/camera/down/color/image_raw/compressed");
 		rearColorPublisher_ = this->create_publisher<sensor_msgs::msg::CompressedImage>("/exo/airsim/drone/camera/rear/color/image_raw/compressed");
 
-		//These options are currently unused, but this is the default
-		rmw_qos_profile_t subscriptionOptions;
-		subscriptionOptions.depth = 1;
-		subscriptionOptions.durability = RMW_QOS_POLICY_DURABILITY_VOLATILE;
-		subscriptionOptions.reliability = RMW_QOS_POLICY_RELIABILITY_RELIABLE;
-		subscriptionOptions.history = RMW_QOS_POLICY_HISTORY_KEEP_LAST;
-
-		// Create the action subscriptions
-		takeoffSubscription_ = this->create_subscription<std_msgs::msg::Bool>("/exo/airsim/drone/actions/takeoff", std::bind(&ROS2AirSim::takeoff_callback, this, _1));
-		landSubscription_ = this->create_subscription<std_msgs::msg::Bool>("/exo/airsim/drone/actions/land", std::bind(&ROS2AirSim::land_callback, this, _1));
-		goHomeSubscription_ = this->create_subscription<std_msgs::msg::Bool>("/exo/airsim/drone/actions/go_home", std::bind(&ROS2AirSim::go_home_callback, this, _1));
-		hoverSubscription_ = this->create_subscription<std_msgs::msg::Bool>("/exo/airsim/drone/actions/hover", std::bind(&ROS2AirSim::hover_callback, this, _1));
-		flyAroundSubscription_ = this->create_subscription<std_msgs::msg::Bool>("/exo/airsim/drone/actions/fly_around", std::bind(&ROS2AirSim::fly_around_callback, this, _1));
-
-		// Create the control subscriptions
-		cmdVelSubscription_ = this->create_subscription<geometry_msgs::msg::Twist>("/exo/airsim/drone/controls/cmd_vel", std::bind(&ROS2AirSim::cmd_vel_callback, this, _1));
-		moveSubscription_ = this->create_subscription<geometry_msgs::msg::Twist>("/exo/airsim/drone/controls/move_by_velocity", std::bind(&ROS2AirSim::move_callback, this, _1));
-		angleSubscription_ = this->create_subscription<geometry_msgs::msg::Twist>("/exo/airsim/drone/controls/move_by_angle", std::bind(&ROS2AirSim::angle_callback, this, _1));
-		rotateSubscription_ = this->create_subscription<std_msgs::msg::Float32>("/exo/airsim/drone/controls/rotate_by_velocity", std::bind(&ROS2AirSim::rotate_callback, this, _1));
-		pathSubscription_ = this->create_subscription<nav_msgs::msg::Path>("/exo/airsim/drone/controls/move_by_path", std::bind(&ROS2AirSim::path_callback, this, _1));
-
-		// Create the simulator subscriptions
-		initializeSubscription_ = this->create_subscription<std_msgs::msg::Bool>("/exo/airsim/drone/simulator/initialize", std::bind(&ROS2AirSim::initialize_callback, this, _1));
-		resetSubscription_ = this->create_subscription<std_msgs::msg::Bool>("/exo/airsim/drone/simulator/reset", std::bind(&ROS2AirSim::reset_callback, this, _1));
-		pingSubscription_ = this->create_subscription<std_msgs::msg::String>("/exo/airsim/drone/bridge/ping", std::bind(&ROS2AirSim::ping_callback, this, _1));
-
-		RCLCPP_INFO(this->get_logger(), "Bridge initialized: %s", std::to_string(initialization_count));
+		RCLCPP_INFO(this->get_logger(), "Publishers initialized.");
 	}
 
 private:
+
 	time_point<steady_clock> startTime_;
 
 	// Bridge
@@ -129,7 +98,7 @@ private:
 
 		// Publish a ping from the bridge
 		auto bridgePingMessage = std_msgs::msg::String();
-		bridgePingMessage.data = "Ping from bridge: " + std::to_string(bridgeCount_);
+		bridgePingMessage.data = "ping from bridge - " + std::to_string(bridgeCount_);
 		bridgePingPublisher_->publish(bridgePingMessage);
 	}
 
@@ -258,9 +227,9 @@ private:
 	rclcpp::Publisher<sensor_msgs::msg::CompressedImage>::SharedPtr rearColorPublisher_;
 	void camera_callback()
 	{
-		//time_point<steady_clock> tickStart = high_resolution_clock::now();
+		time_point<steady_clock> tickStart = high_resolution_clock::now();
 
-		//time_point<steady_clock> t_start = high_resolution_clock::now();
+		time_point<steady_clock> t_start = high_resolution_clock::now();
 		vector<ImageRequest> imageRequests = {
 			ImageRequest("front_center", ImageType::Scene, false, true), // front color
 			ImageRequest("front_center", ImageType::DepthPerspective, true, false), // front depth
@@ -274,8 +243,8 @@ private:
 		auto down_color_image = imageResponses[2];
 		auto rear_color_image = imageResponses[3];
 
-		//duration<double> t_end = duration_cast<duration<double>>(high_resolution_clock::now() - t_start);
-		//RCLCPP_INFO(this->get_logger(), "-- got images in %s seconds", std::to_string(t_end.count()));
+		duration<double> t_end = duration_cast<duration<double>>(high_resolution_clock::now() - t_start);
+		RCLCPP_INFO(this->get_logger(), "-- got images in %s seconds", std::to_string(t_end.count()));
 
 		// Publish the pose of the front camera
 		auto frontCameraPoseMessage = geometry_msgs::msg::Pose();
@@ -361,132 +330,6 @@ private:
 		);
 		*/
 	}
-
-	// Actions
-	rclcpp::Subscription<std_msgs::msg::Bool>::SharedPtr takeoffSubscription_;
-	void takeoff_callback(const std_msgs::msg::Bool::SharedPtr msg) {
-		RCLCPP_INFO(this->get_logger(), "-> takeoff called");
-
-		client.takeoffAsync();
-	}
-
-	rclcpp::Subscription<std_msgs::msg::Bool>::SharedPtr landSubscription_;
-	void land_callback(const std_msgs::msg::Bool::SharedPtr msg) {
-		RCLCPP_INFO(this->get_logger(), "-> land called");
-
-		client.landAsync();
-	}
-
-	rclcpp::Subscription<std_msgs::msg::Bool>::SharedPtr goHomeSubscription_;
-	void go_home_callback(const std_msgs::msg::Bool::SharedPtr msg) {
-		RCLCPP_INFO(this->get_logger(), "-> go_home called");
-
-		client.goHomeAsync();
-	}
-
-	rclcpp::Subscription<std_msgs::msg::Bool>::SharedPtr hoverSubscription_;
-	void hover_callback(const std_msgs::msg::Bool::SharedPtr msg) {
-		RCLCPP_INFO(this->get_logger(), "-> hover called");
-
-		client.hoverAsync();
-	}
-
-	rclcpp::Subscription<std_msgs::msg::Bool>::SharedPtr flyAroundSubscription_;
-	void fly_around_callback(const std_msgs::msg::Bool::SharedPtr msg) {
-		RCLCPP_INFO(this->get_logger(), "-> fly around called");
-
-		// moveByVelocityZ is an offboard operation, so we need to set offboard mode.
-		auto position = client.getMultirotorState().getPosition();
-		float z = position.z(); // current position (NED coordinate system).  
-		const float speed = 3.0f;
-		const float size = 10.0f;
-		const float duration = size / speed;
-		DrivetrainType driveTrain = DrivetrainType::ForwardOnly;
-		YawMode yaw_mode(true, 0);
-
-		// Fly the box
-		client.moveByVelocityAsync(0, 0, -speed, duration / 2);
-		std::this_thread::sleep_for(std::chrono::duration<double>(duration / 2));
-
-		client.moveByVelocityZAsync(0, -speed, z, duration, driveTrain, yaw_mode);
-		std::this_thread::sleep_for(std::chrono::duration<double>(duration));
-		
-		client.moveByVelocityZAsync(-speed, 0, z, duration, driveTrain, yaw_mode);
-		std::this_thread::sleep_for(std::chrono::duration<double>(duration));
-		
-		client.moveByVelocityZAsync(0, speed, z, duration, driveTrain, yaw_mode);
-		std::this_thread::sleep_for(std::chrono::duration<double>(duration));
-		
-		client.moveByVelocityZAsync(speed, 0, z, duration, driveTrain, yaw_mode);
-		std::this_thread::sleep_for(std::chrono::duration<double>(duration));
-	}
-
-	// Controls
-	rclcpp::Subscription<geometry_msgs::msg::Twist>::SharedPtr cmdVelSubscription_;
-	void cmd_vel_callback(const geometry_msgs::msg::Twist::SharedPtr msg) {
-		RCLCPP_INFO(this->get_logger(), "-> cmd_vel called (not implemented)");
-	}
-
-	rclcpp::Subscription<geometry_msgs::msg::Twist>::SharedPtr moveSubscription_;
-	void move_callback(const geometry_msgs::msg::Twist::SharedPtr msg) {
-		RCLCPP_INFO(this->get_logger(), "-> move_by_velocity called");
-
-		client.moveByVelocityAsync((float)msg->linear.x, (float)msg->linear.y, (float)msg->linear.z, 0.5);
-	}
-
-	rclcpp::Subscription<geometry_msgs::msg::Twist>::SharedPtr angleSubscription_;
-	void angle_callback(const geometry_msgs::msg::Twist::SharedPtr msg) {
-		RCLCPP_INFO(this->get_logger(), "-> move_by_angle throttle called");
-
-		client.moveByAngleThrottleAsync((float)msg->angular.y, (float)msg->angular.x, (float)msg->linear.z, (float)msg->angular.z, 0.4f);
-	}
-
-	rclcpp::Subscription<std_msgs::msg::Float32>::SharedPtr rotateSubscription_;
-	void rotate_callback(const std_msgs::msg::Float32::SharedPtr msg) {
-		RCLCPP_INFO(this->get_logger(), "-> rotate_by_velocity called");
-
-		client.rotateByYawRateAsync(msg->data, 0.5);
-	}
-
-	rclcpp::Subscription<nav_msgs::msg::Path>::SharedPtr pathSubscription_;
-	void path_callback(const nav_msgs::msg::Path::SharedPtr msg) {
-		RCLCPP_INFO(this->get_logger(), "-> move_by_path called");
-
-		// take the given ros path, convert it to an airlib path
-		vector<Vector3r> path;
-		for (int i = 0; i < msg->poses.size(); i++) {
-			float x = msg->poses[i].pose.position.x;
-			float y = msg->poses[i].pose.position.y;
-			float z = msg->poses[i].pose.position.z;
-			path.push_back(Vector3r(x, y, z));
-		}
-		client.moveOnPathAsync(path, 2.0f);
-	}
-	
-	// Simulator
-	rclcpp::Subscription<std_msgs::msg::Bool>::SharedPtr initializeSubscription_;
-	void initialize_callback(const std_msgs::msg::Bool::SharedPtr msg) {
-		RCLCPP_INFO(this->get_logger(), "-> initialize called");
-
-		this->initialize = true;
-	}
-
-	rclcpp::Subscription<std_msgs::msg::Bool>::SharedPtr resetSubscription_;
-	void reset_callback(const std_msgs::msg::Bool::SharedPtr msg) {
-		RCLCPP_INFO(this->get_logger(), "-> reset called");
-
-		client.reset();
-		client.confirmConnection();
-		client.enableApiControl(true);
-		client.armDisarm(true);
-
-		this->initialize = true;
-	}
-
-	rclcpp::Subscription<std_msgs::msg::String>::SharedPtr pingSubscription_;
-	void ping_callback(const std_msgs::msg::String::SharedPtr msg) {
-		RCLCPP_INFO(this->get_logger(), "-> got ping");
-	}
 };
 
 
@@ -510,33 +353,15 @@ int main(int argc, char * argv[])
 
 	// Set up the ROS2 API
 	rclcpp::init(argc, argv);
-	initialization_count = 0;
 
-	// Reinitialize every five minutes
-	while (true) {
-
-		rclcpp::executors::MultiThreadedExecutor executor(rclcpp::executor::create_default_executor_arguments(), 6, false);
-		std::cout << "threads: " << executor.get_number_of_threads() << "\n";
+	rclcpp::executors::MultiThreadedExecutor executor(rclcpp::executor::create_default_executor_arguments(), 8, false);
+	std::cout << "threads: " << executor.get_number_of_threads() << "\n";
 		
-		auto node = std::make_shared<ROS2AirSim>();
-		executor.add_node(node);
+	auto node = std::make_shared<ROS2AirSim>();
+	executor.add_node(node);
 
-		auto start_time = system_clock::now();
-
-		//int count = 0;
-		while (
-			rclcpp::ok() && 
-			!node->initialize &&
-			(duration_cast<duration<double>>(system_clock::now() - start_time).count() < 300)
-		) {
-			executor.spin_once();
-
-			//std::cout << "tick " << count << "\n";
-			//count++;
-		}
-
-		initialization_count++;
-	}
+	// worried it will eventually stop for no reason
+	executor.spin();
 
 	shutdown_handler(NULL);
 

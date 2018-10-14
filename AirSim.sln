@@ -44,6 +44,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ROS2Bridge", "ROS2Bridge\RO
 		{4BFB7231-077A-4671-BD21-D3ADE3EA36E7} = {4BFB7231-077A-4671-BD21-D3ADE3EA36E7}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ROS2Subscriptions", "ROS2Subscriptions\ROS2Subscriptions.vcxproj", "{7E879293-D9E0-43AB-9F33-172A6340456D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -166,6 +168,16 @@ Global
 		{9783A6FE-B524-478A-8231-18C82FB1AB52}.Release|x64.Build.0 = Release|x64
 		{9783A6FE-B524-478A-8231-18C82FB1AB52}.Release|x86.ActiveCfg = Release|Win32
 		{9783A6FE-B524-478A-8231-18C82FB1AB52}.Release|x86.Build.0 = Release|Win32
+		{7E879293-D9E0-43AB-9F33-172A6340456D}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{7E879293-D9E0-43AB-9F33-172A6340456D}.Debug|x64.ActiveCfg = Debug|x64
+		{7E879293-D9E0-43AB-9F33-172A6340456D}.Debug|x64.Build.0 = Debug|x64
+		{7E879293-D9E0-43AB-9F33-172A6340456D}.Debug|x86.ActiveCfg = Debug|Win32
+		{7E879293-D9E0-43AB-9F33-172A6340456D}.Debug|x86.Build.0 = Debug|Win32
+		{7E879293-D9E0-43AB-9F33-172A6340456D}.Release|Any CPU.ActiveCfg = Release|Win32
+		{7E879293-D9E0-43AB-9F33-172A6340456D}.Release|x64.ActiveCfg = Release|x64
+		{7E879293-D9E0-43AB-9F33-172A6340456D}.Release|x64.Build.0 = Release|x64
+		{7E879293-D9E0-43AB-9F33-172A6340456D}.Release|x86.ActiveCfg = Release|Win32
+		{7E879293-D9E0-43AB-9F33-172A6340456D}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
