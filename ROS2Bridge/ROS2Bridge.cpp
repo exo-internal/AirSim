@@ -49,6 +49,8 @@ public:
 
 	ROS2AirSim() : Node("AirSim"), bridgeCount_(0), stateCount_(0), cameraCount_(0)
 	{
+		batteryPercentage_ = 100.0;
+	
 		// Create the bridge state publishers
 		bridgeTimer_ = this->create_wall_timer(1000ms, std::bind(&ROS2AirSim::bridge_callback, this));
 		bridgeConnectedPublisher_ = this->create_publisher<std_msgs::msg::Bool>("/exo/airsim/drone/bridge/connected");
@@ -104,6 +106,7 @@ private:
 
 	// State
 	size_t stateCount_;
+	float batteryPercentage_;
 	rclcpp::TimerBase::SharedPtr stateTimer_;
 	rclcpp::Publisher<std_msgs::msg::Bool>::SharedPtr connectedPublisher_;
 	rclcpp::Publisher<std_msgs::msg::String>::SharedPtr pingPublisher_;
@@ -190,8 +193,14 @@ private:
 		}
 		landedPublisher_->publish(landedMessage);
 
+		// Burn down the battery over 20 minutes and then reset it
+		batteryPercentage_ = batteryPercentage_ - (1.0f / 12000.0f);
+		if (batteryPercentage_ < 0.0f) {
+			batteryPercentage_ = 100.0f;
+		}
+
 		auto batteryMessage = sensor_msgs::msg::BatteryState();
-		batteryMessage.percentage = 100.0;
+		batteryMessage.percentage = batteryPercentage_;
 		batteryMessage.present = true;
 		batteryPublisher_->publish(batteryMessage);
 
