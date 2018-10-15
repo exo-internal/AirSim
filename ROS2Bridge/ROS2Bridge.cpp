@@ -47,7 +47,7 @@ class ROS2AirSim : public rclcpp::Node
 {
 public:
 
-	ROS2AirSim() : Node("AirSim"), bridgeCount_(0), stateCount_(0), cameraCount_(0)
+	ROS2AirSim() : Node("AirSim"), bridgeCount_(0), stateCount_(0)
 	{
 		batteryPercentage_ = 100.0;
 	
@@ -69,12 +69,10 @@ public:
 		batteryPublisher_ = this->create_publisher<sensor_msgs::msg::BatteryState>("/exo/airsim/drone/state/battery");
 
 		// Create the camera publishers
-		cameraTimer_ = this->create_wall_timer(70ms, std::bind(&ROS2AirSim::camera_callback, this));
-		frontCameraPosePublisher_ = this->create_publisher<geometry_msgs::msg::Pose>("/exo/airsim/drone/camera/front/pose");
-		frontColorPublisher_ = this->create_publisher<sensor_msgs::msg::CompressedImage>("/exo/airsim/drone/camera/front/color/image_raw/compressed");
-		frontRawDepthPublisher_ = this->create_publisher<sensor_msgs::msg::Image>("/exo/airsim/drone/camera/front/depth/image_raw");
-		frontDepthPublisher_ = this->create_publisher<sensor_msgs::msg::CompressedImage>("/exo/airsim/drone/camera/front/depth/image_raw/compressed");
+		downCameraTimer_ = this->create_wall_timer(70ms, std::bind(&ROS2AirSim::down_camera_callback, this));
 		downColorPublisher_ = this->create_publisher<sensor_msgs::msg::CompressedImage>("/exo/airsim/drone/camera/down/color/image_raw/compressed");
+
+		rearCameraTimer_ = this->create_wall_timer(70ms, std::bind(&ROS2AirSim::rear_camera_callback, this));
 		rearColorPublisher_ = this->create_publisher<sensor_msgs::msg::CompressedImage>("/exo/airsim/drone/camera/rear/color/image_raw/compressed");
 
 		RCLCPP_INFO(this->get_logger(), "Publishers initialized.");
@@ -224,123 +222,64 @@ private:
 		*/
 	}
 
-	// Camera
-	float precision_coefficient_ = 10000.0;
-	size_t cameraCount_;
-	rclcpp::TimerBase::SharedPtr cameraTimer_;
-	rclcpp::Publisher<geometry_msgs::msg::Pose>::SharedPtr frontCameraPosePublisher_;
-	rclcpp::Publisher<sensor_msgs::msg::CompressedImage>::SharedPtr frontColorPublisher_;
-	rclcpp::Publisher<sensor_msgs::msg::Image>::SharedPtr frontRawDepthPublisher_;
-	rclcpp::Publisher<sensor_msgs::msg::CompressedImage>::SharedPtr frontDepthPublisher_;
+	rclcpp::TimerBase::SharedPtr downCameraTimer_;
 	rclcpp::Publisher<sensor_msgs::msg::CompressedImage>::SharedPtr downColorPublisher_;
-	rclcpp::Publisher<sensor_msgs::msg::CompressedImage>::SharedPtr rearColorPublisher_;
-	void camera_callback()
+	void down_camera_callback()
 	{
 		time_point<steady_clock> tickStart = high_resolution_clock::now();
 
-		time_point<steady_clock> t_start = high_resolution_clock::now();
 		vector<ImageRequest> imageRequests = {
-			ImageRequest("front_center", ImageType::Scene, false, true), // front color
-			ImageRequest("front_center", ImageType::DepthPerspective, true, false), // front depth
-			ImageRequest("bottom_center", ImageType::Scene, false, true), // down color 3
-			ImageRequest("back_center", ImageType::Scene, false, true) // back color 4
+			ImageRequest("bottom_center", ImageType::Scene, false, true) // down color
 		};
 
 		const vector<ImageResponse>& imageResponses = client.simGetImages(imageRequests);
-		auto front_color_image = imageResponses[0];
-		auto front_depth_image = imageResponses[1];
-		auto down_color_image = imageResponses[2];
-		auto rear_color_image = imageResponses[3];
 
-		duration<double> t_end = duration_cast<duration<double>>(high_resolution_clock::now() - t_start);
-		RCLCPP_INFO(this->get_logger(), "-- got images in %s seconds", std::to_string(t_end.count()));
-
-		// Publish the pose of the front camera
-		auto frontCameraPoseMessage = geometry_msgs::msg::Pose();
-		frontCameraPoseMessage.position.x = front_color_image.camera_position.x();
-		frontCameraPoseMessage.position.y = front_color_image.camera_position.y();
-		frontCameraPoseMessage.position.z = front_color_image.camera_position.z();
-		frontCameraPoseMessage.orientation.x = front_color_image.camera_orientation.x();
-		frontCameraPoseMessage.orientation.y = front_color_image.camera_orientation.y();
-		frontCameraPoseMessage.orientation.z = front_color_image.camera_orientation.z();
-		frontCameraPoseMessage.orientation.w = front_color_image.camera_orientation.w();
-		frontCameraPosePublisher_->publish(frontCameraPoseMessage);
-
-		//t_start = high_resolution_clock::now();
-		auto frontColorMessage = sensor_msgs::msg::CompressedImage();
-		frontColorMessage.header.frame_id = "front_color";
-		frontColorMessage.header.stamp.sec = (int32_t)system_clock::to_time_t(system_clock::now());
-		frontColorMessage.format = "png";
-		frontColorMessage.data = front_color_image.image_data_uint8;
-		frontColorPublisher_->publish(frontColorMessage);
-
-		//t_end = duration_cast<duration<double>>(high_resolution_clock::now() - t_start);
-		//RCLCPP_INFO(this->get_logger(), "-- published front color image in %s seconds", std::to_string(t_end.count()));
-
-		//t_start = high_resolution_clock::now();
-		auto frontDepthMessage = sensor_msgs::msg::CompressedImage();
-		frontDepthMessage.header.frame_id = "front_depth";
-		frontDepthMessage.header.stamp.sec = (int32_t)system_clock::to_time_t(system_clock::now());
-		frontDepthMessage.format = "png";
-
-		// Convert float values to uint32_t and add to a vector
-		vector<uint32_t> uncompressedDepth(front_depth_image.image_data_float.size());
-		for (int i = 0; i < front_depth_image.image_data_float.size(); i++) {
-			uncompressedDepth[i] = static_cast<uint32_t>(front_depth_image.image_data_float[i] * precision_coefficient_);
-		}
-
-		// Convert to an OpenCV mat
-		cv::Mat depthMat = cv::Mat(cv::Size(front_depth_image.width, front_depth_image.height), CV_8UC4, uncompressedDepth.data());
-
-		// Compress the image
-		vector<uchar> compressedDepth;
-		compressedDepth.resize(front_depth_image.height * front_depth_image.width * 4);
-		cv::imencode(".png", depthMat, compressedDepth);
-		compressedDepth.shrink_to_fit();
-
-		// Publish the image
-		frontDepthMessage.data = compressedDepth;
-		frontDepthPublisher_->publish(frontDepthMessage);
-
-		//t_end = duration_cast<duration<double>>(high_resolution_clock::now() - t_start);
-		//RCLCPP_INFO(this->get_logger(), "-- published front depth image in %s seconds", std::to_string(t_end.count()));
-
-		//t_start = high_resolution_clock::now();
 		auto downColorMessage = sensor_msgs::msg::CompressedImage();
 		downColorMessage.header.frame_id = "down_color";
 		downColorMessage.header.stamp.sec = (int32_t)system_clock::to_time_t(system_clock::now());
 		downColorMessage.format = "png";
-		downColorMessage.data = down_color_image.image_data_uint8;
+		downColorMessage.data = imageResponses[0].image_data_uint8;
 		downColorPublisher_->publish(downColorMessage);
 
-		//t_end = duration_cast<duration<double>>(high_resolution_clock::now() - t_start);
-		//RCLCPP_INFO(this->get_logger(), "-- published down color image in %s seconds", std::to_string(t_end.count()));
-
-		//t_start = high_resolution_clock::now();
-		auto rearColorMessage = sensor_msgs::msg::CompressedImage();
-		rearColorMessage.header.frame_id = "rear_color";
-		rearColorMessage.header.stamp.sec = (int32_t)system_clock::to_time_t(system_clock::now());
-		rearColorMessage.format = "png";
-		rearColorMessage.data = rear_color_image.image_data_uint8;
-		rearColorPublisher_->publish(rearColorMessage);
-
-		//t_end = duration_cast<duration<double>>(high_resolution_clock::now() - t_start);
-		//RCLCPP_INFO(this->get_logger(), "-- published rear color image in %s seconds", std::to_string(t_end.count()));
-
-		/*
 		duration<double> tickEnd = duration_cast<duration<double>>(high_resolution_clock::now() - tickStart);
 		RCLCPP_INFO(
 			this->get_logger(),
-			"#%s: Publishing %s images at time %s took %s",
-			std::to_string(cameraCount_++),
+			"down  - publishing %s images at time %s took %s",
 			std::to_string(imageResponses.size()),
 			std::to_string(system_clock::to_time_t(system_clock::now())),
 			std::to_string(tickEnd.count())
 		);
-		*/
+	}
+
+	rclcpp::TimerBase::SharedPtr rearCameraTimer_;
+	rclcpp::Publisher<sensor_msgs::msg::CompressedImage>::SharedPtr rearColorPublisher_;
+	void rear_camera_callback()
+	{
+		time_point<steady_clock> tickStart = high_resolution_clock::now();
+
+		vector<ImageRequest> imageRequests = {
+			ImageRequest("back_center", ImageType::Scene, false, true) // rear color 4
+		};
+
+		const vector<ImageResponse>& imageResponses = client.simGetImages(imageRequests);
+
+		auto rearColorMessage = sensor_msgs::msg::CompressedImage();
+		rearColorMessage.header.frame_id = "rear_color";
+		rearColorMessage.header.stamp.sec = (int32_t)system_clock::to_time_t(system_clock::now());
+		rearColorMessage.format = "png";
+		rearColorMessage.data = imageResponses[0].image_data_uint8;
+		rearColorPublisher_->publish(rearColorMessage);
+
+		duration<double> tickEnd = duration_cast<duration<double>>(high_resolution_clock::now() - tickStart);
+		RCLCPP_INFO(
+			this->get_logger(),
+			"rear  - publishing %s images at time %s took %s",
+			std::to_string(imageResponses.size()),
+			std::to_string(system_clock::to_time_t(system_clock::now())),
+			std::to_string(tickEnd.count())
+		);
 	}
 };
-
 
 void shutdown_handler(sig_atomic_t s) {
 	rclcpp::shutdown();
