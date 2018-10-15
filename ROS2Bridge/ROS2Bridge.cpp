@@ -68,13 +68,6 @@ public:
 		collidedPublisher_ = this->create_publisher<std_msgs::msg::Bool>("/exo/airsim/drone/state/collided");
 		batteryPublisher_ = this->create_publisher<sensor_msgs::msg::BatteryState>("/exo/airsim/drone/state/battery");
 
-		// Create the camera publishers
-		downCameraTimer_ = this->create_wall_timer(70ms, std::bind(&ROS2AirSim::down_camera_callback, this));
-		downColorPublisher_ = this->create_publisher<sensor_msgs::msg::CompressedImage>("/exo/airsim/drone/camera/down/color/image_raw/compressed");
-
-		rearCameraTimer_ = this->create_wall_timer(70ms, std::bind(&ROS2AirSim::rear_camera_callback, this));
-		rearColorPublisher_ = this->create_publisher<sensor_msgs::msg::CompressedImage>("/exo/airsim/drone/camera/rear/color/image_raw/compressed");
-
 		RCLCPP_INFO(this->get_logger(), "Publishers initialized.");
 	}
 
@@ -220,64 +213,6 @@ private:
 			std::to_string(tickEnd.count())
 		);
 		*/
-	}
-
-	rclcpp::TimerBase::SharedPtr downCameraTimer_;
-	rclcpp::Publisher<sensor_msgs::msg::CompressedImage>::SharedPtr downColorPublisher_;
-	void down_camera_callback()
-	{
-		time_point<steady_clock> tickStart = high_resolution_clock::now();
-
-		vector<ImageRequest> imageRequests = {
-			ImageRequest("bottom_center", ImageType::Scene, false, true) // down color
-		};
-
-		const vector<ImageResponse>& imageResponses = client.simGetImages(imageRequests);
-
-		auto downColorMessage = sensor_msgs::msg::CompressedImage();
-		downColorMessage.header.frame_id = "down_color";
-		downColorMessage.header.stamp.sec = (int32_t)system_clock::to_time_t(system_clock::now());
-		downColorMessage.format = "png";
-		downColorMessage.data = imageResponses[0].image_data_uint8;
-		downColorPublisher_->publish(downColorMessage);
-
-		duration<double> tickEnd = duration_cast<duration<double>>(high_resolution_clock::now() - tickStart);
-		RCLCPP_INFO(
-			this->get_logger(),
-			"down  - publishing %s images at time %s took %s",
-			std::to_string(imageResponses.size()),
-			std::to_string(system_clock::to_time_t(system_clock::now())),
-			std::to_string(tickEnd.count())
-		);
-	}
-
-	rclcpp::TimerBase::SharedPtr rearCameraTimer_;
-	rclcpp::Publisher<sensor_msgs::msg::CompressedImage>::SharedPtr rearColorPublisher_;
-	void rear_camera_callback()
-	{
-		time_point<steady_clock> tickStart = high_resolution_clock::now();
-
-		vector<ImageRequest> imageRequests = {
-			ImageRequest("back_center", ImageType::Scene, false, true) // rear color 4
-		};
-
-		const vector<ImageResponse>& imageResponses = client.simGetImages(imageRequests);
-
-		auto rearColorMessage = sensor_msgs::msg::CompressedImage();
-		rearColorMessage.header.frame_id = "rear_color";
-		rearColorMessage.header.stamp.sec = (int32_t)system_clock::to_time_t(system_clock::now());
-		rearColorMessage.format = "png";
-		rearColorMessage.data = imageResponses[0].image_data_uint8;
-		rearColorPublisher_->publish(rearColorMessage);
-
-		duration<double> tickEnd = duration_cast<duration<double>>(high_resolution_clock::now() - tickStart);
-		RCLCPP_INFO(
-			this->get_logger(),
-			"rear  - publishing %s images at time %s took %s",
-			std::to_string(imageResponses.size()),
-			std::to_string(system_clock::to_time_t(system_clock::now())),
-			std::to_string(tickEnd.count())
-		);
 	}
 };
 
