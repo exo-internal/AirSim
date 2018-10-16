@@ -49,8 +49,11 @@ public:
 
 	ROS2AirSim() : Node("AirSim"), bridgeCount_(0), stateCount_(0)
 	{
-		batteryPercentage_ = 100.0;
-	
+		batteryPercentage_ = 1.0;
+		time_point<steady_clock> startTime_;
+		float publishRate_;
+		int publishCount_;
+
 		// Create the bridge state publishers
 		bridgeTimer_ = this->create_wall_timer(1000ms, std::bind(&ROS2AirSim::bridge_callback, this));
 		bridgeConnectedPublisher_ = this->create_publisher<std_msgs::msg::Bool>("/exo/airsim/drone/bridge/connected");
@@ -74,6 +77,8 @@ public:
 private:
 
 	time_point<steady_clock> startTime_;
+	float publishRate_;
+	int publishCount_;
 
 	// Bridge
 	size_t bridgeCount_;
@@ -187,11 +192,12 @@ private:
 		// Burn down the battery over 20 minutes and then reset it
 		batteryPercentage_ = batteryPercentage_ - (1.0f / 12000.0f);
 		if (batteryPercentage_ < 0.0f) {
-			batteryPercentage_ = 100.0f;
+			batteryPercentage_ = 1.0f;
 		}
 
 		auto batteryMessage = sensor_msgs::msg::BatteryState();
 		batteryMessage.percentage = batteryPercentage_;
+		batteryMessage.voltage = 12.6f;
 		batteryMessage.present = true;
 		batteryPublisher_->publish(batteryMessage);
 
@@ -213,6 +219,18 @@ private:
 			std::to_string(tickEnd.count())
 		);
 		*/
+		
+		publishCount_++;
+		if (publishCount_ % 50 == 0) {
+			duration<double> print_span = duration_cast<duration<double>>(high_resolution_clock::now() - startTime_);
+			double hz = (double)publishCount_ / print_span.count();
+
+			RCLCPP_INFO(this->get_logger(), "state publishing hz: %s", std::to_string(hz));
+
+			// Reset the clock
+			startTime_ = high_resolution_clock::now();
+			publishCount_ = 0;
+		}
 	}
 };
 
@@ -237,7 +255,7 @@ int main(int argc, char * argv[])
 	// Set up the ROS2 API
 	rclcpp::init(argc, argv);
 
-	rclcpp::executors::MultiThreadedExecutor executor(rclcpp::executor::create_default_executor_arguments(), 8, false);
+	rclcpp::executors::MultiThreadedExecutor executor(rclcpp::executor::create_default_executor_arguments(), 3, false);
 	std::cout << "threads: " << executor.get_number_of_threads() << "\n";
 		
 	auto node = std::make_shared<ROS2AirSim>();
