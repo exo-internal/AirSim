@@ -1,0 +1,49 @@
+{
+  "SeeDocsAt": "https://github.com/Microsoft/AirSim/blob/master/docs/settings_json.md",
+  "SettingsVersion": 1.2,
+  "SimMode": "Multirotor",
+  "ViewMode": "NoDisplay",
+  "CameraDefaults": {
+    "CaptureSettings": [
+      {
+        "ImageType": 0,
+        "Width": 512,
+        "Height": 288,
+        "FOV_Degrees": 90
+      },
+      {
+        "ImageType": 1,
+        "Width": 512,
+        "Height": 288,
+        "FOV_Degrees": 90
+      },
+      {
+        "ImageType": 2,
+        "Width": 512,
+        "Height": 288,
+        "FOV_Degrees": 90
+      },
+      {
+        "ImageType": 3,
+        "Width": 512,
+        "Height": 288,
+        "FOV_Degrees": 90
+      },
+      {
+        "ImageType": 5,
+        "Width": 512,
+        "Height": 288,
+        "FOV_Degrees": 90
+      },
+      {
+        "ImageType": 7,
+        "Width": 512,
+        "Height": 288,
+        "FOV_Degrees": 90
+      }
+    ],
+    "Gimbal": {
+      "Stabilization": 0.5
+    } 
+  }
+}
