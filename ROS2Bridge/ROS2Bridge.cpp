@@ -50,9 +50,9 @@ public:
 	ROS2AirSim() : Node("AirSim"), bridgeCount_(0), stateCount_(0)
 	{
 		batteryPercentage_ = 1.0;
-		time_point<steady_clock> startTime_;
-		float publishRate_;
-		int publishCount_;
+		startTime_ = high_resolution_clock::now();
+		publishRate_ = 0;
+		publishCount_ = 0;
 
 		// Create the bridge state publishers
 		bridgeTimer_ = this->create_wall_timer(1000ms, std::bind(&ROS2AirSim::bridge_callback, this));
