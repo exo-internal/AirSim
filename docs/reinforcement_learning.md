@@ -9,11 +9,11 @@ This is still in active development. What we share below is a framework that can
 
 ## RL with Car
 
-[Source code](../PythonClient/car/DQNcar.py)
+[Source code](https://github.com/Microsoft/AirSim/tree/master/PythonClient//car/DQNcar.py)
 
 This example works with AirSimNeighborhood environment available in [releases](https://github.com/Microsoft/AirSim/releases).
 
-First, we need to get the images from simulation and transform it appropriately. Below, we show how a depth image can be obtained from the ego camera and transformed to a 84X84 input to the network. (you can use other sensor modalities, and sensor inputs as well – of course you’ll have to modify the code accordingly).
+First, we need to get the images from simulation and transform them appropriately. Below, we show how a depth image can be obtained from the ego camera and transformed to an 84X84 input to the network. (you can use other sensor modalities, and sensor inputs as well – of course you’ll have to modify the code accordingly).
 
 ```
 responses = client.simGetImages([ImageRequest(0, AirSimImageType.DepthPerspective, True, False)])
@@ -102,7 +102,7 @@ Note that the simulation needs to be up and running before you execute DQNcar.py
 
 ## RL with Quadrotor
 
-[Source code](../multirotor/DQNdrone.py)
+[Source code](https://github.com/Microsoft/AirSim/tree/master/PythonClient//multirotor/DQNdrone.py)
 
 This example works with AirSimMountainLandscape environment available in [releases](https://github.com/Microsoft/AirSim/releases).
 

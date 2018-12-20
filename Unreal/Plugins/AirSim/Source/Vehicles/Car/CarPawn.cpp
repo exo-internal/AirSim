@@ -205,7 +205,7 @@ void ACarPawn::initializeForBeginPlay(bool engine_sound)
     setupInputBindings();
 }
 
-common_utils::UniqueValueMap<std::string, APIPCamera*> ACarPawn::getCameras() const
+const common_utils::UniqueValueMap<std::string, APIPCamera*> ACarPawn::getCameras() const
 {
     common_utils::UniqueValueMap<std::string, APIPCamera*> cameras;
     cameras.insert_or_assign("front_center", camera_front_center_);
@@ -270,13 +270,15 @@ void ACarPawn::BeginPlay()
 
 void ACarPawn::updateHUDStrings()
 {
+
+	float speed_unit_factor = AirSimSettings::singleton().speed_unit_factor;
+	FText speed_unit_label = FText::FromString(FString(AirSimSettings::singleton().speed_unit_label.c_str()));
     float vel = FMath::Abs(GetVehicleMovement()->GetForwardSpeed() / 100); //cm/s -> m/s
-    float vel_rounded = FMath::FloorToInt(vel * 10) / 10.0f;
+    float vel_rounded = FMath::FloorToInt(vel * 10 * speed_unit_factor) / 10.0f;
     int32 Gear = GetVehicleMovement()->GetCurrentGear();
-
+	
     // Using FText because this is display text that should be localizable
-    last_speed_ = FText::Format(LOCTEXT("SpeedFormat", "{0} m/s"), FText::AsNumber(vel_rounded));
-
+    last_speed_ = FText::Format(LOCTEXT("SpeedFormat", "{0} {1}"), FText::AsNumber(vel_rounded), speed_unit_label);
 
     if (GetVehicleMovement()->GetCurrentGear() < 0)
     {

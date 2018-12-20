@@ -12,17 +12,25 @@
 
 #include "common/Common.hpp"
 STRICT_MODE_OFF
+
 #ifndef RPCLIB_MSGPACK
 #define RPCLIB_MSGPACK clmdep_msgpack
 #endif // !RPCLIB_MSGPACK
 #include "common/common_utils/MinWinDefines.hpp"
 #undef NOUSER
-//TODO: HACK: UE4 defines macro with stupid names like "check" that conflicts with msgpack library
-//#undef check
+
+#include "common/common_utils/WindowsApisCommonPre.hpp"
+#undef FLOAT
+#undef check
 #include "rpc/server.h"
-#include "api/RpcLibAdapatorsBase.hpp"
 //TODO: HACK: UE4 defines macro with stupid names like "check" that conflicts with msgpack library
+#ifndef check
 #define check(expr) (static_cast<void>((expr)))
+#endif
+#include "common/common_utils/WindowsApisCommonPost.hpp"
+
+#include "api/RpcLibAdapatorsBase.hpp"
+
 STRICT_MODE_ON
 
 
@@ -68,6 +76,19 @@ RpcLibServerBase::RpcLibServerBase(ApiProvider* api_provider, const std::string&
     });
     pimpl_->server.bind("simContinueForTime", [&](double seconds) -> void { 
         getWorldSimApi()->continueForTime(seconds); 
+    });
+
+    pimpl_->server.bind("simSetTimeOfDay", [&](bool is_enabled, const string& start_datetime, bool is_start_datetime_dst, 
+        float celestial_clock_speed, float update_interval_secs, bool move_sun) -> void {
+        getWorldSimApi()->setTimeOfDay(is_enabled, start_datetime, is_start_datetime_dst, 
+            celestial_clock_speed, update_interval_secs, move_sun);
+    });
+
+    pimpl_->server.bind("simEnableWeather", [&](bool enable) -> void {
+        getWorldSimApi()->enableWeather(enable);
+    });
+    pimpl_->server.bind("simSetWeatherParameter", [&](WorldSimApiBase::WeatherParameter param, float val) -> void {
+        getWorldSimApi()->setWeatherParameter(param, val);
     });
 
     pimpl_->server.bind("enableApiControl", [&](bool is_enabled, const std::string& vehicle_name) -> void { 
@@ -129,6 +150,11 @@ RpcLibServerBase::RpcLibServerBase(ApiProvider* api_provider, const std::string&
         return RpcLibAdapatorsBase::GeoPoint(geo_point);
     });
 
+    pimpl_->server.bind("getLidarData", [&](const std::string& lidar_name, const std::string& vehicle_name) -> RpcLibAdapatorsBase::LidarData {
+        const auto& lidar_data = getVehicleApi(vehicle_name)->getLidarData(lidar_name);
+        return RpcLibAdapatorsBase::LidarData(lidar_data);
+    });
+
     pimpl_->server.bind("simGetCameraInfo", [&](const std::string& camera_name, const std::string& vehicle_name) -> RpcLibAdapatorsBase::CameraInfo {
         const auto& camera_info = getVehicleSimApi(vehicle_name)->getCameraInfo(camera_name);
         return RpcLibAdapatorsBase::CameraInfo(camera_info);
@@ -166,6 +192,69 @@ RpcLibServerBase::RpcLibServerBase(ApiProvider* api_provider, const std::string&
         getVehicleApi(vehicle_name)->cancelLastTask();
     });
 
+    //----------- APIs to control ACharacter in scene ----------/
+    pimpl_->server.bind("simCharSetFaceExpression", [&](const std::string& expression_name, float value, const std::string& character_name) -> void {
+        getWorldSimApi()->charSetFaceExpression(expression_name, value, character_name);
+    });
+    pimpl_->server.bind("simCharGetFaceExpression", [&](const std::string& expression_name, const std::string& character_name) -> float {
+        return getWorldSimApi()->charGetFaceExpression(expression_name, character_name);
+    });
+    pimpl_->server.bind("simCharGetAvailableFaceExpressions", [&]() -> std::vector<std::string> {
+        return getWorldSimApi()->charGetAvailableFaceExpressions();
+    });
+    pimpl_->server.bind("simCharSetSkinDarkness", [&](float value, const std::string& character_name) -> void {
+        getWorldSimApi()->charSetSkinDarkness(value, character_name);
+    });
+    pimpl_->server.bind("simCharGetSkinDarkness", [&](const std::string& character_name) -> float {
+        return getWorldSimApi()->charGetSkinDarkness(character_name);
+    });
+    pimpl_->server.bind("simCharSetSkinAgeing", [&](float value, const std::string& character_name) -> void {
+        getWorldSimApi()->charSetSkinAgeing(value, character_name);
+    });
+    pimpl_->server.bind("simCharGetSkinAgeing", [&](const std::string& character_name) -> float {
+        return getWorldSimApi()->charGetSkinAgeing(character_name);
+    });
+    pimpl_->server.bind("simCharSetHeadRotation", [&](const RpcLibAdapatorsBase::Quaternionr& q, const std::string& character_name) -> void {
+        getWorldSimApi()->charSetHeadRotation(q.to(), character_name);
+    });
+    pimpl_->server.bind("simCharGetHeadRotation", [&](const std::string& character_name) -> RpcLibAdapatorsBase::Quaternionr {
+        msr::airlib::Quaternionr q = getWorldSimApi()->charGetHeadRotation(character_name);
+        return RpcLibAdapatorsBase::Quaternionr(q);
+    });
+    pimpl_->server.bind("simCharSetBonePose", [&](const std::string& bone_name, const RpcLibAdapatorsBase::Pose& pose, const std::string& character_name) -> void {
+        getWorldSimApi()->charSetBonePose(bone_name, pose.to(), character_name);
+    });
+    pimpl_->server.bind("simCharGetBonePose", [&](const std::string& bone_name, const std::string& character_name) -> RpcLibAdapatorsBase::Pose {
+        msr::airlib::Pose pose = getWorldSimApi()->charGetBonePose(bone_name, character_name);
+        return RpcLibAdapatorsBase::Pose(pose);
+    });
+    pimpl_->server.bind("simCharResetBonePose", [&](const std::string& bone_name, const std::string& character_name) -> void {
+        getWorldSimApi()->charResetBonePose(bone_name, character_name);
+    });
+    pimpl_->server.bind("simCharSetFacePreset", [&](const std::string& preset_name, float value, const std::string& character_name) -> void {
+        getWorldSimApi()->charSetFacePreset(preset_name, value, character_name);
+    });
+    pimpl_->server.bind("simSetFacePresets", [&](const std::unordered_map<std::string, float>& presets, const std::string& character_name) -> void {
+        getWorldSimApi()->charSetFacePresets(presets, character_name);
+    });
+    pimpl_->server.bind("simSetBonePoses", [&](const std::unordered_map<std::string, RpcLibAdapatorsBase::Pose>& poses, const std::string& character_name) -> void {
+        std::unordered_map<std::string, msr::airlib::Pose> r;
+        for (const auto& p : poses)
+            r[p.first] = p.second.to();
+
+        getWorldSimApi()->charSetBonePoses(r, character_name);
+    });
+    pimpl_->server.bind("simGetBonePoses", [&](const std::vector<std::string>& bone_names, const std::string& character_name) 
+        -> std::unordered_map<std::string, RpcLibAdapatorsBase::Pose> {
+
+        std::unordered_map<std::string, msr::airlib::Pose> poses = getWorldSimApi()->charGetBonePoses(bone_names, character_name);
+        std::unordered_map<std::string, RpcLibAdapatorsBase::Pose> r;
+        for (const auto& p : poses)
+            r[p.first] = RpcLibAdapatorsBase::Pose(p.second);
+
+        return r;
+    });
+
     //if we don't suppress then server will bomb out for exceptions raised by any method
     pimpl_->server.suppress_exceptions(true);
 }
@@ -176,12 +265,12 @@ RpcLibServerBase::~RpcLibServerBase()
     stop();
 }
 
-void RpcLibServerBase::start(bool block)
+void RpcLibServerBase::start(bool block, std::size_t thread_count)
 {
     if (block)
         pimpl_->server.run();
     else
-        pimpl_->server.async_run(4);   //4 threads
+        pimpl_->server.async_run(thread_count);   //4 threads
 }
 
 void RpcLibServerBase::stop()

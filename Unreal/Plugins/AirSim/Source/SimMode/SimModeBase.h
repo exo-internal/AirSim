@@ -50,6 +50,9 @@ public:
     virtual void pause(bool is_paused);
     virtual void continueForTime(double seconds);
 
+    virtual void setTimeOfDay(bool is_enabled, const std::string& start_datetime, bool is_start_datetime_dst,
+        float celestial_clock_speed, float update_interval_secs, bool move_sun);
+
     virtual void startRecording();
     virtual void stopRecording();
     virtual bool isRecording() const;
@@ -64,7 +67,6 @@ public:
     {
         return api_provider_.get();
     }
-
     const PawnSimApi* getVehicleSimApi(const std::string& vehicle_name = "") const
     {
         return static_cast<PawnSimApi*>(api_provider_->getVehicleSimApi(vehicle_name));
@@ -74,23 +76,36 @@ public:
         return static_cast<PawnSimApi*>(api_provider_->getVehicleSimApi(vehicle_name));
     }
 
-protected:
-    virtual void setupInputBindings();
-    virtual const msr::airlib::AirSimSettings& getSettings() const;
-    long long getPhysicsLoopPeriod() const;
-    void setPhysicsLoopPeriod(long long  period);
-    //called when simmode should do something about clock speed
-    virtual void setupClockSpeed();
+protected: //must overrides
+    typedef msr::airlib::AirSimSettings AirSimSettings;
 
+    virtual std::unique_ptr<msr::airlib::ApiServerBase> createApiServer() const;
+    virtual void getExistingVehiclePawns(TArray<AActor*>& pawns) const;
+    virtual bool isVehicleTypeSupported(const std::string& vehicle_type) const;
+    virtual std::string getVehiclePawnPathName(const AirSimSettings::VehicleSetting& vehicle_setting) const;
+    virtual PawnEvents* getVehiclePawnEvents(APawn* pawn) const;
+    virtual const common_utils::UniqueValueMap<std::string, APIPCamera*> getVehiclePawnCameras(APawn* pawn) const;
+    virtual void initializeVehiclePawn(APawn* pawn);
+    virtual std::unique_ptr<PawnSimApi> createVehicleSimApi(
+        const PawnSimApi::Params& pawn_sim_api_params) const;
+    virtual msr::airlib::VehicleApiBase* getVehicleApi(const PawnSimApi::Params& pawn_sim_api_params,
+        const PawnSimApi* sim_api) const;
+
+protected: //optional overrides
+    virtual void setupVehiclesAndCamera();
+    virtual void setupInputBindings();
+    //called when SimMode should handle clock speed setting
+    virtual void setupClockSpeed();
     void initializeCameraDirector(const FTransform& camera_transform, float follow_distance);
     void checkVehicleReady(); //checks if vehicle is available to use
     virtual void updateDebugReport(msr::airlib::StateReporterWrapper& debug_reporter);
 
-    virtual std::unique_ptr<msr::airlib::ApiServerBase> createApiServer() const;
+protected: //Utility methods for derived classes
+    virtual const msr::airlib::AirSimSettings& getSettings() const;
+    FRotator toFRotator(const AirSimSettings::Rotation& rotation, const FRotator& default_val);
+
 
 protected:
-    typedef msr::airlib::AirSimSettings AirSimSettings;
-
     int record_tick_count;
 
     UPROPERTY() UClass* pip_camera_class;
@@ -109,21 +124,36 @@ private:
 
 
     UPROPERTY() AActor* sky_sphere_;
-    UPROPERTY() ADirectionalLight* sun_;;
-    TTimePoint tod_sim_clock_start_;
+    UPROPERTY() ADirectionalLight* sun_;
+    FRotator default_sun_rotation_;
+    TTimePoint tod_sim_clock_start_;             // sim start in local time
     TTimePoint tod_last_update_;
-    std::time_t tod_start_time_;
-    long long physics_loop_period_;
+    TTimePoint tod_start_time_;                  // tod, configurable
+    bool tod_enabled_;
+    float tod_celestial_clock_speed_;
+    float tod_update_interval_secs_;
+    bool tod_move_sun_;
+
     std::unique_ptr<NedTransform> global_ned_transform_;
     std::unique_ptr<msr::airlib::WorldSimApiBase> world_sim_api_;
     std::unique_ptr<msr::airlib::ApiProvider> api_provider_;
     std::unique_ptr<msr::airlib::ApiServerBase> api_server_;
     msr::airlib::StateReporterWrapper debug_reporter_;
 
+    std::vector<std::unique_ptr<msr::airlib::VehicleSimApiBase>> vehicle_sim_apis_;
+
+    UPROPERTY()
+        TArray<AActor*> spawned_actors_; //keep refs alive from Unreal GC
+
+    bool lidar_checks_done_ = false; 
+    bool lidar_draw_debug_points_ = false;
+
 private:
     void setStencilIDs();
-    void setupTimeOfDay();
+    void initializeTimeOfDay();
     void advanceTimeOfDay();
+    void setSunRotation(FRotator rotation);
     void setupPhysicsLoopPeriod();
     void showClockStats();
+    void drawLidarDebugPoints();
 };

@@ -73,6 +73,16 @@ class VehicleClient:
             print(ver_info)
         print('')
 
+    # time-of-day control
+    def simSetTimeOfDay(self, is_enabled, start_datetime = "", is_start_datetime_dst = False, celestial_clock_speed = 1, update_interval_secs = 60, move_sun = True):
+        return self.client.call('simSetTimeOfDay', is_enabled, start_datetime, is_start_datetime_dst, celestial_clock_speed, update_interval_secs, move_sun)
+
+    # weather
+    def simEnableWeather(self, enable):
+        return self.client.call('simEnableWeather', enable)
+    def simSetWeatherParameter(self, param, val):
+        return self.client.call('simSetWeatherParameter', param, val)
+
     # camera control
     # simGetImage returns compressed png in array of bytes
     # image_type uses one of the ImageType members
@@ -122,11 +132,51 @@ class VehicleClient:
         self.client.call('simSetCameraOrientation', str(camera_name), orientation, vehicle_name)
 
     def simGetGroundTruthKinematics(self, vehicle_name = ''):
-        return self.client.call('simGetGroundTruthKinematics', vehicle_name)
+        kinematics_state = self.client.call('simGetGroundTruthKinematics', vehicle_name)
+        return KinematicsState.from_msgpack(kinematics_state)
     simGetGroundTruthKinematics.__annotations__ = {'return': KinematicsState}
     def simGetGroundTruthEnvironment(self, vehicle_name = ''):
-        return self.client.call('simGetGroundTruthEnvironment', vehicle_name)
+        env_state = self.client.call('simGetGroundTruthEnvironment', vehicle_name)
+        return EnvironmentState.from_msgpack(env_state)
     simGetGroundTruthEnvironment.__annotations__ = {'return': EnvironmentState}
+
+    # lidar APIs
+    def getLidarData(self, lidar_name = '', vehicle_name = ''):
+        return LidarData.from_msgpack(self.client.call('getLidarData', lidar_name, vehicle_name))
+
+    #----------- APIs to control ACharacter in scene ----------/
+    def simCharSetFaceExpression(self, expression_name, value, character_name = ""):
+        self.client.call('simCharSetFaceExpression', expression_name, value, character_name)
+    def simCharGetFaceExpression(self, expression_name, character_name = ""):
+        return self.client.call('simCharGetFaceExpression', expression_name, character_name)
+    def simCharGetAvailableFaceExpressions(self):
+        return self.client.call('simCharGetAvailableFaceExpressions')
+    def simCharSetSkinDarkness(self, value, character_name = ""):
+        self.client.call('simCharSetSkinDarkness', value, character_name)
+    def simCharGetSkinDarkness(self, character_name = ""):
+        return self.client.call('simCharGetSkinDarkness', character_name)
+    def simCharSetSkinAgeing(self, value, character_name = ""):
+        self.client.call('simCharSetSkinAgeing', value, character_name)
+    def simCharGetSkinAgeing(self, character_name = ""):
+        return self.client.call('simCharGetSkinAgeing', character_name)
+    def simCharSetHeadRotation(self, q, character_name = ""):
+        self.client.call('simCharSetHeadRotation', q, character_name)
+    def simCharGetHeadRotation(self, character_name = ""):
+        return self.client.call('simCharGetHeadRotation', character_name)
+    def simCharSetBonePose(self, bone_name, pose, character_name = ""):
+        self.client.call('simCharSetBonePose', bone_name, pose, character_name)
+    def simCharGetBonePose(self, bone_name, character_name = ""):
+        return self.client.call('simCharGetBonePose', bone_name, character_name)
+    def simCharResetBonePose(self, bone_name, character_name = ""):
+        self.client.call('simCharResetBonePose', bone_name, character_name)
+    def simCharSetFacePreset(self, preset_name, value, character_name = ""):
+        self.client.call('simCharSetFacePreset', preset_name, value, character_name)
+    def simCharSetFacePresets(self, presets, character_name = ""):
+        self.client.call('simSetFacePresets', presets, character_name)
+    def simCharSetBonePoses(self, poses, character_name = ""):
+        self.client.call('simSetBonePoses', poses, character_name)
+    def simCharGetBonePoses(self, bone_names, character_name = ""):
+        return self.client.call('simGetBonePoses', bone_names, character_name)
 
     def cancelLastTask():
         self.client.call('cancelLastTask')

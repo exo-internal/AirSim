@@ -1,8 +1,13 @@
 #include "CarPawnApi.h"
 #include "AirBlueprintLib.h"
 
-CarPawnApi::CarPawnApi(ACarPawn* pawn, const msr::airlib::Kinematics::State* pawn_kinematics, const msr::airlib::GeoPoint& home_geopoint)
-    : pawn_(pawn), pawn_kinematics_(pawn_kinematics), home_geopoint_(home_geopoint)
+#include "PhysXVehicleManager.h"
+
+CarPawnApi::CarPawnApi(ACarPawn* pawn, const msr::airlib::Kinematics::State* pawn_kinematics, const msr::airlib::GeoPoint& home_geopoint,
+    const msr::airlib::AirSimSettings::VehicleSetting* vehicle_setting, std::shared_ptr<msr::airlib::SensorFactory> sensor_factory, 
+    const msr::airlib::Kinematics::State& state, const msr::airlib::Environment& environment)
+    : msr::airlib::CarApiBase(vehicle_setting, sensor_factory, state, environment),
+    pawn_(pawn), pawn_kinematics_(pawn_kinematics), home_geopoint_(home_geopoint)
 {
     movement_ = pawn->GetVehicleMovement();
 }
@@ -65,7 +70,15 @@ void CarPawnApi::reset()
         movement_->SetActive(false);
         movement_->SetActive(true, true);
         setCarControls(CarControls());
-        
+
+	auto pv = movement_->PVehicle;
+	if (pv) {
+	  pv->mWheelsDynData.setToRestState();
+	}
+	auto pvd = movement_->PVehicleDrive;
+	if (pvd) {
+	  pvd->mDriveDynData.setToRestState();
+	}
     }, true);
 
     UAirBlueprintLib::RunCommandOnGameThread([this, &phys_comps]() {

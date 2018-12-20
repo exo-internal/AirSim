@@ -26,13 +26,13 @@ public:
     typedef MultirotorPawnEvents::RotorInfo RotorInfo;
 
 public:
+    virtual void initialize() override;
+
     virtual ~MultirotorPawnSimApi() = default;
 
     //VehicleSimApiBase interface
     //implements game interface to update pawn
-    MultirotorPawnSimApi(APawn* pawn, const NedTransform& global_transform, MultirotorPawnEvents* pawn_events,
-        const common_utils::UniqueValueMap<std::string, APIPCamera*>& cameras, UClass* pip_camera_class, UParticleSystem* collision_display_template,
-        const GeoPoint& home_geopoint);
+    MultirotorPawnSimApi(const Params& params);
     virtual void updateRenderedState(float dt) override;
     virtual void updateRendering(float dt) override;
 
@@ -44,16 +44,17 @@ public:
     virtual UpdatableObject* getPhysicsBody() override;
 
     virtual void setPose(const Pose& pose, bool ignore_collision) override;
-    virtual const msr::airlib::Kinematics::State* getGroundTruthKinematics() const override;
-    virtual const msr::airlib::Environment* getGroundTruthEnvironment() const override;
-
     virtual void pawnTick(float dt) override;
 
-    msr::airlib::MultirotorApiBase* getVehicleApi()
+    msr::airlib::MultirotorApiBase* getVehicleApi() const
     {
         return vehicle_api_.get();
     }
 
+    virtual msr::airlib::VehicleApiBase* getVehicleApiBase() const override
+    {
+        return vehicle_api_.get();
+    }
 
 private:
     std::unique_ptr<msr::airlib::MultirotorApiBase> vehicle_api_;

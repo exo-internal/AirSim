@@ -6,8 +6,6 @@
 void ASimModeWorldBase::BeginPlay()
 {
     Super::BeginPlay();
-
-    setupInputBindings();
 }
 
 void ASimModeWorldBase::initializeForPlay()
@@ -38,6 +36,15 @@ void ASimModeWorldBase::startAsyncUpdator()
 void ASimModeWorldBase::stopAsyncUpdator()
 {
     physics_world_->stopAsyncUpdator();
+}
+
+long long ASimModeWorldBase::getPhysicsLoopPeriod() const //nanoseconds
+{
+    return physics_loop_period_;
+}
+void ASimModeWorldBase::setPhysicsLoopPeriod(long long  period)
+{
+    physics_loop_period_ = period;
 }
 
 std::unique_ptr<ASimModeWorldBase::PhysicsEngineBase> ASimModeWorldBase::createPhysicsEngine()

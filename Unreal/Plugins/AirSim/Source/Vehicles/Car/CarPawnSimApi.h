@@ -21,25 +21,28 @@ public:
     typedef msr::airlib::Pose Pose;
     
 public:
+    virtual void initialize() override;
     virtual ~CarPawnSimApi() = default;
 
     //VehicleSimApiBase interface
     //implements game interface to update pawn
-    CarPawnSimApi(ACarPawn* pawn, const NedTransform& global_transform, PawnEvents* pawn_events,
-        const common_utils::UniqueValueMap<std::string, APIPCamera*>& cameras, UClass* pip_camera_class, UParticleSystem* collision_display_template,
-        const CarPawnApi::CarControls&  keyboard_controls,
-        UWheeledVehicleMovementComponent* movement, const msr::airlib::GeoPoint& home_geopoint);
+    CarPawnSimApi(const Params& params,
+        const CarPawnApi::CarControls&  keyboard_controls, UWheeledVehicleMovementComponent* movement);
 
     virtual void reset() override;
     virtual void update() override;
-    virtual void reportState(StateReporter& reporter) override;
 
     virtual std::string getRecordFileLine(bool is_header_line) const override;
 
     virtual void updateRenderedState(float dt) override;
     virtual void updateRendering(float dt) override;
 
-    msr::airlib::CarApiBase* getVehicleApi()
+    msr::airlib::CarApiBase* getVehicleApi() const
+    {
+        return vehicle_api_.get();
+    }
+
+    virtual msr::airlib::VehicleApiBase* getVehicleApiBase() const override
     {
         return vehicle_api_.get();
     }
@@ -49,6 +52,8 @@ private:
     void updateCarControls();
 
 private:
+    Params params_;
+
     std::unique_ptr<msr::airlib::CarApiBase> vehicle_api_;
     std::vector<std::string> vehicle_api_messages_;
 
