@@ -96,14 +96,14 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\AirLib\deps\rpclib\include;$(ProjectDir)..\AirLib\deps\eigen3;$(ProjectDir)..\AirLib\include;C:\dev\ros2-bouncy\include;C:\dev\opencv\sources\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\AirLib\deps\rpclib\include;$(ProjectDir)..\AirLib\deps\eigen3;$(ProjectDir)..\AirLib\include;C:\dev\ros2-crystal\include;C:\dev\opencv\sources\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(ProjectDir)\..\AirLib\deps\MavLinkCom\lib\$(Platform)\$(Configuration);$(ProjectDir)\..\AirLib\deps\rpclib\lib\$(Platform)\$(Configuration);$(ProjectDir)\..\AirLib\lib\$(Platform)\$(Configuration);C:\dev\ros2-bouncy\Lib;C:\dev\ros2-bouncy\bin;C:\dev\opencv\build\x64\vc15\bin;C:\dev\opencv\build\x64\vc15\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjectDir)\..\AirLib\deps\MavLinkCom\lib\$(Platform)\$(Configuration);$(ProjectDir)\..\AirLib\deps\rpclib\lib\$(Platform)\$(Configuration);$(ProjectDir)\..\AirLib\lib\$(Platform)\$(Configuration);C:\dev\ros2-crystal\Lib;C:\dev\ros2-crystal\bin;C:\dev\opencv\build\x64\vc15\bin;C:\dev\opencv\build\x64\vc15\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>rpc.lib;AirLib.lib;opencv_world341.lib;rcl.lib;rmw.lib;rcutils.lib;rclcpp.lib;rosidl_typesupport_cpp.lib;geometry_msgs__rosidl_typesupport_cpp.lib;nav_msgs__rosidl_typesupport_cpp.lib;std_msgs__rosidl_typesupport_cpp.lib;sensor_msgs__rosidl_typesupport_cpp.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
