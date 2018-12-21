@@ -3,7 +3,7 @@
 #### Get an environment
 Download an AirSim environment from [the AirSim releases page](https://github.com/Microsoft/AirSim/releases). I like `AirSimNH`, `CityEnviron`, and `Warehouse`. Extract it to:
 
-`C:\dev\`
+`C:\dev\Airsim Environments\`
 
 #### Install Visual Studio 
 
@@ -33,7 +33,7 @@ C:\dev\ros2-bouncy\bin
 ...and clicking `OK` on the three open windows.
 
 #### Get this repo
-Clone this repository to your `C:\src\` folder.
+Clone this repository to your `C:\dev\` folder.
 
 Copy the `settings.json` file to your `~\Documents\AirSim\` folder. If it doesn't exist, run AirSim once to create it.
 
