@@ -7,6 +7,9 @@
 #include <signal.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <Windows.h>
+#include <tchar.h>
+#include <Pdh.h>
 
 #include "opencv2/opencv.hpp"
 
@@ -43,6 +46,9 @@ typedef ImageCaptureBase::ImageType ImageType;
 
 msr::airlib::MultirotorRpcLibClient client;
 
+static PDH_HQUERY cpuQuery;
+static PDH_HCOUNTER cpuTotal;
+
 class ROS2AirSim : public rclcpp::Node
 {
 public:
@@ -54,22 +60,31 @@ public:
 		publishRate_ = 0;
 		publishCount_ = 0;
 
+		PdhOpenQuery(NULL, NULL, &cpuQuery);
+		PdhAddEnglishCounter(cpuQuery, L"\\Processor(_Total)\\% Processor Time", NULL, &cpuTotal);
+		PdhCollectQueryData(cpuQuery);
+
 		// Create the bridge state publishers
 		bridgeTimer_ = this->create_wall_timer(1000ms, std::bind(&ROS2AirSim::bridge_callback, this));
-		bridgeConnectedPublisher_ = this->create_publisher<std_msgs::msg::Bool>("/exo/airsim/drone/bridge/connected");
-		bridgePingPublisher_ = this->create_publisher<std_msgs::msg::String>("/exo/airsim/drone/bridge/ping");
+		bridgeConnectedPublisher_ = this->create_publisher<std_msgs::msg::Bool>("/abcd1234whatever/airsim/drone/bridge/connected");
+		bridgePingPublisher_ = this->create_publisher<std_msgs::msg::String>("/abcd1234whatever/airsim/drone/bridge/ping");
 
 		// Create the drone state publishers
 		stateTimer_ = this->create_wall_timer(100ms, std::bind(&ROS2AirSim::state_callback, this));
-		connectedPublisher_ = this->create_publisher<std_msgs::msg::Bool>("/exo/airsim/drone/simulator/connected");
-		pingPublisher_ = this->create_publisher<std_msgs::msg::String>("/exo/airsim/drone/simulator/ping");
-		accelPublisher_ = this->create_publisher<geometry_msgs::msg::Accel>("/exo/airsim/drone/state/accel");
-		fixPublisher_ = this->create_publisher<sensor_msgs::msg::NavSatFix>("/exo/airsim/drone/state/gps");
-		odomPublisher_ = this->create_publisher<nav_msgs::msg::Odometry>("/exo/airsim/drone/state/odometry");
-		imuPublisher_ = this->create_publisher<sensor_msgs::msg::Imu>("/exo/airsim/drone/state/imu");
-		landedPublisher_ = this->create_publisher<std_msgs::msg::Bool>("/exo/airsim/drone/state/landed");
-		collidedPublisher_ = this->create_publisher<std_msgs::msg::Bool>("/exo/airsim/drone/state/collided");
-		batteryPublisher_ = this->create_publisher<sensor_msgs::msg::BatteryState>("/exo/airsim/drone/state/battery");
+		connectedPublisher_ = this->create_publisher<std_msgs::msg::Bool>("/abcd1234whatever/airsim/drone/simulator/connected");
+		pingPublisher_ = this->create_publisher<std_msgs::msg::String>("/abcd1234whatever/airsim/drone/simulator/ping");
+		accelPublisher_ = this->create_publisher<geometry_msgs::msg::Accel>("/abcd1234whatever/airsim/drone/state/accel");
+		fixPublisher_ = this->create_publisher<sensor_msgs::msg::NavSatFix>("/abcd1234whatever/airsim/drone/state/gps");
+		odomPublisher_ = this->create_publisher<nav_msgs::msg::Odometry>("/abcd1234whatever/airsim/drone/state/odometry");
+		imuPublisher_ = this->create_publisher<sensor_msgs::msg::Imu>("/abcd1234whatever/airsim/drone/state/imu");
+		landedPublisher_ = this->create_publisher<std_msgs::msg::Bool>("/abcd1234whatever/airsim/drone/state/landed");
+		collidedPublisher_ = this->create_publisher<std_msgs::msg::Bool>("/abcd1234whatever/airsim/drone/state/collided");
+		batteryPublisher_ = this->create_publisher<sensor_msgs::msg::BatteryState>("/abcd1234whatever/airsim/drone/state/battery");
+		totalMemoryPublisher_ = this->create_publisher<std_msgs::msg::Float32>("/abcd1234whatever/formation_robot_diagnostics/gb_total_memory");
+		hostnamectlPublisher_ = this->create_publisher<std_msgs::msg::String>("/abcd1234whatever/formation_robot_diagnostics/hostnamectl");
+		isOnlinePublisher_ = this->create_publisher<std_msgs::msg::Bool>("/abcd1234whatever/formation_robot_diagnostics/is_online");
+		percentCpuUsagePublisher_ = this->create_publisher<std_msgs::msg::Float32>("/abcd1234whatever/formation_robot_diagnostics/percent_cpu_usage");
+		percentMemoryUsagePublisher_ = this->create_publisher<std_msgs::msg::Float32>("/abcd1234whatever/formation_robot_diagnostics/percent_memory_usage");
 
 		RCLCPP_INFO(this->get_logger(), "Publishers initialized.");
 	}
@@ -113,6 +128,11 @@ private:
 	rclcpp::Publisher<std_msgs::msg::Bool>::SharedPtr landedPublisher_;
 	rclcpp::Publisher<std_msgs::msg::Bool>::SharedPtr collidedPublisher_;
 	rclcpp::Publisher<sensor_msgs::msg::BatteryState>::SharedPtr batteryPublisher_;
+	rclcpp::Publisher<std_msgs::msg::Float32>::SharedPtr totalMemoryPublisher_;
+	rclcpp::Publisher<std_msgs::msg::String>::SharedPtr hostnamectlPublisher_;
+	rclcpp::Publisher<std_msgs::msg::Bool>::SharedPtr isOnlinePublisher_;
+	rclcpp::Publisher<std_msgs::msg::Float32>::SharedPtr percentCpuUsagePublisher_;
+	rclcpp::Publisher<std_msgs::msg::Float32>::SharedPtr percentMemoryUsagePublisher_;
 	void state_callback()
 	{
 		stateCount_++;
@@ -208,6 +228,48 @@ private:
 		collidedMessage.data = collision_info.has_collided;
 		collidedPublisher_->publish(collidedMessage);
 		*/
+
+		// Publish the total system memory available (in GB)
+		auto totalMemoryMessage = std_msgs::msg::Float32();
+		MEMORYSTATUSEX memInfo;
+		memInfo.dwLength = sizeof(MEMORYSTATUSEX);
+		GlobalMemoryStatusEx(&memInfo);
+		float totalMemory = (float)memInfo.ullTotalPhys / 1073741824;
+		totalMemoryMessage.data = totalMemory;
+		totalMemoryPublisher_->publish(totalMemoryMessage);
+
+		// Publish a fake hostnamectl message
+		auto hostnamectlMessage = std_msgs::msg::String();
+		hostnamectlMessage.data = "";
+		hostnamectlMessage.data.append("    Static hostname: airsim-host\n");
+		hostnamectlMessage.data.append("	Icon name: stack-pc\n");
+		hostnamectlMessage.data.append("    Chassis: pc\n");
+		hostnamectlMessage.data.append("	Machine ID : 2efb99e92fa1c516bac6f704f856abed\n");
+		hostnamectlMessage.data.append("	Boot ID : 6551a017a45c4666a776a35fb54d10e7\n");
+		hostnamectlMessage.data.append("	Virtualization: none\n");
+		hostnamectlMessage.data.append("	Operating System : Windows 10 Professional\n");
+		hostnamectlMessage.data.append("	Kernel: Windows 10\n");
+		hostnamectlMessage.data.append("	Architecture: x86 - 64\n");
+		hostnamectlPublisher_->publish(hostnamectlMessage);
+		
+		// Publish true when the system is online
+		auto isOnlineMessage = std_msgs::msg::Bool();
+		isOnlineMessage.data = true;
+		isOnlinePublisher_->publish(isOnlineMessage);
+
+		// Publish the percentage of cpu used
+		auto percentCpuUsageMessage = std_msgs::msg::Float32();
+		PDH_FMT_COUNTERVALUE counterVal;
+		PdhCollectQueryData(cpuQuery);
+		PdhGetFormattedCounterValue(cpuTotal, PDH_FMT_DOUBLE, NULL, &counterVal);
+		percentCpuUsageMessage.data = (float)counterVal.doubleValue;
+		percentCpuUsagePublisher_->publish(percentCpuUsageMessage);
+
+		// publish the percentage of memory used
+		auto percentMemoryUsageMessage = std_msgs::msg::Float32();
+		float physMemUsed = ((float)memInfo.ullTotalPhys / 1073741824 - (float)memInfo.ullAvailPhys / 1073741824);
+		percentMemoryUsageMessage.data = physMemUsed / totalMemory;
+		percentMemoryUsagePublisher_->publish(percentMemoryUsageMessage);
 
 		/*
 		duration<double> tickEnd = duration_cast<duration<double>>(high_resolution_clock::now() - tickStart);
