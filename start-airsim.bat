@@ -1,7 +1,7 @@
-cd "C:\dev\AirSim Environments\TrapCam"
-start TrapCam -ResX=640 -ResY=480 -windowed
+cd "C:\dev\AirSim Environments\Plains"
+start Plains -ResX=640 -ResY=480 -windowed
 
-timeout /t 7
+timeout /t 8
 
 cd "C:\dev\AirSim\ROS2Bridge\build\x64\Release"
 start AirSimROS2Publishers.exe
