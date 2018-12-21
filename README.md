@@ -14,9 +14,9 @@ Download [Visual Studio 2017 Community](https://visualstudio.microsoft.com/vs/) 
 Download the [Epic Games Installer](https://www.unrealengine.com/en-US/what-is-unreal-engine-4) and install Unreal Engine 4.18.
 
 #### Install ROS2
-Install ROS2 Bouncy Bolson by using the Windows binary installation instructions found [here](https://github.com/ros2/ros2/wiki/Windows-Install-Binary). Extract it to:
+Install ROS2 Crystal Clemmys by using the Windows binary installation instructions found [here](https://index.ros.org/doc/ros2/Windows-Install-Binary/). Extract it to:
 
-`C:\dev\ros2-bouncy\`
+`C:\dev\ros2-crystal\`
 
 #### Install OpenCV
 If you didn't do it while installing ROS2, install OpenCV 3.4.1 using [this link](https://github.com/ros2/ros2/releases/download/opencv-archives/opencv-3.4.1-vc15.VS2017.zip). Extract it to:
@@ -28,7 +28,8 @@ Add the ROS2 and OpenCV binaries to your path by opening the start menu and typi
 
 ```
 C:\dev\opencv\build\x64\vc15\bin
-C:\dev\ros2-bouncy\bin
+C:\dev\ros2-crystal\bin
+C:\dev\ros2-crystal\Lib
 ```
 ...and clicking `OK` on the three open windows.
 
@@ -36,6 +37,11 @@ C:\dev\ros2-bouncy\bin
 Clone this repository to your `C:\dev\` folder.
 
 Copy the `settings.json` file to your `~\Documents\AirSim\` folder. If it doesn't exist, run AirSim once to create it.
+
+
+#### Build AirSim
+
+Run a new `x64 Native Tools Command Prompt for VS 2017` window in administrative mode and navigate to the `C:\dev\AirSim\` directory, then run `build.cmd`. 
 
 #### Build the bridges
 Open the `AirSim.sln` solution file in Visual Studio 2017. Select the `Build -> Rebuild Soultion` item from the menu bar.
