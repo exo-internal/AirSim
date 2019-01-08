@@ -80,6 +80,8 @@ public:
 		landedPublisher_ = this->create_publisher<std_msgs::msg::Bool>("/abcd1234whatever/airsim/drone/state/landed");
 		collidedPublisher_ = this->create_publisher<std_msgs::msg::Bool>("/abcd1234whatever/airsim/drone/state/collided");
 		batteryPublisher_ = this->create_publisher<sensor_msgs::msg::BatteryState>("/abcd1234whatever/airsim/drone/state/battery");
+
+		// Create the diagnostics publishers
 		totalMemoryPublisher_ = this->create_publisher<std_msgs::msg::Float32>("/abcd1234whatever/formation_robot_diagnostics/gb_total_memory");
 		hostnamectlPublisher_ = this->create_publisher<std_msgs::msg::String>("/abcd1234whatever/formation_robot_diagnostics/hostnamectl");
 		isOnlinePublisher_ = this->create_publisher<std_msgs::msg::Bool>("/abcd1234whatever/formation_robot_diagnostics/is_online");
