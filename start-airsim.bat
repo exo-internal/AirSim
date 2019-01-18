@@ -1,5 +1,5 @@
-cd "C:\dev\AirSim Environments\Plains"
-start Plains -ResX=640 -ResY=480 -windowed
+cd "C:\dev\AirSim Environments\AirSimNH"
+start AirSimNH -ResX=640 -ResY=480 -windowed
 
 timeout /t 8
 
