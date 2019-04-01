@@ -1,5 +1,7 @@
-cd "C:\dev\AirSim Environments\AirSimNH"
-start AirSimNH -ResX=640 -ResY=480 -windowed
+set PATH=%PATH%;C:\dev\ros2-crystal\bin;C:\OpenSSL-Win64\bin
+
+cd "C:\dev\AirSim Environments\Plains"
+start Plains -ResX=640 -ResY=480 -windowed
 
 timeout /t 8
 
